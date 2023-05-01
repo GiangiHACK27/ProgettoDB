@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javax.sql.DataSource;
+
 import model.Image;
 import model.ImageDAO;
 
@@ -24,7 +26,8 @@ public class ImageGetterServlet extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		
-		Image image = ImageDAO.getImageFromID(id);
+		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		Image image = imageDAO.getImageFromID(id);
 		
 		response.setContentType("image/png");
 		ServletOutputStream out = response.getOutputStream();

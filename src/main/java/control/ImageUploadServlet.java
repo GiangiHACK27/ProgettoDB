@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import javax.sql.DataSource;
+
 import model.Image;
 import model.ImageDAO;
 
@@ -55,7 +57,8 @@ public class ImageUploadServlet extends HttpServlet {
 		//Create the image DTO
 		
 		//Execute query to database to insert the image
-		ImageDAO.insertImage(image);
+		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		imageDAO.insertImage(image);
 		//Execute query to database to insert the image
 	}
 

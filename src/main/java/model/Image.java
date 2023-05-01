@@ -4,7 +4,6 @@ public class Image {
 	
 	public Image() {
 		super();
-		
 	}
 	
 	public String getId() {
