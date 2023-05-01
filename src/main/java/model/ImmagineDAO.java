@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ImmagineDAO {
+	
+	private ImmagineDAO() {
+		
+	}
+	
 	public static Immagine getImmagineFromID(String ID) {
 		
 		String query = "SELECT raw,testoAlternativo FROM Immagine WHERE ID = ?";
@@ -42,7 +47,7 @@ public class ImmagineDAO {
 		return immagine;
 	}
 	
-	public static void InsertImmagine(Immagine immagine) {
+	public static void insertImmagine(Immagine immagine) {
 		String query = "INSERT INTO IMMAGINE values (?, ?, ?)";
 		
 		Connection conn = null;

@@ -53,7 +53,7 @@ public class ImmagineUploadServlet extends HttpServlet {
 		//Create the Immagine DTO
 		
 		//Execute query to database to insert the Immagine
-		ImmagineDAO.InsertImmagine(immagine);
+		ImmagineDAO.insertImmagine(immagine);
 		//Execute query to database to insert the Immagine
 	}
 

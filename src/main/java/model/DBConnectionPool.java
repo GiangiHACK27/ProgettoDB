@@ -7,26 +7,32 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DBConnectionPool  {
-
+	
 	private static List<Connection> freeDbConnections;
 
+	/*Private constructor because SonarLint says utility classes (which are collections of static methods)
+	* must have a private constructor otherwise Java creates a public one and allows you to instantiate it
+	*/
+	private DBConnectionPool() {
+		
+	}
 	static {
-		freeDbConnections = new LinkedList<Connection>();
+		freeDbConnections = new LinkedList<>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			//TO DO: add a dedicated logger instead of using System output
 			System.out.println("DB driver not found:"+ e.getMessage());
 		} 
 	}
 	
 	private static synchronized Connection createDBConnection() throws SQLException {
 		Connection newConnection = null;
-//		String ip = "localhost";
-//		String port = "3306";
-//		String db = "photo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		//Note: removed commented-out lines of code here
 		String username = "client";
 		String password = "client";
 
+		//TO DO: store the credentials in a safer way
 		newConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/GameShop", username, password);
 
 		newConnection.setAutoCommit(true);
@@ -38,7 +44,7 @@ public class DBConnectionPool  {
 		Connection connection;
 
 		if (!freeDbConnections.isEmpty()) {
-			connection = (Connection) freeDbConnections.get(0);
+			connection =  freeDbConnections.get(0);
 			freeDbConnections.remove(0);
 
 			try {

@@ -19,6 +19,7 @@ public class ImmagineGetterServlet extends HttpServlet {
         super();
     }
 
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
@@ -31,6 +32,7 @@ public class ImmagineGetterServlet extends HttpServlet {
 		out.write(immagine.getBytes());
 	}
 
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
