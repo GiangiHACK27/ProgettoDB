@@ -1,18 +1,18 @@
 DROP database if exists GameShop;
 
 CREATE DATABASE GameShop;
-CREATE USER 'client'@'localhost' IDENTIFIED BY 'client';
-GRANT ALL PRIVILEGES ON GameShop.* TO 'client'@'localhost';
+
 USE GameShop;
 
 CREATE TABLE Game (
-	id int NOT NULL,
+	id int NOT NULL AUTO_INCREMENT,
     price int NOT NULL,
     name varchar(30) NOT NULL,
     description varchar(30) DEFAULT(""),
     shortDescription varchar(30) DEFAULT(""),
-    realeseDate date,
-    State ENUM("Realesed", "Beta", "Alpha", "Coming soon") NOT NULL DEFAULT("Coming soon"),
+    realeseDate date DEFAULT("1999-09-09"),
+    State ENUM("Realesed", "Beta", "Alpha", "Coming soon", "UnListed") NOT NULL DEFAULT("Coming soon"),
+    pegi int NOT NULL DEFAULT(18),
     primary key(id)
 );
 
@@ -43,7 +43,7 @@ CREATE TABLE SystemRequirement (
 CREATE TABLE Image (
 	id varchar(30) NOT NULL,
 	raw mediumblob NULL,
-    altText varchar(30) NOT NULL DEFAULT("Image Not Found"),
+    alt varchar(30) NOT NULL DEFAULT("Image Not Found"),
     PRIMARY KEY(id)
 );
 
@@ -62,9 +62,9 @@ CREATE TABLE User (
 	username varchar(30) NOT NULL,
     password varchar(30) NOT NULL,
 	email varchar(30) NOT NULL UNIQUE,
-    ProfileImageId varchar(30) NULL,
-    GamesOwned int NOT NULL DEFAULT(0),
-    Role ENUM("client", "admin") NOT NULL,
+    profileImageId varchar(30) NULL,
+    gamesOwned int NOT NULL DEFAULT(0),
+    Role ENUM("client", "admin") NOT NULL DEFAULT("client"),
     primary key(username)
 );
 
@@ -80,11 +80,11 @@ CREATE TABLE Interested (
 );
 
 CREATE TABLE Purchase (
-	id int NOT NULL,
+	id int NOT NULL AUTO_INCREMENT,
     gameId int NOT NULL,
     username varchar(30) NOT NULL,
     price int NOT NULL DEFAULT(0),
-    datePurchased date NOT NULL, -- ADD A DEFAULT DATE
+    datePurchased date NOT NULL DEFAULT(CURDATE()),
     CONSTRAINT gameIdConsPurchase 
 		foreign key (gameId) references Game (id),
 	CONSTRAINT usernameConsPurchase
@@ -94,7 +94,7 @@ CREATE TABLE Purchase (
 );
 
 CREATE TABLE Review (
-	id int NOT NULL,
+	id int NOT NULL AUTO_INCREMENT,
     gameId int NOT NULL,
     username varchar(30) NOT NULL,
     textField text NULL, 
@@ -124,7 +124,39 @@ FOR EACH ROW
 UPDATE Review as R SET R.likes = R.likes + 1 WHERE NEW.reviewId = R.id;
 
 CREATE TRIGGER decreaseNumberOfLikes
-AFTER INSERT ON Likes
+AFTER DELETE ON Likes
 FOR EACH ROW
-UPDATE Review as R SET R.likes = R.likes - 1 WHERE NEW.reviewId = R.id;
+UPDATE Review as R SET R.likes = R.likes - 1 WHERE OLD.reviewId = R.id;
 -- Triggers to update like counter in review
+
+-- Triggers to update the number of games of user's library
+CREATE TRIGGER increaseGamesOwned
+AFTER INSERT ON Purchase 
+FOR EACH ROW
+UPDATE User as U SET U.gamesOwned = U.gamesOwned + 1 WHERE NEW.username = U.username;
+
+CREATE TRIGGER decreaseGamesOwned
+AFTER DELETE ON Purchase
+FOR EACH ROW
+UPDATE User as U SET U.gamesOwned = U.gamesOwned - 1 WHERE OLD.username = U.username;
+-- Triggers to update the number of games of user's library
+
+-- Triggers for a valid purchase
+DELIMITER //
+CREATE TRIGGER buyIfNotPossesed BEFORE INSERT ON Purchase for each row 
+begin 
+IF EXISTS(SELECT * FROM Purchase as P WHERE P.gameId = NEW.gameId AND NEW.username = P.username) THEN signal sqlstate '45000';
+end if;
+end // 
+DELIMITER ; 
+-- Triggers for a valid purchase
+
+-- Triggers for a valid like
+DELIMITER //
+CREATE TRIGGER likeOnDifferentUsers BEFORE INSERT ON Likes for each row 
+begin 
+IF EXISTS(SELECT * FROM Review as R WHERE R.username = NEW.username) THEN signal sqlstate '45000';
+end if;
+end // 
+DELIMITER ; 
+-- Triggers for a valid like
