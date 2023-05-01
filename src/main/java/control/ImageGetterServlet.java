@@ -1,4 +1,4 @@
-package controll;
+package control;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Immagine;
-import model.ImmagineDAO;
+import model.Image;
+import model.ImageDAO;
 
-@WebServlet("/ImmagineGetterServlet")
-public class ImmagineGetterServlet extends HttpServlet {
+@WebServlet("/ImageGetterServlet")
+public class ImageGetterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
-    public ImmagineGetterServlet() {
+    public ImageGetterServlet() {
         super();
     }
 
@@ -24,12 +24,12 @@ public class ImmagineGetterServlet extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		
-		Immagine immagine = ImmagineDAO.getImmagineFromID(id);
+		Image image = ImageDAO.getImageFromID(id);
 		
 		response.setContentType("image/png");
 		ServletOutputStream out = response.getOutputStream();
 		
-		out.write(immagine.getBytes());
+		out.write(image.getBytes());
 	}
 
     @Override

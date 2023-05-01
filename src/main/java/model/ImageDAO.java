@@ -5,15 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ImmagineDAO {
+public class ImageDAO {
 	
-	private ImmagineDAO() {
+	private ImageDAO() {
 		
 	}
 	
-	public static Immagine getImmagineFromID(String ID) {
-		
-		String query = "SELECT raw,testoAlternativo FROM Immagine WHERE ID = ?";
+	public static Image getImageFromID(String ID) {
+		System.out.println(ID);
+		String query = "SELECT raw, altText FROM image WHERE ID = ?";
 		
 		Connection conn = null;
 		ResultSet rs = null;
@@ -30,25 +30,25 @@ public class ImmagineDAO {
 			return null;
 		}
 		
-		Immagine immagine = new Immagine();
+		Image image = new Image();
 		try {
 			rs.next();
 			
-			immagine.setId(ID);
-			immagine.setTestoAlternativo(rs.getString("testoAlternativo"));
+			image.setId(ID);
+			image.setAltText(rs.getString("altText"));
 			byte[] bytes = rs.getBytes("raw");
 			
-			immagine.setBytes(bytes);
+			image.setBytes(bytes);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
 		
-		return immagine;
+		return image;
 	}
 	
-	public static void insertImmagine(Immagine immagine) {
-		String query = "INSERT INTO IMMAGINE values (?, ?, ?)";
+	public static void insertImage(Image image) {
+		String query = "INSERT INTO image values (?, ?, ?)";
 		
 		Connection conn = null;
 		try {
@@ -65,9 +65,9 @@ public class ImmagineDAO {
 		}
 		
 		try {
-			ps.setString(1, immagine.getId());
-			ps.setBytes(2, immagine.getBytes());
-			ps.setString(3, immagine.getTestoAlternativo());
+			ps.setString(1, image.getId());
+			ps.setBytes(2, image.getBytes());
+			ps.setString(3, image.getAltText());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

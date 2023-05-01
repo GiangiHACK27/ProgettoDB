@@ -1,4 +1,4 @@
-package controll;
+package control;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,50 +11,52 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import model.Immagine;
-import model.ImmagineDAO;
+import model.Image;
+import model.ImageDAO;
 
 /**
- * Servlet implementation class ImmagineUploadServlet
+ * Servlet implementation class imageUploadServlet
  */
-@WebServlet("/ImmagineUploadServlet")
+@WebServlet("/ImageUploadServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
 maxRequestSize = 1024 * 1024 * 50) // 50MB
-public class ImmagineUploadServlet extends HttpServlet {
+public class ImageUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ImmagineUploadServlet() {
+    public ImageUploadServlet() {
         super();
         
     }
 
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.getWriter().append("CANNOT USE GET");
 	}
 
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Remember: ADD CONTROL ABOUT PARAMETERS OF REQUEST
 		String id = request.getParameter("id");
-		String testoAlternativo = request.getParameter("testoAlternativo");
+		String altText = request.getParameter("altText");
 		Part raw = request.getPart("raw");
 		
-		//Create the Immagine DTO
-		Immagine immagine = new Immagine();
-		immagine.setId(id);
-		immagine.setTestoAlternativo(testoAlternativo);
+		//Create the image DTO
+		Image image = new Image();
+		image.setId(id);
+		image.setAltText(altText);
 		
 		InputStream is = raw.getInputStream();
 		byte[] bytes = new byte[is.available()];
 		is.read(bytes);
-		immagine.setBytes(bytes);
-		//Create the Immagine DTO
+		image.setBytes(bytes);
+		//Create the image DTO
 		
-		//Execute query to database to insert the Immagine
-		ImmagineDAO.insertImmagine(immagine);
-		//Execute query to database to insert the Immagine
+		//Execute query to database to insert the image
+		ImageDAO.insertImage(image);
+		//Execute query to database to insert the image
 	}
 
 }

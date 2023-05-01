@@ -1,8 +1,8 @@
 package model;
 
-public class Immagine {
+public class Image {
 	
-	public Immagine() {
+	public Image() {
 		super();
 		
 	}
@@ -15,12 +15,12 @@ public class Immagine {
 		this.id = id;
 	}
 	
-	public String getTestoAlternativo() {
-		return testoAlternativo;
+	public String getAltText() {
+		return altText;
 	}
 	
-	public void setTestoAlternativo(String testoAlternativo) {
-		this.testoAlternativo = testoAlternativo;
+	public void setAltText(String altText) {
+		this.altText = altText;
 	}
 	
 	public byte[] getBytes() {
@@ -32,6 +32,6 @@ public class Immagine {
 	}
 
 	private String id;
-	private String testoAlternativo;
+	private String altText;
 	private byte[] bytes;
 }

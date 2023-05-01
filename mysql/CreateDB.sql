@@ -1,7 +1,8 @@
 DROP database if exists GameShop;
 
 CREATE DATABASE GameShop;
-
+CREATE USER 'client'@'localhost' IDENTIFIED BY 'client';
+GRANT ALL PRIVILEGES ON GameShop.* TO 'client'@'localhost';
 USE GameShop;
 
 CREATE TABLE Game (
@@ -42,7 +43,7 @@ CREATE TABLE SystemRequirement (
 CREATE TABLE Image (
 	id varchar(30) NOT NULL,
 	raw mediumblob NULL,
-    alt varchar(30) NOT NULL DEFAULT("Image Not Found"),
+    altText varchar(30) NOT NULL DEFAULT("Image Not Found"),
     PRIMARY KEY(id)
 );
 

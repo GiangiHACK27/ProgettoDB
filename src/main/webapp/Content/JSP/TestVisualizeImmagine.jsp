@@ -8,6 +8,6 @@
 	</head>
 	
 	<body>
-		<img src="/PhotoTesting/ImmagineGetterServlet?id=Capture2.png">
+		<img src="/GamingWorldShop/ImageGetterServlet?id=aaa">
 	</body>
 </html>
