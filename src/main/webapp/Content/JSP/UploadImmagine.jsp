@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang = en>
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Upload an image</title>
@@ -10,7 +10,7 @@
 	<body>
 		
 		<form method="post" action="/GamingWorldShop/ImageUploadServlet" enctype="multipart/form-data">
-			<fieldset>
+			<fieldset> <legend>Image data</legend> 
 				ID: <input type="text" name="id"> <br>
 				Select file: <input type="file" name="raw"> <br>
 				Alt text: <input type="text" name="altText"> <br>

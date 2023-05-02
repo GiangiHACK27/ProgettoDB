@@ -30,14 +30,22 @@ public class ImageGetterServlet extends HttpServlet {
 		Image image = imageDAO.getImageFromID(id);
 		
 		response.setContentType("image/png");
-		ServletOutputStream out = response.getOutputStream();
-		
-		out.write(image.getBytes());
+		try(ServletOutputStream out = response.getOutputStream()){
+			out.write(image.getBytes());
+		}
+		catch(IOException e) {
+			//TODO: add error page
+		}
 	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		try{
+			doGet(request, response);
+		}
+		catch(IOException | ServletException e) {
+			//TODO: add error page
+		}
 	}
 
 }

@@ -34,7 +34,12 @@ public class ImageUploadServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.getWriter().append("CANNOT USE GET");
+		try{
+			response.getWriter().append("CANNOT USE GET");
+		}
+		catch(IOException e) {
+			//TODO: add error page
+		}
 	}
 
     @Override
@@ -43,16 +48,28 @@ public class ImageUploadServlet extends HttpServlet {
 		//Remember: ADD CONTROL ABOUT PARAMETERS OF REQUEST
 		String id = request.getParameter("id");
 		String altText = request.getParameter("altText");
-		Part raw = request.getPart("raw");
+		Part raw = null;
+		try {
+			raw = request.getPart("raw");
+		}
+		catch (ServletException | IOException e) {
+			// TODO: add exception page
+		}
 		
 		//Create the image DTO
 		Image image = new Image();
 		image.setId(id);
 		image.setAltText(altText);
 		
-		InputStream is = raw.getInputStream();
-		byte[] bytes = new byte[is.available()];
-		is.read(bytes);
+		byte[] bytes = null;
+		try {
+			InputStream is = raw.getInputStream();
+			bytes =	new byte[is.available()];
+			is.read(bytes);
+		}
+		catch(IOException e) {
+			// TODO: add exception page
+		}
 		image.setBytes(bytes);
 		//Create the image DTO
 		
