@@ -1,7 +1,8 @@
 DROP database if exists GameShop;
 
 CREATE DATABASE GameShop;
-
+CREATE USER IF NOT EXISTS 'client'@'localhost' IDENTIFIED BY 'client';
+GRANT ALL ON gameshop.* TO 'client'@'localhost';
 USE GameShop;
 
 CREATE TABLE Game (

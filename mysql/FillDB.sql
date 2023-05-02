@@ -1,5 +1,6 @@
 USE GameShop;
 
+
 INSERT INTO User (username, password, email) values ("tonaion", "tonaion", "tonaion@email.com");
 INSERT INTO User (username, password, email) values ("AleCoppola02", "asdad", "alala");
 
