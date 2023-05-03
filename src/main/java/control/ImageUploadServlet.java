@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -38,7 +39,7 @@ public class ImageUploadServlet extends HttpServlet {
 			response.getWriter().append("CANNOT USE GET");
 		}
 		catch(IOException e) {
-			//TODO: add error page
+			
 		}
 	}
 
@@ -53,7 +54,7 @@ public class ImageUploadServlet extends HttpServlet {
 			raw = request.getPart("raw");
 		}
 		catch (ServletException | IOException e) {
-			// TODO: add exception page
+			response.sendError(500, "Cannot upload image");
 		}
 		
 		//Create the image DTO
@@ -68,14 +69,18 @@ public class ImageUploadServlet extends HttpServlet {
 			is.read(bytes);
 		}
 		catch(IOException e) {
-			// TODO: add exception page
+			response.sendError(500, "Cannot upload image");
 		}
 		image.setBytes(bytes);
 		//Create the image DTO
 		
 		//Execute query to database to insert the image
 		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		imageDAO.insertImage(image);
+		try {
+			imageDAO.insertImage(image);
+		} catch (SQLException e) {
+			response.sendError(500, "Cannot upload image");
+		}
 		//Execute query to database to insert the image
 	}
 

@@ -12,7 +12,7 @@
 		<form action="Content/JSP/UploadImmagine.jsp">
 			<input type="submit" name="summitta" value="Test upload immagine"> <br>
 		</form>
-		<form action="Content/JSP/TestVisualizeImmagine.jsp">
+		<form action="/GamingWorldShop/ImageGetterServlet?id=aa">
 			<input type="submit" name="summitta" value="Test visualizzazione immagine"> <br>
 		</form>
 	</body>

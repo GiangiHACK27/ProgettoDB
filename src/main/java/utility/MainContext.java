@@ -14,7 +14,8 @@ public class MainContext implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContext context = sce.getServletContext();
-
+		
+		//Init data source and add data source to the ServletContext
 		DataSource ds = null;
 		try {
 			Context initCtx = new InitialContext();
@@ -26,9 +27,11 @@ public class MainContext implements ServletContextListener {
 			//System.out.println("Error:" + e.getMessage());
 			e.printStackTrace();
 		}		
-
-		System.out.println(ds.getClass());
 		
 		context.setAttribute("DataSource", ds);
+		//Init data source and add data source to the ServletContext
+		
+		
+		
 	}
 }

@@ -1,6 +1,9 @@
 package control;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -23,29 +26,29 @@ public class ImageGetterServlet extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+    	
 		String id = request.getParameter("id");
 		
 		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		Image image = imageDAO.getImageFromID(id);
+		Image image = null;
+		try {
+			image = imageDAO.getImageFromID(id);
+		} catch (SQLException e) {
+			response.sendError(404, "Image Not Found");
+			return;
+		}
 		
 		response.setContentType("image/png");
 		try(ServletOutputStream out = response.getOutputStream()){
 			out.write(image.getBytes());
 		}
 		catch(IOException e) {
-			//TODO: add error page
+			response.sendError(404, "Image Not Found");
 		}
 	}
 
     @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			doGet(request, response);
-		}
-		catch(IOException | ServletException e) {
-			//TODO: add error page
-		}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {    	
+    	doGet(request, response);
 	}
-
 }

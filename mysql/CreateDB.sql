@@ -65,7 +65,7 @@ CREATE TABLE User (
 	email varchar(30) NOT NULL UNIQUE,
     profileImageId varchar(30) NULL,
     gamesOwned int NOT NULL DEFAULT(0),
-    Role ENUM("client", "admin") NOT NULL DEFAULT("client"),
+    role ENUM("client", "admin") NOT NULL DEFAULT("client"),
     primary key(username)
 );
 
