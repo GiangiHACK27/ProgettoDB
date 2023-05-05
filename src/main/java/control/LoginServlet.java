@@ -14,12 +14,13 @@ import javax.sql.DataSource;
 
 import model.User;
 import model.UserDAO;
-
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 @WebServlet("/common/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    public LoginServlet() {
+	private static final long serialVersionUID = -8697651045570564505L;
+
+	public LoginServlet() {
         super();
     }
     
@@ -28,7 +29,7 @@ public class LoginServlet extends HttpServlet {
     }
     
     private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
-    	RequestDispatcher rs = request.getRequestDispatcher("/Content/JSP/Login.jsp");
+    	RequestDispatcher rs = request.getRequestDispatcher("/Content/common/Login.jsp");
     	try {
 			rs.forward(request, response);
 		} catch (ServletException | IOException e) {
@@ -36,8 +37,28 @@ public class LoginServlet extends HttpServlet {
 		} 
     }
 
+    private String toHash(String password) throws NoSuchAlgorithmException {
+		String hashString = null;
+		//convert password to hashed version
+		java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+		hashString = "";
+		
+		for (int i = 0; i < hash.length; i++) {
+			hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
+		}
+		//convert password to hashed version
+		return hashString;
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError(500);
+		if(request.getSession().getAttribute("user") != null) {
+			response.sendRedirect(request.getContextPath());
+		}
+		else {
+			request.setAttribute("logError", null);
+			errorLogin(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,6 +71,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		String password = request.getParameter("password");
+
 		if(isNotValidParam(password)) {
 			request.setAttribute("logError","Missing Password");
 			errorLogin(request, response);
@@ -57,7 +79,21 @@ public class LoginServlet extends HttpServlet {
 		}
 		//Retrieve username and password from form and check if it is empty
 		
+		
 		//Retrieve from the database the user from username
+		
+		//Hash the password
+		String hashPassword = null;
+		try {
+			hashPassword = toHash(password);
+		} catch (NoSuchAlgorithmException e) {
+			request.setAttribute("logError","Fatal error");
+			errorLogin(request, response);
+			return;
+		}
+		//Hash the password
+
+		
 		UserDAO userDAO = new UserDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		User user = null;
 		try {
@@ -76,7 +112,7 @@ public class LoginServlet extends HttpServlet {
 		//Check if found a user in database
 		
 		//Check if password matches
-		if(! user.getPassword().equals(password)) {
+		if(! user.getPassword().equals(hashPassword)) {
 			request.setAttribute("logError", "Wrong Password");
 			errorLogin(request, response);
 			return;
@@ -86,5 +122,7 @@ public class LoginServlet extends HttpServlet {
 		//Add attribute user in the session(to remember the login)
 		request.getSession().setAttribute("user", user);
 		//Add attribute user in the session(to remember the login)
+		
+		response.sendRedirect(request.getContextPath());	
 	}
 }

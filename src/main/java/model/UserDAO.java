@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 
 import javax.sql.DataSource;
 
+import model.User.Role;
+
 public class UserDAO extends BaseDAO {
 
 	public UserDAO(DataSource ds) {
@@ -41,7 +43,7 @@ public class UserDAO extends BaseDAO {
 		user.setUsername(rs.getString("username"));
 		user.setPassword(rs.getString("password"));
 		user.setEmail(rs.getString("email"));
-		user.setRole(rs.getString("role"));
+		user.setRole(Role.valueOf(rs.getString("role").toUpperCase()));
 		
 		//Create the user
 		
@@ -50,5 +52,30 @@ public class UserDAO extends BaseDAO {
 		//Close connection
 		
 		return user;
+	}
+	
+	public void insertUser(String username, String password, String email) throws SQLException {
+		// Retrieve connection
+		Connection conn = ds.getConnection();
+		// Retrieve connection
+
+		String query = "INSERT into user (username, password, email) values (?, ?, ?)";
+
+		PreparedStatement ps = conn.prepareStatement(query);
+		
+		//Set prepared statement values
+		ps.setString(1, username);
+		ps.setString(2, password);
+		ps.setString(3, email);
+		//Set prepared statement values
+
+		//Insert user into database
+		ps.execute();
+		//Insert user into database
+
+		//Close connection
+		conn.close();
+		//Close connection
+
 	}
 }

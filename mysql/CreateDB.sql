@@ -61,7 +61,7 @@ CREATE TABLE Represented (
 
 CREATE TABLE User (
 	username varchar(30) NOT NULL,
-    password varchar(30) NOT NULL,
+    password varchar(300) NOT NULL,
 	email varchar(30) NOT NULL UNIQUE,
     profileImageId varchar(30) NULL,
     gamesOwned int NOT NULL DEFAULT(0),

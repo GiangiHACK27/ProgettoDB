@@ -5,6 +5,11 @@ import java.io.Serializable;
 public class User implements Serializable {
 	private static final long serialVersionUID = 120323295184921490L;
 	
+	public enum Role{
+		CLIENT,
+		ADMIN
+	}
+	
 	public User() {
 		
 	}
@@ -21,7 +26,7 @@ public class User implements Serializable {
 		return email;
 	}
 	
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 	
@@ -45,7 +50,7 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
@@ -60,7 +65,7 @@ public class User implements Serializable {
 	private String username;
 	private String password;
 	private String email;
-	private String role;
+	private Role role;
 	private String profileImageId;
 	private int gamesOwned;
 }
