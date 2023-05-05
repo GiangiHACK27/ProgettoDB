@@ -8,6 +8,6 @@
 	</head>
 
 	<body>
-		
+		A fatal error has occurred.
 	</body>
 </html>

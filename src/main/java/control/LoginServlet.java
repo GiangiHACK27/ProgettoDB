@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import model.User;
 import model.UserDAO;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/common/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,11 +31,9 @@ public class LoginServlet extends HttpServlet {
     	RequestDispatcher rs = request.getRequestDispatcher("/Content/JSP/Login.jsp");
     	try {
 			rs.forward(request, response);
-		} catch (ServletException e) {
+		} catch (ServletException | IOException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} 
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

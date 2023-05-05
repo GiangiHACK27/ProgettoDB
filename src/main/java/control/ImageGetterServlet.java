@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import model.Image;
 import model.ImageDAO;
 
-@WebServlet("/ImageGetterServlet")
+@WebServlet("/common/ImageGetterServlet")
 public class ImageGetterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
