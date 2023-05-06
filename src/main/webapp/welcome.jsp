@@ -6,6 +6,7 @@
 <html lang = en>
 	<head>
 		<meta charset="ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="Content/CSS/style.css">
 		<title>Welcome to Gaming World!</title>
 	</head>
 	
