@@ -30,8 +30,5 @@ public class MainContext implements ServletContextListener {
 		
 		context.setAttribute("DataSource", ds);
 		//Init data source and add data source to the ServletContext
-		
-		
-		
 	}
 }

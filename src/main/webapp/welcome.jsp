@@ -32,16 +32,10 @@ You are logged in
 			</fieldset>
 		</form>
 		
-		<form action="/GamingWorldShop/common/LoginServlet" method = "get">
-			<input type="submit" name ="summitta" value="Login"> <br>
+		<a href="/GamingWorldShop/Content/common/Login.jsp">Login</a>
+		<form action="/GamingWorldShop//user/LogoutServlet" method="GET">
+			<button type="submit">Logout</button>
 		</form>
-		
-		<form action="/GamingWorldShop/user/LogoutServlet" method = "get">
-			<input type="submit" name ="summitta" value="Logout"> <br>
-		</form>
-		
-		<form action="/GamingWorldShop/common/RegisterServlet" method = "get">
-			<input type="submit" name ="summitta" value="Sign up"> <br>
-		</form>
+		<a href="/GamingWorldShop/Content/common/Register.jsp">Register</a><br>
 	</body>
 </html>

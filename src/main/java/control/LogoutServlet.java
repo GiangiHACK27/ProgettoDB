@@ -15,15 +15,12 @@ public class LogoutServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	
-	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
 		request.getSession().setAttribute("user", null);
-
-		response.sendRedirect(request.getContextPath());	
+		response.sendRedirect(request.getContextPath());
 	}
 
 	@Override
@@ -31,7 +28,4 @@ public class LogoutServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	
-	
 }

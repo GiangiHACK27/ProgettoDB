@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -16,6 +17,7 @@ import model.User;
 import model.UserDAO;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+
 @WebServlet("/common/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -8697651045570564505L;
@@ -37,19 +39,19 @@ public class LoginServlet extends HttpServlet {
 		} 
     }
 
-    private String toHash(String password) throws NoSuchAlgorithmException {
-		String hashString = null;
-		//convert password to hashed version
-		java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
-		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-		hashString = "";
-		
-		for (int i = 0; i < hash.length; i++) {
-			hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
-		}
-		//convert password to hashed version
-		return hashString;
-	}
+//    private String toHash(String password) throws NoSuchAlgorithmException {
+//		String hashString = null;
+//		//convert password to hashed version
+//		java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+//		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+//		hashString = "";
+//		
+//		for (int i = 0; i < hash.length; i++) {
+//			hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
+//		}
+//		//convert password to hashed version
+//		return hashString;
+//	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("user") != null) {
@@ -85,7 +87,7 @@ public class LoginServlet extends HttpServlet {
 		//Hash the password
 		String hashPassword = null;
 		try {
-			hashPassword = toHash(password);
+			hashPassword = Hasher.toHash(password);
 		} catch (NoSuchAlgorithmException e) {
 			request.setAttribute("logError","Fatal error");
 			errorLogin(request, response);
@@ -123,6 +125,6 @@ public class LoginServlet extends HttpServlet {
 		request.getSession().setAttribute("user", user);
 		//Add attribute user in the session(to remember the login)
 		
-		response.sendRedirect(request.getContextPath());	
+		response.sendRedirect("/GamingWorldShop/Content/user/PersonalArea.jsp");	
 	}
 }

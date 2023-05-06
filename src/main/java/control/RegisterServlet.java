@@ -18,26 +18,11 @@ import model.User;
 import model.UserDAO;
 
 @WebServlet("/common/RegisterServlet")
-
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = -7804549238416977869L;
 
 	public RegisterServlet(){
 		super();
-	}
-	
-	private String toHash(String password) throws NoSuchAlgorithmException {
-		String hashString = null;
-		//convert password to hashed version
-		java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
-		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-		hashString = "";
-		
-		for (int i = 0; i < hash.length; i++) {
-			hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
-		}
-		//convert password to hashed version
-		return hashString;
 	}
 	
 	private boolean isNotValidParam(String s) {
@@ -65,18 +50,22 @@ public class RegisterServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Retrieve form inputs and check if they're valid
-		Enumeration <String> attributes = request.getAttributeNames();
+		//First of all logout from the current user
+		request.getSession().setAttribute("user", null);
+		//First of all logout from the current user
 		
-		while(attributes.hasMoreElements()) {
-			String attributeName = attributes.nextElement();
-			String attributeValue = request.getParameter(attributeName);
-			if(isNotValidParam(attributeValue)) {
-				request.setAttribute("logError", "Missing" + attributeName);
+		//Retrieve form inputs and check if they're valid
+		Enumeration <String> parameters = request.getParameterNames();
+		
+		while(parameters.hasMoreElements()) {
+			String parameterName = parameters.nextElement();
+			String parameterValue = request.getParameter(parameterName);
+			if(isNotValidParam(parameterValue)) {
+				request.setAttribute("logError", "Missing " + parameterName);
 				errorRegister(request, response);
 				return;
 			}
-			request.setAttribute(attributeName +"Old", attributeValue);
+			//request.setAttribute(parameterName +"Old", parameterValue);
 		}
 		//Retrieve form inputs and check if they're valid
 		
@@ -84,13 +73,12 @@ public class RegisterServlet extends HttpServlet {
 		String password =  request.getParameter("password");
 		String username =  request.getParameter("username");
 		String email = request.getParameter("email");
-		System.out.println(password);
 		//Get user data from request
 
 		//Hash the password
 		String hashPassword = null;	
 		try {
-			hashPassword = toHash(password);
+			hashPassword = Hasher.toHash(password);
 		} catch (NoSuchAlgorithmException e) {
 			request.setAttribute("logError","Fatal error");
 			errorRegister(request, response);
