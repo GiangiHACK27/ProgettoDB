@@ -65,7 +65,6 @@ public class RegisterServlet extends HttpServlet {
 				errorRegister(request, response);
 				return;
 			}
-			//request.setAttribute(parameterName +"Old", parameterValue);
 		}
 		//Retrieve form inputs and check if they're valid
 		
