@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Enumeration;
@@ -14,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.User;
 import model.UserDAO;
+import utility.Hasher;
 
-@WebServlet("/common/RegisterServlet")
+@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = -7804549238416977869L;
 
@@ -30,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
     }
 	
 	private void errorRegister(HttpServletRequest request, HttpServletResponse response) {
-    	RequestDispatcher rs = request.getRequestDispatcher("/Content/common/Register.jsp");
+    	RequestDispatcher rs = request.getRequestDispatcher("Register.jsp");
     	try {
 			rs.forward(request, response);
 		} catch (ServletException | IOException e) {

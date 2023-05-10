@@ -1,4 +1,4 @@
-package utility;
+package control;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -52,7 +52,7 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 	
 	//Check if the user is logged(has a session)
 	private boolean checkForUserPath(String path, User user) {
-		return path.contains("/user/") && user == null; 
+		return path.contains("user") && user == null; 
 	}
 	
 	//Check if the user is and admin

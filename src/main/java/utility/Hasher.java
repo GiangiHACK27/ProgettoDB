@@ -1,4 +1,4 @@
-package control;
+package utility;
 
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;

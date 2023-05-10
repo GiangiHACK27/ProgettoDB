@@ -6,7 +6,6 @@
 <html lang = en>
 	<head>
 		<meta charset="ISO-8859-1">
-		<link rel="stylesheet" type="text/css" href="Content/CSS/style.css">
 		<title>Welcome to Gaming World!</title>
 	</head>
 	
@@ -33,10 +32,10 @@ You are logged in
 			</fieldset>
 		</form>
 		
-		<a href="/GamingWorldShop/Content/common/Login.jsp">Login</a>
-		<form action="/GamingWorldShop//user/LogoutServlet" method="GET">
+		<a href="/GamingWorldShop/Login.jsp">Login</a>
+		<form action="/GamingWorldShop/user/LogoutServlet" method="GET">
 			<button type="submit">Logout</button>
 		</form>
-		<a href="/GamingWorldShop/Content/common/Register.jsp">Register</a><br>
+		<a href="/GamingWorldShop/Register.jsp">Register</a><br>
 	</body>
 </html>

@@ -1,4 +1,4 @@
-package utility;
+package control;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

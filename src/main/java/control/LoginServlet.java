@@ -15,10 +15,11 @@ import javax.sql.DataSource;
 
 import model.User;
 import model.UserDAO;
-import java.nio.charset.StandardCharsets;
+import utility.Hasher;
+
 import java.security.NoSuchAlgorithmException;
 
-@WebServlet("/common/LoginServlet")
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -8697651045570564505L;
 
@@ -31,27 +32,13 @@ public class LoginServlet extends HttpServlet {
     }
     
     private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
-    	RequestDispatcher rs = request.getRequestDispatcher("/Content/common/Login.jsp");
+    	RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
     	try {
 			rs.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		} 
     }
-
-//    private String toHash(String password) throws NoSuchAlgorithmException {
-//		String hashString = null;
-//		//convert password to hashed version
-//		java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
-//		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-//		hashString = "";
-//		
-//		for (int i = 0; i < hash.length; i++) {
-//			hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
-//		}
-//		//convert password to hashed version
-//		return hashString;
-//	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("user") != null) {
@@ -125,6 +112,6 @@ public class LoginServlet extends HttpServlet {
 		request.getSession().setAttribute("user", user);
 		//Add attribute user in the session(to remember the login)
 		
-		response.sendRedirect("/GamingWorldShop/Content/user/PersonalArea.jsp");	
+		response.sendRedirect("/GamingWorldShop/user/PersonalArea.jsp");	
 	}
 }

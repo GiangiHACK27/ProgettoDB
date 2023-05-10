@@ -3,7 +3,6 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,7 @@ import javax.sql.DataSource;
 import model.Image;
 import model.ImageDAO;
 
-@WebServlet("/common/ImageGetterServlet")
+@WebServlet("/ImageGetterServlet")
 public class ImageGetterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
