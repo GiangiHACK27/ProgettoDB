@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
     }
 	
 	private void errorRegister(HttpServletRequest request, HttpServletResponse response) {
-    	RequestDispatcher rs = request.getRequestDispatcher("Register.jsp");
+    	RequestDispatcher rs = request.getRequestDispatcher(request.getContextPath());
     	try {
 			rs.forward(request, response);
 		} catch (ServletException | IOException e) {
