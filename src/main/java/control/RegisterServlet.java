@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.UserDAO;
+import dao.UserDAO;
 import utility.Hasher;
 
 @WebServlet("/RegisterServlet")

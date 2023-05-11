@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.sql.DataSource;
 
+import dao.UserDAO;
 import model.User;
-import model.UserDAO;
 import utility.Hasher;
 
 import java.security.NoSuchAlgorithmException;

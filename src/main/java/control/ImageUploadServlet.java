@@ -14,8 +14,8 @@ import javax.servlet.http.Part;
 
 import javax.sql.DataSource;
 
+import dao.ImageDAO;
 import model.Image;
-import model.ImageDAO;
 
 /**
  * Servlet implementation class imageUploadServlet
