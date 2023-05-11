@@ -4,8 +4,14 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		
+		<meta name="viewport" content="width=devide-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		
 		<title>Sign up to Gaming World</title>
-		</head>
+	
+	</head>
 	<body>
 		
 	<% String usernameOld = request.getParameter("username");
