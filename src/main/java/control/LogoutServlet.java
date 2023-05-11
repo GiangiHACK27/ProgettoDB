@@ -20,6 +20,7 @@ public class LogoutServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.getSession().setAttribute("user", null);
+		System.out.println(request.getContextPath());
 		response.sendRedirect(request.getContextPath());
 	}
 

@@ -52,12 +52,12 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 	
 	//Check if the user is logged(has a session)
 	private boolean checkForUserPath(String path, User user) {
-		return path.contains("user") && user == null; 
+		return path.contains("/user/") && user == null; 
 	}
 	
 	//Check if the user is and admin
 	private boolean checkForAdminPath(String path, User user) {
-		return path.contains("admin") && (user == null || ! user.getRole().equals(Role.ADMIN) ); 
+		return path.contains("/admin/") && (user == null || ! user.getRole().equals(Role.ADMIN) ); 
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {

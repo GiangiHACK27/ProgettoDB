@@ -15,7 +15,7 @@
 You are logged in
 <%} %>
 		
-		<form action="/GamingWorldShop/common/ImageUploadServlet" method="post" enctype="multipart/form-data">
+		<form action="/GamingWorldShop/ImageUploadServlet" method="post" enctype="multipart/form-data">
 			<fieldset> <legend>Test image upload</legend> 
 				ID: <input type="text" name="id"> <br>
 				Select file: <input type="file" name="raw"> <br>
@@ -25,7 +25,7 @@ You are logged in
 			
 		</form>
 		
-		<form action="/GamingWorldShop/common/ImageGetterServlet" method ="post" >
+		<form action="/GamingWorldShop/ImageGetterServlet" method ="post" >
 			<fieldset> <legend>Test image visualization</legend> 
 				ID: <input type="text" name="id"> <br>
 				<input type="submit" name="summitta" value="Test image view"> <br>
