@@ -1,4 +1,4 @@
-package model;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 
 import javax.sql.DataSource;
 
+import model.User;
 import model.User.Role;
 
 public class UserDAO extends BaseDAO {
