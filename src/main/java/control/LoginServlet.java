@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
     }
     
     private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
-    	RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+    	RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
     	try {
 			rs.forward(request, response);
 		} catch (ServletException | IOException e) {

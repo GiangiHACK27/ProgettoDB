@@ -16,7 +16,7 @@
 		   oldPassword = "";
 	%>
 	
-	<form method="post" action="/GamingWorldShop/common/LoginServlet">
+	<form method="post" action="/GamingWorldShop/LoginServlet">
 		user: <input type="text" name="username" value="<%= oldUser%>">
 		<br>
 		password: <input type="password" name="password" value="<%= oldPassword%>">
