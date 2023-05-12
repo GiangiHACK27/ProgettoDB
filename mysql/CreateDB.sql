@@ -11,8 +11,8 @@ CREATE TABLE Game (
     name varchar(30) NOT NULL,
     description varchar(30) DEFAULT(""),
     shortDescription varchar(30) DEFAULT(""),
-    realeseDate date DEFAULT("1999-09-09"),
-    State ENUM("Realesed", "Beta", "Alpha", "Coming soon", "UnListed") NOT NULL DEFAULT("Coming soon"),
+    releaseDate date DEFAULT("1999-09-09"),
+    State ENUM("Released", "Beta", "Alpha", "Coming soon", "Unlisted") NOT NULL DEFAULT("Coming soon"),
     pegi int NOT NULL DEFAULT(18),
     primary key(id)
 );
