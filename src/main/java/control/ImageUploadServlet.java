@@ -76,7 +76,7 @@ public class ImageUploadServlet extends HttpServlet {
 		//Execute query to database to insert the image
 		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		try {
-			imageDAO.insertImage(image);
+			imageDAO.insertImagePezzotto(image);
 		} catch (SQLException e) {
 			response.sendError(500, "Cannot upload image");
 		}

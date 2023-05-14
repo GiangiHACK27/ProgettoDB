@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.sql.DataSource;
 
@@ -15,7 +17,7 @@ public class GameDAO extends BaseDAO {
 		super(ds);
 	}
 	
-	public void insertGame  (int price, String name, String description,
+	public int insertGame  (int price, String name, String description,
 							String state, String shortDescription,
 							String releaseDate, String pegi) throws SQLException {
 		// Retrieve connection
@@ -25,8 +27,10 @@ public class GameDAO extends BaseDAO {
 		String query = "INSERT into game (price, name, description, state,"
 						+"shortDescription, releaseDate, pegi) values ( ?, ?, ?, ?, ?, ?, ?)";
 
-		PreparedStatement ps = conn.prepareStatement(query);
-		
+		//Make prepared statement with tag to return generated keys
+		PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		//Make prepared statement with tag to return generated keys
+
 		//Set prepared statement values
 		ps.setInt(1, price);
 		ps.setString(2, name);
@@ -40,10 +44,17 @@ public class GameDAO extends BaseDAO {
 		//Insert user into database
 		ps.execute();
 		//Insert user into database
+		
+		//get key from result set
+		int id = 0;
+		try (ResultSet keys = ps.getGeneratedKeys()) {
+			keys.next();
+	        id = keys.getInt(1);
+	    }
+		//get key from result set
 
-		//Close connection
 		conn.close();
-		//Close connection
+		return id;
 
 	}
 }

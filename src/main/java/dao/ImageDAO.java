@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.sql.DataSource;
+
 
 import model.Image;
 
@@ -52,7 +54,7 @@ public class ImageDAO extends BaseDAO {
 		return image;
 	}
 	
-	public synchronized void insertImage(Image image) throws SQLException {
+	public synchronized void insertImagePezzotto(Image image) throws SQLException {
 		String query = "INSERT INTO image values (?, ?, ?)";
 		
 		Connection conn = null;
@@ -69,4 +71,52 @@ public class ImageDAO extends BaseDAO {
 		
 		conn.close();
 	}
+	
+	public synchronized int insertImage(byte[] bytes) throws SQLException {
+		String query = "INSERT INTO image (raw) values (?)";
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		conn = ds.getConnection();
+		
+		//add statement tag to return generated keys (they are needed to update represented table)
+		ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		//add statement tag to return generated keys
+		ps.setBytes(1, bytes);
+
+		ps.execute();
+		
+		//get key from result set
+		int id = 0;
+		try (ResultSet keys = ps.getGeneratedKeys()) {
+			keys.next();
+	        id = keys.getInt(1);
+	    }
+		//get key from result set
+
+		conn.close();
+		return id;
+	}
+	
+	public synchronized void connectImageGame(int imageId, int gameId, String role) throws SQLException {
+		String query = "INSERT INTO represented (imageId, gameId, role) values (?, ?, ?)";
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		conn = ds.getConnection();
+		
+		ps = conn.prepareStatement(query);
+		
+		ps.setInt(1, imageId);
+		ps.setInt(2, gameId);
+		ps.setString(3, role); //roles should be enums but i break the cats
+
+		ps.execute();
+
+		conn.close();
+	}
+	
+	
 }

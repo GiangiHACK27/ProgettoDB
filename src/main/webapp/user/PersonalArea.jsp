@@ -11,7 +11,11 @@
 		<%User user = (User)session.getAttribute("user");
 		String username = user.getUsername();
 		%>
-	
-		<h1>Welcome in you personal area: <%=username %></h1>
+		
+		<h1>Welcome in you personal area: <%=username %> </h1>
+		
+				<%if(user.getRole().toString().equals("ADMIN")){ %>
+		<a href="../admin/UploadGame.jsp">carica gioco</a> <br>
+		<%} %>
 	</body>
 </html>

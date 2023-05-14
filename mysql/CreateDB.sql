@@ -42,7 +42,7 @@ CREATE TABLE SystemRequirement (
 );
 
 CREATE TABLE Image (
-	id varchar(30) NOT NULL,
+	id INT auto_increment NOT NULL,
 	raw mediumblob NULL,
     alt varchar(30) NOT NULL DEFAULT("Image Not Found"),
     PRIMARY KEY(id)
@@ -50,7 +50,7 @@ CREATE TABLE Image (
 
 CREATE TABLE Represented (
 	gameId int NOT NULL,
-    imageId varchar(30) NOT NULL,
+    imageId INT NOT NULL,
 	role varchar(30) NOT NULL,
     CONSTRAINT gameIdConsRepresented
 		foreign key (gameId) references Game (id),

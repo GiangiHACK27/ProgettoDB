@@ -1,21 +1,30 @@
 package control;
 
 import java.io.IOException;
+
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import dao.GameDAO;
+import dao.ImageDAO;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+maxFileSize = 1024 * 1024 * 10, // 10MB
+maxRequestSize = 1024 * 1024 * 50) // 50MB
 @WebServlet("/admin/GameUploadServlet")
 public class GameUploadServlet extends HttpServlet {
 	
@@ -23,7 +32,8 @@ public class GameUploadServlet extends HttpServlet {
     	return s == null || s.trim().isEmpty();
     }
 	
-	private void errorUpload(HttpServletRequest request, HttpServletResponse response) {
+	private void errorUpload(HttpServletRequest request, HttpServletResponse response, String message) {
+		request.setAttribute("logError", message);
     	RequestDispatcher rs = request.getRequestDispatcher("/admin/UploadGame.jsp");
     	try {
 			rs.forward(request, response);
@@ -35,6 +45,16 @@ public class GameUploadServlet extends HttpServlet {
 	public GameUploadServlet() {
         super(); 
     }
+	
+	public void uploadImage(ImageDAO imageDAO, int gameId, Part image, String role ) throws SQLException, IOException {
+		//upload image into database
+		int imageId = imageDAO.insertImage(image.getInputStream().readAllBytes());
+		//upload image into database
+
+		//update represented table with role
+		imageDAO.connectImageGame(imageId, gameId, role);
+		//update represented table with role
+	}
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,11 +67,11 @@ public class GameUploadServlet extends HttpServlet {
 		Enumeration <String> parameters = request.getParameterNames();
 		
 		while(parameters.hasMoreElements()) {
+			System.out.println("Dio");
 			String parameterName = parameters.nextElement();
 			String parameterValue = request.getParameter(parameterName);
 			if(isNotValidParam(parameterValue)) {
-				request.setAttribute("logError", "Missing " + parameterName);
-				errorUpload(request, response);
+				errorUpload(request, response, "Missing" + parameterName);
 				return;
 			}
 		}
@@ -71,16 +91,49 @@ public class GameUploadServlet extends HttpServlet {
 
 		//insert game into database
 		GameDAO gameDAO = new GameDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		int gameId = 0;
 		try {
-			gameDAO.insertGame(price, name, description, state, shortDescription, releaseDate, pegi);
+			gameId = gameDAO.insertGame(price, name, description, state, shortDescription, releaseDate, pegi);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("logError","Upload error");
-			errorUpload(request, response);
+			errorUpload(request, response, "Upload data error");
 			return;
 		}
 		//insert game into database
 
+		//Insert images into database and upload "represented" table
+		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
+
+		//insert banner image
+		Part bannerImage = request.getPart("bannerImage");
+		try {
+			uploadImage(imageDAO, gameId, bannerImage, "BANNER");
+		} catch (SQLException | IOException e) {
+			errorUpload(request, response, "Error uploading banner image");
+		}
+		//insert banner image
+		
+		//insert showcase images
+		Collection<Part> showcaseImages = request.getParts();
+		Iterator<Part> i = showcaseImages.iterator();
+		i.next(); //Perché la prima l'ho già messa. E' brutto ma non c'è un modo decente per farlo
+		while(i.hasNext()) {
+			try {
+				Part image = i.next();
+				//check if it's not an image. If it isn't, stop iterating. Only works if the form starts with the images
+				if(image.getContentType() == null || !image.getContentType().contains("image"))
+					break; 
+				//check if it's not an image. If it isn't, stop iterating.
+				uploadImage(imageDAO, gameId, image, "SHOWCASE");
+			} catch (SQLException | IOException e) {
+				errorUpload(request, response, "Error uploading banner image");
+			} 
+		}
+		//insert showcase images
+		//Insert images into database and upload "represented" table
+
+		
+		
 		response.sendRedirect(request.getContextPath());	
 	}
 	
