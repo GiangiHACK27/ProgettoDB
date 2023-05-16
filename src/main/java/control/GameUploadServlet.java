@@ -2,10 +2,8 @@ package control;
 
 import java.io.IOException;
 
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
 
