@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.*;
 
 import javax.sql.DataSource;
 
+import model.Category;
+import model.Game;
 import model.Game.Pegi;
 import model.Game.State;
 
@@ -55,6 +58,103 @@ public class GameDAO extends BaseDAO {
 
 		conn.close();
 		return id;
-
+	}
+	
+	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi) throws SQLException {
+		//Retrieve connection
+		Connection conn = ds.getConnection();
+		//Retrieve connection
+		
+		//Construct query string
+		String categoriesToSearch = "(";
+		for(int i = 0;i < categories.size();i++) {
+			if(i == categories.size() - 1)
+				categoriesToSearch += "?";
+			else
+				categoriesToSearch += "?,";
+		}
+		categoriesToSearch += ")";
+		//Construct query string
+		
+		//Construct query
+		String query = "SELECT DISTINCT * FROM Game as G, Belongs as B, Category as C "
+						+ "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+						+ categoriesToSearch
+						+ "AND G.price <= ? AND "
+						+ "G.pegi <= ?";
+		
+		PreparedStatement ps = conn.prepareStatement(query);
+		
+		int i = 1;
+		for(Category c : categories) {
+			ps.setString(i, c.getName());
+			
+			i++;
+		}
+		
+		ps.setInt(i, maxPrice);
+		i++;
+		ps.setInt(i, pegi);
+		i++;
+		//Construct query
+		
+		//Retrieve the categories from database
+		ResultSet rs = ps.executeQuery();
+		//Retrieve the categories from database
+		
+		//Create the list of Game
+		List<Game> games = new ArrayList<>();
+		
+		while(rs.next()) {
+			Game game = new Game();
+			
+			game.setId(rs.getInt("id"));
+			game.setName(rs.getString("name"));
+			game.setDescription(rs.getString("description"));
+			game.setPrice(rs.getInt("price"));
+			game.setShortDescription(rs.getString("shortDescription"));
+			game.setReleaseDate("realeseDate");
+			Pegi pegi1 = Pegi.valueOf("PEGI_" + rs.getString("pegi"));
+			game.setPegi(pegi1);
+			State state = State.valueOf(rs.getString("state").toUpperCase());
+			game.setState(state);
+			
+			games.add(game);
+		}
+		//Create the list of Game
+		
+		//Close connection
+		conn.close();
+		//Close connection
+		
+		return games;
+	}
+	
+	public int retrieveMaxPriceGame() throws SQLException {
+		//Retrieve connection
+		Connection conn = ds.getConnection();
+		//Retrieve connection
+		
+		//Construct query
+		String query = "SELECT MAX(price) as max FROM Game";
+		
+		PreparedStatement ps = conn.prepareStatement(query);
+		//Construct query
+		
+		//Retrieve the categories from database
+		ResultSet rs = ps.executeQuery();
+		//Retrieve the categories from database
+		
+		//Create the list of Game
+		int maxPrice = 0;
+		if(rs.next())
+			maxPrice = rs.getInt("max");
+		//Create the list of Game
+		
+		//Close connection
+		conn.close();
+		//Close connection
+		
+		return maxPrice;
 	}
 }

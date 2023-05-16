@@ -12,7 +12,7 @@ CREATE TABLE Game (
     description varchar(30) DEFAULT(""),
     shortDescription varchar(30) DEFAULT(""),
     releaseDate date DEFAULT("1999-09-09"),
-    State ENUM("Released", "Beta", "Alpha", "Coming soon", "Unlisted") NOT NULL DEFAULT("Coming soon"),
+    State ENUM("Released", "Beta", "Alpha", "Coming_soon", "Unlisted") NOT NULL DEFAULT("Coming_soon"),
     pegi int NOT NULL DEFAULT(18),
     primary key(id)
 );
@@ -23,12 +23,12 @@ CREATE TABLE Category (
 );
 
 CREATE TABLE Belongs (
-	nameCategory varchar(30) NOT NULL,
+	categoryName varchar(30) NOT NULL,
     gameId int NOT NULL,
     CONSTRAINT gameIdConsBelongs 
 		foreign key (gameId) references Game (id),
 	CONSTRAINT nameCategoryConsBelongs
-		foreign key (nameCategory) references Category (name)
+		foreign key (categoryName) references Category (name)
 );
 
 CREATE TABLE SystemRequirement (
@@ -72,7 +72,7 @@ CREATE TABLE User (
 CREATE TABLE Interested (
 	username varchar(30) NOT NULL,
     gameId int NOT NULL,
-    category ENUM("chart", "whishlist") NOT NULL DEFAULT("char"),
+    category ENUM("chart", "whishlist") NOT NULL DEFAULT("chart"),
     CONSTRAINT gameIdConsInterested
 		foreign key (gameId) references Game (id),
 	CONSTRAINT usernameConsInterested
