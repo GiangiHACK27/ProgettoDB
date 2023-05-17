@@ -42,10 +42,17 @@ public class GameUploadServlet extends BaseServlet {
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError(404, "Cannot use GET");
+		//Include Retrieve all categories Servlet 
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveAllCategories");
+		dispatcher.include(request, response);
+		//Include Retrieve all categories Servlet
+		RequestDispatcher dispatcher2 = request.getRequestDispatcher("/admin/UploadGame.jsp");
+		dispatcher2.forward(request, response);
 	}
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
 		
 		//Retrieve form inputs and check if they're valid
 		if(!validParameters(request, response, selfPath)) {
