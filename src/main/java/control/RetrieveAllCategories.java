@@ -15,7 +15,7 @@ import model.Category;
 import dao.CategoryDAO;
 
 @WebServlet("/RetrieveAllCategories")
-public class RetrieveAllCategories extends HttpServlet {
+public class RetrieveAllCategories extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
     public RetrieveAllCategories() {

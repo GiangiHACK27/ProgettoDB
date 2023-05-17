@@ -19,7 +19,7 @@
 	<form method="post" action="/GamingWorldShop/RegisterServlet">
 		username: <input type="text" name="username" value="<%= usernameOld%>">
 		<br>
-		email: <input type=text name="email" value = "<%=emailOld %>" >
+		email: <input type=email name="email" value = "<%=emailOld %>" >
 		<br>
 		password: <input type="password" name="password" value="">
 		<br>

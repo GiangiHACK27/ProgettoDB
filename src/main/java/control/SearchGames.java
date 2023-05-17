@@ -19,7 +19,7 @@ import model.Game;
 import model.Game.Pegi;
 
 @WebServlet("/SearchGames")
-public class SearchGames extends HttpServlet {
+public class SearchGames extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
     public SearchGames() {

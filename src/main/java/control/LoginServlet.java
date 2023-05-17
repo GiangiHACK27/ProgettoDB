@@ -20,16 +20,13 @@ import utility.Hasher;
 import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends BaseServlet {
 	private static final long serialVersionUID = -8697651045570564505L;
 
 	public LoginServlet() {
         super();
     }
     
-    private boolean isNotValidParam(String s) {
-    	return s == null || s.trim().isEmpty();
-    }
     
     private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
     	RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
@@ -45,27 +42,17 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 		}
 		else {
-			request.setAttribute("logError", null);
-			errorLogin(request, response);
+			showError(request, response, null, selfPath);
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Retrieve username and password from form and check if it is empty
+		if(!validParameters(request, response, selfPath)) {
+			return;
+		}
 		String username = request.getParameter("username");
-		if(isNotValidParam(username)) {
-			request.setAttribute("logError","Missing Username");
-			errorLogin(request, response);
-			return;
-		}
-		
 		String password = request.getParameter("password");
-
-		if(isNotValidParam(password)) {
-			request.setAttribute("logError","Missing Password");
-			errorLogin(request, response);
-			return;
-		}
 		//Retrieve username and password from form and check if it is empty
 		
 		
@@ -76,8 +63,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			hashPassword = Hasher.toHash(password);
 		} catch (NoSuchAlgorithmException e) {
-			request.setAttribute("logError","Fatal error");
-			errorLogin(request, response);
+			showError(request, response, "Fatal error", selfPath);
 			return;
 		}
 		//Hash the password
@@ -94,16 +80,14 @@ public class LoginServlet extends HttpServlet {
 		
 		//Check if found a user in database
 		if(user == null) {
-			request.setAttribute("logError", "Wrong Username");
-			errorLogin(request, response);
+			showError(request, response, "User not found", selfPath);
 			return;
 		}
 		//Check if found a user in database
 		
 		//Check if password matches
 		if(! user.getPassword().equals(hashPassword)) {
-			request.setAttribute("logError", "Wrong Password");
-			errorLogin(request, response);
+			showError(request, response, "Wrong password", selfPath);
 			return;
 		}
 		//Check if password matches
@@ -114,4 +98,5 @@ public class LoginServlet extends HttpServlet {
 		
 		response.sendRedirect("/GamingWorldShop/user/PersonalArea.jsp");	
 	}
+	private String selfPath =  "/Login.jsp";
 }

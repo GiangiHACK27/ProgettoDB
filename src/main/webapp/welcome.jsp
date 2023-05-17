@@ -37,5 +37,8 @@ You are logged in
 			<button type="submit">Logout</button>
 		</form>
 		<a href="/GamingWorldShop/Register.jsp">Register</a><br>
-	</body>
+		
+		<form action="/GamingWorldShop/SearchGames" method ="GET" >
+			<input type="submit" name="summitta" value="Check out our games!"> <br>
+		</form>	</body>
 </html>

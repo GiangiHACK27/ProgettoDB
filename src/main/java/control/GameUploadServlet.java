@@ -24,21 +24,7 @@ import dao.ImageDAO;
 maxFileSize = 1024 * 1024 * 10, // 10MB
 maxRequestSize = 1024 * 1024 * 50) // 50MB
 @WebServlet("/admin/GameUploadServlet")
-public class GameUploadServlet extends HttpServlet {
-	
-	private boolean isNotValidParam(String s) {
-    	return s == null || s.trim().isEmpty();
-    }
-	
-	private void errorUpload(HttpServletRequest request, HttpServletResponse response, String message) {
-		request.setAttribute("logError", message);
-    	RequestDispatcher rs = request.getRequestDispatcher("/admin/UploadGame.jsp");
-    	try {
-			rs.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		} 
-    }
+public class GameUploadServlet extends BaseServlet {
 	
 	public GameUploadServlet() {
         super(); 
@@ -62,16 +48,8 @@ public class GameUploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Retrieve form inputs and check if they're valid
-		Enumeration <String> parameters = request.getParameterNames();
-		
-		while(parameters.hasMoreElements()) {
-			System.out.println("Dio");
-			String parameterName = parameters.nextElement();
-			String parameterValue = request.getParameter(parameterName);
-			if(isNotValidParam(parameterValue)) {
-				errorUpload(request, response, "Missing" + parameterName);
-				return;
-			}
+		if(!validParameters(request, response, selfPath)) {
+			return;
 		}
 		//Retrieve form inputs and check if they're valid
 		
@@ -93,8 +71,7 @@ public class GameUploadServlet extends HttpServlet {
 		try {
 			gameId = gameDAO.insertGame(price, name, description, state, shortDescription, releaseDate, pegi);
 		} catch (SQLException e) {
-			e.printStackTrace();
-			errorUpload(request, response, "Upload data error");
+			showError(request, response, "Internal error while uploading game", selfPath);
 			return;
 		}
 		//insert game into database
@@ -107,7 +84,7 @@ public class GameUploadServlet extends HttpServlet {
 		try {
 			uploadImage(imageDAO, gameId, bannerImage, "BANNER");
 		} catch (SQLException | IOException e) {
-			errorUpload(request, response, "Error uploading banner image");
+			showError(request, response, "Error uploading banner image", selfPath);
 		}
 		//insert banner image
 		
@@ -124,7 +101,7 @@ public class GameUploadServlet extends HttpServlet {
 				//check if it's not an image. If it isn't, stop iterating.
 				uploadImage(imageDAO, gameId, image, "SHOWCASE");
 			} catch (SQLException | IOException e) {
-				errorUpload(request, response, "Error uploading banner image");
+				showError(request, response, "Error uploading banner image", selfPath);
 			} 
 		}
 		//insert showcase images
@@ -136,5 +113,5 @@ public class GameUploadServlet extends HttpServlet {
 	}
 	
 	private static final long serialVersionUID = 1503010158356860644L;
-
+	private final String selfPath = "/admin/UploadGame.jsp";
 }

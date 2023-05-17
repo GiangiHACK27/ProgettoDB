@@ -16,7 +16,7 @@ import dao.ImageDAO;
 import model.Image;
 
 @WebServlet("/ImageGetterServlet")
-public class ImageGetterServlet extends HttpServlet {
+public class ImageGetterServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
       
     public ImageGetterServlet() {

@@ -17,33 +17,32 @@ import dao.UserDAO;
 import utility.Hasher;
 
 @WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+public class RegisterServlet extends BaseServlet {
 	private static final long serialVersionUID = -7804549238416977869L;
 
 	public RegisterServlet(){
 		super();
 	}
 	
-	private boolean isNotValidParam(String s) {
-    	return s == null || s.trim().isEmpty();
-    }
-	
-	private void errorRegister(HttpServletRequest request, HttpServletResponse response) {
-    	RequestDispatcher rs = request.getRequestDispatcher("/Register.jsp");
-    	try {
-			rs.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		} 
-    }
+//	private boolean isNotValidParam(String s) {
+//    	return s == null || s.trim().isEmpty();
+//    }
+//	
+//	private void errorRegister(HttpServletRequest request, HttpServletResponse response) {
+//    	RequestDispatcher rs = request.getRequestDispatcher("/Register.jsp");
+//    	try {
+//			rs.forward(request, response);
+//		} catch (ServletException | IOException e) {
+//			e.printStackTrace();
+//		} 
+//    }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("user") != null) {
 			response.sendRedirect(request.getContextPath());
 		}
 		else {
-			request.setAttribute("logError", null);
-			errorRegister(request, response);
+			showError(request, response, null, selfPath);
 		}
 	}
 	
@@ -54,16 +53,8 @@ public class RegisterServlet extends HttpServlet {
 		//First of all logout from the current user
 		
 		//Retrieve form inputs and check if they're valid
-		Enumeration <String> parameters = request.getParameterNames();
-		
-		while(parameters.hasMoreElements()) {
-			String parameterName = parameters.nextElement();
-			String parameterValue = request.getParameter(parameterName);
-			if(isNotValidParam(parameterValue)) {
-				request.setAttribute("logError", "Missing " + parameterName);
-				errorRegister(request, response);
-				return;
-			}
+		if(!validParameters(request, response, selfPath)) {
+			return;
 		}
 		//Retrieve form inputs and check if they're valid
 		
@@ -78,8 +69,7 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			hashPassword = Hasher.toHash(password);
 		} catch (NoSuchAlgorithmException e) {
-			request.setAttribute("logError","Fatal error");
-			errorRegister(request, response);
+			showError(request, response, "Fatal error", selfPath);
 			return;
 		}
 		//Hash the password
@@ -89,12 +79,14 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			userDAO.insertUser(username, hashPassword, email);
 		} catch (SQLException e) {
-			request.setAttribute("logError","Username is already taken"); //in realtà potrebbe essere anche la mail
-			errorRegister(request, response);
+			showError(request, response, "Credentials already taken", selfPath);
+
 			return;
 		}
 		//insert user into database
 
 		response.sendRedirect(request.getContextPath());	
 	}
+	private final static String selfPath = "/Register.jsp";
+
 }
