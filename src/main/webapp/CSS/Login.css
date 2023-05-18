@@ -13,6 +13,10 @@ body{
 
 html, body { height: 100%;}
 
+div#parent{
+	position:relative;
+}
+
 div#loginForm{
   border: 5px solid;
   border-color: #0A0908;
@@ -21,5 +25,5 @@ div#loginForm{
   position:absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 400%);
 }
