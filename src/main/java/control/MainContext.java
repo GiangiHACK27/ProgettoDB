@@ -1,6 +1,9 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.List;
+import model.Category;
+
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,7 +15,7 @@ import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
 import dao.GameDAO;
-
+import dao.CategoryDAO;
 @WebListener
 public class MainContext implements ServletContextListener {
 	@Override
@@ -46,5 +49,17 @@ public class MainContext implements ServletContextListener {
 		
 		context.setAttribute("maxPrice", maxPrice);
 		//Retrieve max price from Games
+		
+		//retrieve all categories
+		CategoryDAO categoryDAO = new CategoryDAO(ds);
+		List<Category> categoryList = null;
+		try {
+			categoryList = categoryDAO.retrieveAllCategories();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		context.setAttribute("categories", categoryList);
+		//retrieve all categories
 	}
 }

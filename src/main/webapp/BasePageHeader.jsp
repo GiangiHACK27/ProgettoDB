@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/HeaderStyle.css">
 
 <header class=pageHeader>
+
+<div id="logo">
+  <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/logo.png" /> </a>
+</div>
 		<nav>
 			<ul>
 				<li><a href="${pageContext.request.contextPath}"> STORE </a></li>
@@ -18,11 +22,12 @@
 					</li>
 					<%}else{ %>
 					<li class = dropdown>
-						<a><%=user.getUsername().toUpperCase() %> </a>
+						<a href="${pageContext.request.contextPath}/user/PersonalArea.jsp"><%=user.getUsername().toUpperCase() %> </a>
 						<div class =dropdown-content>
 							<ul>
-								<li><a href="${pageContext.request.contextPath}/user/PersonalArea.jsp">PERSONAL AREA </a> </li>
-								<%-- <li><a href="${pageContext.request.contextPath}/lOGOUT.JSP"> </li> doesn't work without button... --%>
+								<li><a href="${pageContext.request.contextPath}/user/PersonalArea.jsp">PERSONAL &nbsp;AREA</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a></li>
+								
 							</ul>
 						</div>
 						

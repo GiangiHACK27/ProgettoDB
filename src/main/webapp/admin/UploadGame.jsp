@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
-	import="model.Category"
-    import="java.util.List"
-    import="model.Game"
-    import="model.Game.Pegi"%>
-    
+	pageEncoding="ISO-8859-1" import="model.Category"
+	import="java.util.List" import="model.Game" import="model.Game.Pegi"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +11,7 @@
 <title>Upload game</title>
 </head>
 <body>
-		<jsp:include page="../BasePageHeader.jsp"></jsp:include>
+	<jsp:include page="../BasePageHeader.jsp"></jsp:include>
 
 	<form action="/GamingWorldShop/admin/GameUploadServlet" method="post"
 		enctype="multipart/form-data">
@@ -47,21 +44,33 @@
 				<option value="PEGI_18">18</option>
 			</select> <br>
 
-			<% List<Category> categories = (List<Category>)request.getAttribute("categories");
-				for(Category c : categories) { %>
-					<input id="<%= c.getName()%>" type="checkbox" name="categories" value="<%= c.getName()%>">
-					<label for="<%= c.getName()%>"> <%= c.getName()%> </label>
-					<br>
-			<%} %>
-			
+			<%
+			List<Category> categories = (List<Category>) request.getAttribute("categories");
+			if(categories == null){
+				categories = (List<Category>)application.getAttribute("categories");
+			}
+			for (Category c : categories) {
+			%>
+			<input id="<%=c.getName()%>" type="checkbox" name="categories"
+				value="<%=c.getName()%>"> <label for="<%=c.getName()%>">
+				<%=c.getName()%>
+			</label> <br>
+			<%
+			}
+			%>
+
 			<input type="submit" name="summitta"> <br>
 		</fieldset>
 	</form>
-	<% String logError = (String)request.getAttribute("logError");
-	  if(logError != null) { %>
+	<%
+	String logError = (String) request.getAttribute("logError");
+	if (logError != null) {
+	%>
 	<p>
 		Errore:
-		<%=  logError%></p>
-	<%} %>
+		<%=logError%></p>
+	<%
+	}
+	%>
 </body>
 </html>

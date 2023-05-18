@@ -16,6 +16,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+		<jsp:include page="BasePageHeader.jsp"></jsp:include>
 	
 		<%int maxPrice =  (int) application.getAttribute("maxPrice");
 		Integer currentMaxPrice = maxPrice;

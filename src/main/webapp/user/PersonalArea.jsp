@@ -18,10 +18,12 @@
 		
 		<h1>Welcome to your personal area: <%=username %> </h1>
 		
-				<%if(user.getRole().toString().equals("ADMIN")){ %>
-		<form action="/GamingWorldShop/admin/GameUploadServlet" method ="GET" >
-			<input type="submit" name="summitta" value="Upload game"> <br>
-		</form>
+		
+		<div>
+		<%if(user.getRole().toString().equals("ADMIN")){ %>
+			<a href=/GamingWorldShop/admin/GameUploadServlet>Upload a new game</a>
 		<%} %>
+		</div>
+		
 	</body>
 </html>

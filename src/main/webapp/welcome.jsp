@@ -19,16 +19,11 @@
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
 	<%User user = (User)session.getAttribute("user");%>
 
-	<%if(user != null){ %>
-		Logged in as <%=user.getUsername()%>
-	<%} %>
 
-		<form action="/GamingWorldShop/user/LogoutServlet" method="GET">
-			<button type="submit">Logout</button>
-		</form>
-		<a href="/GamingWorldShop/Register.jsp">Register</a><br>
-		
-		<form action="/GamingWorldShop/SearchGames" method ="GET" >
-			<input type="submit" name="summitta" value="Check out our games!"> <br>
-		</form>	</body>
+		<div>		
+			<%if(user != null){ %>
+				<h1>Logged in as <%=user.getUsername()%></h1>
+			<%} %>		
+			<a href="/GamingWorldShop/SearchGames">Check out our games!</a>
+		</div>
 </html>
