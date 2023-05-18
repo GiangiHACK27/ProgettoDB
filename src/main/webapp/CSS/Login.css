@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+*{
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+body{
+	background-color: #2D424E;
+	color: #F2F4F3;
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+div#loginForm{
+  border: 5px solid;
+  border-color: #0A0908;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.pageHeader nav{
+	position: relative;
+	
+}
+
+.pageHeader nav ul li{
+	display: inline;
+}
+
+
+
+.pageHeader{
+	background-color: #0A0908;
+	width: 100%;
+	position: relative;
+}
