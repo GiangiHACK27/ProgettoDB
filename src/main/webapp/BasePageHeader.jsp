@@ -17,8 +17,14 @@
 				
 					<%User user = (User)session.getAttribute("user");%>
 					<%if(user == null ){ %>
-					<li>
-						<a href="${pageContext.request.contextPath}/Login.jsp"> LOGIN </a>
+					<li class=dropdown>
+						<a href="${pageContext.request.contextPath}/Login.jsp"> SIGN IN </a>
+						<div class=dropdown-content  id=sign-in-div>
+							<ul>
+								<li id=sign-in><a href="${pageContext.request.contextPath}/Login.jsp"> LOG IN</a></li>
+								<li><a href="${pageContext.request.contextPath}/Register.jsp"> SIGN UP</a> </li>
+							</ul>
+						</div>
 					</li>
 					<%}else{ %>
 					<li class = dropdown>
@@ -26,8 +32,7 @@
 						<div class =dropdown-content>
 							<ul>
 								<li><a href="${pageContext.request.contextPath}/user/PersonalArea.jsp">PERSONAL &nbsp;AREA</a></li>
-								<li><a href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a></li>
-								
+								<li><a href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a></li>								
 							</ul>
 						</div>
 						
