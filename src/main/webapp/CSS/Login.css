@@ -11,29 +11,15 @@ body{
 	font-size: 14px;
 }
 
+html, body { height: 100%;}
+
 div#loginForm{
   border: 5px solid;
   border-color: #0A0908;
+  padding: 10px;
+  /*the following code centers the div in the page (i don't know how it works)*/
   position:absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px;
-}
-
-.pageHeader nav{
-	position: relative;
-	
-}
-
-.pageHeader nav ul li{
-	display: inline;
-}
-
-
-
-.pageHeader{
-	background-color: #0A0908;
-	width: 100%;
-	position: relative;
 }

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+		<link rel="stylesheet" href="./CSS/BaseStyle.css">
 		<meta charset="ISO-8859-1">
 		<title>!!!Error!!!</title>
 	</head>

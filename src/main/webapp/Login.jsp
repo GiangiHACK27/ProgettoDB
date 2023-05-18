@@ -1,9 +1,12 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    %>
 <!DOCTYPE html>
 <html>
 	<head>
 			<meta name="viewport" content="initial-scale=1, width=device-width">
+			<link rel="stylesheet" href="./CSS/BaseStyle.css">
 			<link rel="stylesheet" href="./CSS/Login.css">
 		<title>Login Page</title>
 		</head>
@@ -17,14 +20,7 @@
 		   oldPassword = "";
 	%>
 	
-	<header class=pageHeader>
-		<nav>
-			<ul>
-				<li>Home</li>
-				<li>Personal Area</li>
-			</ul>
-		</nav>
-	</header>
+	<jsp:include page="BasePageHeader.jsp"></jsp:include>
 	
 	<div id=parent>
 	<div id=loginForm>

@@ -5,14 +5,18 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+		<link rel="stylesheet" href="../CSS/BaseStyle.css">
 		<title>Personal Area</title>
 	</head>
 	<body>
+		<jsp:include page="../BasePageHeader.jsp"></jsp:include>
+	
 		<%User user = (User)session.getAttribute("user");
 		String username = user.getUsername();
 		%>
 		
-		<h1>Welcome in you personal area: <%=username %> </h1>
+		<h1>Welcome to your personal area: <%=username %> </h1>
 		
 				<%if(user.getRole().toString().equals("ADMIN")){ %>
 		<form action="/GamingWorldShop/admin/GameUploadServlet" method ="GET" >

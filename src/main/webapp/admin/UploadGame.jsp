@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	    import="model.Category"
+	import="model.Category"
     import="java.util.List"
     import="model.Game"
     import="model.Game.Pegi"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="initial-scale=1, width=device-width">
+<link rel="stylesheet" href="../CSS/BaseStyle.css">
 <title>Upload game</title>
 </head>
 <body>
+		<jsp:include page="../BasePageHeader.jsp"></jsp:include>
+
 	<form action="/GamingWorldShop/admin/GameUploadServlet" method="post"
 		enctype="multipart/form-data">
 		<fieldset>

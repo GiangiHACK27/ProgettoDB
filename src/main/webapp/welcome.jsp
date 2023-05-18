@@ -1,38 +1,28 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    import="model.User"
+    import="model.User.Role"
+    %>
 
     
 <!DOCTYPE html>
 <html lang = en>
 	<head>
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+		<link rel="stylesheet" href="./CSS/BaseStyle.css">
 		<meta charset="ISO-8859-1">
 		<title>Welcome to Gaming World!</title>
 	</head>
 	
 	<body>
+	<jsp:include page="BasePageHeader.jsp"></jsp:include>
+	<%User user = (User)session.getAttribute("user");%>
 
-<%if(request.getSession().getAttribute("user") != null){ %>
-You are logged in
-<%} %>
-		
-		<form action="/GamingWorldShop/ImageUploadServlet" method="post" enctype="multipart/form-data">
-			<fieldset> <legend>Test image upload</legend> 
-				ID: <input type="text" name="id"> <br>
-				Select file: <input type="file" name="raw"> <br>
-				Alt text: <input type="text" name="altText"> <br>
-				<input type="submit" name="summitta"> <br>
-			</fieldset>
-			
-		</form>
-		
-		<form action="/GamingWorldShop/ImageGetterServlet" method ="post" >
-			<fieldset> <legend>Test image visualization</legend> 
-				ID: <input type="text" name="id"> <br>
-				<input type="submit" name="summitta" value="Test image view"> <br>
-			</fieldset>
-		</form>
-		
-		<a href="/GamingWorldShop/Login.jsp">Login</a>
+	<%if(user != null){ %>
+		Logged in as <%=user.getUsername()%>
+	<%} %>
+
 		<form action="/GamingWorldShop/user/LogoutServlet" method="GET">
 			<button type="submit">Logout</button>
 		</form>
