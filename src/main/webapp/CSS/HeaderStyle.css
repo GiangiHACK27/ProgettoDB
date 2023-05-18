@@ -1,55 +1,75 @@
 @charset "ISO-8859-1";
-.pageHeader nav{
-	margin-left: 300px; /*Increase this value to move the links to the right*/
-	position: absolute;              
-	top:40%;
-    font-size: 15px;
-    text-transform: uppercase;
+
+.pageHeader nav {
+	margin-left: 300px;
+	/*Increase this value to move the links to the right*/
+	position: absolute;
+	top: 40%;
+	font-size: 15px;
+	text-transform: uppercase;
 }
 
-.pageHeader nav ul li{
+.pageHeader nav ul li {
 	display: inline;
 	padding: 10px;
 }
-.pageHeader nav ul{
+
+.pageHeader nav ul {
 	display: inline;
 	position: relative;
 }
-.pageHeader{
+
+.pageHeader {
 	background-color: #0A0908;
 	width: 100%;
 	height: 90px;
 	position: relative;
 }
 
-
 .dropdown-content {
-  background-color: #0A0908;
+	background-color: #0A0908;
 }
 
-.dropdown-content li{
+.dropdown-content li {
 	display: block !important;
 }
 
 #logo {
-  position: relative;
+	position: relative;
 }
 
 #logo img {
-  width: 250px;
-  object-fit: contain;
-  position:absolute;
-  top: 50%;
-  left: 0%;
-  transform: translate(5%, 25%); 
-  /*Changing one of the values here (I don't know which one) should move the image*/
+	width: 250px;
+	object-fit: contain;
+	position: absolute;
+	top: 50%;
+	left: 0%;
+	transform: translate(5%, 25%);
+	/*Changing one of the values here (I don't know which one) should move the image*/
 }
 
-#sign-in{
-	background-color: green;	
+#sign-in {
+	background-color: green;
 }
 
-#sign-in-div{
+#sign-in-div {
 	width: 80px;
 	padding: 0px;
+}
+
+@media screen and (max-width: 700px) {
+	.pageHeader nav {
+		display: none;
+	}
+	#logo img {
+		width: 250px;
+		object-fit: contain;
+		position: relative;
+		top: 0%;
+		left: 0%;
+		transform: translate(0%, 25%);
+	}
+	#logo {
+		text-align: center;
+	}
 }
