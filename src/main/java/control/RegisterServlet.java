@@ -3,12 +3,9 @@ package control;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -23,19 +20,6 @@ public class RegisterServlet extends BaseServlet {
 	public RegisterServlet(){
 		super();
 	}
-	
-//	private boolean isNotValidParam(String s) {
-//    	return s == null || s.trim().isEmpty();
-//    }
-//	
-//	private void errorRegister(HttpServletRequest request, HttpServletResponse response) {
-//    	RequestDispatcher rs = request.getRequestDispatcher("/Register.jsp");
-//    	try {
-//			rs.forward(request, response);
-//		} catch (ServletException | IOException e) {
-//			e.printStackTrace();
-//		} 
-//    }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("user") != null) {

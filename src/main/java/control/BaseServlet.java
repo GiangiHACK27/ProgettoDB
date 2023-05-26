@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class BaseServlet extends HttpServlet {
+	private static final long serialVersionUID = -6071900375104162065L;
+
 	protected void showError(HttpServletRequest request, HttpServletResponse response, String message, String path) {
 		request.setAttribute("logError", message);
     	RequestDispatcher rs = request.getRequestDispatcher(path);
@@ -35,5 +37,13 @@ public class BaseServlet extends HttpServlet {
 			}
 		}
 		return true;
+	}
+	
+	protected void redirectTo(HttpServletRequest request, HttpServletResponse response, String path) {
+		try {
+			response.sendRedirect(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
