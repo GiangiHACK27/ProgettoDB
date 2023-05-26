@@ -7,7 +7,7 @@ public class Interested implements Serializable {
 	
 	public enum Category {
 		CART,
-		WHISHLIST
+		WISHLIST
 	}
 	
 	public Interested() {

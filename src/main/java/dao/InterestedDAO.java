@@ -15,13 +15,11 @@ public class InterestedDAO extends BaseDAO {
 		super(ds);
 	}
 	
-	public void insertInterest(Interested interest) throws SQLException {
+	public void insertInterest(Interested interest) throws SQLException {		
 		// Retrieve connection
-		Connection conn = ds.getConnection();
-		// Retrieve connection
-		
-		try {
-
+		try (Connection conn = ds.getConnection();) {
+		// Retrieve connection	
+			
 			String query = "INSERT INTO Interested (username, gameId, category) values (?, ?, ?)";
 
 			//Make prepared statement
@@ -38,19 +36,14 @@ public class InterestedDAO extends BaseDAO {
 			ps.execute();
 			//Insert user into database	
 		} 
-		finally {
-			//Close connection
-			conn.close();
-			//Close connection
-		}
 	}
 	
 	public void removeInterest(Interested interest) throws SQLException {
+
 		// Retrieve connection
-		Connection conn = ds.getConnection();
+		try (Connection conn = ds.getConnection()) {
 		// Retrieve connection
 		
-		try {
 			String query = "DELETE FROM Interested as I WHERE I.category = ? AND I.gameId = ? AND I.username = ?";
 
 			//Make prepared statement
@@ -67,21 +60,14 @@ public class InterestedDAO extends BaseDAO {
 			ps.execute();
 			//Insert user into database
 		}
-		finally {
-			//Close connection
-			conn.close();
-			//Close connection
-		}
 	}
 	
 	public Cart retrieveCart(String username, Interested.Category category) throws SQLException {
 		Cart cart = null;
 		
 		// Retrieve connection
-		Connection conn = ds.getConnection();
+		try (Connection conn = ds.getConnection()) {
 		// Retrieve connection
-		
-		try {
 			//Create query for retrieve all interested of a user
 			String query = "SELECT * FROM Interested as I WHERE I.username = ? AND I.category = ?";
 			//Create query for retrieve all interested of a user
@@ -109,11 +95,6 @@ public class InterestedDAO extends BaseDAO {
 			//Retrieve from result set the list of game ids
 			
 			//Build the cart
-		}
-		finally {
-			//Close connection
-			conn.close();
-			//Close connection	
 		}
 		
 		return cart;

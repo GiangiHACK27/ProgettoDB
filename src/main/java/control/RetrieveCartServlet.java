@@ -74,19 +74,6 @@ public class RetrieveCartServlet extends BaseServlet {
 		//Put the copy of cart in the request
 		request.setAttribute("cartForView", cart);
 		//Put the copy of cart in the request
-		
-		
-		//FOR TESTING
-		
-		if(cart == null)
-			return;
-		
-		System.out.println(cart.getGames().size());
-		
-		for(Integer i : cart.getGames()) {
-			response.getWriter().println("GameId: " + i);
-		}
-		//FOR TESTING
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
