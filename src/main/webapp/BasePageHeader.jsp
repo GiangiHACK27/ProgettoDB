@@ -10,7 +10,7 @@
 
 	<div id="logo">
 		<a href="${pageContext.request.contextPath}"><img
-			src="${pageContext.request.contextPath}/logo.png" /> </a>
+			src="${pageContext.request.contextPath}/logo.png" alt="logoimage"/> </a>
 	</div>
 	<nav>
 		<ul>

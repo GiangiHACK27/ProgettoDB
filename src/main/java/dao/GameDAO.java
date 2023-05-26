@@ -67,14 +67,17 @@ public class GameDAO extends BaseDAO {
 		//Retrieve connection
 			
 			//Construct query string
-			String categoriesToSearch = "(";
-			for(int i = 0;i < categories.size();i++) {
-				if(i == categories.size() - 1)
-					categoriesToSearch += "?";
+			StringBuilder builder = new StringBuilder("");
+			builder.append("(");
+			for(int i=0;i<categories.size();i++) {
+				if(i == categories.size() - 1) 
+					builder.append("?");
 				else
-					categoriesToSearch += "?,";
+					builder.append("?,");
 			}
-			categoriesToSearch += ")";
+			builder.append(")");
+						
+			String categoriesToSearch = builder.toString();
 			//Construct query string
 			
 			//Construct query

@@ -16,8 +16,6 @@
 		<welcome-file>welcome.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- <error-page> <location>/errorPage.jsp</location> </error-page> -->
-
 	<filter>
 		<filter-name>httpHeaderSecurity</filter-name>
 		<filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>

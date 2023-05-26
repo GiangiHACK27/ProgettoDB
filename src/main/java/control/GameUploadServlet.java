@@ -118,5 +118,5 @@ public class GameUploadServlet extends BaseServlet {
 	}
 	
 	private static final long serialVersionUID = 1503010158356860644L;
-	private final String selfPath = "/admin/UploadGame.jsp";
+	private static final String selfPath = "/admin/UploadGame.jsp";
 }
