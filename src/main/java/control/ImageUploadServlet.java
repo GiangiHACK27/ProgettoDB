@@ -69,6 +69,10 @@ public class ImageUploadServlet extends BaseServlet {
 		catch(IOException e) {
 			response.sendError(500, "Cannot upload image");
 		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+			return;
+		}
 		image.setBytes(bytes);
 		//Create the image DTO
 		

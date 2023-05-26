@@ -3,7 +3,7 @@
 	import="java.util.List" import="model.Game" import="model.Game.Pegi"%>
 
 <!DOCTYPE html>
-<html>
+<html lang = en>
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="initial-scale=1, width=device-width">
