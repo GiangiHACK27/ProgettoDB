@@ -20,15 +20,13 @@ public class UserDAO extends BaseDAO {
 		
 		User user;
 		
-		//Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
+		String query = "SELECT * FROM User WHERE username = ?";
+		
+		//Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		//Retrieve connection and make prepared statement
 			
 			//Retrieve the user from database for username
-			String query = "SELECT * FROM User WHERE username = ?";
-			
-			PreparedStatement ps = conn.prepareStatement(query);
-
 			ps.setString(1, username);
 			
 			ResultSet rs = ps.executeQuery();
@@ -53,13 +51,12 @@ public class UserDAO extends BaseDAO {
 	}
 	
 	public void insertUser(String username, String password, String email) throws SQLException {
-		// Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		// Retrieve connection	
-			
-			String query = "INSERT into user (username, password, email) values (?, ?, ?)";
-
-			PreparedStatement ps = conn.prepareStatement(query);
+		
+		String query = "INSERT into user (username, password, email) values (?, ?, ?)";
+		
+		// Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		// Retrieve connection and make prepared statement
 			
 			//Set prepared statement values
 			ps.setString(1, username);

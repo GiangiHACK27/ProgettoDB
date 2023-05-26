@@ -21,14 +21,13 @@ public class CategoryDAO extends BaseDAO {
 		
 		List<Category> categories = null;
 		
+		String query = "SELECT * FROM Category";
+		
 		//Retrieve connection
-		try (Connection conn = ds.getConnection();) {
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
 		//Retrieve connection
-			//Retrieve the categories from database 
-			String query = "SELECT * FROM Category";
 			
-			PreparedStatement ps = conn.prepareStatement(query);
-
+			//Retrieve the categories from database 
 			ResultSet rs = ps.executeQuery();
 			//Retrieve the categories from database
 					

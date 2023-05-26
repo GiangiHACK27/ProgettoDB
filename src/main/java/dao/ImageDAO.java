@@ -21,15 +21,13 @@ public class ImageDAO extends BaseDAO {
 
 		Image image = null;
 
-		//Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
-			
-			
-			String query = "SELECT raw, alt FROM image WHERE ID = ?";
+		String query = "SELECT raw, alt FROM image WHERE ID = ?";
+		
+		//Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		//Retrieve connection and make prepared statement
 			
 			//Create query
-			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, ID);
 			//Create query
 			
@@ -54,12 +52,11 @@ public class ImageDAO extends BaseDAO {
 	
 	public synchronized void insertImagePezzotto(Image image) throws SQLException {
 		
-		//Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
-			String query = "INSERT INTO image values (?, ?, ?)";
-						
-			PreparedStatement ps = conn.prepareStatement(query);
+		String query = "INSERT INTO image values (?, ?, ?)";
+		
+		//Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		//Retrieve connection and make prepared statement
 			
 			ps.setString(1, image.getId());
 			ps.setBytes(2, image.getBytes());
@@ -72,14 +69,11 @@ public class ImageDAO extends BaseDAO {
 	public synchronized int insertImage(byte[] bytes) throws SQLException {
 		int id = 0;
 		
-		//Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
-			String query = "INSERT INTO image (raw) values (?)";
-			
-			//add statement tag to return generated keys (they are needed to update represented table)
-			PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			//add statement tag to return generated keys
+		String query = "INSERT INTO image (raw) values (?)";
+		
+		//Retrieve connection and make prepared statement, add statement tag to return generated keys (they are needed to update represented table)
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
+		//Retrieve connection and make prepared statement, add statement tag to return generated keys (they are needed to update represented table)
 			
 			ps.setBytes(1, bytes);
 
@@ -98,13 +92,11 @@ public class ImageDAO extends BaseDAO {
 	
 	public synchronized void connectImageGame(int imageId, int gameId, String role) throws SQLException {
 
-		//Retrieve connection	
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
-			
-			String query = "INSERT INTO represented (imageId, gameId, role) values (?, ?, ?)";
-			
-			PreparedStatement ps = conn.prepareStatement(query);
+		String query = "INSERT INTO represented (imageId, gameId, role) values (?, ?, ?)";
+		
+		//Retrieve connection and make prepared statement	
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		//Retrieve connection and make prepared statement
 			
 			ps.setInt(1, imageId);
 			ps.setInt(2, gameId);

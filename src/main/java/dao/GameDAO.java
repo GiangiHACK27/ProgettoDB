@@ -25,16 +25,12 @@ public class GameDAO extends BaseDAO {
 							String releaseDate, String pegi) throws SQLException {
 		int id = 0;
 		
-		// Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		// Retrieve connection	
-			
-			String query = "INSERT into game (price, name, description, state,"
-					+"shortDescription, releaseDate, pegi) values ( ?, ?, ?, ?, ?, ?, ?)";
-
-			//Make prepared statement with tag to return generated keys
-			PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			//Make prepared statement with tag to return generated keys
+		String query = "INSERT into game (price, name, description, state,"
+				+"shortDescription, releaseDate, pegi) values ( ?, ?, ?, ?, ?, ?, ?)";
+		
+		// Retrieve connection and make prepared statement with tag to return generated keys
+		try (Connection conn = ds.getConnection();PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); ) {
+		// Retrieve connection and make prepared statement with tag to return generated keys	
 
 			//Set prepared statement values
 			ps.setInt(1, price);
@@ -56,16 +52,15 @@ public class GameDAO extends BaseDAO {
 		        id = keys.getInt(1);
 		    }
 			//get key from result set
-
 		}
-
-
-
+		
 		return id;
 	}
 	
 	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi) throws SQLException {
 		List<Game> games = new ArrayList<>();
+		
+		PreparedStatement ps = null;
 		
 		//Retrieve connection
 		try (Connection conn = ds.getConnection()) {
@@ -89,7 +84,7 @@ public class GameDAO extends BaseDAO {
 							+ "AND G.price <= ? AND "
 							+ "G.pegi <= ?";
 			
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			
 			int i = 1;
 			for(Category c : categories) {
@@ -127,6 +122,10 @@ public class GameDAO extends BaseDAO {
 			}
 			//Create the list of Game		
 		}
+		finally {
+			if(ps != null)
+				ps.close();
+		}
 
 		return games;
 	}
@@ -134,15 +133,11 @@ public class GameDAO extends BaseDAO {
 	public int retrieveMaxPriceGame() throws SQLException {
 		int maxPrice = 0;
 		
-		//Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
-
-			//Construct query
-			String query = "SELECT MAX(price) as max FROM Game";
-			
-			PreparedStatement ps = conn.prepareStatement(query);
-			//Construct query
+		String query = "SELECT MAX(price) as max FROM Game";
+		
+		//Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		//Retrieve connection and make prepared statement
 			
 			//Retrieve the categories from database
 			ResultSet rs = ps.executeQuery();

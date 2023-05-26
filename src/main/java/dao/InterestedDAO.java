@@ -16,15 +16,11 @@ public class InterestedDAO extends BaseDAO {
 	}
 	
 	public void insertInterest(Interested interest) throws SQLException {		
-		// Retrieve connection
-		try (Connection conn = ds.getConnection();) {
-		// Retrieve connection	
-			
-			String query = "INSERT INTO Interested (username, gameId, category) values (?, ?, ?)";
-
-			//Make prepared statement
-			PreparedStatement ps = conn.prepareStatement(query);
-			//Make prepared statement
+		String query = "INSERT INTO Interested (username, gameId, category) values (?, ?, ?)";
+		
+		// Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		// Retrieve connection and make prepared statement	
 
 			//Set prepared statement values
 			ps.setString(1, interest.getUsername());
@@ -40,15 +36,11 @@ public class InterestedDAO extends BaseDAO {
 	
 	public void removeInterest(Interested interest) throws SQLException {
 
-		// Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		// Retrieve connection
+		String query = "DELETE FROM Interested as I WHERE I.category = ? AND I.gameId = ? AND I.username = ?";
 		
-			String query = "DELETE FROM Interested as I WHERE I.category = ? AND I.gameId = ? AND I.username = ?";
-
-			//Make prepared statement
-			PreparedStatement ps = conn.prepareStatement(query);
-			//Make prepared statement
+		// Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		// Retrieve connection and make prepared statement
 
 			//Set prepared statement values
 			ps.setString(1, interest.getCategory().toString().toLowerCase());
@@ -64,17 +56,12 @@ public class InterestedDAO extends BaseDAO {
 	
 	public Cart retrieveCart(String username, Interested.Category category) throws SQLException {
 		Cart cart = null;
+
+		String query = "SELECT * FROM Interested as I WHERE I.username = ? AND I.category = ?";
 		
-		// Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		// Retrieve connection
-			//Create query for retrieve all interested of a user
-			String query = "SELECT * FROM Interested as I WHERE I.username = ? AND I.category = ?";
-			//Create query for retrieve all interested of a user
-			
-			//Make prepared statement
-			PreparedStatement ps = conn.prepareStatement(query);
-			//Make prepared statement
+		// Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		// Retrieve connection and make prepared statement
 
 			//Set prepared statement values
 			ps.setString(1, username);
