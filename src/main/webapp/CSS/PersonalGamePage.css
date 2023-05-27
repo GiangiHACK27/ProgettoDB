@@ -1,0 +1,76 @@
+@charset "ISO-8859-1";
+
+main {
+	width: 70%;
+	
+	margin: auto;
+	margin-top: 10%;
+	
+	overflow: hidden;
+}
+
+div#row-1 {
+	width: 100%;
+	
+	overflow: hidden;
+	
+	background-color: red; 
+}
+
+div#sliderImages {
+	width: 60%;
+	
+	float: left;
+	
+	margin-right: 20px;
+}
+
+img#image {
+	width: 100%;
+}
+
+div#shortDescription {
+	width: 35%;
+	
+	float: left;
+}
+
+
+table, tbody, tr, td {
+	width: 100%;	
+}
+
+img#image2 {
+	width: 100%;
+}
+
+
+
+
+
+div#row-2 {
+	width: 100%;
+	
+	margin-top: 100px;
+}
+
+div#description {
+	width: 70%;	
+	
+	background-color: green;
+}
+
+div#description h1 {
+	text-align: center;
+}
+
+
+
+
+
+
+@media screen and (max-width: 1400px) {
+	main {
+		width: 90%;
+	}
+}
