@@ -56,7 +56,6 @@ public class MainContext implements ServletContextListener {
 		try {
 			categoryList = categoryDAO.retrieveAllCategories();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		context.setAttribute("categories", categoryList);

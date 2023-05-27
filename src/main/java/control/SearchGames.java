@@ -69,6 +69,10 @@ public class SearchGames extends BaseServlet {
 		request.setAttribute("games", games);
 		//Retrieve all Games from database
 		
+		for(Game g : games) {
+			System.out.println(g.getName());
+		}
+		
 		//Forward request to view for visualize results of search
 		dispatcher = request.getRequestDispatcher("/Catalog.jsp");
 		dispatcher.forward(request, response);

@@ -26,7 +26,8 @@ CREATE TABLE Belongs (
 	categoryName varchar(30) NOT NULL,
     gameId int NOT NULL,
     CONSTRAINT gameIdConsBelongs 
-		foreign key (gameId) references Game (id),
+		foreign key (gameId) references Game (id)
+        on delete cascade,
 	CONSTRAINT nameCategoryConsBelongs
 		foreign key (categoryName) references Category (name)
 );
@@ -53,7 +54,8 @@ CREATE TABLE Represented (
     imageId INT NOT NULL,
 	role varchar(30) NOT NULL,
     CONSTRAINT gameIdConsRepresented
-		foreign key (gameId) references Game (id),
+		foreign key (gameId) references Game (id)
+        on delete cascade,
 	CONSTRAINT imageIdConsRepresented
 		foreign key (imageId) references Image (id),
 	primary key (gameId, imageId)
@@ -87,7 +89,8 @@ CREATE TABLE Purchase (
     price int NOT NULL DEFAULT(0),
     datePurchased date NOT NULL DEFAULT(CURDATE()),
     CONSTRAINT gameIdConsPurchase 
-		foreign key (gameId) references Game (id),
+		foreign key (gameId) references Game (id)
+        on delete cascade,
 	CONSTRAINT usernameConsPurchase
 		foreign key (username) references User (username),
 	UNIQUE (gameId, username), -- TEST: IF WORK
@@ -102,7 +105,8 @@ CREATE TABLE Review (
     stars int NOT NULL DEFAULT(0),
     likes int NOT NULL DEFAULT(0),
     CONSTRAINT gameIdConsReview 
-		foreign key (gameId) references Game (id),
+		foreign key (gameId) references Game (id)
+        on delete cascade,
 	CONSTRAINT usernameConsReview 
 		foreign key (username) references User (username),
 	primary key (id)
@@ -112,7 +116,8 @@ CREATE TABLE Likes (
 	reviewId int NOT NULL,
     username varchar(30) NOT NULL,
     CONSTRAINT reviewIdConsLikes
-		foreign key (reviewId) references Review (id),
+		foreign key (reviewId) references Review (id)
+        on delete cascade,
 	CONSTRAINT usernameConsLikes
 		foreign key (username) references User (username),
     primary key (reviewId, username)

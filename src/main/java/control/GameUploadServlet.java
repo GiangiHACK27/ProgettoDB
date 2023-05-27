@@ -17,6 +17,9 @@ import javax.sql.DataSource;
 
 import dao.GameDAO;
 import dao.ImageDAO;
+import dao.BelongsDAO;
+
+import model.Belong;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -49,9 +52,7 @@ public class GameUploadServlet extends BaseServlet {
 	}
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 
-		
 		//Retrieve form inputs and check if they're valid
 		if(!validParameters(request, response, selfPath)) {
 			return;
@@ -66,6 +67,8 @@ public class GameUploadServlet extends BaseServlet {
 		String shortDescription = request.getParameter("shortDescription");
 		String releaseDate = request.getParameter("releaseDate");
 		String pegi = request.getParameter("pegi");
+		
+		String[] parameterCategories = request.getParameterValues("categories");
 		//Get game data from request
 
 
@@ -80,6 +83,21 @@ public class GameUploadServlet extends BaseServlet {
 			return;
 		}
 		//insert game into database
+		
+		//Insert relation beetween categories and game to add
+		BelongsDAO belongDAO = new BelongsDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		
+		Belong belong = new Belong();
+		belong.setGameId(gameId);
+		for(String category : parameterCategories) {
+			belong.setCategory(category);
+			try {
+				belongDAO.insert(belong);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		//Insert relation beetween categories and game to add
 
 		//Insert images into database and upload "represented" table
 		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
@@ -111,8 +129,13 @@ public class GameUploadServlet extends BaseServlet {
 		}
 		//insert showcase images
 		//Insert images into database and upload "represented" table
-
 		
+		//Check if we must update max price of games
+		Integer maxPrice = (Integer)getServletContext().getAttribute("maxPrice");
+		
+		if(maxPrice.compareTo(price) < 0) 
+			getServletContext().setAttribute("maxPrice", price);
+		//Check if we must update max price of games
 		
 		response.sendRedirect(request.getContextPath());	
 	}
