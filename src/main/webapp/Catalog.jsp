@@ -72,6 +72,7 @@
 			<input type="submit" value="summitta"> 
 		</form>
 		
+		<!-- DEBUG -->
  		<% List<Game> games = (List<Game>)request.getAttribute("games");
 			for(Game g : games) {
 				out.println(g.getName());
