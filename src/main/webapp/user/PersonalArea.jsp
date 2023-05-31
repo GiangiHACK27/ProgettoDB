@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<jsp:include page="../BasePageHeader.jsp"></jsp:include>
-	
+	<section class=main>
 		<%User user = (User)session.getAttribute("user");
 		String username = user.getUsername();
 		%>
@@ -24,6 +24,7 @@
 			<a href=/GamingWorldShop/admin/GameUploadServlet>Upload a new game</a>
 		<%} %>
 		</div>
-		
+			</section>
+	<jsp:include page="../BasePageFooter.jsp"></jsp:include>
 	</body>
 </html>

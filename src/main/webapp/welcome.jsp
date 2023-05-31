@@ -17,6 +17,8 @@
 	
 	<body>
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
+	
+	<section class=main>
 	<%User user = (User)session.getAttribute("user");%>
 
 
@@ -26,4 +28,6 @@
 			<%} %>		
 			<a href="/GamingWorldShop/SearchGames">Check out our games!</a>
 		</div>
+	</section>
+		<jsp:include page="BasePageFooter.jsp"></jsp:include>
 </html>

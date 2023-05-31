@@ -13,6 +13,7 @@
 <body>
 	<jsp:include page="../BasePageHeader.jsp"></jsp:include>
 
+	<section class=main>
 	<form action="/GamingWorldShop/admin/GameUploadServlet" method="post"
 		enctype="multipart/form-data">
 		<fieldset>
@@ -72,5 +73,8 @@
 	<%
 	}
 	%>
+	
+		</section>
+	<jsp:include page="../BasePageFooter.jsp"></jsp:include>
 </body>
 </html>

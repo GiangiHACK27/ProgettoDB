@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<jsp:include page="BasePageHeader.jsp"></jsp:include>
-	
+	<section class=main>
 		<%int maxPrice =  (int) application.getAttribute("maxPrice");
 		Integer currentMaxPrice = maxPrice;
 		String t = request.getParameter("currentMaxPrice");
@@ -77,6 +77,7 @@
 				out.println(g.getName());
 			}
 		%> 
-
+	</section>
+	<jsp:include page="BasePageFooter.jsp"></jsp:include>
 	</body>
 </html>

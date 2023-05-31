@@ -15,7 +15,7 @@
 	<body>
 		
 		<jsp:include page="BasePageHeader.jsp"></jsp:include>
-		
+		<section class=main>
 		<main>
 			<div id=row-1>
 				<div id=sliderImages>
@@ -62,7 +62,7 @@
 				</div>
 			</div>
 		</main>
-	
+	</section>
 		<jsp:include page="BasePageFooter.jsp"></jsp:include>
 	</body>
 </html>

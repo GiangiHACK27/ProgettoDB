@@ -22,6 +22,8 @@
 	
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
 	
+	<section class=main>
+	
 	<div id=parent>
 	<div id=loginForm>
 		<form method="post" action="/GamingWorldShop/LoginServlet">
@@ -38,5 +40,8 @@
 	  if(logError != null) { %>
 		<p>Errore: <%=  logError%></p>
 	<%} %>
+	</section>
+	<jsp:include page="BasePageFooter.jsp"></jsp:include>
+	
 	</body>
 </html>
