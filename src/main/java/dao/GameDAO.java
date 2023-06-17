@@ -133,6 +133,49 @@ public class GameDAO extends BaseDAO {
 		return games;
 	}
 	
+	public Game retrieveGame(int gameId) throws SQLException {
+		Game game = null;
+		
+		PreparedStatement ps = null;
+		
+		//Retrieve connection
+		try (Connection conn = ds.getConnection()) {
+		//Retrieve connection
+			
+			//Construct query
+			String query = "SELECT * FROM game WHERE id = ?";
+			
+			ps = conn.prepareStatement(query);
+			
+			ps.setInt(1, gameId);
+			//Construct query
+			
+			//Retrieve game from the database
+			ResultSet rs = ps.executeQuery();
+			//Retrieve game from the database
+			
+			//Analize result set
+			if(rs.next()) {
+				game = new Game();
+				
+				game.setName(rs.getString("name"));
+				game.setPrice(rs.getInt("price"));
+				game.setDescription(rs.getString("description"));
+				game.setShortDescription(rs.getString("shortDescription"));
+				game.setState(State.valueOf(rs.getString("state").toUpperCase()));
+				game.setId(rs.getInt("id"));
+				game.setPegi(Pegi.valueOf("PEGI_" + rs.getString("pegi")));
+			}
+			//Analize result set
+			
+		} finally {
+			if(ps != null)
+				ps.close();
+		}
+		
+		return game;
+	}
+	
 	public int retrieveMaxPriceGame() throws SQLException {
 		int maxPrice = 0;
 		

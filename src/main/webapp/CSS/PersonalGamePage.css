@@ -23,9 +23,12 @@ div#sliderImages {
 	float: left;
 	
 	margin-right: 20px;
+	
+	background-color: black;
+	min-height: 400px; /*TESTING*/
 }
 
-img#image {
+img#imageSlider {
 	width: 100%;
 }
 
@@ -40,7 +43,7 @@ table, tbody, tr, td {
 	width: 100%;	
 }
 
-img#image2 {
+img#imageBanner {
 	width: 100%;
 }
 

@@ -80,7 +80,7 @@ public class Game implements Serializable {
 		RELEASED("Released"),
 		BETA("Beta"),
 		ALPHA("Alpha"),
-		COMING_SOON("Coming soon"),
+		COMING_SOON("Coming_soon"),
 		UNLISTED("Unlisted");
 
 		private String value;

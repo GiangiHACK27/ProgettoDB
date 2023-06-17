@@ -9,10 +9,10 @@ CREATE TABLE Game (
 	id int NOT NULL AUTO_INCREMENT,
     price int NOT NULL,
     name varchar(30) NOT NULL,
-    description varchar(30) DEFAULT(""),
-    shortDescription varchar(30) DEFAULT(""),
+    description text DEFAULT(""),
+    shortDescription text DEFAULT(""),
     releaseDate date DEFAULT("1999-09-09"),
-    State ENUM("Released", "Beta", "Alpha", "Coming_soon", "Unlisted") NOT NULL DEFAULT("Coming_soon"),
+    state ENUM("Released", "Beta", "Alpha", "Coming_soon", "Unlisted") NOT NULL DEFAULT("Coming_soon"),
     pegi int NOT NULL DEFAULT(18),
     primary key(id)
 );

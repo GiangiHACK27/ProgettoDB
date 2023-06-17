@@ -7,5 +7,5 @@
 	href="${pageContext.request.contextPath}/CSS/FooterStyle.css">
 	
 <footer>
-	aaaaaaaaaaa
+	&copy GamingWorld is a registered trademark
 </footer>
