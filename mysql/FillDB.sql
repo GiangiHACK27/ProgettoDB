@@ -12,6 +12,9 @@ INSERT INTO Game (price, name, description, shortDescription) values (10, "Titol
 );
 INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "", "");
 
+INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Windows", 1);
+INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1);
+
 INSERT INTO Belongs values ("categoria1", 1);
 
 INSERT INTO Purchase (gameId, username) values (1, "tonaion");

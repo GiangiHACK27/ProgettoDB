@@ -34,9 +34,9 @@ CREATE TABLE Belongs (
 
 CREATE TABLE SystemRequirement (
 	name varchar(30) NOT NULL,
-    os ENUM("Windows", "Linux", "Mac") NOT NULL DEFAULT("Linux"),
+    os ENUM("Windows", "Linux", "Mac") NOT NULL DEFAULT("Windows"),
     gameId int NOT NULL,
-    value varchar(30) NOT NULL,
+    value varchar(30) NOT NULL DEFAULT(""),
     CONSTRAINT gameIdConsSystemRequirement
 		foreign key (gameId) references Game (id),
     primary key(name, os, gameId)

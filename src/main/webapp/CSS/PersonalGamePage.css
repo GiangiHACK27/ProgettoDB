@@ -12,15 +12,15 @@ main {
 div#row-1 {
 	width: 100%;
 	
-	overflow: hidden;
+	background-color: red;
 	
-	background-color: red; 
+	overflow: hidden; 
 }
 
 div#sliderImages {
 	width: 60%;
 	
-	float: left;
+    float: left;
 	
 	margin-right: 20px;
 	
@@ -35,7 +35,7 @@ img#imageSlider {
 div#shortDescription {
 	width: 35%;
 	
-	float: left;
+ 	float: left; 
 }
 
 
@@ -45,6 +45,7 @@ table, tbody, tr, td {
 
 img#imageBanner {
 	width: 100%;
+	
 }
 
 
@@ -58,7 +59,9 @@ div#row-2 {
 }
 
 div#description {
-	width: 70%;	
+	width: 70%;
+	
+	float: left;	
 	
 	background-color: green;
 }
@@ -67,6 +70,40 @@ div#description h1 {
 	text-align: center;
 }
 
+div#requirements {
+	width: 25%;
+	
+/* 	min-height: 30px; */
+	
+	float: left;
+	
+	margin: 2%;
+	margin-right: 3%;
+	margin-top: 0;
+	
+	background-color: blue;
+}
+
+div#reqBar {
+	width: 100%;
+	
+	background-color: purple;
+}
+
+button.reqButton {
+	padding-right: 20px;
+	padding-left: 20px;
+	
+	text-align: center;
+	
+	display: inline-block;
+}
+
+div.reqSchede {
+	width: 100%;
+	
+	display: none;
+}
 
 
 
@@ -79,14 +116,15 @@ div#description h1 {
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
 	main {
-	  	width: 90%;
-	  	
+	  	width: 80%;
 	}
 	
 	div#sliderImages {
 		width: 100%;
+		
+		min-height: auto;
 	}
 	
 	div#shortDescription {
@@ -96,22 +134,42 @@ div#description h1 {
 		
 		margin: auto;
 	}
+	
+	div#row-2 {
+		width: 100%;
+	
+		margin-top: 50px;
+	}
+	
+	div#description {
+		width: 100%;
+	}
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
 	main {
 		width: 98%;
 	}
 	
 	div#sliderImages {
 		width: 100%;
+		
+		min-height: auto;
 	}
 	
 	div#shortDescription {
 		width: 55%;
 		
-		float: none;
-		
 		margin: auto;
+	}
+	
+	div#row-2 {
+		width: 100%;
+	
+		margin-top: 50px;
+	}
+	
+	div#description {
+		width: 100%;
 	}
 }

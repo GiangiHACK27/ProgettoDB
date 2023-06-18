@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import="model.Game" %>
+    import="model.Game, model.SystemRequirement, java.util.*" %>
 <!DOCTYPE html>
 <html lang = en>
 	<head>
@@ -62,18 +62,33 @@
 			<div id="row-2">
 				<div id="description">
 					<h1><%=game.getName() %></h1>
-					
-					<!--
-					<p>L'ultimo ruggito di un dio morente rompe il confine tra i mondi, aprendo un portale verso il Regno del Caos. Da questo Maelstrom, emergono Khorne, Nurgle, Tzeentch e Slaanesh, i quattro Poteri Perniciosi che seminano oscurità e disperazione.
-
-						Gli austeri guerrieri di Kislev e il vasto impero del Grande Catai attendono sulla soglia, mentre il vendicativo Principe Demone giura di distruggere coloro che lo hanno corrotto. L'imminente conflitto divorerà tutto. Sconfiggerai i tuoi demoni? Oppure li comanderai?
-						L'ultimo ruggito di un dio morente rompe il confine tra i mondi, aprendo un portale verso il Regno del Caos. Da questo Maelstrom, emergono Khorne, Nurgle, Tzeentch e Slaanesh, i quattro Poteri Perniciosi che seminano oscurità e disperazione.
-
-						Gli austeri guerrieri di Kislev e il vasto impero del Grande Catai attendono sulla soglia, mentre il vendicativo Principe Demone giura di distruggere coloro che lo hanno corrotto. L'imminente conflitto divorerà tutto. Sconfiggerai i tuoi demoni? Oppure li comanderai?
-					</p>
-					-->
-					
 					<p> <%= game.getDescription() %> </p>
+				</div>
+				
+				<div id="requirements">
+					<div id="reqBar">
+						<button class="reqButton"> WINDOWS </button>
+						<button class="reqButton"> LINUX </button>
+						<button class="reqButton"> MAC </button>	
+					</div>
+					
+					<% Map<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirementsMap = (Map)request.getAttribute("requirements");
+						for(Map.Entry<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirements : requirementsMap.entrySet()) {
+							String style = "";
+							if(requirements.getKey().toString().toLowerCase().equals("windows"))
+								style = "display: block";
+					%>
+						<div id="<%=requirements.getKey().toString().toLowerCase()%>" class="reqSchede" style="<%=style%>">					
+					<% 
+							for(SystemRequirement requirement : requirements.getValue()) {	
+					%> 
+								<p id="<%= requirements.getKey().toString().toLowerCase()%>"><%= requirements.getKey().toString().toLowerCase()%>: <%=requirement.getName() %></p>
+					<% 	} %>
+						</div>
+					<% 	
+					}
+					%>
+					
 				</div>
 			</div>
 		</main>
