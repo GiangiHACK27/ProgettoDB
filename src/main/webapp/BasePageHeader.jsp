@@ -46,4 +46,9 @@
 
 		</ul>
 	</nav>
+	
+	<div id=cart>
+		<a href="${pageContext.request.contextPath}/Cart.jsp"><img
+			src="${pageContext.request.contextPath}/images/cart.jpg" alt="cart"/> </a>
+	</div>
 </header>

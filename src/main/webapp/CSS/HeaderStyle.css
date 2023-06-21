@@ -48,6 +48,17 @@
 	/*Changing one of the values here (I don't know which one) should move the image*/
 }
 
+#cart img {
+	width: 50px;
+	object-fit: contain;
+	position: absolute;
+	top: 15%;
+	left: 85%;
+	transform: translate(50%, 25%);
+	/*Changing one of the values here (I don't know which one) should move the image*/
+}
+
+
 #sign-in {
 	background-color: green;
 }
@@ -76,5 +87,9 @@
 	}
 	#logo {
 		text-align: center;
+	}
+	
+	#cart img{
+		display:none;
 	}
 }

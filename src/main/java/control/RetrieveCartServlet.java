@@ -75,8 +75,9 @@ public class RetrieveCartServlet extends BaseServlet {
 		request.setAttribute("cartForView", cart);
 		//Put the copy of cart in the request
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 }
+

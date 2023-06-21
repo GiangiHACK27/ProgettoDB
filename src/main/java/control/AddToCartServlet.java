@@ -35,7 +35,7 @@ public class AddToCartServlet extends BaseServlet {
 		
 		
 		//Validate parameters
-		if(! validParameters(request, response, "/GamingWorldShop/welcome.jsp"))
+		if(!validParameters(request, response, "/GamingWorldShop/welcome.jsp"))
 			return;
 		//Validate parameters
 		
@@ -72,20 +72,24 @@ public class AddToCartServlet extends BaseServlet {
 		
 		//In case user isn't logged
 		else {
-			//Retrieve Cart from session
+			//Retrieve Cart from session if present
 			Cart cart = (Cart)request.getSession().getAttribute(category.toString().toLowerCase());
-			
+			//Retrieve Cart from session if present
+
+			//Make new cart if there wasn't a cart present
 			if(cart == null) {
 				cart = new Cart("guest");
 				request.getSession().setAttribute(category.toString().toLowerCase(), cart);
 			}
-			
+			//Make new cart if there wasn't a cart present
+
+			//Add game to cart
 			try {
 				cart.addGame(gameToAdd);	
 			} catch(InvalidParameterException e) {
 				e.printStackTrace();
 			}
-			//Retrieve Cart from session
+			//Add game to cart		
 		}
 		//In case user isn't logged
 	}

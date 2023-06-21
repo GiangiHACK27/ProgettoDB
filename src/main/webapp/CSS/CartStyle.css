@@ -1,0 +1,63 @@
+@charset "ISO-8859-1";
+
+main {
+	width: 40%;
+	
+	margin: auto;
+	margin-top: 10%;
+	
+	overflow: hidden;
+}
+
+a{
+	color: #F2F4F3;
+	
+}
+div.gameDiv{
+	height: 70px;
+	background-color: #293941;
+	margin-bottom: 5px;
+	
+}
+
+p.gameImage{
+	float: left;
+	margin-right: 10px;
+	padding-top: 12px;
+	padding-left: 10px; 	
+}
+
+p.gameImage img{
+	width: 120px;
+	height: 45px;
+}
+
+p.gameTitle{
+	width:90%;
+	padding-top:21.5px;
+}
+
+p.gamePrice{
+	float:right;
+	margin-right:10px;
+	font-size: 18px;
+	padding-top:21.5px;
+
+}
+
+p.gamePrice span.removeButton{
+	font-size: 9px;
+	text-align: center;
+}
+
+@media screen and (max-width: 1200px){
+	main {
+	width: 60%;
+	}
+}
+
+@media screen and (max-width: 750px){
+	main {
+	width: 90%;
+	}
+}

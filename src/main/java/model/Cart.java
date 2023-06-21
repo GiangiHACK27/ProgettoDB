@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.*;
 
-public class Cart implements Cloneable {
+public class Cart implements Cloneable, Serializable {
 	public Cart(String username) {
 		this.username = username;
 		this.gameIds = new ArrayList<>();
@@ -18,7 +19,7 @@ public class Cart implements Cloneable {
 	}
 	
 	public void addGame(Integer gameId) throws InvalidParameterException {
-		//Controll if the game is already in the list
+		//Control if the game is already in the list
 		if(gameIds.contains(gameId))
 			throw new InvalidParameterException("Game already in the cart");
 		
@@ -50,4 +51,5 @@ public class Cart implements Cloneable {
 	
 	private String username;
 	private List<Integer> gameIds; 
+	private static final long serialVersionUID = 5689597178793094307L;
 }
