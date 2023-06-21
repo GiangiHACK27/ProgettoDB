@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -88,6 +89,7 @@ public class AddToCartServlet extends BaseServlet {
 				cart.addGame(gameToAdd);	
 			} catch(InvalidParameterException e) {
 				e.printStackTrace();
+
 			}
 			//Add game to cart		
 		}

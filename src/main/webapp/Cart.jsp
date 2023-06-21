@@ -8,7 +8,9 @@
 <meta name="viewport" content="initial-scale=1, width=device-width">
 <link rel="stylesheet" href="./CSS/BaseStyle.css">
 <link rel="stylesheet" href="./CSS/CartStyle.css">
-<script src="./Scripts/CartScript.js"></script>
+<script src="./Scripts/CartScript.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <title>Cart</title>
 </head>
 <body>
@@ -16,32 +18,35 @@
 <jsp:include page="/ViewCartServlet"></jsp:include>
 	<section class=main>
 	<main>
+		<h1 id=cartTitle>Your shopping cart</h1>
+		
 		 <% List<Game> games = (List<Game>)request.getAttribute("cartItems");
+			games.forEach(e->System.out.println(e.getName()));
+
 		 %> 
 		 <%if(games.isEmpty()){ %>
 		 	Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a>
 		 <%}else{ %>
 		 
-		 	<section class=gameSection>
-		 	<%for (Game game:games){ %>
-		 		
+		 	<section id=gameSection>
+		 	<%for (Game currentGame:games){ %>
 		 		<div class=gameDiv>
 		 			<p class=gameImage>
-		 				<a href=PersonalGamePage.jsp?gameId=${game.id}><img src=${pageContext.request.contextPath}/images/logo.png alt=a> </a>	
+		 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><img src=${pageContext.request.contextPath}/images/logo.png alt=a> </a>	
 		 			</p>
 		 			<p class=gamePrice>
-		 				<span class= price>${game.price}</span><br>
-		 				<span class=removeButton><a href="${pageContext.request.contextPath}/DeleteFromCartServlet?gameId=${game.id}&category=cart">Remove</a></span>
+		 				<span class= price><%=currentGame.getPrice()%></span><br>
+		 				<span class=removeButton><a id=<%=currentGame.getId()%>>Remove</a></span>
 		 			</p>
 		 			<p class=gameTitle>
-		 				<a href=PersonalGamePage.jsp?gameId=${game.id}>${game.name}</a>
+		 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>
 		 			</p>
 
 		 		</div>
+		 	</section>
 		 		
 		 	<%} %>
 		 <%} %>
-		 </section>
 	</main>
 	</section>
 	

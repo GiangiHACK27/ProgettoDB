@@ -32,7 +32,6 @@ public class ViewCartServlet extends BaseServlet {
 				cartItems.add((Game) request.getAttribute("game"));
 			}
 		}
-		System.out.println(cartItems);
 		request.setAttribute("cartItems", cartItems);
 	}
 	

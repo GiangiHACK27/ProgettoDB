@@ -9,9 +9,16 @@ main {
 	overflow: hidden;
 }
 
+#cartTitle{
+	text-align: center;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	font-size: xx-large;
+}
+
 a{
 	color: #F2F4F3;
-	
+	cursor: pointer;
 }
 div.gameDiv{
 	height: 70px;
