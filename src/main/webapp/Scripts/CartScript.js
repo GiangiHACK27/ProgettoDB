@@ -21,7 +21,11 @@ $(".removeButton a").on("click", function(){
 	$.get("/GamingWorldShop/DeleteFromCartServlet?gameId="+$(this).attr("id")+"&category=cart");
 	$(this).closest(".gameDiv").remove();
 	if($('#gameSection').children().length == 0){
-		console.log($('#gameSection').children().length == 0);
-		$('main').html("<p id=emptyCart>Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>");
+		$('#cartItemCount').html("");
+		$('main').html("<p id=emptyCart>Your cart is now empty. <a href=/GamingWorldShop/SearchGames>Let's fix that!</a></p>");
+	}
+	else{
+		let newCartItemCount = parseInt($('#cartItemCount').html())-1;
+		$('#cartItemCount').html(""+newCartItemCount);
 	}
 } )

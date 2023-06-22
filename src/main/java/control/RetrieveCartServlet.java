@@ -23,6 +23,7 @@ public class RetrieveCartServlet extends BaseServlet {
         super();
     }
 
+    /*Puts a cart item in the request. Needs a "category" in the GET request */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		

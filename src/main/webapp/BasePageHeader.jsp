@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="model.User" import="model.User.Role"%>
+	pageEncoding="ISO-8859-1" import="model.User, model.User.Role, model.Cart"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/CSS/BaseStyle.css">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/CSS/HeaderStyle.css">
+<jsp:include page="/RetrieveCartServlet?category=cart"></jsp:include>
 
 <header class=pageHeader>
 
@@ -50,5 +51,19 @@
 	<div id=cart>
 		<a href="${pageContext.request.contextPath}/Cart.jsp"><img
 			src="${pageContext.request.contextPath}/images/cart.jpg" alt="cart"/> </a>
+		<span id=cartItemCount>
+			<%Cart cart = (Cart)request.getAttribute("cartForView");
+				int items = 0;
+				 try{
+					 items = cart.getGames().size();
+				 } 
+				 catch (Exception e){
+				 }
+			%>
+			<%if(items <= 0){ %>
+			<%} else{ %>
+				<%=items %>
+			<%} %>
+		</span>
 	</div>
 </header>

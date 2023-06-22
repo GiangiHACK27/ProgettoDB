@@ -50,6 +50,9 @@
 
 #cart img {
 	width: 50px;
+}
+
+#cart{
 	object-fit: contain;
 	position: absolute;
 	top: 15%;
@@ -58,6 +61,13 @@
 	/*Changing one of the values here (I don't know which one) should move the image*/
 }
 
+#cartItemCount{
+	position:absolute;
+	text-align: center;
+	background-color: #d82020a3;
+	border-radius: 100%;
+	width: 35%;
+}
 
 #sign-in {
 	background-color: green;
@@ -89,7 +99,7 @@
 		text-align: center;
 	}
 	
-	#cart img{
+	#cart{
 		display:none;
 	}
 }
