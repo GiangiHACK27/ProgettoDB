@@ -9,8 +9,9 @@
 }
 
 body{
-	background-color: #2D424E;
-	color: #F2F4F3;
+	/*background-color: #2D424E;*/
+	background-image: linear-gradient(to top, #293b46, #304552, #36505e, #3d5a6b, #446578);
+ 	color: #F2F4F3;
 	font-family: sans-serif;
 	font-size: 14px;
 	position: relative;

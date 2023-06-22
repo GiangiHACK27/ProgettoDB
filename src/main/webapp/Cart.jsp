@@ -25,7 +25,7 @@
 
 		 %> 
 		 <%if(games.isEmpty()){ %>
-		 	Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a>
+		 	<p id=emptyCart>Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>
 		 <%}else{ %>
 		 
 		 	<section id=gameSection>
@@ -43,9 +43,10 @@
 		 			</p>
 
 		 		</div>
-		 	</section>
+		 	
 		 		
 		 	<%} %>
+		 	</section>
 		 <%} %>
 	</main>
 	</section>

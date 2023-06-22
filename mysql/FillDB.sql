@@ -10,7 +10,8 @@ INSERT INTO Game (price, name, description, shortDescription) values (10, "Titol
 "L'ultimo ruggito di un dio morente rompe il confine tra i mondi, aprendo un portale verso il Regno del Caos. Da questo Maelstrom, emergono Khorne, Nurgle, Tzeentch e Slaanesh, i quattro Poteri Perniciosi che seminano oscuritÃ  e disperazione. Gli austeri guerrieri di Kislev e il vasto impero del Grande Catai attendono sulla soglia, mentre il vendicativo Principe Demone giura di distruggere coloro che lo hanno corrotto. L'imminente conflitto divorerÃ  tutto. Sconfiggerai i tuoi demoni? Oppure li comanderai? L'ultimo ruggito di un dio morente rompe il confine tra i mondi, aprendo un portale verso il Regno del Caos. Da questo Maelstrom, emergono Khorne, Nurgle, Tzeentch e Slaanesh, i quattro Poteri Perniciosi che seminano oscuritÃ  e disperazione. Gli austeri guerrieri di Kislev e il vasto impero del Grande Catai attendono sulla soglia, mentre il vendicativo Principe Demone giura di distruggere coloro che lo hanno corrotto. L'imminente conflitto divorerÃ  tutto. Sconfiggerai i tuoi demoni? Oppure li comanderai?",
 "sadasdasdadasasasasasasasasasasasasasasasasasasda sadasdasdas sdasdddddddad sdasdwafsfgsdg fdgfgdfgggggdfggggggggdfg fdgfdgrewerewr wer werewrer"
 );
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "", "");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (17, "Titolo3", "Ciao blelo", "bello");
 
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Windows", 1);
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1);

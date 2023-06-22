@@ -19,7 +19,7 @@ function updateCart(gameId){
 
 $(".removeButton a").on("click", function(){
 	$.get("/GamingWorldShop/DeleteFromCartServlet?gameId="+$(this).attr("id")+"&category=cart");
-	$(this).parentsUntil("section").remove();
+	$(this).closest(".gameDiv").remove();
 	if($('#gameSection').children().length == 0){
 		console.log($('#gameSection').children().length == 0);
 		location.reload();

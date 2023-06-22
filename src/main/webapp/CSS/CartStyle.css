@@ -4,9 +4,19 @@ main {
 	width: 40%;
 	
 	margin: auto;
-	margin-top: 10%;
-	
+	margin-top: 5%;
+	margin-bottom: 5%;
 	overflow: hidden;
+	/*background-color: #172227;*/
+	background-image: radial-gradient(circle, #172227, #1b282e, #202e36, #24353e, #293b46);
+	border-radius: 25px;
+}
+
+#emptyCart{
+	text-align: center;
+	font-size: large;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 #cartTitle{
@@ -24,7 +34,7 @@ div.gameDiv{
 	height: 70px;
 	background-color: #293941;
 	margin-bottom: 5px;
-	
+	padding-top: 5px 10px;
 }
 
 p.gameImage{
