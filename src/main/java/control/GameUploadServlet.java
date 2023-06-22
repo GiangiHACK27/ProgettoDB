@@ -60,7 +60,7 @@ public class GameUploadServlet extends BaseServlet {
 		//Retrieve form inputs and check if they're valid
 		
 		//Get game data from request
-		Float price = Float.parseFloat(request.getParameter("price"));
+		Integer price = Integer.parseInt(request.getParameter("price"));
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		String state = request.getParameter("state");
@@ -131,7 +131,7 @@ public class GameUploadServlet extends BaseServlet {
 		//Insert images into database and upload "represented" table
 		
 		//Check if we must update max price of games
-		Float maxPrice = (Float)getServletContext().getAttribute("maxPrice");
+		Integer maxPrice = (Integer)getServletContext().getAttribute("maxPrice");
 		
 		if(maxPrice.compareTo(price) < 0) 
 			getServletContext().setAttribute("maxPrice", price);

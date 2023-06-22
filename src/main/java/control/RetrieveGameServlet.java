@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +19,7 @@ import model.Game;
 import model.SystemRequirement;
 
 @WebServlet("/RetrieveGameServlet")
-public class RetrieveGameServlet extends HttpServlet {
+public class RetrieveGameServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
     public RetrieveGameServlet() {

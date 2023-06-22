@@ -104,5 +104,5 @@ public class ImageDAO extends BaseDAO {
 
 			ps.execute();	
 		}
-	}	
+	} 
 }

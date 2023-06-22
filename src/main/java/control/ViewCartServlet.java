@@ -26,7 +26,7 @@ public class ViewCartServlet extends BaseServlet {
 		}
 		List<Game> cartItems = new ArrayList<>();
 		
-		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		Cart cart = (Cart) request.getAttribute("cart");
 		
 		if(cart != null) {
 			for(int id : cart.getGames()) {

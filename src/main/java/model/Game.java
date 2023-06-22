@@ -15,11 +15,11 @@ public class Game implements Serializable {
 		this.id = id;
 	}
 
-	public float getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -111,7 +111,7 @@ public class Game implements Serializable {
 	}
 	
 	private Integer id;
-	private float price;
+	private int price;
 	private String name;
 	private String description;
 	private State state;

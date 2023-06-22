@@ -20,7 +20,7 @@ public class GameDAO extends BaseDAO {
 		super(ds);
 	}
 	
-	public int insertGame  (float price, String name, String description,
+	public int insertGame  (int price, String name, String description,
 							String state, String shortDescription,
 							String releaseDate, String pegi) throws SQLException {
 		int id = 0;
@@ -33,7 +33,7 @@ public class GameDAO extends BaseDAO {
 		// Retrieve connection and make prepared statement with tag to return generated keys	
 
 			//Set prepared statement values
-			ps.setFloat(1, price);
+			ps.setInt(1, price);
 			ps.setString(2, name);
 			ps.setString(3, description);
 			ps.setString(4, State.valueOf(state.toUpperCase()).getValue());
@@ -96,7 +96,7 @@ public class GameDAO extends BaseDAO {
 				i++;
 			}
 			
-			ps.setFloat(i, maxPrice);
+			ps.setInt(i, maxPrice);
 			i++;
 			ps.setInt(i, pegi);
 			i++;
@@ -113,7 +113,7 @@ public class GameDAO extends BaseDAO {
 				game.setId(rs.getInt("id"));
 				game.setName(rs.getString("name"));
 				game.setDescription(rs.getString("description"));
-				game.setPrice(rs.getFloat("price"));
+				game.setPrice(rs.getInt("price"));
 				game.setShortDescription(rs.getString("shortDescription"));
 				game.setReleaseDate("realeseDate");
 				Pegi pegi1 = Pegi.valueOf("PEGI_" + rs.getString("pegi"));
@@ -159,7 +159,7 @@ public class GameDAO extends BaseDAO {
 				game = new Game();
 				
 				game.setName(rs.getString("name"));
-				game.setPrice(rs.getFloat("price"));
+				game.setPrice(rs.getInt("price"));
 				game.setDescription(rs.getString("description"));
 				game.setShortDescription(rs.getString("shortDescription"));
 				game.setState(State.valueOf(rs.getString("state").toUpperCase()));
@@ -176,8 +176,8 @@ public class GameDAO extends BaseDAO {
 		return game;
 	}
 	
-	public float retrieveMaxPriceGame() throws SQLException {
-		float maxPrice = 0;
+	public int retrieveMaxPriceGame() throws SQLException {
+		int maxPrice = 0;
 		
 		String query = "SELECT MAX(price) as max FROM Game";
 		
@@ -191,7 +191,7 @@ public class GameDAO extends BaseDAO {
 			
 			//Create the list of Game
 			if(rs.next())
-				maxPrice = rs.getFloat("max");
+				maxPrice = rs.getInt("max");
 			//Create the list of Game
 		}
 				
