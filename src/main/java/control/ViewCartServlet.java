@@ -19,14 +19,15 @@ public class ViewCartServlet extends BaseServlet {
         super();
     }
 	
-	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=cart");
 			dispatcher.include(request, response);
 		}
+		
 		List<Game> cartItems = new ArrayList<>();
 		
-		Cart cart = (Cart) request.getAttribute("cart");
+		Cart cart = (Cart) request.getAttribute("cartForView");
 		
 		if(cart != null) {
 			for(int id : cart.getGames()) {

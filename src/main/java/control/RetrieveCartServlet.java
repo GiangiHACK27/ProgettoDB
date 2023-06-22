@@ -45,6 +45,7 @@ public class RetrieveCartServlet extends BaseServlet {
 		
 		//In case user is logged
 		if(user != null) {
+			
 			//Create dao for interest
 			InterestedDAO interestedDAO = new InterestedDAO((DataSource)getServletContext().getAttribute("DataSource"));
 			//Create dao for interest
@@ -69,7 +70,6 @@ public class RetrieveCartServlet extends BaseServlet {
 			//Retrieve Cart from session
 		}
 		//In case user isn't logged
-		
 		
 		//Put the copy of cart in the request
 		request.setAttribute("cartForView", cart);

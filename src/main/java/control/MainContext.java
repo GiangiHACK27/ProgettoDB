@@ -40,7 +40,7 @@ public class MainContext implements ServletContextListener {
 		//Retrieve max price from Games
 		GameDAO gameDAO = new GameDAO(ds);
 		
-		float maxPrice = 0;
+		int maxPrice = 0;
 		try {
 			maxPrice = gameDAO.retrieveMaxPriceGame();
 		} catch (SQLException e) {
