@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class Game implements Serializable {
 
 	public Game() {
-		
 	}
 	
 	public Integer getId() {
@@ -16,11 +15,11 @@ public class Game implements Serializable {
 		this.id = id;
 	}
 
-	public int getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
@@ -112,7 +111,7 @@ public class Game implements Serializable {
 	}
 	
 	private Integer id;
-	private int price;
+	private float price;
 	private String name;
 	private String description;
 	private State state;

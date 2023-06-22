@@ -4,18 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<meta name="viewport" content="initial-scale=1, width=device-width">
-<link rel="stylesheet" href="./CSS/BaseStyle.css">
-<link rel="stylesheet" href="./CSS/CartStyle.css">
-<script src="./Scripts/CartScript.js" defer></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
 
-<title>Cart</title>
+	<link rel="stylesheet" href="./CSS/BaseStyle.css">
+	<link rel="stylesheet" href="./CSS/CartStyle.css">
+
+	<script src="./Scripts/CartScript.js" defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+	<title>Cart</title>
 </head>
 <body>
-<jsp:include page="BasePageHeader.jsp"></jsp:include>
-<jsp:include page="/ViewCartServlet"></jsp:include>
+	<jsp:include page="BasePageHeader.jsp"></jsp:include>
+	<jsp:include page="/ViewCartServlet"></jsp:include>
+	
 	<section class=main>
 	<main>
 		<h1 id=cartTitle>Your shopping cart</h1>
@@ -51,7 +54,7 @@
 	</main>
 	</section>
 	
-<jsp:include page="BasePageFooter.jsp"></jsp:include>
+	<jsp:include page="BasePageFooter.jsp"></jsp:include>
 
 </body>
 </html>

@@ -7,7 +7,7 @@ USE GameShop;
 
 CREATE TABLE Game (
 	id int NOT NULL AUTO_INCREMENT,
-    price int NOT NULL,
+    price float NOT NULL,
     name varchar(30) NOT NULL,
     description text DEFAULT(""),
     shortDescription text DEFAULT(""),

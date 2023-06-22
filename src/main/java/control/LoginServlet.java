@@ -26,7 +26,6 @@ public class LoginServlet extends BaseServlet {
         super();
     }
     
-    
 	private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
     	RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
     	try {
