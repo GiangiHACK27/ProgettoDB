@@ -22,6 +22,6 @@ $(".removeButton a").on("click", function(){
 	$(this).closest(".gameDiv").remove();
 	if($('#gameSection').children().length == 0){
 		console.log($('#gameSection').children().length == 0);
-		location.reload();
+		$('main').html("<p id=emptyCart>Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>");
 	}
 } )

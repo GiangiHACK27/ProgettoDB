@@ -16,7 +16,11 @@ import java.util.ArrayList;
 @WebServlet("/ViewCartServlet")
 public class ViewCartServlet extends BaseServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ViewCartServlet() {
+        super();
+    }
+	
+	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=cart");
 			dispatcher.include(request, response);
