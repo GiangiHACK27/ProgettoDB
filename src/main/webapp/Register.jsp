@@ -7,6 +7,7 @@
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 		<link rel="stylesheet" href="./CSS/BaseStyle.css">
 		<link rel="stylesheet" href="./CSS/Register.css">
+		<script src="./Scripts/RegisterScript.js"defer></script>
 		
 		<title>Sign up to Gaming World</title>
 		</head>
@@ -28,7 +29,7 @@
 				JOIN THE GAMINGWORLD COMMUNITY
 				</h1>
 				<div id=formDiv>
-					<form method="post" action="/GamingWorldShop/RegisterServlet">
+					<form method="post" action="/GamingWorldShop/RegisterServlet" id=inputForm>
 						<div id=usernameDiv class=inputDiv>
 						<label for=username>Username:</label>
 						<input type="text" name="username" required value="<%= usernameOld%>">
@@ -36,13 +37,18 @@
 						
 						<div id=emailDiv class=inputDiv>	
 						<label for=email>Email:</label>		
-						<input type=email name="email" required value = "<%=emailOld %>" >
+						<input type=email name="email" required pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
+						onchange="validateFormElem(this, document.getElementById('errorDiv'), emailErrorMessage)" value = "<%=emailOld %>" >
 						</div>
 						
 						<div id=passwordDiv class=inputDiv>
 						<label for=password>Password:</label>
-						<input type="password" name="password" required value="">
+						<input type="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$"
+						onchange="validateFormElem(this, document.getElementById('errorDiv'), passwordErrorMessage)"
+						 value="">
 						</div>
+						
+						<div id=errorDiv></div>
 						<textarea id="termsAndConditions" name="termsAndConditions">
 GAMING WORLD TERMS AND CONDITIONS
 						
@@ -53,7 +59,7 @@ These Legal Terms constitute a legally binding agreement made between you, wheth
 						<label for=agreement>I agree to these terms and conditions</label>
 						<input type="checkbox" name=agreement id=agreement required value="I agree to these terms and conditions">
 						<div id=submitDiv class=inputDiv>
-						<input type="submit" name="submit" value="Register">
+						<input type="submit" name="submit" id=submitButton value="Register"">
 						</div>
 					</form>
 				</div>

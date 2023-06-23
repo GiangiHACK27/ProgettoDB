@@ -131,4 +131,7 @@ textarea::-webkit-scrollbar-track{
     background: #344954
 }
 
+.error{
+	border: thin solid red;
+}
 
