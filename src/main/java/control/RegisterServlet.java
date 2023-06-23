@@ -1,5 +1,6 @@
 package control;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -31,7 +32,9 @@ public class RegisterServlet extends BaseServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	    Pattern mailPattern = Pattern.compile("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", Pattern.CASE_INSENSITIVE);
+	    Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,30}$", Pattern.CASE_INSENSITIVE);
+
 		//First of all logout from the current user
 		request.getSession().setAttribute("user", null);
 		//First of all logout from the current user
@@ -47,6 +50,13 @@ public class RegisterServlet extends BaseServlet {
 		String username =  request.getParameter("username");
 		String email = request.getParameter("email");
 		//Get user data from request
+		
+		//Check if password and email are valid with regex
+		if(!mailPattern.matcher(email).find()||!passwordPattern.matcher(password).find()) {
+			showError(request, response, "Invalid inputs", selfPath);
+		}
+		//Check if password and email are valid with regex
+
 
 		//Hash the password
 		String hashPassword = null;	
