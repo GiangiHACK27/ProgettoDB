@@ -90,3 +90,45 @@ a:hover{
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+input[type=text], input[type=password], input[type=email]{
+	background-color: #2b3d48;
+	color: #F2F4F3;
+	padding: 1px 5px;
+}
+input[type=text]:hover, input[type=password]:hover, input[type=email]:hover, input[type=email]:hover{
+	background-color: #3e5765;
+}
+input[type=submit]{
+	cursor:pointer;
+	background-color: #dbeeee;
+}
+
+input[type=submit]:hover{
+	
+}
+
+textarea{
+	border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+    color: #F2F4F3;
+	font-family: sans-serif;
+	background-color: #293b46;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: white;
+}
+
+textarea::-webkit-scrollbar-track{
+    background: #344954
+}
+
+

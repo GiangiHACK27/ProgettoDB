@@ -17,13 +17,86 @@ div#parent{
 	position:relative;
 }
 
-div#loginForm{
-  border: 5px solid;
-  border-color: #0A0908;
-  padding: 10px;
-  /*the following code centers the div in the page (i don't know how it works)*/
-  position:absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 400%);
+
+
+main {
+	min-width: 100%;
+	margin: auto;
+	margin-top: 10%;
+	margin-bottom: 5%;
+	overflow: hidden;
+	/* background-image: radial-gradient(circle, #172227, #1b282e, #202e36, #24353e, #293b46); */
 }
+
+h1{
+	text-align: center;
+}
+
+#infoDiv{
+	width: 70%;
+	margin: auto;
+}
+
+#loginDiv{
+	width:40%;
+	margin: auto;
+	position: relative;
+	background-color: #172227;
+	margin-bottom: 50px;
+}
+
+#loginDiv input, #loginDiv label{
+	display: block;
+	margin: auto;
+}
+
+#loginDiv label{
+	line-height: 15px;
+	text-align: center;
+}
+#loginDiv input[type=text], #loginDiv input[type=password]{
+	width: 60%;
+	height: 25px
+}
+
+.inputDiv{
+	margin-bottom: 10px
+}
+
+#usernameDiv{
+	padding-top: 10px;
+}
+
+#submitDiv{
+	padding-bottom: 10px;
+}
+
+#loginDiv input[type=submit]{
+	background-image: linear-gradient(to right top, #37515e, #3a5b6b, #3d6577, #406f85, #437992);
+	color: white;
+	width: 100px;
+	height: 27px;
+}
+
+#loginDiv input[type=submit]:hover{
+	background-image: linear-gradient(to right top, #3a5b6b, #3d6577, #406f85, #437992);
+}
+
+@media screen and (max-width: 1400px){
+	#loginDiv{
+		width:60%;
+	}
+	#infoDiv{
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 800px){
+	#loginDiv{
+		width:90%;
+	}
+	#infoDiv{
+		width: 90%;
+	}
+}
+

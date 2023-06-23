@@ -1,0 +1,78 @@
+@charset "ISO-8859-1";
+
+
+.main{
+		background-image: url("../images/register_bg.jpg")!important;
+}
+main {
+	min-width: 80%;
+	height:100%;
+	float:right;
+
+	margin-bottom: 5%;
+	overflow: hidden;
+		background: linear-gradient(to right, rgba(23, 34, 39, 0) 0%,
+								rgba(23, 34, 39, 0.92) 7%);
+}
+
+#centerDiv{
+	padding: 2%;
+	padding-left:10%;
+	margin:auto;
+/* 	background-color: #172227; */
+}
+textarea{
+	width: 45%;
+	height: 150px;
+	margin-bottom: 10px;
+}
+#passwordDiv{
+	margin-bottom: 50px;
+}
+
+
+
+#centerDiv input, #centerDiv label{
+	display: block;
+}
+
+#centerDiv label{
+	line-height: 15px;
+}
+#centerDiv input[type=text], #centerDiv input[type=password], #centerDiv input[type=email]{
+	width: 300px;
+	height: 25px
+}
+
+#centerDiv input[type=submit]{
+	background-image: linear-gradient(to right top, #0a720a, #30830b, #4b940c, #66a40c, #81b50d);	color: white;
+	width: 100px;
+	height: 30px;
+	margin-top: 50px;
+}
+
+#centerDiv input[type=submit]:hover{
+background-image: linear-gradient(to right top, #289628, #49a428, #65b129, #7fbe29, #9acb2b);
+}
+
+.inputDiv{
+	margin-bottom: 10px
+}
+
+
+
+@media screen and (max-width: 800px){
+	main{
+		min-width: 100%;
+	}
+
+	#centerDiv input[type=submit]{
+	width: 310px;
+	}
+	textarea{
+		width: 310px;
+		height: 200px;
+	}
+
+}
+

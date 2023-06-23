@@ -23,19 +23,32 @@
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
 	
 	<section class=main>
-	
-	<div id=parent>
-	<div id=loginForm>
-		<form method="post" action="/GamingWorldShop/LoginServlet">
-			user: <input type="text" name="username" value="<%= oldUser%>">
-			<br>
-			password: <input type="password" name="password" value="<%= oldPassword%>">
-			<br>
-			<input type="submit" name="submit" value="SUMMITTA">
-			<br>
-		</form>
-	</div>
-	</div>
+	<main>
+		<h1>
+			SIGN IN
+		</h1>
+		<div id=loginDiv>
+			<form method="post" action="/GamingWorldShop/LoginServlet">
+				<div id=usernameDiv class=inputDiv>
+					<label for=username> Username</label>
+					<input type="text" name="username" id=username required value="<%= oldUser%>">
+				</div>
+				<div id=passwordDiv class=inputDiv>
+				<label for=password>Password</label>
+				<input type="password" name="password" id=password required value="<%= oldPassword%>">
+				</div>
+				<div id=submitDiv class=submitDiv>
+				<input type="submit" name="submit" value="Login" id=submit>
+				</div>
+			</form>
+		</div>
+		
+		<div id=infoDiv>
+			GamingWorld is a relatively HUGE community of GAMERS and gaming related activities. Find MILLIONS of games and gamer friends on Gaming World
+			and discover an ENTIRELY NEW community of GAMING.<br>
+			Not a part of the community yet? What are you waiting for? <a href=Register.jsp>Join us!</a>
+		</div>
+	</main>
 	<% String logError = (String)request.getAttribute("logError");
 	  if(logError != null) { %>
 		<p>Errore: <%=  logError%></p>
