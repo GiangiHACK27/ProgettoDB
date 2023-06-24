@@ -1,5 +1,4 @@
 package control;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
