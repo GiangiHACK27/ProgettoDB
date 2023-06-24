@@ -81,11 +81,12 @@ public class GameDAO extends BaseDAO {
 			//Construct query string
 			
 			//Construct query
-			String query = "SELECT DISTINCT * FROM Game as G, Belongs as B, Category as C "
-							+ "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
-							+ categoriesToSearch
-							+ "AND G.price <= ? AND "
-							+ "G.pegi <= ?";
+			String query = "SELECT DISTINCT id,price,G.name,description,shortDescription,releaseDate,state,pegi,publisher"
+                    + " FROM Game as G, Belongs as B, Category as C "
+                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+                            + categoriesToSearch
+                            + "AND G.price <= ? AND "
+                            + "G.pegi <= ?";
 			
 			ps = conn.prepareStatement(query);
 			
@@ -115,7 +116,7 @@ public class GameDAO extends BaseDAO {
 				game.setDescription(rs.getString("description"));
 				game.setPrice(rs.getInt("price"));
 				game.setShortDescription(rs.getString("shortDescription"));
-				game.setReleaseDate("realeseDate");
+				game.setReleaseDate(rs.getString("releaseDate"));
 				Pegi pegi1 = Pegi.valueOf("PEGI_" + rs.getString("pegi"));
 				game.setPegi(pegi1);
 				State state = State.valueOf(rs.getString("state").toUpperCase());

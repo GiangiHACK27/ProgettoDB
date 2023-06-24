@@ -1,0 +1,83 @@
+@charset "ISO-8859-1";
+
+main {
+	min-width: 85%;
+	height:100%;
+	float:right;
+	margin:auto;
+	margin-bottom: 5%;
+	margin-top: 5%;
+	overflow: hidden;
+}
+
+#filterSection{
+	float:left;
+	min-width: 10%;
+	margin-right: 15px;
+}
+
+#filterSection div{
+	margin-bottom: 5px;
+}
+
+.singleCategory input[type=checkbox]{
+	margin-right: 2px;
+	vertical-align: middle;
+}
+
+#gameListSection{
+	width: 77%;
+	float:left;
+	background: rgba(15,20,23,1);
+}
+
+div.gameDiv{
+	height: 95px;
+	background-color: rgb(22 29 33);
+	margin-bottom: 5px;
+	padding-top: 5px 10px;
+}
+
+p.gameImage{
+	float: left;
+	margin-right: 10px;
+	padding-top: 12px;
+	padding-left: 10px; 	
+	width: 156px;
+	height: 58.5px;
+}
+
+
+p.gameImage img{
+	width: 156px;
+	height: 58.5px;
+}
+
+p.gameTitle{
+	width:90%;
+	padding-top:1px;
+}
+
+.price{
+	float:right;
+	margin-right:10px;
+	font-size: 18px;
+	padding-top:21.5px;
+
+}
+
+p.gamePrice{
+	font-size: 9px;
+	text-align: center;
+}
+
+@media screen and (max-width: 800px){
+	.description{
+		display:none;
+	}
+}
+
+@media screen and (max-width: 540px){
+
+	
+}

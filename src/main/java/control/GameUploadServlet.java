@@ -97,7 +97,7 @@ public class GameUploadServlet extends BaseServlet {
 				e.printStackTrace();
 			}
 		}
-		//Insert relation beetween categories and game to add
+		//Insert relation between categories and game to add
 
 		//Insert images into database and upload "represented" table
 		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));

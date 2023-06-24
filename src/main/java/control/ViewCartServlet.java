@@ -19,16 +19,23 @@ public class ViewCartServlet extends BaseServlet {
         super();
     }
 	
-	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//get cart from servlet
 		{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=cart");
 			dispatcher.include(request, response);
 		}
-		
+		//get cart from servlet
+
+		//Initialize cart that will be sent in response
 		List<Game> cartItems = new ArrayList<>();
-		
+		//Initialize cart that will be sent in response
+
+		//get cart from request taken from retrievecartservlet
 		Cart cart = (Cart) request.getAttribute("cartForView");
-		
+		//get cart from request taken from retrievecartservlet
+
+		//For each gameID, get all game data from RetrieveGameServlet
 		if(cart != null) {
 			for(int id : cart.getGames()) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveGameServlet?gameId="+id);
@@ -36,6 +43,8 @@ public class ViewCartServlet extends BaseServlet {
 				cartItems.add((Game) request.getAttribute("game"));
 			}
 		}
+		//For each gameID, get all game data from RetrieveGameServlet
+
 		request.setAttribute("cartItems", cartItems);
 	}
 	
