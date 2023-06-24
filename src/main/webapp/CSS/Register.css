@@ -15,6 +15,10 @@ main {
 								rgba(23, 34, 39, 0.92) 7%);
 }
 
+h1{
+	margin-bottom: 10px;
+}
+
 #centerDiv{
 	padding: 2%;
 	padding-left:10%;
@@ -71,6 +75,8 @@ background-image: linear-gradient(to right top, #289628, #49a428, #65b129, #7fbe
 	#centerDiv input[type=submit]{
 	width: 310px;
 	}
+
+	
 	textarea{
 		width: 310px;
 		height: 200px;
@@ -78,3 +84,24 @@ background-image: linear-gradient(to right top, #289628, #49a428, #65b129, #7fbe
 
 }
 
+@media screen and (max-width: 540px){
+
+	#centerDiv input[type=text], #centerDiv input[type=password], #centerDiv input[type=email]{
+		width: 90%;
+		height: 25px
+	}
+	#centerDiv input[type=submit]{
+	width: 92%;
+	}
+	textarea{
+	width: 95%;
+	height: 150px;
+	margin-bottom: 10px;
+	}
+	h1{
+		text-align: center;
+	}
+	#centerDiv{
+		padding-left: 5%;
+	}
+}

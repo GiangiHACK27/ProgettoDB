@@ -6,9 +6,10 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/CSS/HeaderStyle.css">
 <jsp:include page="/RetrieveCartServlet?category=cart"></jsp:include>
-
+<script src="${pageContext.request.contextPath}/Scripts/HeaderScript.js"></script>
 <header class=pageHeader>
-
+	<img onclick="openNav()" src="${pageContext.request.contextPath}/images/header_menu_hamburger.png" alt=sidebar id=openSidebarButton>
+	
 	<div id="logo">
 		<a href="${pageContext.request.contextPath}"><img
 			src="${pageContext.request.contextPath}/images/logo.png" alt="logoimage"/> </a>
@@ -66,4 +67,18 @@
 			<%} %>
 		</span>
 	</div>
+	
+	<div id="mySidenav" class="sidenav">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		  <a href="${pageContext.request.contextPath}"> HOME PAGE </a>
+		  <a href= "${pageContext.request.contextPath}/SearchGames"> CATALOG </a>
+			<% if (user == null) { %>
+				<a href="${pageContext.request.contextPath}/Login.jsp"> LOG IN</a>
+				<a href="${pageContext.request.contextPath}/Register.jsp"> SIGN UP</a>
+			<% } else { %>
+				<a href="${pageContext.request.contextPath}/user/PersonalArea.jsp"><%=user.getUsername().toUpperCase()%></a>
+				<a href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a>
+		 	<%} %>
+	</div>
+	
 </header>
