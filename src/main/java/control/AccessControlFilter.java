@@ -16,9 +16,6 @@ import javax.servlet.http.HttpSession;
 import model.User;
 import model.User.Role;
 
-/**
- * Servlet Filter implementation class AccessControlFilter
- */
 @WebFilter(filterName = "/AccessControlFilter", urlPatterns = "/*")
 public class AccessControlFilter extends HttpFilter implements Filter {
     

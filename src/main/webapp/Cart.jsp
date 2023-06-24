@@ -24,10 +24,8 @@
 		<h1 id=cartTitle>Your shopping cart</h1>
 		
 		 <% List<Game> games = (List<Game>)request.getAttribute("cartItems");
-			games.forEach(e->System.out.println(e.getName()));
-
-		 %> 
-		 <%if(games.isEmpty()){ %>
+		  
+			 if(games.isEmpty()){ %>
 		 	<p id=emptyCart>Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>
 		 <%}else{ %>
 		 
@@ -51,7 +49,12 @@
 		 	<%} %>
 		 	</section>
 		 <%} %>
+		 
+		 <div id="rowButton">
+		 	<button onclick="location.href='user/Purchase.jsp?from=cart'">Purchase</button> 	
+		</div>
 	</main>
+	
 	</section>
 	
 	<jsp:include page="BasePageFooter.jsp"></jsp:include>

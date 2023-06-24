@@ -14,6 +14,7 @@ CREATE TABLE Game (
     releaseDate date DEFAULT("1999-09-09"),
     state ENUM("Released", "Beta", "Alpha", "Coming_soon", "Unlisted") NOT NULL DEFAULT("Coming_soon"),
     pegi int NOT NULL DEFAULT(18),
+    publisher varchar(30) NOT NULL DEFAULT("Microsoft"),
     primary key(id)
 );
 

@@ -24,7 +24,9 @@
 		<% Game game = (Game)request.getAttribute("game"); %>
 		
 		<jsp:include page="BasePageHeader.jsp"></jsp:include>
+		
 		<section class=main>
+		
 		<main>
 			<div id=row-1>
 				<div id=sliderImages>
@@ -51,6 +53,7 @@
 									<p>Valutazioni recenti: </p>
 								</td>
 							</tr>
+
 						</tbody>
 					</table>
 				</div>
@@ -58,7 +61,9 @@
 			
 			<div id="row-2">
 				<div id="description">
-					<h1><%=game.getName() %></h1>
+					<h1> <%=game.getName() %> </h1>
+					
+					<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">SUMMITTA!!!</button>
 					<p> <%= game.getDescription() %> </p>
 				</div>
 				

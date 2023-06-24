@@ -18,7 +18,5 @@ INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Li
 
 INSERT INTO Belongs values ("categoria1", 1);
 
-INSERT INTO Purchase (gameId, username) values (1, "tonaion");
-
 INSERT INTO Review (gameId, username) values (1, "tonaion");
 INSERT INTO Likes values (1, "AleCoppola02"); 

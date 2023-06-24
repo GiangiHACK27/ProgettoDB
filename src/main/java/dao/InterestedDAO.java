@@ -86,4 +86,22 @@ public class InterestedDAO extends BaseDAO {
 		
 		return cart;
 	}
+	
+	public void removeCart(String username, Interested.Category category) throws SQLException {
+		String query = "DELETE FROM Interested as I WHERE I.category = ? AND I.username = ?";
+		
+		// Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		// Retrieve connection and make prepared statement
+
+			//Set prepared statement values
+			ps.setString(1, category.toString().toLowerCase());
+			ps.setString(2, username);
+			//Set prepared statement values
+
+			//Insert user into database
+			ps.execute();
+			//Insert user into database
+		}
+	}
 }
