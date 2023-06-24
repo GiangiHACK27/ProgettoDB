@@ -22,10 +22,17 @@ $(".removeButton a").on("click", function(){
 	$(this).closest(".gameDiv").remove();
 	if($('#gameSection').children().length == 0){
 		$('#cartItemCount').html("");
-		$('main').html("<p id=emptyCart>Your cart is now empty. <a href=/GamingWorldShop/SearchGames>Let's fix that!</a></p>");
+		$('main').html("<section id=cartContents><p id=emptyCart>Your cart is now empty. <a href=/GamingWorldShop/SearchGames>Let's fix that!</a></p></section>");
 	}
 	else{
 		let newCartItemCount = parseInt($('#cartItemCount').html())-1;
 		$('#cartItemCount').html(""+newCartItemCount);
 	}
 } )
+
+$("#emptyCartButton a").on("click", function(){
+	$('#cartItemCount').html("");
+	$.get("/GamingWorldShop/EmptyCartServlet?category=cart");
+	$('main').html("<section id=cartContents><p id=emptyCart>Your cart is now empty. <a href=/GamingWorldShop/SearchGames>Let's fix that!</a></p></section>");
+
+})

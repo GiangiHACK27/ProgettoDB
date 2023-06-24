@@ -21,38 +21,50 @@
 	
 	<section class=main>
 	<main>
-		<h1 id=cartTitle>Your shopping cart</h1>
 		
-		 <% List<Game> games = (List<Game>)request.getAttribute("cartItems");
-		  
-			 if(games.isEmpty()){ %>
-		 	<p id=emptyCart>Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>
-		 <%}else{ %>
-		 
-		 	<section id=gameSection>
-		 	<%for (Game currentGame:games){ %>
-		 		<div class=gameDiv>
-		 			<p class=gameImage>
-		 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><img src="RetrieveGameImageServlet?gameId=<%=currentGame.getId()%>&role=BANNER" alt="game logo"> </a>	
-		 			</p>
-		 			<p class=gamePrice>
-		 				<span class= price><%=currentGame.getPrice()%></span><br>
-		 				<span class=removeButton><a id=<%=currentGame.getId()%>>Remove</a></span>
-		 			</p>
-		 			<p class=gameTitle>
-		 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>
-		 			</p>
+		<section id=cartContents>
+			<h1 id=cartTitle>Your shopping cart</h1>
+			
+			 <% List<Game> games = (List<Game>)request.getAttribute("cartItems");
+			  
+				 if(games.isEmpty()){ %>
+			 	<p id=emptyCart>Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>
+			 <%}else{ %>
+			 
+			 	<section id=gameSection>
+			 	<%for (Game currentGame:games){ %>
+			 		<div class=gameDiv>
+			 			<p class=gameImage>
+			 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><img src="RetrieveGameImageServlet?gameId=<%=currentGame.getId()%>&role=BANNER" alt="game logo"> </a>	
+			 			</p>
+			 			<p class=gamePrice>
+			 				<span class= price><%=currentGame.getPrice()%></span><br>
+			 				<span class=removeButton><a id=<%=currentGame.getId()%>>Remove</a></span>
+			 			</p>
+			 			<p class=gameTitle>
+			 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>
+			 			</p>
+	
+			 		</div>
+			 	
+			 		
+			 	<%} %>
+			 	</section>
+			 <%} %>
+		</section>
+		<%if(!games.isEmpty()){ %>
 
-		 		</div>
-		 	
-		 		
-		 	<%} %>
-		 	</section>
-		 <%} %>
-		 
-		 <div id="rowButton">
-		 	<button onclick="location.href='user/Purchase.jsp?from=cart'">Purchase</button> 	
-		</div>
+		<section id=options>
+			<div id="purchaseButton">
+				<button onclick="location.href='user/Purchase.jsp?from=cart'">Go to checkout</button> 	
+			</div> 
+			
+			<div id=emptyCartOption>
+				<span id=emptyCartButton> <a>Empty cart</a></span>
+			</div>
+		</section>
+		<%} %>
+		
 	</main>
 	
 	</section>

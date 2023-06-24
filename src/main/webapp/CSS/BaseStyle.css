@@ -20,7 +20,7 @@ body{
 
 section.main{
 	flex:1;
-	background-image: linear-gradient(to top, rgba(23, 34, 39, 1), #304552);
+	background-image: linear-gradient(to top,rgb(15 20 23), rgb(20 26 29), rgb(34 46 51),  #304552);
 }
 
 
@@ -91,7 +91,7 @@ a:hover{
 }
 
 input[type=text], input[type=password], input[type=email]{
-	background-color: #2b3d48;
+	background-color: #1d2b33;
 	color: #F2F4F3;
 	padding: 1px 5px;
 }
@@ -100,11 +100,27 @@ input[type=text]:hover, input[type=password]:hover, input[type=email]:hover, inp
 }
 input[type=submit]{
 	cursor:pointer;
-	background-color: #dbeeee;
+	padding: 3px;
+	background-image: linear-gradient(to top,#475f6d,  #518aad);
+	color: #73ceff;
 }
 
 input[type=submit]:hover{
-	
+		background-image: linear-gradient(to top,#475f6d,  #43b8ff);
+		color: white;
+
+}
+
+button{
+	cursor:pointer;
+	padding: 3px;
+	background-image: linear-gradient(to top,#475f6d,  #518aad);
+	color: #73ceff;
+}
+
+button:hover{
+	background-image: linear-gradient(to top,#475f6d,  #43b8ff);
+	color: white;
 }
 
 textarea{
