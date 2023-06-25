@@ -12,11 +12,37 @@ INSERT INTO Game (price, name, description, shortDescription) values (10, "Titol
 );
 INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
 INSERT INTO Game (price, name, description, shortDescription) values (17, "Titolo3", "Ciao blelo", "bello");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo4", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo6", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo7", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo8", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo9", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
 
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Windows", 1);
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1);
 
 INSERT INTO Belongs values ("categoria1", 1);
+INSERT INTO Belongs values ("categoria1", 2);
+INSERT INTO Belongs values ("categoria1", 3);
+INSERT INTO Belongs values ("categoria1", 4);
+INSERT INTO Belongs values ("categoria1", 5);
+INSERT INTO Belongs values ("categoria1", 6);
+INSERT INTO Belongs values ("categoria1", 7);
+INSERT INTO Belongs values ("categoria1", 8);
+INSERT INTO Belongs values ("categoria1", 9);
+INSERT INTO Belongs values ("categoria1", 10);
+INSERT INTO Belongs values ("categoria1", 11);
+INSERT INTO Belongs values ("categoria1", 12);
+INSERT INTO Belongs values ("categoria1", 13);
+INSERT INTO Belongs values ("categoria1", 14);
 
 INSERT INTO Review (gameId, username) values (1, "tonaion");
 INSERT INTO Likes values (1, "AleCoppola02"); 

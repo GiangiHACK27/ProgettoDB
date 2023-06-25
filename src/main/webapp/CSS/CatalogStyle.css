@@ -105,6 +105,18 @@ p.gameTitle{
 	padding-top:21.5px;
 
 }
+#pageDiv{
+	margin-top:10px;
+}
+.pageButton{
+	padding: 2px;
+}
+.selectedPageButton{
+	background-image: linear-gradient(to top,#475f6d,  #43b8ff);
+}
+.selectedPageButton:hover{
+	cursor: default;
+}
 
 p.gamePrice{
 	font-size: 9px;

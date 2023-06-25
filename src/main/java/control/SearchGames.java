@@ -58,7 +58,14 @@ public class SearchGames extends BaseServlet {
 		String searchText = request.getParameter("searchBar");
 		if(searchText == null) 
 			searchText="";
-		//Retrieve all paramaters from form
+		
+		int page=1;
+		try{
+			page = Integer.parseInt(request.getParameter("page"));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		//Retrieve all parameters from form
 		
 		//Retrieve all Games from database
 		GameDAO gameDAO = new GameDAO((DataSource)request.getServletContext().getAttribute("DataSource"));
@@ -69,14 +76,29 @@ public class SearchGames extends BaseServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		request.setAttribute("games", games);
 		//Retrieve all Games from database
-		
-		for(Game g : games) {
-			System.out.println(g.getName());
+
+		//limit games sent based on page requested
+		List<Game> gamesToReturn = null;
+		System.out.println(""+games.size()+" "+page);
+		if(page*10-10 > games.size()) {
+			gamesToReturn = games; //there aren't enough games to fulfill the request, so default behavior
 		}
-		
+		else if(page*10 >= games.size()) {
+			gamesToReturn = games.subList(page*10-10, games.size()); //the page won't be full
+		}
+		else {
+			gamesToReturn = games.subList(page*10-10, page*10);
+		}
+		request.setAttribute("numberOfGames", games.size());
+
+		request.setAttribute("games", gamesToReturn);
+		//limit games sent based on page requested
+
+//		for(Game g : games) {
+//			System.out.println(g.getName());
+//		}
+//		
 		//Forward request to view for visualize results of search
 		String noRedirect = request.getParameter("noRedirect");
 		if(noRedirect == null) {

@@ -82,14 +82,15 @@
 				</div>
 				
 				<div id = pegiDiv>
+				Age limit:
 				<select name="pegi">
 					<% Pegi[] pegis = Pegi.values();  
 						for(Pegi p : pegis) { 
 							if(p.getValue() == oldPegi) {
 								%>
-								<option value="<%= p.getValue()%>" selected><%=p %></option>
+								<option value="<%= p.getValue()%>" selected><%=p.toString().replace('_', ' ') %></option>
 							<% } else {%>
-								<option value="<%= p.getValue()%>"><%=p %></option>		
+								<option value="<%= p.getValue()%>"><%=p.toString().replace('_', ' ') %></option>		
 					<% } }
 					%>
 				</select>	

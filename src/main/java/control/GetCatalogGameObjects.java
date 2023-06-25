@@ -31,9 +31,9 @@ public class GetCatalogGameObjects extends BaseServlet {
 		
 		//convert game objects to json and send response
 		List<Game> games = (List<Game>)request.getAttribute("games");
-		games.forEach(e->System.out.println(e));
 		JSONObject jsonResponse = new JSONObject();
 		jsonResponse.put("games", games);
+		jsonResponse.put("gamesCount", request.getAttribute("numberOfGames"));
 		PrintWriter out = response.getWriter();
 		out.print(jsonResponse.toString());
 	}
