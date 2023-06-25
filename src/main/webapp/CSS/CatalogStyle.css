@@ -10,14 +10,53 @@ main {
 	overflow: hidden;
 }
 
+input[type=range]{
+	width: 100px;
+}
+#searchSection{
+	width: 90%;
+	margin-bottom: 15px;
+	width: 77%;
+	padding-left: 16%;
+	padding-right: 16%;
+	margin-left: 30px;
+}
+
+#searchDiv{
+	float: right;
+	margin-top: 2px;
+	margin-bottom: 5px;
+}
+
+#searchDiv input[type=text]{
+	width: 200px;
+	margin-right: 50px;
+	height: 30px;
+	padding: 0 10px;
+	border-radius: 25px;
+	padding-right: 50px;
+	overflow: visible;
+}
+
 #filterSection{
 	float:left;
-	min-width: 10%;
-	margin-right: 15px;
+	min-width: 13%;
+	margin-top: 19px;
+	margin-right: 5px;
+
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgba(15,20,23,1);
 }
+
+h1{
+	font-size: 25px;
+}
+
 
 #filterSection div{
 	margin-bottom: 5px;
+	padding-left: 2px;
 }
 
 .singleCategory input[type=checkbox]{
@@ -26,7 +65,8 @@ main {
 }
 
 #gameListSection{
-	width: 77%;
+	min-width: 77%;
+	max-width: 77%;
 	float:left;
 	background: rgba(15,20,23,1);
 }
@@ -44,7 +84,7 @@ p.gameImage{
 	padding-top: 12px;
 	padding-left: 10px; 	
 	width: 156px;
-	height: 58.5px;
+	height: 70px;
 }
 
 
@@ -54,7 +94,7 @@ p.gameImage img{
 }
 
 p.gameTitle{
-	width:90%;
+	max-width: 90%;
 	padding-top:1px;
 }
 
@@ -71,13 +111,87 @@ p.gamePrice{
 	text-align: center;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 920px){
 	.description{
 		display:none;
 	}
+
+
+	#filterSection{
+	float: none;
+	margin-right: 2px;
+	margin-left: 0px;
+	width: 97%;
+	border-width: 0px;
+	margin-bottom: 20px;
+	background-color: rgba(15,20,23,1)
+}
+
+	#gameListSection{
+	min-width: 97%;
+	max-width: 97%;
+	float: none;
+	background: rgba(15,20,23,1);
+	}
+
+	#searchSection{
+		width: 95%;
+		margin-bottom: 15px;
+		padding-left: 0%;
+		padding-right: 0%;
+		margin-left: 3px;
+	}
+	
+	#searchDiv{
+		float: none;
+		margin-top: 2px;
+	}
+
+	#headingDiv{
+		margin-bottom: 20px;
+	}
+	#searchDiv{
+		margin-bottom: 5px;
+	}
+
+	main {
+		min-width: 95%;
+		height:100%;
+		float:right;
+		margin-bottom: 5%;
+		margin-top: 5%;
+		overflow: hidden;
+		
+	}
+
 }
 
 @media screen and (max-width: 540px){
+	p.gameImage img{
+		width: 120px;
+		height: 45px;
+	}
+	h1{
+		font-size: 25px;
+	}
+	p.gameImage{
+		float: left;
+		margin-right: 10px;
+		padding-top: 12px;
+		padding-left: 10px; 	
+		width: 120px;
+		height: 70px;
+	}
 
+	main{
+		float:none;
+		margin-left: 3%
+	}
+
+	.price{
+		font-size: 13px;
+	}
+
+	
 	
 }

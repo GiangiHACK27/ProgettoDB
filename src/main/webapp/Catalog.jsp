@@ -22,6 +22,17 @@
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
 	<section class=main>
 		<main>
+		<form action="/GamingWorldShop/SearchGames" method="get">
+		
+		<section id=searchSection>
+			<div id=headingDiv>
+				<h1>Our selection of games</h1>
+			</div>
+			
+			<div id=searchDiv>
+				<input type=text id=searchBar name=searchBar placeholder="Search for games by title">
+			</div>
+		</section>
 		<section id=filterSection>
 			<%int maxPrice =  (int) application.getAttribute("maxPrice");
 			Integer currentMaxPrice = maxPrice;
@@ -37,7 +48,6 @@
 				oldPegi = Integer.parseInt(t);
 			%>
 			
-			<form action="/GamingWorldShop/SearchGames" method="get">
 				<div id=categoryDiv>
 					<% List<Category> categories = (List<Category>)request.getAttribute("categories");
 						for(Category c : categories) { 
@@ -65,7 +75,10 @@
 					%>
 				</div>
 				<div id = priceRangeDiv>
-					<input type="range" name="currentMaxPrice" min="0" max="<%= maxPrice%>" value="<%= currentMaxPrice%>">
+					Price range:<br> 0
+					<input type="range" id=range name="currentMaxPrice" min="0" max="<%= maxPrice%>" value="<%= currentMaxPrice%>"
+					 oninput= "rangeOutput.value=formatPrice(range.value)"><output id = rangeOutput><%= maxPrice%></output>
+					 
 				</div>
 				
 				<div id = pegiDiv>
@@ -84,7 +97,6 @@
 				<div id = submitDiv>
 				<input type="submit" value="Submit" name=button id=submitButton> 
 				</div>
-			</form>
 		</section>
 		<section id=gameListSection>
  		<%-- <% List<Game> games = (List<Game>)request.getAttribute("games");
@@ -94,6 +106,8 @@
 		%> --%> 
 			
 		</section>
+					</form>
+		
 		</main>
 	</section>
 	

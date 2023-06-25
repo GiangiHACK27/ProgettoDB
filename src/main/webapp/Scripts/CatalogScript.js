@@ -1,4 +1,7 @@
-
+let USDollar = new Intl.NumberFormat('en-US', {
+	    style: 'currency',
+	    currency: 'USD',
+	});
 $(document).ready(function() {
 
 	function updateCatalog(){
@@ -6,6 +9,13 @@ $(document).ready(function() {
 		var url="/GamingWorldShop/GetCatalogGameObjects"
 		$.get(url, data, function(responseData){
 			let giochi = responseData;
+			if(giochi.games.length == 0){
+				$('#gameListSection').html("<div class=gameDiv><p class=gameTitle>"+
+			 				"No results found for your search"+
+			 			"</p>"+	
+			 		"</div>");
+				
+			}
 			$('#gameListSection').html("");
 			giochi.games.forEach(game=>addGame(game));
 		})
@@ -16,10 +26,7 @@ $(document).ready(function() {
 	    updateCatalog();
 	    return false;
 	}
-		let USDollar = new Intl.NumberFormat('en-US', {
-	    style: 'currency',
-	    currency: 'USD',
-	});
+
 	function addGame(game){
 		$('#gameListSection').append("<div class=gameDiv><p class=gameImage>"+
 			 				"<a href=PersonalGamePage.jsp?gameId="+game.id +"><img src='RetrieveGameImageServlet?gameId="+game.id +"&role=BANNER' alt='game logo'> </a>"+	
@@ -34,6 +41,10 @@ $(document).ready(function() {
 	}
 	
 	document.getElementById("submitButton").addEventListener("click", submitForm);
-
+	$('#rangeOutput').html(formatPrice(parseInt($('#rangeOutput').html())))
+	updateCatalog();
 
 })
+	function formatPrice(price){
+		return USDollar.format(price/100);
+	};

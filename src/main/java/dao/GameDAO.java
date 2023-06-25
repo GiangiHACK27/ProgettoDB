@@ -57,7 +57,7 @@ public class GameDAO extends BaseDAO {
 		return id;
 	}
 	
-	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi) throws SQLException {
+	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi, String searchText) throws SQLException {
 		List<Game> games = new ArrayList<>();
 		
 		PreparedStatement ps = null;
@@ -86,7 +86,7 @@ public class GameDAO extends BaseDAO {
                             + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
                             + categoriesToSearch
                             + "AND G.price <= ? AND "
-                            + "G.pegi <= ?";
+                            + "G.pegi <= ? AND INSTR(G.name, ?) > 0";
 			
 			ps = conn.prepareStatement(query);
 			
@@ -100,6 +100,8 @@ public class GameDAO extends BaseDAO {
 			ps.setInt(i, maxPrice);
 			i++;
 			ps.setInt(i, pegi);
+			i++;
+			ps.setString(i, searchText);
 			i++;
 			//Construct query
 			

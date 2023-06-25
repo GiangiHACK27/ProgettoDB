@@ -54,6 +54,10 @@ public class SearchGames extends BaseServlet {
 		t = request.getParameter("pegi");
 		if(t != null)
 			pegi = Integer.parseInt(t);
+		
+		String searchText = request.getParameter("searchBar");
+		if(searchText == null) 
+			searchText="";
 		//Retrieve all paramaters from form
 		
 		//Retrieve all Games from database
@@ -61,7 +65,7 @@ public class SearchGames extends BaseServlet {
 		List<Game> games = null;
 		
 		try {
-			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi);
+			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi, searchText);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
