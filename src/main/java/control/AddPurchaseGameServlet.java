@@ -59,6 +59,11 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");
 		//Retrieve datasource from the servelt context
 		
+		//Delete if is present the element from the cart
+		dispatcher = request.getRequestDispatcher("../DeleteFromCartServlet?category=cart&gameId=" + gameId);
+		dispatcher.include(request, response);
+		//Delete if is present the element from the cart
+		
 		//Insert purchase on database
 		PurchaseDAO purchaseDAO = new PurchaseDAO(ds);
 		try {
