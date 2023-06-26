@@ -35,7 +35,7 @@ public class DeleteFromCartServlet extends BaseServlet {
 		
 		
 		//Validate parameters
-		if(! validParameters(request, response, "/GamingWorldShop"))
+		if(! validParameters(request, response))
 			return;
 		//Validate parameters
 		

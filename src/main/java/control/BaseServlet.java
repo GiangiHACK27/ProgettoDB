@@ -25,14 +25,13 @@ public class BaseServlet extends HttpServlet {
     	return s == null || s.trim().isEmpty();
     }
 	
-	protected boolean validParameters(HttpServletRequest request, HttpServletResponse response, String selfPath) {
+	protected boolean validParameters(HttpServletRequest request, HttpServletResponse response) {
 		Enumeration <String> parameters = request.getParameterNames();
 		
 		while(parameters.hasMoreElements()) {
 			String parameterName = parameters.nextElement();
 			String parameterValue = request.getParameter(parameterName);
 			if(isNotValidParam(parameterValue)) {
-				showError(request, response, "Invalid parameter:" +parameterName, selfPath);
 				return false;
 			}
 		}

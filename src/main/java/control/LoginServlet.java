@@ -46,7 +46,7 @@ public class LoginServlet extends BaseServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Retrieve username and password from form and check if it is empty
-		if(!validParameters(request, response, selfPath)) {
+		if(! validParameters(request, response)) {
 			return;
 		}
 		String username = request.getParameter("username");

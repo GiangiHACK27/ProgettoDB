@@ -36,7 +36,7 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		//Retrieve User from session
 		
 		//Check if input are valid
-		if(! super.validParameters(request, response, "/GamingWorldShop"))
+		if(! super.validParameters(request, response))
 			return;
 		//Check if input are valid
 		

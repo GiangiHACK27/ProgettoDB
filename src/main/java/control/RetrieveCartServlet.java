@@ -32,7 +32,7 @@ public class RetrieveCartServlet extends BaseServlet {
 		//Retrieve from session the user info
 		
 		//Validate parameters
-		if(!validParameters(request, response, "/GamingWorldShop/welcome.jsp"))
+		if(!validParameters(request, response))
 			return;
 		//Validate parameters
 		

@@ -54,7 +54,7 @@ public class GameUploadServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//Retrieve form inputs and check if they're valid
-		if(!validParameters(request, response, selfPath)) {
+		if(! validParameters(request, response)) {
 			return;
 		}
 		//Retrieve form inputs and check if they're valid

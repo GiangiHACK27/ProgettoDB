@@ -25,7 +25,7 @@ public class RetrieveGameRequirementsServlet extends BaseServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(! super.validParameters(request, response, "/GamingWorldShop")) 
+		if(! super.validParameters(request, response)) 
 			return;
 		
 		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");

@@ -39,7 +39,7 @@ public class RegisterServlet extends BaseServlet {
 		//First of all logout from the current user
 		
 		//Retrieve form inputs and check if they're valid
-		if(!validParameters(request, response, selfPath)) {
+		if(!validParameters(request, response)) {
 			return;
 		}
 		//Retrieve form inputs and check if they're valid
