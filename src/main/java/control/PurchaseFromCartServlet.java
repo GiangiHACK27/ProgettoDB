@@ -72,7 +72,5 @@ public class PurchaseFromCartServlet extends BaseServlet {
 			//Insert purchase on database
 		}
 		//Add all purchases to database
-		
-		//
 	}
 }

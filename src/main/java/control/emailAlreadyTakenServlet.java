@@ -16,10 +16,10 @@ import org.json.JSONObject;
 import dao.GameDAO;
 
 @WebServlet("/emailAlreadyTakenServlet")
-public class emailAlreadyTakenServlet extends HttpServlet {
+public class EmailAlreadyTakenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public emailAlreadyTakenServlet() {
+    public EmailAlreadyTakenServlet() {
         super();
     }
 

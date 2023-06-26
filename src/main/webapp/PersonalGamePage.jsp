@@ -19,6 +19,7 @@
 		
 		<!-- Retrieve info about the game -->
 		<jsp:include page="/RetrieveGameServlet"></jsp:include>
+		<jsp:include page="/RetrieveGameRequirementsServlet"></jsp:include>
 		<!-- Retrieve info about the game -->
 		
 		<% Game game = (Game)request.getAttribute("game"); %>

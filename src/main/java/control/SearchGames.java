@@ -65,6 +65,8 @@ public class SearchGames extends BaseServlet {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println(page);
 		//Retrieve all parameters from form
 		
 		//Retrieve all Games from database

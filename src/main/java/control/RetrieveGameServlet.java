@@ -2,9 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import dao.GameDAO;
-import dao.SystemRequirementDAO;
 import model.Game;
-import model.SystemRequirement;
 
 @WebServlet("/RetrieveGameServlet")
 public class RetrieveGameServlet extends BaseServlet {
@@ -43,26 +38,8 @@ public class RetrieveGameServlet extends BaseServlet {
 		}
 		//Retrieve the game from database
 		
-		//Retrieve the system requirement from the game
-		SystemRequirementDAO srDAO = new SystemRequirementDAO(ds);
-		List<SystemRequirement> requirements = null;
-		try {
-			requirements = srDAO.retrieveAllSystemRequirement(gameId);
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		Map<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirementsMap = 
-				requirements.stream().collect(Collectors.groupingBy((r) -> r.getOs()));
-		//Retrieve the system requirement from the game
-		
-		//TODO: check if the user already buyed the game
-		
-		//TODO: check if the user already buyed the game
-		
 		//Place in the request the game and requirements
 		request.setAttribute("game", game);
-		request.setAttribute("requirements", requirementsMap);
 		//Place in the request the game and requirements
 	}
 
