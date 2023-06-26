@@ -67,7 +67,8 @@ public class SearchGames extends BaseServlet {
 		}
 		
 		String order = request.getParameter("sort");
-		if(order == null) order = "releaseDate";
+		if(order == null) 
+			order = "releaseDate";
 		//Retrieve all parameters from form
 		
 		//Retrieve all Games from database
@@ -96,18 +97,6 @@ public class SearchGames extends BaseServlet {
 
 		request.setAttribute("games", gamesToReturn);
 		//limit games sent based on page requested
-
-//		for(Game g : games) {
-//			System.out.println(g.getName());
-//		}
-//		
-		//Forward request to view for visualize results of search
-		String noRedirect = request.getParameter("noRedirect");
-		if(noRedirect == null) {
-			dispatcher = request.getRequestDispatcher("/Catalog.jsp");
-			dispatcher.forward(request, response);
-		}
-		//Forward request to view for visualize results of search
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

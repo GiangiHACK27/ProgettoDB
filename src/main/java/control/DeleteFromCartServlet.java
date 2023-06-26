@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import dao.InterestedDAO;
 import model.Cart;
 import model.Interested;
@@ -31,11 +35,11 @@ public class DeleteFromCartServlet extends BaseServlet {
 		//Retrieve from session the user info
 		User user = (User) session.getAttribute("user");
 		//Retrieve from session the user info
-			
-		
 		
 		//Validate parameters
-		if(! validParameters(request, response))
+		List<String> parameters = new ArrayList<>(Arrays.asList("gameId", "category"));
+		
+		if(! validParameters(request, response, parameters))
 			return;
 		//Validate parameters
 		

@@ -23,7 +23,7 @@
 				<div class=dropdown-content id=store-div>
 					<ul>
 						<li><a href= "${pageContext.request.contextPath}/"> HOME PAGE </a></li>
-						<li><a href= "${pageContext.request.contextPath}/SearchGames"> CATALOG </a></li>
+						<li><a href= "${pageContext.request.contextPath}/Catalog.jsp"> CATALOG </a></li>
 					</ul>
 				</div></li>
 			<% User user = (User) session.getAttribute("user"); %>
@@ -74,7 +74,7 @@
 	<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <a href="${pageContext.request.contextPath}"> HOME PAGE </a>
-		  <a href= "${pageContext.request.contextPath}/SearchGames"> CATALOG </a>
+		  <a href= "${pageContext.request.contextPath}/Catalog.jsp"> CATALOG </a>
 			<% if (user == null) { %>
 				<a href="${pageContext.request.contextPath}/Login.jsp"> LOG IN</a>
 				<a href="${pageContext.request.contextPath}/Register.jsp"> SIGN UP</a>

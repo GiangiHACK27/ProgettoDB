@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import model.Game;
@@ -30,7 +29,7 @@ public class GetCatalogGameObjects extends BaseServlet {
 		
 		//get the IDs of the games that have to be shown through the SearchGames servlet
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/SearchGames?noRedirect=true");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/SearchGames");
 			dispatcher.include(request, response);
 		}
 		//get the IDs of the games that have to be shown through the SearchGames servlet

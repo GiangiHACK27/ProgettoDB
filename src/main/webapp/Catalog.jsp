@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     import="model.Category"
@@ -19,7 +17,14 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+	
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
+	
+<%-- 	<jsp:include page="SearchGames"></jsp:include>
+ --%>
+ 
+ 	<jsp:include page="RetrieveAllCategories"></jsp:include>
+ 	
 	<section class=main>
 		<main>
 		<form action="/GamingWorldShop/SearchGames" method="get">
