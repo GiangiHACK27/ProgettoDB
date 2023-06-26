@@ -5,8 +5,11 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/CSS/HeaderStyle.css">
+	
 <jsp:include page="/RetrieveCartServlet?category=cart"></jsp:include>
+
 <script src="${pageContext.request.contextPath}/Scripts/HeaderScript.js"></script>
+
 <header class=pageHeader>
 	<img onclick="openNav()" src="${pageContext.request.contextPath}/images/header_menu_hamburger.png" alt=sidebar id=openSidebarButton>
 	

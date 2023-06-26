@@ -259,5 +259,41 @@ public class GameDAO extends BaseDAO {
 		}
 		
 		return false;
-	}	
+	}
+	
+	public List<Game> retrievePurchasedGameForUsername(String username) throws SQLException {
+		List<Game> gamePurchased = new ArrayList<>();
+		
+		String query = "SELECT G.id,name,description,shortDescription,state,pegi,publisher FROM Game as G, Purchase as P WHERE G.id = P.gameId AND P.username = ?";
+		
+		//Retrieve connection
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+		//Retrieve connection
+			
+			//build query
+			ps.setString(1, username);
+			//build query
+			
+			//Retrieve all purchased game from db
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				//Construct the game
+				Game game = new Game();
+				
+				game.setId(rs.getInt("G.id"));
+				game.setName(rs.getString("name"));
+				game.setDescription(rs.getString("description"));
+				game.setShortDescription(rs.getString("shortDescription"));
+				game.setState(Game.State.valueOf(rs.getString("state").toUpperCase()));
+				//Construct the game
+				
+				//Add game to the list
+				gamePurchased.add(game);
+				//Add game to the list
+			}
+			//Retrieve all purchased game from db
+		}
+		
+		return gamePurchased;
+	}
 }

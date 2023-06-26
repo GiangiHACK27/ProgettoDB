@@ -2,7 +2,10 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -30,5 +33,39 @@ public class PurchaseDAO extends BaseDAO {
 			
 			ps.execute();
 		} 
+	}
+	
+	public List<Purchase> retrievePurchaseForUsername(String username) throws SQLException {
+		List<Purchase> purchases = new ArrayList<>();
+		
+		String query = "SELECT * FROM Purchase as P WHERE P.username = ?";
+		
+		//Retrieve connection
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+		//Retrieve connection
+			
+			//Build query			
+			ps.setString(1, username);
+			//Build query
+			
+			//Retrieve from db purchases
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				//Build purchase
+				Purchase purchase = new Purchase();
+				
+				purchase.setId(rs.getInt("id"));
+				purchase.setGameId(rs.getInt("gameId"));
+				purchase.setUsername(rs.getString("username"));
+				purchase.setDatePurchased(rs.getString("datePurchased"));
+				purchase.setPrice(rs.getInt("price"));
+				//Build purchase
+				
+				purchases.add(purchase);
+			}
+			//Retrieve from db purchases
+		}
+		
+		return purchases;
 	}
 }

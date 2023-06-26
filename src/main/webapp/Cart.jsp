@@ -8,6 +8,7 @@
 	<meta name="viewport" content="initial-scale=1, width=device-width">
 
 	<link rel="stylesheet" href="./CSS/BaseStyle.css">
+	<link rel="stylesheet" href="./CSS/GameListStyle.css">
 	<link rel="stylesheet" href="./CSS/CartStyle.css">
 
 	<script src="./Scripts/CartScript.js" defer></script>
@@ -22,8 +23,8 @@
 	<section class=main>
 	<main>
 		
-		<section id=cartContents>
-			<h1 id=cartTitle>Your shopping cart</h1>
+		<section id=gameListContents>
+			<h1 id=gameListTitle>Your shopping cart</h1>
 			
 			 <% List<Game> games = (List<Game>)request.getAttribute("cartItems");
 			  

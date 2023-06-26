@@ -61,10 +61,12 @@
 }
 
 .pageHeader {
-	background-color: #0A0908;
 	width: 100%;
 	min-height: 90px;
+	
 	position: relative;
+
+	background-color: #0A0908;
 }
 
 .dropdown-content {

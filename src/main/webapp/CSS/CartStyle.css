@@ -1,21 +1,5 @@
 @charset "ISO-8859-1";
 
-main {
-	min-width: 80%;	
-	margin-top: 5%;
-	margin-bottom: 5%;
-	overflow: hidden;
-}
-
-#cartContents{
-	width: 40%;
-	margin: auto;
-	background: rgba(15,20,23,1);
-	border-radius: 25px;
-	margin-bottom: 20px;
-	padding-bottom: 20px;
-}
-
 #options{
 	width: 40%;
 	margin: auto;
@@ -27,49 +11,6 @@ main {
 	padding-bottom: 20px;
 }
 
-#cartTitle{
-	text-align: center;
-	margin-bottom: 20px;
-	text-transform: uppercase;
-	font-size: xx-large;
-}
-
-a{
-	color: #F2F4F3;
-	cursor: pointer;
-}
-div.gameDiv{
-	height: 70px;
-	background-color: rgb(22 29 33);
-	margin-bottom: 5px;
-	padding-top: 5px 10px;
-}
-
-p.gameImage{
-	float: left;
-	margin-right: 10px;
-	padding-top: 12px;
-	padding-left: 10px; 	
-}
-
-p.gameImage img{
-	width: 120px;
-	height: 45px;
-}
-
-p.gameTitle{
-	width:90%;
-	padding-top:21.5px;
-}
-
-p.gamePrice{
-	float:right;
-	margin-right:10px;
-	font-size: 18px;
-	padding-top:21.5px;
-
-}
-
 p.gamePrice span.removeButton{
 	font-size: 9px;
 	text-align: center;
@@ -78,30 +19,4 @@ p.gamePrice span.removeButton{
 #emptyCartButton{
 	font-size: 12px;
 	float:right;
-}
-
-@media screen and (max-width: 1200px){
-	#cartContents, #options {
-	width: 60%;
-	}
-}
-
-@media screen and (max-width: 750px){
-	#cartContents, #options {
-	width: 90%;
-	}
-
-}
-
-@media screen and (max-width: 450px){
-	p.gameImage img{
-		width: 85.7142857143px;
-		height: 32.14;
-	}
-	p.gameImage{
-		float: left;
-		margin-right: 10px;
-		padding-top: 14px;
-		padding-left: 10px; 	
-	}
 }
