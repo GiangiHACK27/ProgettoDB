@@ -35,7 +35,7 @@ public class RetrieveGameImageServlet extends BaseServlet {
 		try {
 			idImage = representedDAO.retrieveIdImage(gameId, role).toString();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		//Retrieve id of game image from role and gameId
 		
@@ -44,7 +44,7 @@ public class RetrieveGameImageServlet extends BaseServlet {
 		try {
 			image = imageDAO.getImageFromID(idImage);
 		} catch (SQLException e) {
-			response.sendError(404, "Image Not Found");
+			//response.sendError(404, "Image Not Found");
 			return;
 		}
 		
@@ -53,7 +53,7 @@ public class RetrieveGameImageServlet extends BaseServlet {
 			out.write(image.getBytes());
 		}
 		catch(IOException e) {
-			response.sendError(404, "Image Not Found");
+			//response.sendError(404, "Image Not Found");
 		}
 	}
 

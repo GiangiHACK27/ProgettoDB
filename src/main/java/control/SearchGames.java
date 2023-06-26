@@ -66,7 +66,8 @@ public class SearchGames extends BaseServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println(page);
+		String order = request.getParameter("sort");
+		if(order == null) order = "releaseDate";
 		//Retrieve all parameters from form
 		
 		//Retrieve all Games from database
@@ -74,7 +75,7 @@ public class SearchGames extends BaseServlet {
 		List<Game> games = null;
 		
 		try {
-			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi, searchText);
+			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi, searchText, order);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,7 +83,6 @@ public class SearchGames extends BaseServlet {
 
 		//limit games sent based on page requested
 		List<Game> gamesToReturn = null;
-		System.out.println(""+games.size()+" "+page);
 		if(page*10-10 > games.size()) {
 			gamesToReturn = games; //there aren't enough games to fulfill the request, so default behavior
 		}

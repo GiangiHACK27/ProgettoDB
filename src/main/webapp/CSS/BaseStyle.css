@@ -150,3 +150,7 @@ textarea::-webkit-scrollbar-track{
 	border: thin solid red;
 }
 
+select {
+	background-color: #537a92
+}
+
