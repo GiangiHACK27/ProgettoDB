@@ -19,9 +19,6 @@
 	<body>
 	
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
-	
-<%-- 	<jsp:include page="SearchGames"></jsp:include>
- --%>
  
  	<jsp:include page="RetrieveAllCategories"></jsp:include>
  	

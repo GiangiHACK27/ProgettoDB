@@ -57,7 +57,70 @@ public class GameDAO extends BaseDAO {
 		return id;
 	}
 	
-	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi, String searchText, String order) throws SQLException {
+	public int countGames(List<Category> categories, int maxPrice, int pegi, String searchText) throws SQLException {
+		int size = 0;
+		
+		PreparedStatement ps = null;
+		
+		//Retrieve connection
+		try (Connection conn = ds.getConnection()) {
+		//Retrieve connection
+			
+			//Construct query string
+			StringBuilder builder = new StringBuilder("");
+			builder.append("(");
+			for(int i=0;i<categories.size();i++) {
+				if(i == categories.size() - 1) 
+					builder.append("?");
+				else
+					builder.append("?,");
+			}
+			builder.append(")");
+						
+			String categoriesToSearch = builder.toString();
+			//Construct query string
+			
+			//Construct query
+			String query = "SELECT DISTINCT Count(id) as count"
+                    + " FROM Game as G, Belongs as B, Category as C "
+                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+                            + categoriesToSearch
+                            + "AND G.price <= ? AND "
+                            + "G.pegi <= ? AND INSTR(G.name, ?) > 0 ";
+			
+			ps = conn.prepareStatement(query);
+			
+			int i = 1;
+			for(Category c : categories) {
+				ps.setString(i, c.getName());
+				
+				i++;
+			}
+			
+			ps.setInt(i, maxPrice);
+			i++;
+			ps.setInt(i, pegi);
+			i++;
+			ps.setString(i, searchText);
+			//Construct query
+			
+			//Retrieve the categories from database
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				size = rs.getInt("count");
+			}
+			//Retrieve the categories from database
+		}
+		finally {
+			if(ps != null)
+				ps.close();
+		}
+		
+		return size;
+	}
+	
+	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi, String searchText, String order, int limit, int offset) throws SQLException {
 		List<Game> games = new ArrayList<>();
 		
 		PreparedStatement ps = null;
@@ -81,13 +144,14 @@ public class GameDAO extends BaseDAO {
 			//Construct query string
 			
 			//Construct query
-			String query = "SELECT DISTINCT id,price,G.name,description,shortDescription,releaseDate,state,pegi,publisher"
+			String query = "SELECT DISTINCT id, price, G.name, description, shortDescription, releaseDate, state, pegi, publisher"
                     + " FROM Game as G, Belongs as B, Category as C "
                             + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
                             + categoriesToSearch
                             + "AND G.price <= ? AND "
                             + "G.pegi <= ? AND INSTR(G.name, ?) > 0 "
-                            + "ORDER BY "+order;
+                            + "ORDER BY " + order
+                            + " LIMIT ? OFFSET ?";
 			
 			ps = conn.prepareStatement(query);
 			
@@ -104,13 +168,16 @@ public class GameDAO extends BaseDAO {
 			i++;
 			ps.setString(i, searchText);
 			i++;
+			ps.setInt(i, limit);
+			i++;
+			ps.setInt(i, offset);
 			//Construct query
 			
 			//Retrieve the categories from database
 			ResultSet rs = ps.executeQuery();
 			//Retrieve the categories from database
 			
-			//Create the list of Game
+			//Create the list of Game			
 			while(rs.next()) {
 				Game game = new Game();
 				
@@ -127,7 +194,7 @@ public class GameDAO extends BaseDAO {
 				
 				games.add(game);
 			}
-			//Create the list of Game		
+			//Create the list of Game
 		}
 		finally {
 			if(ps != null)

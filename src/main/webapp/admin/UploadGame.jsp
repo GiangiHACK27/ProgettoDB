@@ -4,14 +4,16 @@
 
 <!DOCTYPE html>
 <html lang = en>
-<head>
-<meta charset="ISO-8859-1">
-<meta name="viewport" content="initial-scale=1, width=device-width">
-<link rel="stylesheet" href="../CSS/BaseStyle.css">
-<title>Upload game</title>
-</head>
-<body>
-	<jsp:include page="../BasePageHeader.jsp"></jsp:include>
+	<head>
+		<meta charset="ISO-8859-1">
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+		
+		<link rel="stylesheet" href="../CSS/BaseStyle.css">
+		
+		<title>Upload game</title>
+	</head>
+	<body>
+		<jsp:include page="../BasePageHeader.jsp"></jsp:include>
 
 	<section class=main>
 	<form action="/GamingWorldShop/admin/GameUploadServlet" method="post"
@@ -44,8 +46,9 @@
 			
 			<br> 
 			
-			Release date: <input type="date" name="releaseDate" value="2023-05-12" min="2023-05-12" max="2025-01-01"> Pegi:
+			Release date: <input type="date" name="releaseDate" value="2023-05-12" min="2023-05-12" max="2025-01-01"> 
 			
+			Pegi:
 			<select name="pegi">
 				<option value="PEGI_3">3</option>
 				<option value="PEGI_7">7</option>
@@ -85,7 +88,10 @@
 	}
 	%>
 	
-		</section>
+	</section>
+	
+	
+	
 	<jsp:include page="../BasePageFooter.jsp"></jsp:include>
 </body>
 </html>

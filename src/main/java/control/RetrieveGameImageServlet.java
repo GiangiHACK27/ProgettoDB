@@ -34,7 +34,7 @@ public class RetrieveGameImageServlet extends BaseServlet {
 		String idImage = null;
 		try {
 			idImage = representedDAO.retrieveIdImage(gameId, role).toString();
-		} catch (SQLException e) {
+		} catch (SQLException | NullPointerException e) {
 			//e.printStackTrace();
 		}
 		//Retrieve id of game image from role and gameId

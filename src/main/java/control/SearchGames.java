@@ -73,33 +73,30 @@ public class SearchGames extends BaseServlet {
 		
 		//Retrieve all Games from database
 		GameDAO gameDAO = new GameDAO((DataSource)request.getServletContext().getAttribute("DataSource"));
-		List<Game> games = null;
+		
+		List<Game> games = null;	
+		int size = 0;
 		
 		try {
-			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi, searchText, order);
+			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi, searchText, order, 
+					sizeOfPagination, 
+					sizeOfPagination * (page - 1));
+			
+			size = gameDAO.countGames(categoriesToSearch, currentMaxPrice, pegi, searchText);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}	
 		//Retrieve all Games from database
 
 		//limit games sent based on page requested
-		List<Game> gamesToReturn = null;
-		if(page*10-10 > games.size()) {
-			gamesToReturn = games; //there aren't enough games to fulfill the request, so default behavior
-		}
-		else if(page*10 >= games.size()) {
-			gamesToReturn = games.subList(page*10-10, games.size()); //the page won't be full
-		}
-		else {
-			gamesToReturn = games.subList(page*10-10, page*10);
-		}
-		request.setAttribute("numberOfGames", games.size());
-
-		request.setAttribute("games", gamesToReturn);
+		request.setAttribute("numberOfGames", size);
+		request.setAttribute("games", games);
 		//limit games sent based on page requested
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+	
+	private static final int sizeOfPagination = 10;
 }
