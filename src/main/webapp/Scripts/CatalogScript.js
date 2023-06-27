@@ -3,7 +3,7 @@ let USDollar = new Intl.NumberFormat('en-US', {
 	    style: 'currency',
 	    currency: 'USD',
 	});
-	function formatPrice(price){
+	function formatPrice(price) {
 		return USDollar.format(price/100);
 	};
 //function to format price
@@ -15,6 +15,10 @@ $(document).ready(function() {
 			updateCatalog(1);
 		});
 	//Associate an event to the form that updates the catalog each time a value is changed
+	
+	//Associate an event to the form that updates the catalog each time the form is submitted
+	form.addEventListener('submit', function(event) { event.preventDefault(); updateCatalog(1); } );
+	//Associate an event to the form that updates the catalog each time the form is submitted
 
 	//format the range value to dollars
 	$('#rangeOutput').html(formatPrice(parseInt($('#rangeOutput').html())))
@@ -30,7 +34,7 @@ $(document).ready(function() {
 		var url="/GamingWorldShop/GetCatalogGameObjects"
 		$.get(url, data, function(responseData){
 			let giochi = responseData;
-			if(giochi.games.length == 0){
+			if(giochi.games.length == 0) {
 				$('#gameListSection').html("<div class=gameDiv><p class=gameTitle>"+
 			 				"No results found for your search"+
 			 			"</p>"+	

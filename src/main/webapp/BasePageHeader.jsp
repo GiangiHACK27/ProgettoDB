@@ -42,6 +42,9 @@
 						<li><a
 							href="${pageContext.request.contextPath}/user/PersonalArea.jsp">PERSONAL &nbsp;AREA</a></li>
 						<li><a
+							href="${pageContext.request.contextPath}/user/GameLibrary.jsp">GAME LIBRARY</a></li>	
+							
+						<li><a
 							href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a></li>
 					</ul>
 				</div></li>
@@ -78,6 +81,7 @@
 				<a href="${pageContext.request.contextPath}/Register.jsp"> SIGN UP</a>
 			<% } else { %>
 				<a href="${pageContext.request.contextPath}/user/PersonalArea.jsp"><%=user.getUsername().toUpperCase()%></a>
+				<a href="${pageContext.request.contextPath}/user/GameLibrary.jsp"></a>
 				<a href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a>
 		 	<%} %>
 	</div>

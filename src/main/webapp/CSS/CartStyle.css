@@ -4,12 +4,6 @@
 	width: 40%;
 	margin: auto;
 }
-#emptyCart{
-	text-align: center;
-	font-size: large;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
 
 p.gamePrice span.removeButton{
 	font-size: 9px;

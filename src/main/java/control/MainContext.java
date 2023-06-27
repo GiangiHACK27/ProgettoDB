@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 import model.Category;
 
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -16,6 +15,7 @@ import javax.sql.DataSource;
 
 import dao.GameDAO;
 import dao.CategoryDAO;
+
 @WebListener
 public class MainContext implements ServletContextListener {
 	@Override

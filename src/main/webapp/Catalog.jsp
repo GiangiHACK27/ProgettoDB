@@ -9,11 +9,15 @@
 <html lang = en>
 	<head>
 		<link rel="stylesheet" href="./CSS/CatalogStyle.css">
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src=./Scripts/CatalogScript.js></script>
+		
 		<meta charset="ISO-8859-1">
 		<meta name="viewport" content="initial-scale=1, width=device-width">
+		
 		<link rel="stylesheet" href="./CSS/BaseStyle.css">
+		
 		<title>Insert title here</title>
 	</head>
 	<body>
@@ -24,15 +28,16 @@
  	
 	<section class=main>
 		<main>
-		<form action="/GamingWorldShop/SearchGames" method="get">
-		
+<!-- 		<form action="/GamingWorldShop/SearchGames" method="get">
+ -->
+ 		<form>		
 		<section id=searchSection>
 			<div id=headingDiv>
 				<h1>Our selection of games</h1>
 			</div>
 			
 			<div id=searchDiv>
-				<input type=text id=searchBar name=searchBar placeholder="Search for games by title">
+				<input type=text id=searchBar name=searchBar placeholder="Search for games by title" value="">
 			</div>
 		</section>
 		<section id=filterSection>

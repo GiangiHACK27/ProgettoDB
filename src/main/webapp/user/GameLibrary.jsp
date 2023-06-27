@@ -29,9 +29,9 @@
 			 	<%  
 			 	List<Game> gamePurchased = (List<Game>)request.getAttribute("gamePurchased");
 			 	
-					 if(gamePurchased.isEmpty()){ %>
-			 		<p id=emptyCart>Your Library is empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>
-			 	<%}else{ %>
+					 if(gamePurchased.isEmpty()) { %>
+			 		<p id=emptyGameListTitle>Your Library is empty. <a href=${pageContext.request.contextPath}/Catalog.jsp>Let's fix that!</a></p>
+			 	<%} else { %>
 			 
 			 	<section id=gameSection>
 			 	<%for (Game currentGame : gamePurchased){ %>
