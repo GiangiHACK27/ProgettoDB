@@ -68,17 +68,30 @@
 					<p> <%= game.getDescription() %> </p>
 				</div>
 				
+				<% Map<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirementsMap = (Map)request.getAttribute("requirements"); %>
+				
 				<div id="requirements">
 					<div id="reqBar">
-						<button id="windowsButton" class="reqButton" onclick="changeSchedeReq('windows')"> WINDOWS </button>
-						<button id="linuxButton" class="reqButton" onclick="changeSchedeReq('linux')"> LINUX </button>
-						<button id="macButton" class="reqButton" onclick="changeSchedeReq('mac')"> MAC </button>	
+						<% 
+						String firstNotEmptyOs = "";
+						for(Map.Entry<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirements : requirementsMap.entrySet()) {
+							String os = requirements.getKey().toString().toLowerCase();
+							if(requirements.getValue().size() > 0) {
+								if(firstNotEmptyOs.equals(""))
+									firstNotEmptyOs = os;
+						%>
+								<button id="<%=os%>Button" class="reqButton" onclick="changeSchedeReq('<%=os%>')"><%= os.toUpperCase()%></button>
+						<% 
+							}
+						}
+					
+						%>
 					</div>
 					
-					<% Map<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirementsMap = (Map)request.getAttribute("requirements");
+					<% 
 						for(Map.Entry<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirements : requirementsMap.entrySet()) {
 							String style = "";
-							if(requirements.getKey().toString().toLowerCase().equals("windows"))
+							if(requirements.getKey().toString().toLowerCase().equals(firstNotEmptyOs))
 								style = "display: block";
 					%>
 						<div id="<%=requirements.getKey().toString().toLowerCase()%>Schede" class="reqSchede" style="<%=style%>">					

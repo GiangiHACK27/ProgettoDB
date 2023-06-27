@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="model.User, model.User.Role, model.Cart"%>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/CSS/BaseStyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/BaseStyle.css">
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/CSS/HeaderStyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/HeaderStyle.css">
 	
 <jsp:include page="/RetrieveCartServlet?category=cart"></jsp:include>
 

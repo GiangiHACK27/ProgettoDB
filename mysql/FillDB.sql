@@ -30,6 +30,7 @@ INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Wi
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1);
 
 INSERT INTO Belongs values ("categoria1", 1);
+INSERT INTO Belongs values ("categoria2", 1);
 INSERT INTO Belongs values ("categoria1", 2);
 INSERT INTO Belongs values ("categoria1", 3);
 INSERT INTO Belongs values ("categoria1", 4);
