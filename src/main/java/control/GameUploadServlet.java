@@ -111,23 +111,14 @@ public class GameUploadServlet extends BaseServlet {
 		}
 		//insert banner image
 		
-		//insert showcase images
-		Collection<Part> showcaseImages = request.getParts();
-		Iterator<Part> i = showcaseImages.iterator();
-		i.next(); //Perché la prima l'ho già messa. E' brutto ma non c'è un modo decente per farlo
-		while(i.hasNext()) {
-			try {
-				Part image = i.next();
-				//check if it's not an image. If it isn't, stop iterating. Only works if the form starts with the images
-				if(image.getContentType() == null || !image.getContentType().contains("image"))
-					break; 
-				//check if it's not an image. If it isn't, stop iterating.
-				uploadImage(imageDAO, gameId, image, "SHOWCASE");
-			} catch (SQLException | IOException e) {
-				showError(request, response, "Error uploading banner image", selfPath);
-			} 
+		//insert showcase image
+		Part showcaseImage = request.getPart("showcaseImage");
+		try {
+			uploadImage(imageDAO, gameId, showcaseImage, "SHOWCASE");
+		} catch (SQLException | IOException e) {
+			showError(request, response, "Error uploading banner image", selfPath);
 		}
-		//insert showcase images
+		//insert showcase image
 		//Insert images into database and upload "represented" table
 		
 		//Check if we must update max price of games

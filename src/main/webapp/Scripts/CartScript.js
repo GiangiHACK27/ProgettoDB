@@ -33,6 +33,6 @@ $(".removeButton a").on("click", function(){
 $("#emptyCartButton a").on("click", function(){
 	$('#cartItemCount').html("");
 	$.get("/GamingWorldShop/EmptyCartServlet?category=cart");
-	$('main').html("<section id=cartContents><p id=emptyCart>Your cart is now empty. <a href=/GamingWorldShop/SearchGames>Let's fix that!</a></p></section>");
+	$('main').html("<section id=gameListContents><p id=emptyGameListTitle>Your cart is now empty. <a href=/GamingWorldShop/Catalog.jsp>Let's fix that!</a></p></section>");
 
 })

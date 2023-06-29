@@ -59,7 +59,7 @@
 						</div>
 						
 						<div id=errorDiv></div>
-						<textarea id="termsAndConditions" name="termsAndConditions">
+						<textarea id="termsAndConditions" name="termsAndConditions" readonly>
 GAMING WORLD TERMS AND CONDITIONS
 						
 						

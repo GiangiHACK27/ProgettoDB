@@ -34,11 +34,17 @@
 					<input type="text" name="username" id=username required value="<%= oldUser%>">
 				</div>
 				<div id=passwordDiv class=inputDiv>
-				<label for=password>Password</label>
-				<input type="password" name="password" id=password required value="<%= oldPassword%>">
+					<label for=password>Password</label>
+					<input type="password" name="password" id=password required value="<%= oldPassword%>">
 				</div>
 				<div id=submitDiv class=submitDiv>
-				<input type="submit" name="submit" value="Login" id=submit>
+					<input type="submit" name="submit" value="Login" id=submit>
+				</div>
+				<div id=errorDiv>
+						<% String logError = (String)request.getAttribute("logError");
+						  if(logError != null) { %>
+							<p>Error: <%=  logError%></p>
+						<%} %>
 				</div>
 			</form>
 		</div>
@@ -49,10 +55,7 @@
 			Not a part of the community yet? What are you waiting for? <a href=Register.jsp>Join us!</a>
 		</div>
 	</main>
-	<% String logError = (String)request.getAttribute("logError");
-	  if(logError != null) { %>
-		<p>Errore: <%=  logError%></p>
-	<%} %>
+
 	</section>
 	<jsp:include page="BasePageFooter.jsp"></jsp:include>
 	

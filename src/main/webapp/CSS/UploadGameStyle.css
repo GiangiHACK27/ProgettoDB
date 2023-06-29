@@ -1,0 +1,30 @@
+@charset "ISO-8859-1";
+
+main {
+	margin-top: 5%;
+	margin-bottom: 5%;
+	overflow: hidden;
+}
+
+#formDiv{
+	width: 40%;
+	margin: auto;
+}
+
+div{
+	margin-bottom: 10px;
+}
+
+textarea{
+	resize: both;
+}
+
+@media screen and (max-width: 700px) {
+	#formDiv{
+		width: 80%;
+		margin: 2%;
+	}
+	textarea{
+		width: 100%;
+	}
+}
