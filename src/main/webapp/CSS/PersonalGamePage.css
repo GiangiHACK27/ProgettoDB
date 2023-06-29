@@ -12,20 +12,18 @@ main {
 div#row-1 {
 	width: 100%;
 	
-	background-color: red;
+	background-color: rgba(15,20,23,1);
 	
 	overflow: hidden; 
 }
 
 div#sliderImages {
 	width: 60%;
- 	min-height: 400px;  
+ 
 	
     float: left;
 	
 	margin-right: 20px;
-	
-	background-color: black; 
 }
 
 img#imageSlider {
@@ -47,7 +45,6 @@ table, tbody, tr, td {
 
 img#imageBanner {
 	width: 100%;
-	height: 200px;
 }
 
 
@@ -130,7 +127,7 @@ div.reqSchede {
 	}
 	
 	div#shortDescription {
-		width: 55%;
+		width: 75%;
 		
 		float: none;
 		
@@ -159,11 +156,7 @@ div.reqSchede {
 		min-height: auto;
 	}
 	
-	div#shortDescription {
-		width: 55%;
-		
-		margin: auto;
-	}
+
 	
 	div#row-2 {
 		width: 100%;

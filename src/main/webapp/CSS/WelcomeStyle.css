@@ -1,0 +1,30 @@
+@charset "ISO-8859-1";
+.main{
+		background-image: url("../images/register_bg.jpg")!important;
+}
+main {
+	width: 40%;
+	margin-bottom: 5%;
+	margin-top: 10%;
+	margin-left: 10%;
+	overflow: hidden;
+	font-size: 18px;
+}
+
+button{
+	margin-top: 10px;
+	width: 100px;
+	height: 30px;
+}
+
+h1{
+	font-size: 50px;
+}
+
+@media screen and (max-width: 850px) {
+	main{
+		width: 90%;
+		margin: auto;
+		margin-top: 10%;
+	}
+}

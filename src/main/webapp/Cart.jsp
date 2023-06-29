@@ -29,7 +29,7 @@
 			 <% List<Game> games = (List<Game>)request.getAttribute("cartItems");
 			  
 				 if(games.isEmpty()){ %>
-			 	<p id=emptyGameListTitle>Your cart is currently empty. <a href=${pageContext.request.contextPath}/SearchGames>Let's fix that!</a></p>
+			 	<p id=emptyGameListTitle>Your cart is currently empty. <a href=${pageContext.request.contextPath}/Catalog.jsp>Let's fix that!</a></p>
 			 <%}else{ %>
 			 
 			 	<section id=gameSection>

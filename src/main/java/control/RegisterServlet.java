@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -77,8 +78,13 @@ public class RegisterServlet extends BaseServlet {
 			return;
 		}
 		//insert user into database
+	
+		
+		//login as new user
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginServlet?newUser=true");
+			dispatcher.forward(request, response);
+		//login as new user
 
-		response.sendRedirect(request.getContextPath());	
 	}
 	private final static String selfPath = "/Register.jsp";
 

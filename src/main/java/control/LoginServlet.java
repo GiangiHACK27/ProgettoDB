@@ -98,6 +98,7 @@ public class LoginServlet extends BaseServlet {
 		request.getSession().setAttribute("user", user);
 		//Add attribute user in the session(to remember the login)
 		
+		
 		//Redirect to personal area
 		response.sendRedirect("/GamingWorldShop/user/PersonalArea.jsp");	
 		//Redirect to personal area

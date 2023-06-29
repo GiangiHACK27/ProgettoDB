@@ -24,13 +24,21 @@ $(document).ready(function() {
 	$('#rangeOutput').html(formatPrice(parseInt($('#rangeOutput').html())))
 	//format the range value to dollars
 	
-	//load the catalog when the document 
+	//load the catalog when the document is ready 
 	updateCatalog(1);
+	//load the catalog when the document is ready 
 })
 
 	function updateCatalog(page){
-		var data = $('form').serializeArray(); //convert form to array
+		//convert form to array
+		var data = $('form').serializeArray(); 
+		//convert form to array
+		
+		//add the page value to the data to send to server
 		data.push({name: "page", value: page})
+		//add the page value to the data to send to server
+		
+		//Send GET response to servlet to retrieve games
 		var url="/GamingWorldShop/GetCatalogGameObjects"
 		$.get(url, data, function(responseData){
 			let giochi = responseData;
@@ -45,27 +53,29 @@ $(document).ready(function() {
 				$('#gameListSection').html("");
 				giochi.games.forEach(game=>addGame(game));
 			}
+			
+			//add pagination based on number of games found
 			gameCount = responseData.gamesCount;
-			console.log(gameCount);
 			if(gameCount > 0 ){
 				$('#gameListSection').append("<div class=pageDiv>")
-				for(let i = 1; i<gameCount/10+1; i++){
+				for(let i = 1; i<gameCount/10+1; i++){//i is going to count from 1 to the total number of pages
 					if(i == page){
+						//the button referring to the current page is non-selectable
 						$('#gameListSection').append("<button type=button class='selectedPageButton pageButton'>"+i+"</button>")
-
+						//the button referring to the current page is non-selectable
 					} else{
 						$('#gameListSection').append("<button type=button class=pageButton onclick='updateCatalog("+i+")'>"+i+"</button>")
 					}
 				}
-				$('#gameListSection').append("</div>")
-				
+				$('#gameListSection').append("</div>")	
 			}
-
-			
+			//add pagination based on number of games found	
 		})
+		//Send GET response to servlet to retrieve games
 	}
 	
 	function addGame(game){
+		//add a div containing all game information to the list
 		$('#gameListSection').append("<div class=gameDiv><p class=gameImage>"+
 			 				"<a href=PersonalGamePage.jsp?gameId="+game.id +"><img src='RetrieveGameImageServlet?gameId="+game.id +"&role=BANNER' alt='game logo'> </a><span class=releaseDate>"+game.releaseDate +"</span>"+	
 			 			"</p>"+
@@ -73,7 +83,9 @@ $(document).ready(function() {
 			 				"<span class= price>"+USDollar.format(game.price/100) +"</span><br>"+
 			 			"</p>"+
 			 			"<p class=gameTitle>"+
-			 				"<a href=PersonalGamePage.jsp?gameId="+game.id +">"+game.name +"</a><br><span class=description>"+game.shortDescription+"</span"+
+			 				"<a href=PersonalGamePage.jsp?gameId="+game.id +"> <span class=emptySpan></span>"+game.name +"</a><br><span class=description>"+game.shortDescription+"</span"+
 			 			"</p>"+	
 			 		"</div>");
+		//add a div containing all game information to the list
 	}
+	
