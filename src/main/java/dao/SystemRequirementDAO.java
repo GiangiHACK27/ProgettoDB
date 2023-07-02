@@ -5,11 +5,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
 import model.SystemRequirement;
+import model.Game.Pegi;
+import model.Game.State;
+import model.Represented;
 
 public class SystemRequirementDAO extends BaseDAO {
 
@@ -56,5 +60,27 @@ public class SystemRequirementDAO extends BaseDAO {
 		}
 		
 		return listSystemRequirements;
+	}
+	
+	public void insertRequirement(SystemRequirement req) throws SQLException {
+		String query = "INSERT INTO systemrequirement (name, os, gameId, value) VALUES (?, ?, ?, ?)";
+		
+		// Retrieve connection and make prepared statement with tag to return generated keys
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ) {
+		// Retrieve connection and make prepared statement with tag to return generated keys	
+
+			//Set prepared statement values
+			ps.setString(1, req.getName());
+			ps.setString(2, req.getOs().getSystem());
+			ps.setInt(3, req.getGameId());
+			ps.setString(4, req.getValue());
+			//Set prepared statement values
+
+			//Insert user into database
+			ps.execute();
+			//Insert user into database
+		}
+		
+		
 	}
 }

@@ -40,8 +40,8 @@
 						Short description:<br> <textarea name="shortDescription" rows=10 cols=80 required> </textarea> 
 					</div>
 					<div id=priceDiv>
-						Price:
-						<input type="number" min="0" max="10000" step="0.1" name="price" required />
+						Price: &#36;
+						<input type="number" min="0" max="100000000" step="0.01" id=price name="price" required onchange="convertToDecimal(this)" />
 					</div>
 					<div id=stateDiv>
 						State: <select name="state">
@@ -53,7 +53,7 @@
 						</select> 
 					</div> 	
 					<div id=releaseDateDiv>		
-						Release date: <input type="date" name="releaseDate" min="2023-05-12" max="2025-01-01"> 
+						Release date: <input type="date" name="releaseDate" min="2023-05-12" max="2025-01-01" required> 
 					</div>
 					<div id=pegiDiv>
 						Pegi:
@@ -66,6 +66,7 @@
 						</select> 
 					</div>				
 					<div id=categoryDiv>
+						<h3>Choose categories</h3>
 						<%
 						List<Category> categories = (List<Category>) request.getAttribute("categories");
 						if(categories == null){
@@ -79,8 +80,43 @@
 						}
 						%>
 					</div>
+					<div id="windows" class="section">
+					    <h3>Windows requirements</h3>
+					    <div class="nameValueFields">
+					      <div class="nameValueRow">
+					        <input type="text" name="windows[name][]" placeholder="Hardware type">
+					        <input type="text" name="windows[value][]" placeholder="Value">
+					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
+					      </div>
+					    </div>
+					    <button type="button" onclick="addNameValueRow('windows')">Add requirement</button>
+					  </div>
+					  
+					  <div id="mac" class="section">
+					    <h3>Mac requirements</h3>
+					    <div class="nameValueFields">
+					      <div class="nameValueRow">
+					        <input type="text" name="mac[name][]" placeholder="Hardware type">
+					        <input type="text" name="mac[value][]" placeholder="Value">
+					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
+					      </div>
+					    </div>
+					    <button type="button" onclick="addNameValueRow('mac')">Add requirement</button>
+					  </div>
+					  
+					  <div id="linux" class="section">
+					    <h3>Linux requirements</h3>
+					    <div class="nameValueFields">
+					      <div class="nameValueRow">
+					        <input type="text" name="linux[name][]" placeholder="Hardware type">
+					        <input type="text" name="linux[value][]" placeholder="Value">
+					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
+					      </div>
+					    </div>
+					    <button type="button" onclick="addNameValueRow('linux')">Add requirement</button>
+					  </div>
 					<div id=submitDiv>
-						<input type="submit" name="summitta">
+						<input type="submit" name="summitta" value=Submit>
 					</div>
 			</form>
 			<% String logError = (String) request.getAttribute("logError");

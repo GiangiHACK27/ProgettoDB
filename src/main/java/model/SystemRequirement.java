@@ -41,9 +41,17 @@ public class SystemRequirement implements Serializable {
 	}
 
 	public enum OperatingSystem {
-		WINDOWS,
-		LINUX,
-		MAC
+		WINDOWS("Windows"),
+		LINUX("Linux"),
+		MAC("Mac");
+		String system;
+		OperatingSystem(String string) {
+			this.system = string;
+		}
+		
+		public String getSystem(){
+			return system;
+		}
 	}
 	
 	private int gameId;

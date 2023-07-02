@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
@@ -17,9 +18,12 @@ import javax.sql.DataSource;
 
 import dao.GameDAO;
 import dao.ImageDAO;
+import dao.SystemRequirementDAO;
 import dao.BelongsDAO;
 
 import model.Belong;
+import model.SystemRequirement;
+import model.SystemRequirement.OperatingSystem;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -31,7 +35,7 @@ public class GameUploadServlet extends BaseServlet {
         super(); 
     }
 	
-	public void uploadImage(ImageDAO imageDAO, int gameId, Part image, String role ) throws SQLException, IOException {
+	private void uploadImage(ImageDAO imageDAO, int gameId, Part image, String role ) throws SQLException, IOException {
 		//upload image into database
 		int imageId = imageDAO.insertImage(image.getInputStream().readAllBytes());
 		//upload image into database
@@ -41,6 +45,29 @@ public class GameUploadServlet extends BaseServlet {
 		//update represented table with role
 	}
     
+	/*This function takes a gameId, an operating system, arrays of names and values and inserts them into the database */
+	private void uploadRequirements(SystemRequirementDAO dao, int gameId, String system, String[] names, String[] values) throws SQLException {
+		//get system requirement bean
+		SystemRequirement reqModel = new SystemRequirement();
+		//get system requirement bean
+		
+		//set os and game id, which are the same for all requirements
+		reqModel.setOs(OperatingSystem.valueOf(system.toUpperCase()));
+		reqModel.setGameId(gameId);
+		//set os and game id, which are the same for all requirements
+		
+		int lim = names.length; //names and values should have the same length
+		
+		//insert the requirements into the database
+		for(int i = 0; i<lim; i++) {
+			reqModel.setName(names[i]);
+			reqModel.setValue(values[i]);
+			dao.insertRequirement(reqModel);
+		}
+		//insert the requirements into the database
+		
+	}
+	
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Include Retrieve all categories Servlet 
@@ -59,8 +86,12 @@ public class GameUploadServlet extends BaseServlet {
 		}
 		//Retrieve form inputs and check if they're valid
 		
+		//retrieve data source
+		final DataSource dataSource = (DataSource)getServletContext().getAttribute("DataSource");
+		//retrieve data source
+		
 		//Get game data from request
-		Integer price = Integer.parseInt(request.getParameter("price"));
+		Integer price = (int) (Float.parseFloat(request.getParameter("price")) *100);
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		String state = request.getParameter("state");
@@ -74,7 +105,7 @@ public class GameUploadServlet extends BaseServlet {
 
 
 		//insert game into database
-		GameDAO gameDAO = new GameDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		GameDAO gameDAO = new GameDAO(dataSource);
 		int gameId = 0;
 		try {
 			gameId = gameDAO.insertGame(price, name, description, state, shortDescription, releaseDate, pegi);
@@ -84,8 +115,8 @@ public class GameUploadServlet extends BaseServlet {
 		}
 		//insert game into database
 		
-		//Insert relation beetween categories and game to add
-		BelongsDAO belongDAO = new BelongsDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		//Insert relation between categories and game to add
+		BelongsDAO belongDAO = new BelongsDAO(dataSource);
 		
 		Belong belong = new Belong();
 		belong.setGameId(gameId);
@@ -100,7 +131,7 @@ public class GameUploadServlet extends BaseServlet {
 		//Insert relation between categories and game to add
 
 		//Insert images into database and upload "represented" table
-		ImageDAO imageDAO = new ImageDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		ImageDAO imageDAO = new ImageDAO(dataSource);
 
 		//insert banner image
 		Part bannerImage = request.getPart("bannerImage");
@@ -121,6 +152,20 @@ public class GameUploadServlet extends BaseServlet {
 		//insert showcase image
 		//Insert images into database and upload "represented" table
 		
+		//insert system requirements
+		SystemRequirementDAO dao = new SystemRequirementDAO(dataSource);
+		try {
+			uploadRequirements(dao, gameId, "WINDOWS", request.getParameterValues("windows[name][]"), request.getParameterValues("windows[value][]"));
+			uploadRequirements(dao, gameId, "MAC", request.getParameterValues("mac[name][]"), request.getParameterValues("mac[value][]"));
+			uploadRequirements(dao, gameId, "LINUX", request.getParameterValues("linux[name][]"), request.getParameterValues("linux[value][]"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		//insert system requirements
+		
 		//Check if we must update max price of games
 		Integer maxPrice = (Integer)getServletContext().getAttribute("maxPrice");
 		
@@ -133,4 +178,5 @@ public class GameUploadServlet extends BaseServlet {
 	
 	private static final long serialVersionUID = 1503010158356860644L;
 	private static final String selfPath = "/admin/UploadGame.jsp";
+	
 }
