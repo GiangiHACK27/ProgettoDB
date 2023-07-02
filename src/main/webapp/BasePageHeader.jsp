@@ -15,6 +15,7 @@
 		<a href="${pageContext.request.contextPath}"><img
 			src="${pageContext.request.contextPath}/images/logo.png" alt="logoimage"/> </a>
 	</div>
+	
 	<nav>
 		<ul>
 			<li class=dropdown><a href="${pageContext.request.contextPath}"> STORE </a>

@@ -34,7 +34,7 @@
 					</div>
 					<div class=optionDiv id=changeCredentialsDiv>
 						<a href=/GamingWorldShop/user/UpdateCredentials.jsp>
-							<span class=emptySpan></span>Change credentials(to do)
+							<span class=emptySpan></span>Change credentials
 						</a>
 					</div>
 				</div>

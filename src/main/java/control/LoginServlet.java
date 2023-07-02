@@ -53,7 +53,6 @@ public class LoginServlet extends BaseServlet {
 		String password = request.getParameter("password");
 		//Retrieve username and password from form and check if it is empty
 		
-		
 		//Retrieve from the database the user from username
 		
 		//Hash the password
@@ -66,7 +65,6 @@ public class LoginServlet extends BaseServlet {
 		}
 		//Hash the password
 
-		
 		UserDAO userDAO = new UserDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		User user = null;
 		try {
@@ -97,7 +95,6 @@ public class LoginServlet extends BaseServlet {
 		//Add attribute user in the session(to remember the login)
 		request.getSession().setAttribute("user", user);
 		//Add attribute user in the session(to remember the login)
-		
 		
 		//Redirect to personal area
 		response.sendRedirect("/GamingWorldShop/user/PersonalArea.jsp");	

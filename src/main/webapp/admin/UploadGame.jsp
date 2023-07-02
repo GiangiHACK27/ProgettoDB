@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="../CSS/UploadGameStyle.css">		
 		<title>Upload game</title>
 	</head>
+	
 	<body>
 		<jsp:include page="../BasePageHeader.jsp"></jsp:include>
 
@@ -84,8 +85,8 @@
 					    <h3>Windows requirements</h3>
 					    <div class="nameValueFields">
 					      <div class="nameValueRow">
-					        <input type="text" name="windows[name][]" placeholder="Hardware type" maxlength="30">
-					        <input type="text" name="windows[value][]" placeholder="Value" maxlength="30">
+					        <input type="text" required name="windows[name][]" placeholder="Hardware type" maxlength="30">
+					        <input type="text" required name="windows[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    </div>
@@ -96,8 +97,8 @@
 					    <h3>Mac requirements</h3>
 					    <div class="nameValueFields">
 					      <div class="nameValueRow">
-					        <input type="text" name="mac[name][]" placeholder="Hardware type" maxlength="30">
-					        <input type="text" name="mac[value][]" placeholder="Value" maxlength="30">
+					        <input type="text" required name="mac[name][]" placeholder="Hardware type" maxlength="30">
+					        <input type="text" required name="mac[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    </div>
@@ -108,8 +109,8 @@
 					    <h3>Linux requirements</h3>
 					    <div class="nameValueFields">
 					      <div class="nameValueRow">
-					        <input type="text" name="linux[name][]" placeholder="Hardware type" maxlength="30">
-					        <input type="text" name="linux[value][]" placeholder="Value" maxlength="30">
+					        <input type="text" required name="linux[name][]" placeholder="Hardware type" maxlength="30">
+					        <input type="text" required name="linux[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    </div>

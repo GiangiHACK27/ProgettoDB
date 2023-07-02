@@ -27,7 +27,8 @@ public class PurchaseFromCartServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Can't use get in this case");
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get user from session
 		User user = (User)request.getSession().getAttribute("user");
@@ -36,6 +37,7 @@ public class PurchaseFromCartServlet extends BaseServlet {
 		//Dispatch request for view cart servlet
 		RequestDispatcher dispatcher = request.getRequestDispatcher("../ViewCartServlet");
 		dispatcher.include(request, response);
+		
 		List<Game> cartItems = (List<Game>)request.getAttribute("cartItems");
 		//Dispatch request for view cart servlet		
 		
@@ -44,11 +46,12 @@ public class PurchaseFromCartServlet extends BaseServlet {
 		dispatcher.include(request, response);
 		//Delete all element from cart after purchase
 		
+		//Add all purchases to database
+		
 		//Retrieve datasource from the servelt context
 		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");
 		//Retrieve datasource from the servelt context
 		
-		//Add all purchases to database
 		PurchaseDAO purchaseDAO = new PurchaseDAO(ds);
 		
 		for (Game game : cartItems) {

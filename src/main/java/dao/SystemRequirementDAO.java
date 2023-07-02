@@ -5,15 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
 import model.SystemRequirement;
-import model.Game.Pegi;
-import model.Game.State;
-import model.Represented;
 
 public class SystemRequirementDAO extends BaseDAO {
 
@@ -32,9 +28,7 @@ public class SystemRequirementDAO extends BaseDAO {
 		try (Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(query); ) {
 		// Retrieve connection and make prepared statement 	
-			
-			
-			
+
 			//Encode into prepared statement data
 			ps.setInt(1, gameId);
 			//Encode into prepared statement data
@@ -80,7 +74,5 @@ public class SystemRequirementDAO extends BaseDAO {
 			ps.execute();
 			//Insert user into database
 		}
-		
-		
 	}
 }

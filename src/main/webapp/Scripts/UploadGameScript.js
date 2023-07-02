@@ -19,8 +19,8 @@ function addNameValueRow(sectionId) {
   var newRow = document.createElement("div");
   newRow.className = "nameValueRow";
   newRow.innerHTML = `
-    <input type="text" name="${sectionId}[name][]" placeholder="Hardware type" maxlength="30">
-    <input type="text" name="${sectionId}[value][]" placeholder="Value" maxlength="30">
+    <input type="text" required name="${sectionId}[name][]" placeholder="Hardware type" maxlength="30">
+    <input type="text" required name="${sectionId}[value][]" placeholder="Value" maxlength="30">
     <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
   `;
   nameValueFields.appendChild(newRow);

@@ -62,10 +62,10 @@
 			
 			<div id="row-2">
 				<div id="description">
-					<h1> <%=game.getName() %> </h1>
+					<h1> <%= game.getName()%> </h1>
 					
 					<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">SUMMITTA!!!</button>
-					<p> <%= game.getDescription() %> </p>
+					<p> <%= game.getDescription()%> </p>
 				</div>
 				
 				<% Map<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirementsMap = (Map)request.getAttribute("requirements"); %>
@@ -98,7 +98,7 @@
 					<% 
 							for(SystemRequirement requirement : requirements.getValue()) {	
 					%> 
-								<p id="<%= requirements.getKey().toString().toLowerCase()%>"><%= requirements.getKey().toString().toLowerCase()%>: <%=requirement.getName() %></p>
+								<p id="<%= requirements.getKey().toString().toLowerCase()%>"><%= requirement.getName()%>: <%=requirement.getValue() %></p>
 					<% 	} %>
 						</div>
 					<% 	

@@ -3,9 +3,6 @@ package control;
 import java.io.IOException;
 
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -84,7 +81,7 @@ public class GameUploadServlet extends BaseServlet {
 
 		//Retrieve form inputs and check if they're valid
 		if(! validParameters(request, response)) {
-			return;
+			showError(request, response, "Internal error while uploading game", selfPath);
 		}
 		//Retrieve form inputs and check if they're valid
 		
@@ -175,7 +172,9 @@ public class GameUploadServlet extends BaseServlet {
 			getServletContext().setAttribute("maxPrice", price);
 		//Check if we must update max price of games
 		
-		response.sendRedirect(request.getContextPath());	
+		response.sendRedirect(request.getContextPath());
+		
+		
 	}
 	
 	private static final long serialVersionUID = 1503010158356860644L;
