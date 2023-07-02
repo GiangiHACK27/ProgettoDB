@@ -23,12 +23,7 @@ public class RegisterServlet extends BaseServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("user") != null) {
-			response.sendRedirect(request.getContextPath());
-		}
-		else {
-			showError(request, response, null, selfPath);
-		}
+		response.sendError(400);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +35,7 @@ public class RegisterServlet extends BaseServlet {
 		//First of all logout from the current user
 		
 		//Retrieve form inputs and check if they're valid
-		if(!validParameters(request, response)) {
+		if( ! validParameters(request, response)) {
 			return;
 		}
 		//Retrieve form inputs and check if they're valid
@@ -52,11 +47,10 @@ public class RegisterServlet extends BaseServlet {
 		//Get user data from request
 		
 		//Check if password and email are valid with regex
-		if(!mailPattern.matcher(email).find()||!passwordPattern.matcher(password).find()) {
+		if(!mailPattern.matcher(email).find() || !passwordPattern.matcher(password).find()) {
 			showError(request, response, "Invalid inputs", selfPath);
 		}
 		//Check if password and email are valid with regex
-
 
 		//Hash the password
 		String hashPassword = null;	
@@ -79,13 +73,11 @@ public class RegisterServlet extends BaseServlet {
 		}
 		//insert user into database
 	
-		
 		//login as new user
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginServlet?newUser=true");
-			dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginServlet?newUser=true");
+		dispatcher.forward(request, response);
 		//login as new user
 
 	}
 	private final static String selfPath = "/Register.jsp";
-
 }

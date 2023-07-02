@@ -31,13 +31,7 @@
 				</h1>
 				
 				<div id=formDiv>
-					<form method="post" action="/GamingWorldShop/UpdateUserServlet" id=inputForm>
-						<div id=usernameDiv class=inputDiv>
-							<label for=username>Username:</label>
-							
-							<input type="text" id=username name="username" required value="<%=user.getUsername()%>" onchange="validateFormElem(this, document.getElementById('errorDiv', null))">
-						</div>
-						
+					<form method="post" action="/GamingWorldShop/UpdateUserServlet" id=inputForm>					
 						<div id=emailDiv class=inputDiv>	
 							<label for=email>Email:</label>		
 							

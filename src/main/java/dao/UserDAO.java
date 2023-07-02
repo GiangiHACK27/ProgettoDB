@@ -69,4 +69,25 @@ public class UserDAO extends BaseDAO {
 			//Insert user into database
 		}
 	}
+	
+	public void updatePasswordAndEmail(String password, String email, String username) throws SQLException {
+		
+		String query = "UPDATE User SET password = ?, email = ? WHERE username = ?";
+		
+		// Retrieve connection and make prepared statement
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		// Retrieve connection and make prepared statement
+		
+			//Set prepared statement values
+			ps.setString(1, password);
+			ps.setString(2, email);
+			ps.setString(3, username);
+			//Set prepared statement values
+			
+			//Execute query
+			ps.execute();
+			//Execute query
+		}
+		
+	}
 }
