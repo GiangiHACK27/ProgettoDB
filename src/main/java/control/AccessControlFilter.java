@@ -37,12 +37,12 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 		User user = (User) session.getAttribute("user");
 		//Retrieve user from the session
 		
-		//Check if the access is permitted
+		//Check if the access is permitted, in other case, redirect to login page
 		if( checkForUserPath(path, user) || checkForAdminPath(path, user) ) {
-			httpServletResponse.sendRedirect(httpServletRequest.getContextPath());
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/Login.jsp");
 			return;
 		}
-		//Check if the access is permitted
+		//Check if the access is permitted, in other case, redirect to login page
 		
 		chain.doFilter(request, response);
 	}
@@ -58,12 +58,12 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {
-		//Future implementation
+		
 	}
 	
     public void destroy() {
-    	//Future implementation
-	}
+
+    }
 
 	private static final long serialVersionUID = 1L;
 }
