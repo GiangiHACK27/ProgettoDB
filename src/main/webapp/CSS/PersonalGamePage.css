@@ -5,7 +5,7 @@ main {
 	
 	margin: auto;
 	margin-top: 10%;
-	
+	margin-bottom: 10%;
 	overflow: hidden;
 }
 
@@ -61,8 +61,6 @@ div#description {
 	width: 70%;
 	
 	float: left;	
-	
-	background-color: green;
 }
 
 div#description h1 {

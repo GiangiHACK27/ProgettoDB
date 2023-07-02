@@ -47,6 +47,8 @@ public class GameUploadServlet extends BaseServlet {
     
 	/*This function takes a gameId, an operating system, arrays of names and values and inserts them into the database */
 	private void uploadRequirements(SystemRequirementDAO dao, int gameId, String system, String[] names, String[] values) throws SQLException {
+		if(names == null || values == null)
+			return;
 		//get system requirement bean
 		SystemRequirement reqModel = new SystemRequirement();
 		//get system requirement bean

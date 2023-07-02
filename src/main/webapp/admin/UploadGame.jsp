@@ -31,7 +31,7 @@
 						<input type="file" id=showcaseImages name=showcaseImage accept="image/jpeg, image/png, image/jpg" required> 
 					</div> 
 					<div id=nameDiv>
-						Name: <input type="text" name="name" required> 
+						Name: <input type="text" name="name" required maxlength="30"> 
 					</div>
 					<div id=descriptionDiv>
 						Description:<br> <textarea name="description" rows=30 cols=80 required> </textarea>
@@ -84,8 +84,8 @@
 					    <h3>Windows requirements</h3>
 					    <div class="nameValueFields">
 					      <div class="nameValueRow">
-					        <input type="text" name="windows[name][]" placeholder="Hardware type">
-					        <input type="text" name="windows[value][]" placeholder="Value">
+					        <input type="text" name="windows[name][]" placeholder="Hardware type" maxlength="30">
+					        <input type="text" name="windows[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    </div>
@@ -96,8 +96,8 @@
 					    <h3>Mac requirements</h3>
 					    <div class="nameValueFields">
 					      <div class="nameValueRow">
-					        <input type="text" name="mac[name][]" placeholder="Hardware type">
-					        <input type="text" name="mac[value][]" placeholder="Value">
+					        <input type="text" name="mac[name][]" placeholder="Hardware type" maxlength="30">
+					        <input type="text" name="mac[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    </div>
@@ -108,8 +108,8 @@
 					    <h3>Linux requirements</h3>
 					    <div class="nameValueFields">
 					      <div class="nameValueRow">
-					        <input type="text" name="linux[name][]" placeholder="Hardware type">
-					        <input type="text" name="linux[value][]" placeholder="Value">
+					        <input type="text" name="linux[name][]" placeholder="Hardware type" maxlength="30">
+					        <input type="text" name="linux[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    </div>
