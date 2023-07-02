@@ -4,14 +4,17 @@ const passwordErrorMessage= "Your password must contain between 8 and 30 charact
 
 const alreadyTaken = " is already taken";
 
+let initialUsername = "";
+let initialEmail = "";
+
 
 function validateFormElem(formElem, span, errorMessage) {
 	//In case of pattern matching
 	if(formElem.checkValidity()){
 		
 		//Remove error for pattern mismatching
-		var doc = new DOMParser().parseFromString(span.innerHTML, "text/html")
 		formElem.classList.remove("error");
+		var doc = new DOMParser().parseFromString(span.innerHTML, "text/html")
 		if(errorMessage != null && doc.documentElement.textContent == errorMessage) {
 			formElem.classList.remove("error");
 			span.style.color = "black";
@@ -23,6 +26,12 @@ function validateFormElem(formElem, span, errorMessage) {
 		
 		//In case we are checking for email o username validity, check if it is already taken
 		if(formElem.name == "email" || formElem.name == "username") {
+			if(formElem.name =='email' && formElem.value == initialEmail || formElem.name == 'username' && formElem.value == initialUsername){
+				formElem.classList.remove("error");
+				span.style.color = "black";
+				span.innerHTML = "";
+				return true;
+			}
 			$.ajaxSetup({ type: "GET", timeout : 10000 });
 			
 			console.log(formElem.value);
@@ -93,15 +102,16 @@ function validate() {
 function submitForm(e) { 
     let formValid = validate();
 
-	//submit form only if it's valid
     if(formValid !== true) {
       e.preventDefault();
       return false;
     }
-    //submit form only if it's valid
 }
 
-//add listener to submit button to submit form if it's valid
 document.getElementById("submitButton").addEventListener("click", submitForm);
-//add listener to submit button to submit form if it's valid
 
+
+$(document).ready(function() {
+	initialUsername = $('#username').val();
+	initialEmail = $('#email').val();
+})

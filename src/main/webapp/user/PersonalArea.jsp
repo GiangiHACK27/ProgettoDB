@@ -33,7 +33,7 @@
 						</a>	
 					</div>
 					<div class=optionDiv id=changeCredentialsDiv>
-						<a href=/GamingWorldShop/user/GameLibrary.jsp>
+						<a href=/GamingWorldShop/user/UpdateUser.jsp>
 							<span class=emptySpan></span>Change credentials(to do)
 						</a>
 					</div>

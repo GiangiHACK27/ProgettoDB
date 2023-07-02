@@ -36,7 +36,7 @@
 				</h1>
 				
 				<div id=formDiv>
-					<form method="post" action="/GamingWorldShop/RegisterServlet" id=inputForm>
+					<form method="post" action="/GamingWorldShop/RegisterServlet" id=inputForm autocomplete="off">
 						<div id=usernameDiv class=inputDiv>
 							<label for=username>Username:</label>
 							
