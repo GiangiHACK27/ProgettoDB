@@ -5,6 +5,7 @@
 <html lang = en>
 	<head>
 		<meta charset="ISO-8859-1">
+		
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 		
 		<link rel="stylesheet" href="./CSS/BaseStyle.css">
@@ -71,7 +72,7 @@
 				<div id="description">
 					<h1> <%= game.getName()%> </h1>
 					
-					<button onclick="location.href='addToCartServlet?category=cart&gameId=<%= game.getId()%>'">Add to cart</button>
+					<button onclick="location.href='AddToCartServlet?category=cart&gameId=<%= game.getId()%>'">Add to cart</button>
 					<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
 					
 					<p> <%= game.getDescription()%> </p>

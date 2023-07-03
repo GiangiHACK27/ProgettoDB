@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import dao.UserDAO;
+import dao.InterestedDAO;
+
+import model.Cart;
+import model.Interested;
+
 import utility.Hasher;
 
 @WebServlet("/RegisterServlet")
@@ -72,12 +77,37 @@ public class RegisterServlet extends BaseServlet {
 			return;
 		}
 		//insert user into database
-	
+		
+		//fill db cart and empty session cart
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		
+		if(cart != null) {
+			
+			DataSource dataSource = (DataSource) request.getServletContext().getAttribute("DataSource");
+			InterestedDAO interestedDAO = new InterestedDAO(dataSource);
+			
+			for(int id : cart.getGames()) {
+				Interested interested = new Interested();
+				
+				interested.setCategory(Interested.Category.CART);
+				interested.setUsername(username);
+				interested.setGameId(id);
+				
+				try {
+					interestedDAO.insertInterest(interested);
+				} catch (SQLException e) {
+					e.printStackTrace();
+					
+					break;
+				}
+			}
+		}
+		//fill db cart and empty session cart
+		
 		//login as new user
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginServlet?newUser=true");
 		dispatcher.forward(request, response);
 		//login as new user
-
 	}
 	private final static String selfPath = "/Register.jsp";
 }

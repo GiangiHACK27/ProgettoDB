@@ -79,6 +79,10 @@ p.gamePrice{
 }
 
 @media screen and (max-width: 450px){
+	#gameListContents {
+		width: 90%;
+	}
+	
 	p.gameImage img{
 		width: 85.7142857143px;
 		height: 32.14;

@@ -26,14 +26,14 @@ public class LoginServlet extends BaseServlet {
         super();
     }
     
-	private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
-    	RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
-    	try {
-			rs.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		} 
-    }
+//	private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
+//    	RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
+//    	try {
+//			rs.forward(request, response);
+//		} catch (ServletException | IOException e) {
+//			e.printStackTrace();
+//		} 
+//    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("user") != null) {

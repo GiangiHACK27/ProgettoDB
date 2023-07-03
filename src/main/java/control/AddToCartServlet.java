@@ -86,7 +86,6 @@ public class AddToCartServlet extends BaseServlet {
 				cart.addGame(gameToAdd);	
 			} catch(InvalidParameterException e) {
 				e.printStackTrace();
-
 			}
 			//Add game to cart		
 		}
