@@ -81,7 +81,7 @@ public class GameUploadServlet extends BaseServlet {
 
 		//Retrieve form inputs and check if they're valid
 		if(! validParameters(request, response)) {
-			showError(request, response, "Internal error while uploading game", selfPath);
+			return;
 		}
 		//Retrieve form inputs and check if they're valid
 		
@@ -158,11 +158,9 @@ public class GameUploadServlet extends BaseServlet {
 			uploadRequirements(dao, gameId, "MAC", request.getParameterValues("mac[name][]"), request.getParameterValues("mac[value][]"));
 			uploadRequirements(dao, gameId, "LINUX", request.getParameterValues("linux[name][]"), request.getParameterValues("linux[value][]"));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		
-		
 		//insert system requirements
 		
 		//Check if we must update max price of games
@@ -172,9 +170,7 @@ public class GameUploadServlet extends BaseServlet {
 			getServletContext().setAttribute("maxPrice", price);
 		//Check if we must update max price of games
 		
-		response.sendRedirect(request.getContextPath());
-		
-		
+		response.sendRedirect(request.getContextPath() + "/PersonalGamePage.jsp?gameId=" + Integer.toString(gameId));
 	}
 	
 	private static final long serialVersionUID = 1503010158356860644L;

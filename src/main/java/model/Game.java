@@ -74,6 +74,14 @@ public class Game implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
 
 	public enum State{
 		RELEASED("Released"),
@@ -118,6 +126,7 @@ public class Game implements Serializable {
 	private String shortDescription;
 	private String releaseDate;
 	private Pegi pegi;
+	private String publisher;
 	
 	private static final long serialVersionUID = -5695993368802410513L;
 }

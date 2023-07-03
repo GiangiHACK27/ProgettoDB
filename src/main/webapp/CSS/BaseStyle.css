@@ -20,7 +20,7 @@ body{
 
 section.main{
 	flex:1;
-	background-image: linear-gradient(to top,rgb(15 20 23), rgb(20 26 29), rgb(34 46 51),  #304552);
+	background-image: linear-gradient(to top,rgb(15 20 23), rgb(20 26 29), rgb(34 46 51), #3b596b, #304552);
 }
 
 

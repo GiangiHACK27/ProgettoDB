@@ -187,6 +187,7 @@ public class GameDAO extends BaseDAO {
 				game.setPrice(rs.getInt("price"));
 				game.setShortDescription(rs.getString("shortDescription"));
 				game.setReleaseDate(rs.getString("releaseDate"));
+				game.setPublisher(rs.getString("publisher"));
 				Pegi pegi1 = Pegi.valueOf("PEGI_" + rs.getString("pegi"));
 				game.setPegi(pegi1);
 				State state = State.valueOf(rs.getString("state").toUpperCase());
@@ -233,6 +234,7 @@ public class GameDAO extends BaseDAO {
 				game.setPrice(rs.getInt("price"));
 				game.setDescription(rs.getString("description"));
 				game.setShortDescription(rs.getString("shortDescription"));
+				game.setPublisher(rs.getString("publisher"));
 				game.setState(State.valueOf(rs.getString("state").toUpperCase()));
 				game.setId(rs.getInt("id"));
 				game.setPegi(Pegi.valueOf("PEGI_" + rs.getString("pegi")));
@@ -353,6 +355,7 @@ public class GameDAO extends BaseDAO {
 				game.setDescription(rs.getString("description"));
 				game.setShortDescription(rs.getString("shortDescription"));
 				game.setState(Game.State.valueOf(rs.getString("state").toUpperCase()));
+				game.setPublisher(rs.getString("publisher"));
 				//Construct the game
 				
 				//Add game to the list

@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="./CSS/BaseStyle.css">
 		<link rel="stylesheet" href="./CSS/PersonalGamePage.css">
 		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src="./Scripts/PersonalGamePageScript.js" defer></script>
 	
 		<title>Personal Game Page</title>
@@ -49,9 +50,15 @@
 								</td>
 							</tr>
 							
-							<tr> 
+							<tr>
 								<td>
-									<p>Valutazioni recenti: </p>
+									<span class="infoShortDescription">Publisher:</span> <%= game.getPublisher()%>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<span class="infoShortDescription">State:</span> <%= game.getState().toString().toLowerCase() %>
 								</td>
 							</tr>
 
@@ -64,7 +71,9 @@
 				<div id="description">
 					<h1> <%= game.getName()%> </h1>
 					
-					<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">SUMMITTA!!!</button>
+					<button onclick="location.href='addToCartServlet?category=cart&gameId=<%= game.getId()%>'">Add to cart</button>
+					<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
+					
 					<p> <%= game.getDescription()%> </p>
 				</div>
 				
@@ -98,7 +107,7 @@
 					<% 
 							for(SystemRequirement requirement : requirements.getValue()) {	
 					%> 
-								<p id="<%= requirements.getKey().toString().toLowerCase()%>"><%= requirement.getName()%>: <%=requirement.getValue() %></p>
+								<p id="<%= requirements.getKey().toString().toLowerCase()%>"><%= requirement.getName()%>: <span id="rightText"><%=requirement.getValue() %></span></p> 
 					<% 	} %>
 						</div>
 					<% 	
