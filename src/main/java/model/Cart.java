@@ -37,6 +37,14 @@ public class Cart implements Cloneable, Serializable {
 		throw new InvalidParameterException("Game not present in the cart");
 	}
 	
+	public boolean isInCart(Integer gameId) {
+		for(int i=0;i<gameIds.size();i++) 
+			if(gameIds.get(i).equals(gameId))
+				return true;
+		
+		return false;
+	}
+	
     public Cart clone()
     {
         try {

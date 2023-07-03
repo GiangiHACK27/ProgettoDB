@@ -22,9 +22,15 @@
 		<!-- Retrieve info about the game -->
 		<jsp:include page="/RetrieveGameServlet"></jsp:include>
 		<jsp:include page="/RetrieveGameRequirementsServlet"></jsp:include>
-		<!-- Retrieve info about the game -->
 		
 		<% Game game = (Game)request.getAttribute("game"); %>
+		
+		<jsp:include page="/RetrieveGameStatusServlet?gameId=<%= game.getId()%>"></jsp:include>
+		
+		<%		boolean isInCart = (boolean)request.getAttribute("isInCart");
+				boolean isInWhishlist = (boolean)request.getAttribute("isInWhishlist");
+				boolean isBuyed = (boolean)request.getAttribute("isBuyed"); %>
+		<!-- Retrieve info about the game -->
 		
 		<jsp:include page="BasePageHeader.jsp"></jsp:include>
 		
@@ -71,10 +77,19 @@
 			<div id="row-2">
 				<div id="description">
 					<h1> <%= game.getName()%> </h1>
-					
-					<button onclick="location.href='AddToCartServlet?category=cart&gameId=<%= game.getId()%>'">Add to cart</button>
-					<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
-					
+						
+						<% if(! isBuyed) { 
+							
+						  if(! isInCart) { %>
+		 						<button id="addToCartButton" onclick="addToCart(<%= game.getId() %>)" >Add to cart</button>								
+							<% } %>
+							
+							<% if(! isInWhishlist) { %>
+								
+							<% } %>
+							<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
+						<% } %>
+												
 					<p> <%= game.getDescription()%> </p>
 				</div>
 				

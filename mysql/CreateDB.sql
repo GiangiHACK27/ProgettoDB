@@ -75,7 +75,7 @@ CREATE TABLE User (
 CREATE TABLE Interested (
 	username varchar(30) NOT NULL,
     gameId int NOT NULL,
-    category ENUM("cart", "whishlist") NOT NULL DEFAULT("cart"),
+    category ENUM("cart", "wishlist") NOT NULL DEFAULT("cart"),
     CONSTRAINT gameIdConsInterested
 		foreign key (gameId) references Game (id),
 	CONSTRAINT usernameConsInterested

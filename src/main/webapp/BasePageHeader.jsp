@@ -60,16 +60,23 @@
 		<span id=cartItemCount>
 			<%Cart cart = (Cart)request.getAttribute("cartForView");
 				int items = 0;
-				 try{
+/* 				 try{
 					 items = cart.getGames().size();
 				 } 
 				 catch (Exception e){
-				 }
+				 } */
+				 
+				 if(cart != null)
+					 items = cart.getGames().size();
 			%>
-			<%if(items <= 0){ %>
+<%-- 			<%if(items <= 0){ %>
 			<%} else{ %>
 				<%=items %>
-			<%} %>
+			<%} %> --%>
+			
+			<% if(items > 0) {%>
+				<%= items %>
+			<% }%>
 		</span>
 	</div>
 	
@@ -77,6 +84,7 @@
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <a href="${pageContext.request.contextPath}"> HOME PAGE </a>
 		  <a href= "${pageContext.request.contextPath}/Catalog.jsp"> CATALOG </a>
+		  <a href="${pageContext.request.contextPath}/Cart.jsp"> CART </a>
 			<% if (user == null) { %>
 				<a href="${pageContext.request.contextPath}/Login.jsp"> LOG IN</a>
 				<a href="${pageContext.request.contextPath}/Register.jsp"> SIGN UP</a>

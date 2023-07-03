@@ -68,4 +68,23 @@ public class PurchaseDAO extends BaseDAO {
 		
 		return purchases;
 	}
+	
+	public boolean isBuyed(int gameId, String username) throws SQLException {
+		String query = "SELECT * FROM Purchase WHERE gameId = ? AND username = ?";
+		
+		//Retrieve connection
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+		//Retrieve connection
+			
+			//Build query
+			ps.setString(1, Integer.toString(gameId));
+			ps.setString(2, username);
+			//Build query
+			
+			//Retrieve from db the purchase
+			ResultSet rs = ps.executeQuery();
+			return rs.next();
+			//Retrieve from db the purchase
+		}
+	}
 }

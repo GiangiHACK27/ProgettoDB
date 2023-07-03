@@ -16,6 +16,7 @@ import model.Cart;
 import model.Interested;
 
 import dao.InterestedDAO;
+import dao.PurchaseDAO;
 
 @WebServlet("/AddToCartServlet")
 public class AddToCartServlet extends BaseServlet {
@@ -45,7 +46,32 @@ public class AddToCartServlet extends BaseServlet {
 		Interested.Category category = Interested.Category.valueOf(request.getParameter("category").toUpperCase());
 		//Retrieve category of cart from request
 		
-		
+		//Check if the game is already buyed
+		if(user != null) {
+			
+			//Retrieve data source from the servlet context
+			DataSource dataSource = (DataSource)request.getServletContext().getAttribute("DataSource");
+			//Retrieve data source from the servlet context
+			
+			//Check on db if the game is already buyed
+			PurchaseDAO purchaseDAO = new PurchaseDAO(dataSource);
+			
+			boolean isBuyed = false;
+			try {
+				isBuyed = purchaseDAO.isBuyed(gameToAdd, user.getUsername());
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+			//In case is already buyed, exit from the servlet
+			if(isBuyed)
+				return;
+			//In case is already buyed, exit from the servlet
+			
+			//Check on db if the game is already buyed
+		}
+		//Check if the game is already buyed
 		
 		//In case user is logged
 		if(user != null) {
@@ -77,6 +103,7 @@ public class AddToCartServlet extends BaseServlet {
 			//Make new cart if there wasn't a cart present
 			if(cart == null) {
 				cart = new Cart("guest");
+				
 				request.getSession().setAttribute(category.toString().toLowerCase(), cart);
 			}
 			//Make new cart if there wasn't a cart present

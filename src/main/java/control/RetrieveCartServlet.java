@@ -73,7 +73,7 @@ public class RetrieveCartServlet extends BaseServlet {
 		//In case user isn't logged
 		
 		//Put the copy of cart in the request
-		request.setAttribute("cartForView", cart);
+		request.setAttribute(category.toString().toLowerCase() + "ForView", cart);
 		//Put the copy of cart in the request
 	}
 	
