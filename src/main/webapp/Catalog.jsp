@@ -28,8 +28,7 @@
  	
 	<section class=main>
 		<main>
-<!-- 		<form action="/GamingWorldShop/SearchGames" method="get">
- -->
+
  		<form>		
 		<section id=searchSection>
 			<div id=headingDiv>
@@ -114,11 +113,8 @@
 				</div>
 		</section>
 		<section id=gameListSection>
- 		<%-- <% List<Game> games = (List<Game>)request.getAttribute("games");
-			for(Game g : games) {
-				out.println(g.getName());
-			}
-		%> --%> 
+
+
 		</section>
 					</form>
 		

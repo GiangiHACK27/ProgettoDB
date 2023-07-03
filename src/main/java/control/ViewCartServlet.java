@@ -20,9 +20,14 @@ public class ViewCartServlet extends BaseServlet {
     }
 	
 	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//Retrieve from request the category
+		String category = request.getParameter("category");
+		//Retrieve from request the category
+		
 		//get cart from servlet
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=cart");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=" + category);
 			dispatcher.include(request, response);
 		}
 		//get cart from servlet
@@ -32,7 +37,7 @@ public class ViewCartServlet extends BaseServlet {
 		//Initialize cart that will be sent in response
 
 		//get cart from request taken from retrievecartservlet
-		Cart cart = (Cart) request.getAttribute("cartForView");
+		Cart cart = (Cart) request.getAttribute(category + "ForView");
 		//get cart from request taken from retrievecartservlet
 
 		//For each gameID, get all game data from RetrieveGameServlet
@@ -45,7 +50,7 @@ public class ViewCartServlet extends BaseServlet {
 		}
 		//For each gameID, get all game data from RetrieveGameServlet
 
-		request.setAttribute("cartItems", cartItems);
+		request.setAttribute(category + "Items", cartItems);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

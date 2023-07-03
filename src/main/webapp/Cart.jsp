@@ -11,14 +11,14 @@
 	<link rel="stylesheet" href="./CSS/GameListStyle.css">
 	<link rel="stylesheet" href="./CSS/CartStyle.css">
 
-	<script src="./Scripts/CartScript.js" defer></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="./Scripts/CartScript.js" defer></script>
 
 	<title>Cart</title>
 </head>
 <body>
 	<jsp:include page="BasePageHeader.jsp"></jsp:include>
-	<jsp:include page="/ViewCartServlet"></jsp:include>
+	<jsp:include page="/ViewCartServlet?category=cart"></jsp:include>
 	
 	<section class=main>
 	<main>
@@ -52,7 +52,7 @@
 			 	</section>
 			 <%} %>
 		</section>
-		<%if(!games.isEmpty()){ %>
+		<%if(!games.isEmpty()) { %>
 
 		<section id=options>
 			<div id="purchaseButton">

@@ -44,7 +44,9 @@
 							href="${pageContext.request.contextPath}/user/PersonalArea.jsp">PERSONAL &nbsp;AREA</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/user/GameLibrary.jsp">GAME LIBRARY</a></li>	
-							
+						
+						<li><a href="${pageContext.request.contextPath}/user/Wishlist.jsp">WISHLIST</a></li>
+						
 						<li><a
 							href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a></li>
 					</ul>
@@ -60,20 +62,10 @@
 		<span id=cartItemCount>
 			<%Cart cart = (Cart)request.getAttribute("cartForView");
 				int items = 0;
-/* 				 try{
-					 items = cart.getGames().size();
-				 } 
-				 catch (Exception e){
-				 } */
 				 
 				 if(cart != null)
 					 items = cart.getGames().size();
 			%>
-<%-- 			<%if(items <= 0){ %>
-			<%} else{ %>
-				<%=items %>
-			<%} %> --%>
-			
 			<% if(items > 0) {%>
 				<%= items %>
 			<% }%>
@@ -90,7 +82,8 @@
 				<a href="${pageContext.request.contextPath}/Register.jsp"> SIGN UP</a>
 			<% } else { %>
 				<a href="${pageContext.request.contextPath}/user/PersonalArea.jsp"><%=user.getUsername().toUpperCase()%></a>
-				<a href="${pageContext.request.contextPath}/user/GameLibrary.jsp"></a>
+				<a href="${pageContext.request.contextPath}/user/GameLibrary.jsp">GAME LIBRRY</a>
+				<a href="${pageContext.request.contextPath}/user/Wishlist.jsp">WISHLIST</a>
 				<a href="${pageContext.request.contextPath}/user/LogoutServlet">LOGOUT</a>
 		 	<%} %>
 	</div>
