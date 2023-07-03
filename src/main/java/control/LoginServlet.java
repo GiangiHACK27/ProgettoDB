@@ -3,8 +3,8 @@ package control;
 import java.io.IOException;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,16 +45,18 @@ public class LoginServlet extends BaseServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Retrieve username and password from form and check if it is empty
-		if(! validParameters(request, response)) {
+		//Check if the field are empty
+		if(! validParameters(request, response, Arrays.asList("username", "password"))) {
 			return;
 		}
+		//Check if the field are empty
+		
+		//Retrieve username and password from form
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		//Retrieve username and password from form and check if it is empty
+		//Retrieve username and password from form
 		
 		//Retrieve from the database the user from username
-		
 		//Hash the password
 		String hashPassword = null;
 		try {

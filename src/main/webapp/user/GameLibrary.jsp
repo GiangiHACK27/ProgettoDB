@@ -37,10 +37,10 @@
 			 	<%for (Game currentGame : gamePurchased){ %>
 			 		<div class=gameDiv>
 			 			<p class=gameImage>
-			 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><img src="RetrieveGameImageServlet?gameId=<%=currentGame.getId()%>&role=BANNER" alt="game logo"> </a>	
+			 				<a href=${pageContext.request.contextPath}/PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><img src="${pageContext.request.contextPath}/RetrieveGameImageServlet?gameId=<%=currentGame.getId()%>&role=BANNER" alt="game logo"> </a>	
 			 			</p>
 			 			<p class=gameTitle>
-			 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>
+			 				<a href=${pageContext.request.contextPath}/PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>
 			 			</p>
 	
 			 		</div>
