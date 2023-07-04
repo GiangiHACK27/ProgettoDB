@@ -26,6 +26,11 @@
 							<span class=emptySpan></span>Upload a new game
 						</a>		
 					</div>
+					<div class=optionDiv>
+						<a href=/GamingWorldShop/admin/PurchasesList.jsp>
+							<span class=emptySpan></span>View global purchase history
+						</a>		
+					</div>
 					<%} %>
 					<div class=optionDiv id=viewLibraryDiv>
 						<a href=/GamingWorldShop/user/GameLibrary.jsp>
@@ -37,6 +42,12 @@
 							<span class=emptySpan></span>Change credentials
 						</a>
 					</div>
+					<div class=optionDiv>
+						<a href=${pageContext.request.contextPath}/user/Wishlist.jsp>
+							<span class=emptySpan></span>View wishlist
+						</a>
+					</div>					
+					
 				</div>
 			</main>
 		</section>

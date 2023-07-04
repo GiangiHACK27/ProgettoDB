@@ -5,8 +5,8 @@ main {
 	margin: auto;
 	margin-top: 100px;
 	
-	background-color: purple;
-	
+	background-color: rgba(15,20,23,1);
+	padding: 10px;
 	overflow: hidden;
 }
 
@@ -30,6 +30,10 @@ label {
 	display: inline-block;
 }
 
+h1{
+	padding-bottom: 5px;
+}
+
 #filterSection {
 	width: 20%;
 }
@@ -43,7 +47,13 @@ table {
 }
 
 table, th, tr, td {
-	border: 1px solid black;
+	border: 1px solid #F2F4F3;
+	border-collapse: collapse;
+}
+
+th, td{
+	padding: 5px;
+	text-align: center;
 }
 
 

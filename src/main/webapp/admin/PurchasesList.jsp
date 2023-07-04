@@ -27,24 +27,29 @@
 					<h1> Purchases </h1>
 					
 					<section id="filterSection">
-						<input id=username type=text name=username placeholder="Insert a username" value="">
+						<input id=username type=text name=username placeholder="Filter by username" value="">
 						
-						<label for=minDate>minDate</label>
+						<label for=minDate>From</label>
 						<input id=minDate type=date name=minDate value="1999-09-09">
 						
-						<label for=maxDate>maxDate</label>
+						<label for=maxDate>To</label>
 						<input id=maxDate type=date name=maxDate value="2023-01-01">
 					</section>
 					
 					<section id="tableSection">
-						<table>
-							<tr>
-								<th>Id</th>
-								<th>Username</th>
-								<th>GameId</th>
-								<th>Price</th>
-								<th>datePurchased</th>
-							</tr>						
+						<table id=purchaseListTable>
+							<thead>
+								<tr>
+									<th>User Id</th>
+									<th>Username</th>
+									<th>Game Id</th>
+									<th>Price</th>
+									<th>Date Purchased</th>
+								</tr>		
+							</thead>
+							<tbody id=tableBody>
+							
+							</tbody>				
 						</table>
 					</section>
 				</form>
