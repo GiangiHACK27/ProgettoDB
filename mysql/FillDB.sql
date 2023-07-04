@@ -48,5 +48,7 @@ INSERT INTO Belongs values ("categoria1", 14);
 INSERT INTO Belongs values ("categoria1", 15);
 INSERT INTO Belongs values ("categoria1", 16);
 
+INSERT INTO Purchase (gameId, username, price, datePurchased) values (2, "tonaion", 15, "2000-01-01");
+
 INSERT INTO Review (gameId, username) values (1, "tonaion");
 INSERT INTO Likes values (1, "AleCoppola02"); 

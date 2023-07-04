@@ -69,6 +69,49 @@ public class PurchaseDAO extends BaseDAO {
 		return purchases;
 	}
 	
+	public List<Purchase> retrievePurchases(String username, String minDate, String maxDate) throws SQLException {
+		
+		List<Purchase> purchases = new ArrayList<>();
+		
+		//Retrieve connection
+		try (Connection conn = ds.getConnection(); ) {
+		//Retrieve connection
+			
+			//Build query
+			String query = "SELECT * FROM Purchase WHERE datePurchased BETWEEN ? AND ?";
+			
+			if(username != null)
+				query += " AND username = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(query);
+			
+			ps.setString(1, minDate);
+			ps.setString(2, maxDate);
+			
+			if(username != null)
+				ps.setString(3, username);
+			//Build query
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				//Build purchase
+				Purchase purchase = new Purchase();
+				
+				purchase.setUsername(rs.getString("username"));
+				purchase.setDatePurchased(rs.getString("datePurchased"));
+				purchase.setId(rs.getInt("id"));
+				purchase.setPrice(rs.getInt("price"));
+				purchase.setGameId(rs.getInt("id"));
+				//Build purchase
+				
+				purchases.add(purchase);
+			}
+		}
+		
+		return purchases;
+	}
+	
 	public boolean isBuyed(int gameId, String username) throws SQLException {
 		String query = "SELECT * FROM Purchase WHERE gameId = ? AND username = ?";
 		

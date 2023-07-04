@@ -17,10 +17,10 @@ import model.Purchase;
 import model.User;
 
 @WebServlet("/user/RetrievePurchasesServlet")
-public class RetrievePurchasesServlet extends HttpServlet {
+public class RetrievePurchasesForUsernameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public RetrievePurchasesServlet() {
+    public RetrievePurchasesForUsernameServlet() {
         super();
     }
 

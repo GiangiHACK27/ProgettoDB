@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="./CSS/BaseStyle.css">
 		<link rel="stylesheet" href="./CSS/CatalogStyle.css">
 		
-		<title>Insert title here</title>
+		<title>Catalog</title>
 	</head>
 	<body>
 	
