@@ -20,7 +20,7 @@ body{
 
 section.main{
 	flex:1;
-	background-image: linear-gradient(to top,rgb(15 20 23), rgb(15 20 23), rgb(15 20 23), rgb(15 20 23), rgb(20 26 29), rgb(34 46 51), #3b596b, #304552);
+	background-image: linear-gradient(to top,rgb(15 20 23), rgb(15 20 23), rgb(15 20 23), rgb(15 20 23), rgb(20 26 29), rgb(34 46 51), #3b596b);
 }
 
 
@@ -90,14 +90,27 @@ a:hover{
   display: block;
 }
 
-input[type=text], input[type=password], input[type=email]{
-	background-color: #1d2b33;
+input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]{
+	background-color: #3f4e56;
 	color: #F2F4F3;
 	padding: 1px 5px;
 }
-input[type=text]:hover, input[type=password]:hover, input[type=email]:hover, input[type=email]:hover{
-	background-color: #3e5765;
+input[type=text]:hover, input[type=password]:hover, input[type=email]:hover, input[type=email]:hover, input[type=number]:hover, input[type=date]:hover{
+	background-color: #657e8b;
 }
+
+/*remove arrows from input number Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 input[type=submit]{
 	cursor:pointer;
 	padding: 3px;

@@ -58,7 +58,9 @@ $(document).ready(function() {
 			gameCount = responseData.gamesCount;
 			if(gameCount > 0 ){
 				$('#gameListSection').append("<div class=pageDiv>")
-				for(let i = 1; i<gameCount/10+1; i++){//i is going to count from 1 to the total number of pages
+				let pageSize = 10;
+				let numberOfPages= (gameCount-1) / pageSize +1;
+				for(let i = 1; i<=numberOfPages; i++){//i is going to count from 1 to the total number of pages
 					if(i == page){
 						//the button referring to the current page is non-selectable
 						$('#gameListSection').append("<button type=button class='selectedPageButton pageButton'>"+i+"</button>")

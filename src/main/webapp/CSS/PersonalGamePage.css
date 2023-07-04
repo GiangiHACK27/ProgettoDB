@@ -13,7 +13,7 @@ main {
 div#row-1 {
 	width: 100%;
 	
-	background-image: linear-gradient(to left, rgb(20 26 29), rgb(34 46 51),  #304552);
+	background-image: linear-gradient(to top, rgb(20 26 29), rgb(34 46 51),  #304552);
 	
 	overflow: hidden; 
 }

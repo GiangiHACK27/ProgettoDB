@@ -88,8 +88,9 @@
 							<% } %>
 						
 							<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
-						<% } %>
-												
+						<% }else{ %>
+							<button onclick="location.href='user/GameLibrary.jsp'">View in library </button>
+						<%} %>
 					<p> <%= game.getDescription()%> </p>
 				</div>
 				

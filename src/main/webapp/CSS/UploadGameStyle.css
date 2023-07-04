@@ -7,8 +7,11 @@ main {
 }
 
 #formDiv{
-	width: 40%;
+	width: 60%;
 	margin: auto;
+	background: rgba(15,20,23,1);
+	padding: 5px;
+
 }
 
 div{
