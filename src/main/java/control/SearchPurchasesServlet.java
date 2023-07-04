@@ -20,7 +20,7 @@ import dao.PurchaseDAO;
 
 import model.Purchase;
 
-@WebServlet("/user/SearchPurchasesServlet")
+@WebServlet("/admin/SearchPurchasesServlet")
 public class SearchPurchasesServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,6 +39,9 @@ public class SearchPurchasesServlet extends BaseServlet {
 		
 		//Retrieve parameter from request
 		String username = request.getParameter("username");
+		if(username.equals(""))
+			username = null;
+		
 		String minDate = request.getParameter("minDate");
 		String maxDate = request.getParameter("maxDate");
 		//Retrieve parameter from request
