@@ -79,14 +79,14 @@
 					<h1> <%= game.getName()%> </h1>
 						
 						<% if(! isBuyed) { 
+							 if(! isInWhishlist) { %>
+							<button id="addToWishlistButton" onclick="addToWishlist(<%= game.getId() %>)">Add to wishlist</button>
+						<% } %>
 							
-						  if(! isInCart) { %>
+						  <% if(! isInCart) { %>
 		 						<button id="addToCartButton" onclick="addToCart(<%= game.getId() %>)" >Add to cart</button>								
 							<% } %>
-							
-							<% if(! isInWhishlist) { %>
-								
-							<% } %>
+						
 							<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
 						<% } %>
 												

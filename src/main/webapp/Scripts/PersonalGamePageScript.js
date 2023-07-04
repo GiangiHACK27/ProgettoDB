@@ -36,7 +36,6 @@ function addToCart(id) {
 	str = str.replace(/\s/g, '');
 	
 	if(str == "") {
-		console.log("ciao");
 		$('#cartItemCount').html("1");
 	} else {
 		$('#cartItemCount').html(parseInt(str) + 1);	
@@ -45,3 +44,13 @@ function addToCart(id) {
 	$('#addToCartButton').css("display", "none");
 }
 //Function for add to cart button
+
+//Function for add to wishlist button
+function addToWishlist(id) {
+	$.ajaxSetup({ type: "GET", timeout : 10000 });
+	
+	$.get("/GamingWorldShop/AddToCartServlet?gameId="+id+"&category=wishlist");
+	
+	$('#addToWishlistButton').css("display", "none");
+}
+//Function for add to wishlist button
