@@ -37,19 +37,30 @@ public class MainContext implements ServletContextListener {
 		context.setAttribute("DataSource", ds);
 		//Init data source and add data source to the ServletContext
 		
-		//Retrieve max price from Games
+		//Retrieve max price from Games(only listed)
 		GameDAO gameDAO = new GameDAO(ds);
 		
 		int maxPrice = 0;
 		try {
-			maxPrice = gameDAO.retrieveMaxPriceGame();
+			maxPrice = gameDAO.retrieveMaxPriceGame(false);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		context.setAttribute("maxPrice", maxPrice);
-		//Retrieve max price from Games
+		//Retrieve max price from Games(only listed)
 		
+		//Retrieve max price from Games(even unlisted games)
+		int maxPriceUnlisted = 0;
+		try {
+			maxPriceUnlisted = gameDAO.retrieveMaxPriceGame(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		context.setAttribute("maxPriceUnlisted", maxPriceUnlisted);
+		//Retrieve max price from Games(even unlisted games)
+				
 		//retrieve all categories
 		CategoryDAO categoryDAO = new CategoryDAO(ds);
 		List<Category> categoryList = null;

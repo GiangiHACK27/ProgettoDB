@@ -4,19 +4,20 @@
     import="java.util.List"
     import="model.Game"
     import="model.Game.Pegi"
+    import="model.User"
     %>
 <!DOCTYPE html>
 <html lang = en>
-	<head>
-		<link rel="stylesheet" href="./CSS/CatalogStyle.css">
-		
+	<head>		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src=./Scripts/CatalogScript.js></script>
 		
 		<meta charset="ISO-8859-1">
+		
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 		
 		<link rel="stylesheet" href="./CSS/BaseStyle.css">
+		<link rel="stylesheet" href="./CSS/CatalogStyle.css">
 		
 		<title>Insert title here</title>
 	</head>
@@ -41,6 +42,11 @@
 		</section>
 		<section id=filterSection>
 			<%int maxPrice =  (int) application.getAttribute("maxPrice");
+			
+			User user = (User)session.getAttribute("user");
+			if(user != null && user.getRole().equals(User.Role.ADMIN))
+				maxPrice = (int) application.getAttribute("maxPriceUnlisted");
+						
 			Integer currentMaxPrice = maxPrice;
 			String t = request.getParameter("currentMaxPrice");
 			if (t != null)

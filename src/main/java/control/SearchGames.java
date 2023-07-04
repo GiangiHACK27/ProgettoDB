@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import dao.GameDAO;
+
+import model.User;
 import model.Category;
 import model.Game;
 import model.Game.Pegi;
@@ -43,9 +45,16 @@ public class SearchGames extends BaseServlet {
 			for(String p : parameterCategories) {
 				categoriesToSearch.add(new Category(p));
 			}
-		}
+		}		
+		
+		boolean unListed = false;
+		User user = (User) request.getSession().getAttribute("user");
+		if(user != null && user.getRole().equals(User.Role.ADMIN))
+			unListed = true;
 		
 		int currentMaxPrice = (Integer)request.getServletContext().getAttribute("maxPrice");
+		if(unListed)
+			currentMaxPrice = (Integer)request.getServletContext().getAttribute("maxPriceUnlisted");
 		String t = request.getParameter("currentMaxPrice");
 		if(t != null)
 			currentMaxPrice = Integer.parseInt(t);
@@ -80,9 +89,9 @@ public class SearchGames extends BaseServlet {
 		try {
 			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi, searchText, order, 
 					sizeOfPagination, 
-					sizeOfPagination * (page - 1));
+					sizeOfPagination * (page - 1), unListed);
 			
-			size = gameDAO.countGames(categoriesToSearch, currentMaxPrice, pegi, searchText);
+			size = gameDAO.countGames(categoriesToSearch, currentMaxPrice, pegi, searchText, unListed);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	

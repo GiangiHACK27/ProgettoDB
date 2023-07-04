@@ -57,7 +57,7 @@ public class GameDAO extends BaseDAO {
 		return id;
 	}
 	
-	public int countGames(List<Category> categories, int maxPrice, int pegi, String searchText) throws SQLException {
+	public int countGames(List<Category> categories, int maxPrice, int pegi, String searchText, boolean unListed) throws SQLException {
 		int size = 0;
 		
 		PreparedStatement ps = null;
@@ -87,6 +87,15 @@ public class GameDAO extends BaseDAO {
                             + categoriesToSearch
                             + "AND G.price <= ? AND "
                             + "G.pegi <= ? AND INSTR(G.name, ?) > 0 ";
+			
+			if(unListed == false)
+				query = "SELECT DISTINCT Count(id) as count"
+	                    + " FROM Game as G, Belongs as B, Category as C "
+	                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+	                            + categoriesToSearch
+	                            + "AND G.price <= ? AND "
+	                            + "G.state != 'unlisted' AND "
+	                            + "G.pegi <= ? AND INSTR(G.name, ?) > 0 ";
 			
 			ps = conn.prepareStatement(query);
 			
@@ -120,7 +129,7 @@ public class GameDAO extends BaseDAO {
 		return size;
 	}
 	
-	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi, String searchText, String order, int limit, int offset) throws SQLException {
+	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi, String searchText, String order, int limit, int offset, boolean unListed) throws SQLException {
 		List<Game> games = new ArrayList<>();
 		
 		PreparedStatement ps = null;
@@ -152,6 +161,18 @@ public class GameDAO extends BaseDAO {
                             + "G.pegi <= ? AND INSTR(G.name, ?) > 0 "
                             + "ORDER BY " + order
                             + " LIMIT ? OFFSET ?";
+			
+			if(unListed == false) {
+				query = "SELECT DISTINCT id, price, G.name, description, shortDescription, releaseDate, state, pegi, publisher"
+	                    + " FROM Game as G, Belongs as B, Category as C "
+	                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+	                            + categoriesToSearch
+	                            + "AND G.price <= ? AND "
+	                            + "G.pegi <= ? AND INSTR(G.name, ?) > 0 "
+	                            + "AND G.state != 'unlisted' "
+	                            + "ORDER BY " + order
+	                            + " LIMIT ? OFFSET ?";
+			}
 			
 			ps = conn.prepareStatement(query);
 			
@@ -249,10 +270,12 @@ public class GameDAO extends BaseDAO {
 		return game;
 	}
 	
-	public int retrieveMaxPriceGame() throws SQLException {
+	public int retrieveMaxPriceGame(boolean unListed) throws SQLException {
 		int maxPrice = 0;
 		
-		String query = "SELECT MAX(price) as max FROM Game";
+		String query = "SELECT MAX(price) as max FROM Game WHERE state != 'unlisted'";
+		if(unListed == true)
+			query = "SELECT MAX(price) as max FROM Game";
 		
 		//Retrieve connection and make prepared statement
 		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {

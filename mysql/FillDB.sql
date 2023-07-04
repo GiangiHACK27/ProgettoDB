@@ -14,17 +14,18 @@ INSERT INTO Game (price, name, description, shortDescription) values (15, "Titol
 INSERT INTO Game (price, name, description, shortDescription) values (17, "Titolo3", "Ciao blelo", "bello");
 INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo4", "Ciao bella", "bella");
 INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo6", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo7", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo5", "Ciao bella", "bella");
 INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo8", "Ciao bella", "bella");
 INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo9", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
-INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo2", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo7", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo10", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo11", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo12", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo13", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo14", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo15", "Ciao bella", "bella");
+INSERT INTO Game (price, name, description, shortDescription, state) values (30, "hey", "Ciao bella", "bella", "unlisted");
+
 
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Windows", 1);
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1);
@@ -44,6 +45,8 @@ INSERT INTO Belongs values ("categoria1", 11);
 INSERT INTO Belongs values ("categoria1", 12);
 INSERT INTO Belongs values ("categoria1", 13);
 INSERT INTO Belongs values ("categoria1", 14);
+INSERT INTO Belongs values ("categoria1", 15);
+INSERT INTO Belongs values ("categoria1", 16);
 
 INSERT INTO Review (gameId, username) values (1, "tonaion");
 INSERT INTO Likes values (1, "AleCoppola02"); 
