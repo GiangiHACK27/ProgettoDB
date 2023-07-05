@@ -163,12 +163,17 @@ public class GameUploadServlet extends BaseServlet {
 		}
 		//insert system requirements
 		
-		//Check if we must update max price of games
+		//Check if we must update max price of games, and max price unlisted
 		Integer maxPrice = (Integer)getServletContext().getAttribute("maxPrice");
 		
 		if(maxPrice.compareTo(price) < 0) 
 			getServletContext().setAttribute("maxPrice", price);
-		//Check if we must update max price of games
+		
+		Integer maxPriceUnlisted = (Integer)getServletContext().getAttribute("maxPriceUnlisted");
+		
+		if(maxPriceUnlisted.compareTo(price) < 0)
+			getServletContext().setAttribute("maxPriceUnlisted", price);
+		//Check if we must update max price of games, and max price unlisted
 		
 		response.sendRedirect(request.getContextPath() + "/PersonalGamePage.jsp?gameId=" + Integer.toString(gameId));
 	}

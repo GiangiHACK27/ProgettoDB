@@ -59,6 +59,9 @@ public class SearchGames extends BaseServlet {
 		if(t != null)
 			currentMaxPrice = Integer.parseInt(t);
 		
+		System.out.println(request.getServletContext().getAttribute("maxPrice"));
+		System.out.println(request.getServletContext().getAttribute("maxPriceUnlisted"));
+		
 		int pegi = Pegi.PEGI_18.getValue();
 		t = request.getParameter("pegi");
 		if(t != null)

@@ -48,14 +48,14 @@
 				maxPrice = (int) application.getAttribute("maxPriceUnlisted");
 						
 			Integer currentMaxPrice = maxPrice;
-			String t = request.getParameter("currentMaxPrice");
+			/* String t = request.getParameter("currentMaxPrice");
 			if (t != null)
-				currentMaxPrice = Integer.parseInt(t);
+				currentMaxPrice = Integer.parseInt(t); */
 			
 			String[] alreadyCheckedCategories = request.getParameterValues("categories");
 			
 			int oldPegi = 18;
-			t = request.getParameter("pegi");
+			String t = request.getParameter("pegi");
 			if(t != null)
 				oldPegi = Integer.parseInt(t);
 			%>
@@ -90,7 +90,6 @@
 					Price range:<br> 0
 					<input type="range" id=range name="currentMaxPrice" min="0" max="<%= maxPrice%>" value="<%= currentMaxPrice%>"
 					 oninput= "rangeOutput.value=formatPrice(range.value)"><output id = rangeOutput><%= maxPrice%></output>
-					 
 				</div>
 				
 				<div id = pegiDiv>
