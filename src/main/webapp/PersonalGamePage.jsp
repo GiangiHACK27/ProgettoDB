@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import="model.Game, model.SystemRequirement, java.util.*" %>
+    import="model.Game, model.SystemRequirement, java.util.*, model.User, model.User.Role" %>
 <!DOCTYPE html>
 <html lang = en>
 	<head>
@@ -24,7 +24,8 @@
 		<jsp:include page="/RetrieveGameRequirementsServlet"></jsp:include>
 		
 		<% Game game = (Game)request.getAttribute("game"); %>
-		
+		<% User user = (User) session.getAttribute("user"); %>
+
 		<jsp:include page="/RetrieveGameStatusServlet?gameId=<%= game.getId()%>"></jsp:include>
 		
 		<%		boolean isInCart = (boolean)request.getAttribute("isInCart");
@@ -79,7 +80,7 @@
 					<h1> <%= game.getName()%> </h1>
 						
 						<% if(! isBuyed) { 
-							 if(! isInWhishlist) { %>
+							 if(! isInWhishlist && user != null) { %>
 							<button id="addToWishlistButton" onclick="addToWishlist(<%= game.getId() %>)">Add to wishlist</button>
 						<% } %>
 							
