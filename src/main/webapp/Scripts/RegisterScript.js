@@ -1,7 +1,7 @@
 const nameOrLastnameErrorMessage = "This field should contain only letters";
 const emailErrorMessage = "The email field should be in the form username@domain.ext";
 const passwordErrorMessage= "Your password must contain between 8 and 30 characters, at least one uppercase letter, one lowercase letter, one number and one special character like @$!%*?&"
-
+const usernameErrorMessage = "Username can contain at most 25 characters"
 const alreadyTaken = " is already taken";
 
 

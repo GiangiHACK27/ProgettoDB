@@ -40,7 +40,7 @@
 						<div id=usernameDiv class=inputDiv>
 							<label for=username>Username:</label>
 							
-							<input type="text" name="username" required value="<%= usernameOld%>" onchange="validateFormElem(this, document.getElementById('errorDiv', null))">
+							<input type="text" name="username" required pattern="^.{1,20}$" value="<%= usernameOld%>" onchange="validateFormElem(this, document.getElementById('errorDiv'), usernameErrorMessage)">
 						</div>
 						
 						<div id=emailDiv class=inputDiv>	
