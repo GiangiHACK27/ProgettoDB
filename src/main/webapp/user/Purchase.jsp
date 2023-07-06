@@ -55,7 +55,7 @@
 										<div class="row">
 											<div class="col-50">
 												<label for="state">State</label> <input type="text"
-													id="state" name="state" placeholder="NY" required pattern="^.{2,2}$">
+													id="state" name="state" placeholder="NY" required pattern="^\w{2,2}$">
 											</div>
 											<div class="col-50">
 												<label for="zip">Zip</label> <input type="text" id="zip"
