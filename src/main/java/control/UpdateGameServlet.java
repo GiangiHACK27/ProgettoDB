@@ -1,10 +1,10 @@
 package control;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -13,31 +13,42 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
+import com.mysql.cj.Session;
+
+import dao.BelongsDAO;
 import dao.GameDAO;
 import dao.ImageDAO;
 import dao.SystemRequirementDAO;
-import dao.BelongsDAO;
-
-import model.Game;
 import model.Belong;
+import model.Game;
 import model.SystemRequirement;
 import model.SystemRequirement.OperatingSystem;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
 maxRequestSize = 1024 * 1024 * 50) // 50MB
-@WebServlet("/admin/GameUploadServlet")
-public class GameUploadServlet extends BaseServlet {
+@WebServlet("/admin/UpdateGameServlet")
+public class UpdateGameServlet extends BaseServlet {
 	
-	public GameUploadServlet() {
+	public UpdateGameServlet() {
         super(); 
     }
 	
-	private void uploadImage(ImageDAO imageDAO, int gameId, Part image, String role ) throws SQLException, IOException {
+	private void updateImage(ImageDAO imageDAO, int gameId, Part image, String role ) throws SQLException, IOException {
+		//image remains unchanged if no new image was inserted
+		if(image.getSize() <=0) {
+			return;
+		}
+		//image remains unchanged if no new image was inserted
+		
 		//upload image into database
 		int imageId = imageDAO.insertImage(image.getInputStream().readAllBytes());
 		//upload image into database
 
+		//remove the image that was there previously
+		imageDAO.removeImageGame(gameId, role);
+		//remove the image that was there previously
+		
 		//update represented table with role
 		imageDAO.connectImageGame(imageId, gameId, role);
 		//update represented table with role
@@ -99,7 +110,7 @@ public class GameUploadServlet extends BaseServlet {
 		String shortDescription = request.getParameter("shortDescription");
 		String releaseDate = request.getParameter("releaseDate");
 		String pegi = request.getParameter("pegi");
-		
+		int gameId = Integer.parseInt(request.getParameter("gameId"));
 		String[] parameterCategories = request.getParameterValues("categories");
 		//Get game data from request
 		
@@ -113,22 +124,57 @@ public class GameUploadServlet extends BaseServlet {
 		game.setReleaseDate(releaseDate);
 		game.setShortDescription(shortDescription);
 		game.setState(Game.State.valueOf(state.toUpperCase()));
+		game.setId(gameId);
 		//make game DTO
 
 
-		//insert game into database
+		//update game in database
 		GameDAO gameDAO = new GameDAO(dataSource);
-		int gameId = 0;
 		try {
-			gameId = gameDAO.insertGame(game);
+			gameDAO.updateGame(game);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			showError(request, response, "Internal error while uploading game", selfPath);
 			return;
 		}
-		//insert game into database
+		//update game in database
+		
+		//update both max prices (throw inside pattern)
+		//Retrieve max price from Games(only listed)
+		ServletContext context = request.getServletContext();
+		int maxPrice = 0;
+		try {
+			maxPrice = gameDAO.retrieveMaxPriceGame(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		context.setAttribute("maxPrice", maxPrice);
+		//Retrieve max price from Games(only listed)
+		
+		//Retrieve max price from Games(even unlisted games)
+		int maxPriceUnlisted = 0;
+		try {
+			maxPriceUnlisted = gameDAO.retrieveMaxPriceGame(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		context.setAttribute("maxPriceUnlisted", maxPriceUnlisted);
+		//Retrieve max price from Games(even unlisted games)
+		//update both max prices (throw inside pattern)
+
 		
 		//Insert relation between categories and game to add
 		BelongsDAO belongDAO = new BelongsDAO(dataSource);
+		
+		//remove all previous categories from game
+		try {
+			belongDAO.deleteAllBelongs(gameId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//remove all previous categories from game
 		
 		Belong belong = new Belong();
 		belong.setGameId(gameId);
@@ -148,7 +194,7 @@ public class GameUploadServlet extends BaseServlet {
 		//insert banner image
 		Part bannerImage = request.getPart("bannerImage");
 		try {
-			uploadImage(imageDAO, gameId, bannerImage, "BANNER");
+			updateImage(imageDAO, gameId, bannerImage, "BANNER");
 		} catch (SQLException | IOException e) {
 			showError(request, response, "Error uploading banner image", selfPath);
 		}
@@ -157,7 +203,7 @@ public class GameUploadServlet extends BaseServlet {
 		//insert showcase image
 		Part showcaseImage = request.getPart("showcaseImage");
 		try {
-			uploadImage(imageDAO, gameId, showcaseImage, "SHOWCASE");
+			updateImage(imageDAO, gameId, showcaseImage, "SHOWCASE");
 		} catch (SQLException | IOException e) {
 			showError(request, response, "Error uploading banner image", selfPath);
 		}
@@ -166,6 +212,14 @@ public class GameUploadServlet extends BaseServlet {
 		
 		//insert system requirements
 		SystemRequirementDAO dao = new SystemRequirementDAO(dataSource);
+		
+		//delete previous requirements
+		try {
+			dao.deleteRequirements(gameId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//delete previous requirements
 		try {
 			uploadRequirements(dao, gameId, "WINDOWS", request.getParameterValues("windows[name][]"), request.getParameterValues("windows[value][]"));
 			uploadRequirements(dao, gameId, "MAC", request.getParameterValues("mac[name][]"), request.getParameterValues("mac[value][]"));
@@ -176,21 +230,9 @@ public class GameUploadServlet extends BaseServlet {
 		}
 		//insert system requirements
 		
-		//Check if we must update max price of games, and max price unlisted
-		Integer maxPrice = (Integer)getServletContext().getAttribute("maxPrice");
-		
-		if(maxPrice.compareTo(price) < 0) 
-			getServletContext().setAttribute("maxPrice", price);
-		
-		Integer maxPriceUnlisted = (Integer)getServletContext().getAttribute("maxPriceUnlisted");
-		
-		if(maxPriceUnlisted.compareTo(price) < 0)
-			getServletContext().setAttribute("maxPriceUnlisted", price);
-		//Check if we must update max price of games, and max price unlisted
-		
 		response.sendRedirect(request.getContextPath() + "/PersonalGamePage.jsp?gameId=" + Integer.toString(gameId));
 	}
 	
-	private static final long serialVersionUID = 1503010158356860644L;
-	private static final String selfPath = "/admin/UploadGame.jsp";
+	private static final String selfPath = "/admin/UpdateGame.jsp";
+	private static final long serialVersionUID = -7220384849245062203L;
 }

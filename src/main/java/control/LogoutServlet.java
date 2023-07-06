@@ -17,7 +17,7 @@ public class LogoutServlet extends BaseServlet {
 	protected void clearSessionUser(HttpServletRequest request) {
 		request.getSession().setAttribute("user", null);
 		request.getSession().setAttribute("cart", null);
-		request.getSession().setAttribute("whishlist", null);
+		request.getSession().setAttribute("wishlist", null);
 	}
 	
 	@Override

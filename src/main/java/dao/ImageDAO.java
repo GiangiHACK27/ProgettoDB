@@ -104,5 +104,19 @@ public class ImageDAO extends BaseDAO {
 
 			ps.execute();	
 		}
+	}
+	public synchronized void removeImageGame(int gameId, String role) throws SQLException {
+
+		String query = "DELETE FROM represented WHERE represented.gameId = ? AND represented.role= ?";
+		
+		//Retrieve connection and make prepared statement	
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+		//Retrieve connection and make prepared statement
+			
+			ps.setInt(1, gameId);
+			ps.setString(2, role);
+
+			ps.execute();	
+		}
 	} 
 }

@@ -26,9 +26,27 @@ public class BelongsDAO extends BaseDAO {
 			ps.setInt(2, belong.getGameId());
 			//Set prepared statement values
 
-			//Insert user into database
+			//Insert belong into database
 			ps.execute();
-			//Insert user into database	
+			//Insert belong into database	
 		} 
 	}
+	
+	public void deleteAllBelongs(int gameId) throws SQLException {
+		String query = "DELETE FROM Belongs WHERE Belongs.gameId= ?";
+		
+		// Retrieve connection and make prepared statement
+			try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query);) {
+			// Retrieve connection and make prepared statement	
+
+				//Set prepared statement values
+				ps.setInt(1, gameId);
+				//Set prepared statement values
+
+				//execute
+				ps.execute();
+				//execute	
+			}
+	}
+	
 }

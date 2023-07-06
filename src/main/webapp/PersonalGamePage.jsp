@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import="model.Game, model.SystemRequirement, java.util.*, model.User, model.User.Role" %>
+    import="model.Game, model.SystemRequirement, java.util.*, model.User, model.Game.State, model.User.Role" %>
 <!DOCTYPE html>
 <html lang = en>
 	<head>
@@ -26,10 +26,10 @@
 		<% Game game = (Game)request.getAttribute("game"); %>
 		<% User user = (User) session.getAttribute("user"); %>
 
-		<jsp:include page="/RetrieveGameStatusServlet?gameId=<%= game.getId()%>"></jsp:include>
+		<jsp:include page="/RetrieveGameStatusServlet?gameId=<%=game.getId()%>"></jsp:include>
 		
 		<%		boolean isInCart = (boolean)request.getAttribute("isInCart");
-				boolean isInWhishlist = (boolean)request.getAttribute("isInWhishlist");
+				boolean isInWishlist = (boolean)request.getAttribute("isInWishlist");
 				boolean isBuyed = (boolean)request.getAttribute("isBuyed"); %>
 		<!-- Retrieve info about the game -->
 		
@@ -38,6 +38,9 @@
 		<section class=main>
 		
 		<main>
+			<%if(user != null && user.getRole().equals(User.Role.ADMIN)){%>
+				<button onclick="location.href='admin/UpdateGame.jsp?gameId=<%=game.getId()%>'" id=updateGameButton>Edit game</button>
+			<%} %>
 			<div id=row-1>
 				<div id=sliderImages>
 					<img id=imageSlider src="RetrieveGameImageServlet?gameId=<%=game.getId()%>&role=SHOWCASE">
@@ -66,7 +69,7 @@
 							
 							<tr>
 								<td>
-									<span class="infoShortDescription">State:</span> <%= game.getState().toString().toLowerCase() %>
+									<span class="infoShortDescription">State:</span> <%= game.getState().getValue().replace('_', ' ') %>
 								</td>
 							</tr>
 
@@ -78,19 +81,20 @@
 			<div id="row-2">
 				<div id="description">
 					<h1> <%= game.getName()%> </h1>
-						
-						<% if(! isBuyed) { 
-							 if(! isInWhishlist && user != null) { %>
-							<button id="addToWishlistButton" onclick="addToWishlist(<%= game.getId() %>)">Add to wishlist</button>
-						<% } %>
-							
-						  <% if(! isInCart) { %>
-		 						<button id="addToCartButton" onclick="addToCart(<%= game.getId() %>)" >Add to cart</button>								
+						<%if(!game.getState().equals(State.UNLISTED)){ %>
+							<% if(! isBuyed) { 
+								 if(! isInWishlist && user != null) { %>
+								<button id="addToWishlistButton" onclick="addToWishlist(<%= game.getId() %>)">Add to wishlist</button>
 							<% } %>
-						
-							<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
-						<% }else{ %>
-							<button onclick="location.href='user/GameLibrary.jsp'">View in library </button>
+								
+							  <% if(! isInCart) { %>
+			 						<button id="addToCartButton" onclick="addToCart(<%= game.getId() %>)" >Add to cart</button>								
+								<% } %>
+							
+								<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
+							<% }else{ %>
+								<button onclick="location.href='user/GameLibrary.jsp'">View in library </button>
+							<%} %>
 						<%} %>
 					<p> <%= game.getDescription()%> </p>
 				</div>

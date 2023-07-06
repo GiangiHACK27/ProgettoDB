@@ -163,6 +163,11 @@ textarea::-webkit-scrollbar-track{
 	border: thin solid red;
 }
 
+.errorDiv{
+	text-align:center;
+	color: red;
+}
+
 select {
 	background-color: #537a92;
 	color: #F2F4F3;

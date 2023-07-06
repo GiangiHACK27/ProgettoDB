@@ -40,12 +40,13 @@
 				<div id=submitDiv class=submitDiv>
 					<input type="submit" name="submit" value="Login" id=submit>
 				</div>
-				<div id=errorDiv>
-						<% String logError = (String)request.getAttribute("logError");
-						  if(logError != null) { %>
+				<% String logError = (String)request.getAttribute("logError");
+					if(logError != null) { %>
+				<div id=errorDiv class=errorDiv>
 							<p>Error: <%=  logError%></p>
-						<%} %>
+
 				</div>
+						<%} %>
 			</form>
 		</div>
 		

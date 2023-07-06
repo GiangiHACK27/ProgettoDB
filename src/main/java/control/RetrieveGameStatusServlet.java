@@ -52,16 +52,16 @@ public class RetrieveGameStatusServlet extends BaseServlet {
 			isInCart = cart.isInCart(gameId);
 		//Retrieve cart and check if gameId is in the cart
 		
-		//Retrieve whishlist and check if gameId is in the whishlist
+		//Retrieve wishlist and check if gameId is in the wishlist
 		dispatcher = request.getRequestDispatcher("RetrieveCartServlet?category=wishlist");
 		dispatcher.include(request, response);
 		
-		Cart whishlist = (Cart)request.getAttribute("whishlistForView");
+		Cart wishlist = (Cart)request.getAttribute("wishlistForView");
 		
-		boolean isInWhishlist = false;
-		if(whishlist != null)
-			isInWhishlist = whishlist.isInCart(gameId);
-		//Retrieve whishlist and check if gameId is in the whishlist
+		boolean isInWishlist = false;
+		if(wishlist != null)
+			isInWishlist = wishlist.isInCart(gameId);
+		//Retrieve wishlist and check if gameId is in the wishlist
 		
 		//Check if the game is buyed
 		DataSource dataSource = (DataSource)request.getServletContext().getAttribute("DataSource");
@@ -78,7 +78,7 @@ public class RetrieveGameStatusServlet extends BaseServlet {
 		
 		//Put in request all the info
 		request.setAttribute("isInCart", isInCart);
-		request.setAttribute("isInWhishlist", isInWhishlist);
+		request.setAttribute("isInWishlist", isInWishlist);
 		request.setAttribute("isBuyed", isBuyed);
 		//Put in request all the info
 	}

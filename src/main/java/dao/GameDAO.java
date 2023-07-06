@@ -20,26 +20,25 @@ public class GameDAO extends BaseDAO {
 		super(ds);
 	}
 	
-	public int insertGame  (int price, String name, String description,
-							String state, String shortDescription,
-							String releaseDate, String pegi) throws SQLException {
+	public int insertGame  (Game game) throws SQLException {
 		int id = 0;
 		
 		String query = "INSERT into game (price, name, description, state,"
-				+"shortDescription, releaseDate, pegi) values ( ?, ?, ?, ?, ?, ?, ?)";
+				+"shortDescription, releaseDate, pegi, publisher) values ( ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		// Retrieve connection and make prepared statement with tag to return generated keys
 		try (Connection conn = ds.getConnection();PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); ) {
 		// Retrieve connection and make prepared statement with tag to return generated keys	
 
 			//Set prepared statement values
-			ps.setInt(1, price);
-			ps.setString(2, name);
-			ps.setString(3, description);
-			ps.setString(4, State.valueOf(state.toUpperCase()).getValue());
-			ps.setString(5, shortDescription);
-			ps.setString(6, releaseDate);
-			ps.setInt(7, Pegi.valueOf(pegi.toUpperCase()).getValue());
+			ps.setInt(1, game.getPrice());
+			ps.setString(2, game.getName());
+			ps.setString(3, game.getDescription());
+			ps.setString(4, game.getState().getValue());
+			ps.setString(5, game.getShortDescription());
+			ps.setString(6, game.getReleaseDate());
+			ps.setInt(7, game.getPegi().getValue());
+			ps.setString(8, game.getPublisher());
 			//Set prepared statement values
 
 			//Insert user into database
@@ -55,6 +54,37 @@ public class GameDAO extends BaseDAO {
 		}
 		
 		return id;
+	}
+	
+	public void updateGame  (Game game) throws SQLException {
+		
+		String query = "UPDATE game "
+				+ "SET price= ?, name= ?, description= ?, state= ?,"
+				+"shortDescription= ?, releaseDate= ?, pegi= ?, publisher= ?"
+				+ "WHERE game.id = ?";
+		
+		// Retrieve connection and make prepared statement with tag to return generated keys
+		try (Connection conn = ds.getConnection();PreparedStatement ps = conn.prepareStatement(query); ) {
+		// Retrieve connection and make prepared statement with tag to return generated keys	
+
+			//Set prepared statement values
+			ps.setInt(1, game.getPrice());
+			ps.setString(2, game.getName());
+			ps.setString(3, game.getDescription());
+			ps.setString(4, game.getState().getValue());
+			ps.setString(5, game.getShortDescription());
+			ps.setString(6, game.getReleaseDate());
+			ps.setInt(7, game.getPegi().getValue());
+			ps.setString(8, game.getPublisher());
+			ps.setInt(9, game.getId());
+			//Set prepared statement values
+
+			//Insert user into database
+			ps.execute();
+			//Insert user into database
+
+		}
+		
 	}
 	
 	public int countGames(List<Category> categories, int maxPrice, int pegi, String searchText, boolean unListed) throws SQLException {
@@ -254,6 +284,7 @@ public class GameDAO extends BaseDAO {
 				game.setName(rs.getString("name"));
 				game.setPrice(rs.getInt("price"));
 				game.setDescription(rs.getString("description"));
+				game.setReleaseDate(rs.getString("releaseDate"));
 				game.setShortDescription(rs.getString("shortDescription"));
 				game.setPublisher(rs.getString("publisher"));
 				game.setState(State.valueOf(rs.getString("state").toUpperCase()));

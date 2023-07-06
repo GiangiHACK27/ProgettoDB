@@ -53,8 +53,9 @@ public class RegisterServlet extends BaseServlet {
 		//Get user data from request
 		
 		//Check if password and email are valid with regex
-		if(!mailPattern.matcher(email).find() || !passwordPattern.matcher(password).find() || usernamePattern.matcher(username).find()) {
+		if(!mailPattern.matcher(email).find() || !passwordPattern.matcher(password).find() || !usernamePattern.matcher(username).find()) {
 			showError(request, response, "Invalid inputs", selfPath);
+			return;
 		}
 		//Check if password and email are valid with regex
 
@@ -73,6 +74,7 @@ public class RegisterServlet extends BaseServlet {
 		try {
 			userDAO.insertUser(username, hashPassword, email);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			showError(request, response, "Credentials already taken", selfPath);
 
 			return;

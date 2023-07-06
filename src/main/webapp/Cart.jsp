@@ -56,7 +56,7 @@
 
 		<section id=options>
 			<div id="purchaseButton">
-				<button onclick="location.href='user/Purchase.jsp?from=cart'">Go to checkout</button> 	
+				<button onclick="location.href='user/Purchase.jsp?from=cart'">Go to checkout</button> <span id=totalPrice></span>	
 			</div> 
 			
 			<div id=emptyCartOption>

@@ -34,6 +34,9 @@
 					<div id=nameDiv>
 						Name: <input type="text" name="name" required maxlength="30"> 
 					</div>
+					<div id=publisherDiv>
+						Publisher: <input type="text" name="publisher" required maxlength="30"> 
+					</div>
 					<div id=descriptionDiv>
 						Description:<br> <textarea name="description" rows=30 cols=80 required> </textarea>
 					</div> 
@@ -54,7 +57,7 @@
 						</select> 
 					</div> 	
 					<div id=releaseDateDiv>		
-						Release date: <input type="date" name="releaseDate" min="2023-05-12" max="2025-01-01" required> 
+						Release date: <input type="date" id=releaseDate name="releaseDate" min="1980-01-01" max="2027-01-01" required> 
 					</div>
 					<div id=pegiDiv>
 						Pegi:
@@ -96,11 +99,6 @@
 					  <div id="mac" class="section">
 					    <h3>Mac requirements</h3>
 					    <div class="nameValueFields">
-					      <div class="nameValueRow">
-					        <input type="text" required name="mac[name][]" placeholder="Hardware type" maxlength="30">
-					        <input type="text" required name="mac[value][]" placeholder="Value" maxlength="30">
-					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
-					      </div>
 					    </div>
 					    <button type="button" onclick="addNameValueRow('mac')">Add requirement</button>
 					  </div>
@@ -108,11 +106,6 @@
 					  <div id="linux" class="section">
 					    <h3>Linux requirements</h3>
 					    <div class="nameValueFields">
-					      <div class="nameValueRow">
-					        <input type="text" required name="linux[name][]" placeholder="Hardware type" maxlength="30">
-					        <input type="text" required name="linux[value][]" placeholder="Value" maxlength="30">
-					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
-					      </div>
 					    </div>
 					    <button type="button" onclick="addNameValueRow('linux')">Add requirement</button>
 					  </div>

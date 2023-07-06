@@ -80,7 +80,7 @@ CREATE TABLE Interested (
 		foreign key (gameId) references Game (id),
 	CONSTRAINT usernameConsInterested
 		foreign key (username) references User (username),
-	primary key(gameId, username)
+	primary key(gameId, username, category)
 );
 
 CREATE TABLE Purchase (

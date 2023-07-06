@@ -1,7 +1,8 @@
 $(document).ready(function() {
-	//set max date as current date
-	document.getElementById('releaseDate').valueAsDate = new Date();
-	//set max date as current date
+	
+	//convert price
+	convertToDecimal(document.getElementById('price'))
+	//convert price
 	
 	//This function removes the 'required' tag from checkboxes when at least one is selected, and adds it when they're all unselected
     var requiredCheckboxes = $(':checkbox[required]');
@@ -13,6 +14,7 @@ $(document).ready(function() {
         }
     });
     //This function removes the 'required' tag from checkboxes when at least one is selected, and adds it when they're all unselected
+    
     
 })
 

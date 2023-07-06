@@ -75,4 +75,21 @@ public class SystemRequirementDAO extends BaseDAO {
 			//Insert user into database
 		}
 	}
+	
+	public void deleteRequirements(int gameId) throws SQLException {
+		String query = "DELETE FROM systemrequirement WHERE gameId = ?";
+		
+		// Retrieve connection and make prepared statement with tag to return generated keys
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ) {
+		// Retrieve connection and make prepared statement with tag to return generated keys	
+
+			//Set prepared statement values
+			ps.setInt(1, gameId);
+			//Set prepared statement values
+
+			//Insert user into database
+			ps.execute();
+			//Insert user into database
+		}
+	}
 }
