@@ -47,7 +47,7 @@
 			 			</p>
 			 			
 			 			<p class=gamePrice>
-			 					Purchased for: <span id= price><%=purchase.getPrice()%></span>
+			 					Purchased for: <span class = price><%=purchase.getPrice()%></span>
 			 			</p>
 			 					 			
 			 			<p class=gameTitle>
