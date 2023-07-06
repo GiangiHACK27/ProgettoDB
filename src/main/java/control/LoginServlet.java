@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.sql.DataSource;
 
+import dao.InterestedDAO;
 import dao.UserDAO;
 import model.User;
 import utility.Hasher;
 
 import java.security.NoSuchAlgorithmException;
+import model.Cart;
+import model.Interested;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends BaseServlet {
@@ -90,6 +93,12 @@ public class LoginServlet extends BaseServlet {
 		}
 		//Check if password matches
 		
+
+		
+		//get session cart before clearing session
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		//get session cart before clearing session
+		
 		//Clean past session
 		request.getSession().invalidate();
 		//Clean past session
@@ -98,6 +107,33 @@ public class LoginServlet extends BaseServlet {
 		request.getSession().setAttribute("user", user);
 		//Add attribute user in the session(to remember the login)
 		
+		//if cart is not empty, replace cart that was previously stored in database with current cart
+		if(cart != null) {
+			
+			DataSource dataSource = (DataSource) request.getServletContext().getAttribute("DataSource");
+			InterestedDAO interestedDAO = new InterestedDAO(dataSource);
+			try {
+				interestedDAO.removeCart(username, Interested.Category.CART);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			for(int id : cart.getGames()) {
+				Interested interested = new Interested();
+				interested.setCategory(Interested.Category.CART);
+				interested.setUsername(username);
+				interested.setGameId(id);
+				
+				try {
+					interestedDAO.insertInterest(interested);
+				} catch (SQLException e) {
+					e.printStackTrace();				
+					break;
+				}
+			}
+		}
+		//if cart is not empty, replace cart that was previously stored in database with current cart
+
 		//Redirect to personal area
 		response.sendRedirect("/GamingWorldShop/user/PersonalArea.jsp");	
 		//Redirect to personal area

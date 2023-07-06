@@ -89,6 +89,8 @@ public class RegisterServlet extends BaseServlet {
 			DataSource dataSource = (DataSource) request.getServletContext().getAttribute("DataSource");
 			InterestedDAO interestedDAO = new InterestedDAO(dataSource);
 			
+
+			
 			for(int id : cart.getGames()) {
 				Interested interested = new Interested();
 				
@@ -105,6 +107,7 @@ public class RegisterServlet extends BaseServlet {
 				}
 			}
 		}
+		request.getSession().setAttribute("cart", null);
 		//fill db cart and empty session cart
 		
 		//login as new user
