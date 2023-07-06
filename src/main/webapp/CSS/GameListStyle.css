@@ -30,7 +30,7 @@ main {
 	padding-bottom: 20px;
 }
 
-a{
+a {
 	color: #F2F4F3;
 	cursor: pointer;
 }
@@ -59,11 +59,18 @@ p.gameTitle{
 	padding-top:21.5px;
 }
 
-p.gamePrice{
+p.gamePrice {
 	float:right;
+	
 	margin-right:10px;
 	font-size: 18px;
 	padding-top:21.5px;
+}
+
+p.gameDate {
+	display: inline;
+	
+	font-size: 12px;
 }
 
 @media screen and (max-width: 1200px){

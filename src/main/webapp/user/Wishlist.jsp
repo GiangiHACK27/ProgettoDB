@@ -8,6 +8,8 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+		
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
 		<link rel="stylesheet" href="../CSS/GameListStyle.css">
 		<link rel="stylesheet" href="../CSS/CartStyle.css">
@@ -15,7 +17,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src="../Scripts/WishlistScript.js" defer></script>
 		
-		<title>Insert title here</title>
+		<title>Wishlist</title>
 	</head>
 	
 	<body>
@@ -24,7 +26,7 @@
 		
 		<jsp:include page="../ViewCartServlet?category=wishlist"></jsp:include>
 		
-			<section class=main>
+	<section class=main>
 	<main>
 		
 		<section id=gameListContents>
@@ -44,7 +46,7 @@
 			 			</p>
 			 			<p class=gamePrice>
 			 				<span class= price><%=currentGame.getPrice()%></span><br>
-			 				<span class= removeButton><a id=<%=currentGame.getId()%>>Remove</a></span>
+			 				 <span class= removeButton><a id=<%=currentGame.getId()%>>Remove</a></span>
 			 			</p>
 			 			<p class=gameTitle>
 			 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>

@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
-import javax.sql.DataSource;
+import javax.sql.DataSource; 
 
 import model.Category;
 import model.Game;
 import model.Game.Pegi;
 import model.Game.State;
+import model.Purchase;
 
 public class GameDAO extends BaseDAO {
 
@@ -385,10 +386,10 @@ public class GameDAO extends BaseDAO {
 		return false;
 	}
 	
-	public List<Game> retrievePurchasedGameForUsername(String username) throws SQLException {
-		List<Game> gamePurchased = new ArrayList<>();
+	public List<AbstractMap.SimpleEntry<Game, Purchase>> retrievePurchasedGameForUsername(String username) throws SQLException {
+		List<AbstractMap.SimpleEntry<Game, Purchase>> gamePurchased = new ArrayList<>();
 		
-		String query = "SELECT G.id,name,description,shortDescription,state,pegi,publisher FROM Game as G, Purchase as P WHERE G.id = P.gameId AND P.username = ?";
+		String query = "SELECT G.id,name,description,shortDescription,state,pegi,publisher,P.price,P.datePurchased FROM Game as G, Purchase as P WHERE G.id = P.gameId AND P.username = ?";
 		
 		//Retrieve connection
 		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
@@ -412,9 +413,18 @@ public class GameDAO extends BaseDAO {
 				game.setPublisher(rs.getString("publisher"));
 				//Construct the game
 				
-				//Add game to the list
-				gamePurchased.add(game);
-				//Add game to the list
+				//Construct the purchase
+				Purchase purchase = new Purchase();
+				
+				purchase.setDatePurchased(rs.getString("P.datePurchased"));
+				purchase.setPrice(rs.getInt("P.price"));
+				//Construct the purchase
+				
+				//Add game and purchase to the list
+				AbstractMap.SimpleEntry<Game, Purchase> entry = new AbstractMap.SimpleEntry<>(game, purchase);
+				
+				gamePurchased.add(entry);
+				//Add game and purchase to the list
 			}
 			//Retrieve all purchased game from db
 		}

@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.AbstractMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import javax.sql.DataSource;
 
 import model.User;
 import model.Game;
-
+import model.Purchase;
 import dao.GameDAO;
 
 @WebServlet("/user/RetrieveGamePurchasedServlet")
@@ -37,7 +38,7 @@ public class RetrieveGamePurchasedServlet extends HttpServlet {
 		//Retrieve all purchased game from db
 		GameDAO gameDAO = new GameDAO(ds);
 		
-		List<Game> gamePurchased = null;
+		List<AbstractMap.SimpleEntry<Game, Purchase>> gamePurchased = null;
 		
 		try {
 			gamePurchased = gameDAO.retrievePurchasedGameForUsername(user.getUsername());
@@ -52,5 +53,4 @@ public class RetrieveGamePurchasedServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

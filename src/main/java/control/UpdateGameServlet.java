@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
-import com.mysql.cj.Session;
-
 import dao.BelongsDAO;
 import dao.GameDAO;
 import dao.ImageDAO;
@@ -75,8 +73,7 @@ public class UpdateGameServlet extends BaseServlet {
 			reqModel.setValue(values[i]);
 			dao.insertRequirement(reqModel);
 		}
-		//insert the requirements into the database
-		
+		//insert the requirements into the database	
 	}
 	
     @Override
