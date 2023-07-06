@@ -55,11 +55,11 @@
 										<div class="row">
 											<div class="col-50">
 												<label for="state">State</label> <input type="text"
-													id="state" name="state" placeholder="NY" required pattern="^\w{2,2}$">
+													id="state" name="state" placeholder="NY" required pattern=^[a-zA-Z]{2}$>
 											</div>
 											<div class="col-50">
 												<label for="zip">Zip</label> <input type="text" id="zip"
-													name="zip" placeholder="10001" required pattern="^.{5,5}$">
+													name="zip" placeholder="10001" required pattern="^\d{5,5}$">
 											</div>
 										</div>
 									</div>
@@ -74,7 +74,7 @@
 												class="fa fa-cc-discover" style="color: orange;"></i>
 										</div>
 										<label for="cname">Name on Card</label> <input type="text"
-											id="cname" required name="cardname" placeholder="John More Doe">
+											id="cname" required name="cardname" pattern=^[a-zA-Z]$ placeholder="John More Doe">
 										<label for="ccnum">Credit card number</label> <input
 											type="text" required id="ccnum" name="card_number" required
 											placeholder="1111-2222-3333-4444" pattern ="^\d{4}-\d{4}-\d{4}-\d{4}$">
@@ -86,7 +86,7 @@
 											</div>
 											<div class="col-50">
 												<label for="cvv">CVV</label> <input type="text" id="cvv"
-													name="cvv" placeholder="352" required pattern="^.{3,4}$">
+													name="cvv" placeholder="352" required pattern="^\d{3,4}$">
 											</div>
 										</div>
 									</div>
