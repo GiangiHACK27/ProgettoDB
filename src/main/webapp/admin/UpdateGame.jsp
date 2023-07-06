@@ -15,6 +15,7 @@
 		<title>Upload game</title>
 	</head>
 	
+	<jsp:include page="/RetrieveGameCategories"></jsp:include>
 	<jsp:include page="/RetrieveGameServlet"></jsp:include>
 	<jsp:include page="/RetrieveGameRequirementsServlet"></jsp:include>
 	<% Game game = (Game)request.getAttribute("game"); %>
@@ -79,14 +80,20 @@
 					<div id=categoryDiv>
 						<h3>Choose categories</h3>
 						<%
+						List<Category> gameCategories = (List<Category>) request.getAttribute("gameCategories");
 						List<Category> categories = (List<Category>) request.getAttribute("categories");
 						if(categories == null){
 							categories = (List<Category>)application.getAttribute("categories");
 						}
 						for (Category c : categories) {
 						%>
-						<input id="<%=c.getName()%>" type="checkbox" name="categories" required value="<%=c.getName()%>">
-						<label for="<%=c.getName()%>" > <%=c.getName()%> </label> <br>
+							<%if(gameCategories.stream().map(category->category.getName()).anyMatch(name->name.equals(c.getName())) ){ %>
+							<input id="<%=c.getName()%>" type="checkbox" name="categories" required checked value="<%=c.getName()%>">
+							<label for="<%=c.getName()%>" > <%=c.getName()%> </label> <br>
+							<%}else{%>
+							<input id="<%=c.getName()%>" type="checkbox" name="categories" required value="<%=c.getName()%>">
+							<label for="<%=c.getName()%>" > <%=c.getName()%> </label> <br>
+							<%}%>
 						<%
 						}
 						%>
