@@ -112,7 +112,7 @@ public class GameDAO extends BaseDAO {
 			//Construct query string
 			
 			//Construct query
-			String query = "SELECT DISTINCT Count(id) as count"
+			String query = "SELECT Count(DISTINCT id) as count"
                     + " FROM Game as G, Belongs as B, Category as C "
                             + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
                             + categoriesToSearch

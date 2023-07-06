@@ -18,7 +18,7 @@
 	
 	<nav>
 		<ul>
-			<li class=dropdown><a href="${pageContext.request.contextPath}"> STORE </a>
+			<li class=dropdown><a href="${pageContext.request.contextPath}/Catalog.jsp"> STORE </a>
 				<div class=dropdown-content id=store-div>
 					<ul>
 						<li><a href= "${pageContext.request.contextPath}/"> HOME PAGE </a></li>

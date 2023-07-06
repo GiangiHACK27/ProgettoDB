@@ -112,11 +112,14 @@ public class LoginServlet extends BaseServlet {
 			
 			DataSource dataSource = (DataSource) request.getServletContext().getAttribute("DataSource");
 			InterestedDAO interestedDAO = new InterestedDAO(dataSource);
+			
+			//empty cart in database
 			try {
 				interestedDAO.removeCart(username, Interested.Category.CART);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			//empty cart in database
 			
 			for(int id : cart.getGames()) {
 				Interested interested = new Interested();
