@@ -1,0 +1,27 @@
+main {
+	min-width: 100%;
+	margin: auto;
+	margin-top: 10%;
+	margin-bottom: 5%;
+	overflow: hidden;
+	/* background-image: radial-gradient(circle, #172227, #1b282e, #202e36, #24353e, #293b46); */
+}
+
+h1{
+	text-align: center;
+}
+
+#successDiv{
+	width:70%;
+	margin: auto;
+	position: relative;
+	background-color: #172227;
+	margin-bottom: 50px;
+	border-radius: 20px;
+	text-align: center;
+	padding: 5px;
+}
+
+h1{
+	margin-bottom: 50px;
+}

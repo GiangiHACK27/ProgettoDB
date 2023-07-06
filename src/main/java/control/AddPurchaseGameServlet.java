@@ -73,5 +73,9 @@ public class AddPurchaseGameServlet extends BaseServlet {
 			return;
 		}
 		//Insert purchase on database
+		
+		//Redirect to success page
+		response.sendRedirect("/GamingWorldShop/Success.jsp");	
+		//Redirect to success page
 	}
 }

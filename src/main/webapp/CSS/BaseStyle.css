@@ -90,12 +90,12 @@ a:hover{
   display: block;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]{
+input[type=text], input[type=password], input[type=email], input[type=number], input[type=date], input[type=month]{
 	background-color: #3f4e56;
 	color: #F2F4F3;
 	padding: 1px 5px;
 }
-input[type=text]:hover, input[type=password]:hover, input[type=email]:hover, input[type=email]:hover, input[type=number]:hover, input[type=date]:hover{
+input[type=text]:hover, input[type=password]:hover, input[type=email]:hover, input[type=email]:hover, input[type=number]:hover, input[type=date]:hover, input[type=month]:hover{
 	background-color: #657e8b;
 }
 
@@ -172,4 +172,5 @@ select {
 	background-color: #537a92;
 	color: #F2F4F3;
 }
+
 

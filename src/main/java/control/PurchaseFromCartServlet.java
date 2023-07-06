@@ -75,5 +75,9 @@ public class PurchaseFromCartServlet extends BaseServlet {
 			//Insert purchase on database
 		}
 		//Add all purchases to database
+		
+		//Redirect to success page
+		response.sendRedirect("/GamingWorldShop/Success.jsp");	
+		//Redirect to success page
 	}
 }

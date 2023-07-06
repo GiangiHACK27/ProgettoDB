@@ -60,7 +60,7 @@
 
 		<section id=options>			
 			<div id=emptyCartOption>
-				<span id=emptyCartButton> <a>Empty cart</a></span>
+				<span id=emptyCartButton> <a>Empty wishlist</a></span>
 			</div>
 		</section>
 		<%} %>
