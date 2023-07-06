@@ -220,6 +220,7 @@ public class UpdateGameServlet extends BaseServlet {
 			e.printStackTrace();
 		}
 		//delete previous requirements
+		
 		try {
 			uploadRequirements(dao, gameId, "WINDOWS", request.getParameterValues("windows[name][]"), request.getParameterValues("windows[value][]"));
 			uploadRequirements(dao, gameId, "MAC", request.getParameterValues("mac[name][]"), request.getParameterValues("mac[value][]"));

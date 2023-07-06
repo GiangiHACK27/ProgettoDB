@@ -1,3 +1,4 @@
+<%@page import="model.Category"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     import="model.Game, model.SystemRequirement, java.util.*, model.User, model.Game.State, model.User.Role" %>
@@ -21,11 +22,12 @@
 		
 		<!-- Retrieve info about the game -->
 		<jsp:include page="/RetrieveGameServlet"></jsp:include>
+		<jsp:include page="/RetrieveGameCategories"></jsp:include>
 		<jsp:include page="/RetrieveGameRequirementsServlet"></jsp:include>
 		
 		<% Game game = (Game)request.getAttribute("game"); %>
 		<% User user = (User) session.getAttribute("user"); %>
-
+		<% List<Category> categories = (List<Category>) request.getAttribute("gameCategories"); %>
 		<jsp:include page="/RetrieveGameStatusServlet?gameId=<%=game.getId()%>"></jsp:include>
 		
 		<%		boolean isInCart = (boolean)request.getAttribute("isInCart");
@@ -70,6 +72,14 @@
 							<tr>
 								<td>
 									<span class="infoShortDescription">State:</span> <%= game.getState().getValue().replace('_', ' ') %>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="infoShortDescription">Categories:</span> 
+									<%for(Category c:categories){ %>
+										<%=c.getName() %>
+									 <%} %>
 								</td>
 							</tr>
 
@@ -135,7 +145,9 @@
 					<% 	
 					}
 					%>
-					
+				</div>
+				<div id=pegi>
+						<img src="./images/pegi<%=game.getPegi().getValue()%>.jpg" alt = pegi>
 				</div>
 			</div>
 		</main>

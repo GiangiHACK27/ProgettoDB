@@ -44,4 +44,6 @@ public class CategoryDAO extends BaseDAO {
 		
 		return categories;
 	}
+	
+
 }
