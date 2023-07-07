@@ -40,14 +40,14 @@ import="org.owasp.encoder.Encode" %>
 						<div id=usernameDiv class=inputDiv>
 							<label for=username>Username:</label>
 							
-							<input type="text" name="username" required pattern="^.{1,20}$" value="<%= Encode.forHtmlAttribute(usernameOld)%>" onchange="validateFormElem(this, document.getElementById('errorDiv'), usernameErrorMessage)">
+							<input type="text" name="username" required pattern="^.{1,20}$" value="<%= Encode.forHtmlAttribute(usernameOld) %>" onchange="validateFormElem(this, document.getElementById('errorDiv'), usernameErrorMessage)">
 						</div>
 						
 						<div id=emailDiv class=inputDiv>	
 							<label for=email>Email:</label>		
 							
 							<input type=email name="email" required pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
-							onchange="validateFormElem(this, document.getElementById('errorDiv'), emailErrorMessage)" value = "<%=emailOld %>" >
+							onchange="validateFormElem(this, document.getElementById('errorDiv'), emailErrorMessage)" value = "<%= Encode.forHtmlAttribute(emailOld) %>" >
 						</div>
 						
 						<div id=passwordDiv class=inputDiv>
