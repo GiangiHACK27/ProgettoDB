@@ -1,0 +1,28 @@
+@charset "ISO-8859-1";
+
+#gameListContents {
+	width: 60%;
+}
+
+
+@media screen and (max-width: 1200px){
+	#gameListContents {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 750px){
+	#gameListContents {
+		width: 95%;
+	}
+}
+
+@media screen and (max-width: 600px){
+	p.gameImage {
+		display: none;
+	}
+	
+	p.gamePrice {
+		font-size: 12px;
+	}
+}
