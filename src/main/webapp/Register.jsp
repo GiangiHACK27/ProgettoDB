@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" 
+import="org.owasp.encoder.Encode" %>
+<!DOCTYPE>
 <html lang= "en">
 	<head>
 		<meta charset="ISO-8859-1">
@@ -40,7 +40,7 @@
 						<div id=usernameDiv class=inputDiv>
 							<label for=username>Username:</label>
 							
-							<input type="text" name="username" required pattern="^.{1,20}$" value="<%= usernameOld%>" onchange="validateFormElem(this, document.getElementById('errorDiv'), usernameErrorMessage)">
+							<input type="text" name="username" required pattern="^.{1,20}$" value="<%= Encode.forHtmlAttribute(usernameOld)%>" onchange="validateFormElem(this, document.getElementById('errorDiv'), usernameErrorMessage)">
 						</div>
 						
 						<div id=emailDiv class=inputDiv>	

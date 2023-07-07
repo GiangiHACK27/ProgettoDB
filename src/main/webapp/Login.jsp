@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
+    import="org.owasp.encoder.Encode"
     %>
 <!DOCTYPE html>
 <html lang = en>
@@ -30,11 +31,11 @@
 			<form method="post" action="/GamingWorldShop/LoginServlet">
 				<div id=usernameDiv class=inputDiv>
 					<label for=username> Username</label>
-					<input type="text" name="username" id=username required value="<%= oldUser%>">
+					<input type="text" name="username" id=username required value="<%= Encode.forHtmlAttribute(oldUser)%>">
 				</div>
 				<div id=passwordDiv class=inputDiv>
 					<label for=password>Password</label>
-					<input type="password" name="password" id=password required value="<%= oldPassword%>">
+					<input type="password" name="password" id=password required value="<%= Encode.forHtmlAttribute(oldPassword)%>">
 				</div>
 				<div id=submitDiv class=submitDiv>
 					<input type="submit" name="submit" value="Login" id=submit>
@@ -42,7 +43,7 @@
 				<% String logError = (String)request.getAttribute("logError");
 					if(logError != null) { %>
 				<div id=errorDiv class=errorDiv>
-							<p>Error: <%=  logError%></p>
+							<p>Error: <%=  Encode.forHtmlContent(logError)%></p>
 
 				</div>
 						<%} %>

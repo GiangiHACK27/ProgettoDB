@@ -13,13 +13,14 @@ body{
 	font-family: sans-serif;
 	font-size: 14px;
 	position: relative;
-	display:flex;
+	display: flex;
 	flex-direction:column;
 	min-height: 100vh;
 }
 
 section.main{
 	flex:1;
+	
 	background-image: linear-gradient(to top,rgb(15 20 23), rgb(15 20 23), rgb(15 20 23), rgb(15 20 23), rgb(20 26 29), rgb(34 46 51), #3b596b);
 }
 
