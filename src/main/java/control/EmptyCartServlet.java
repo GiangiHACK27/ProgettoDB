@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import dao.InterestedDAO;
 import model.Interested;
 import model.User;
+import utility.BackendException;
 import utility.InvalidParameters;
 
 @WebServlet("/EmptyCartServlet")
@@ -49,7 +50,7 @@ public class EmptyCartServlet extends BaseServlet {
 			try {
 				interestedDAO.removeCart(user.getUsername(), category);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 			//Create dao and remove cart
 		}

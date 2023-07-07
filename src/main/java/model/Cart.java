@@ -45,16 +45,12 @@ public class Cart implements Cloneable, Serializable {
 		return false;
 	}
 	
-    public Cart clone()
+    public Cart clone() throws CloneNotSupportedException
     {
-        try {
-        	Cart clone = null;
-			clone = (Cart)super.clone();
-	        clone.gameIds = new ArrayList<>(gameIds);
-	        return clone;
-		} catch (CloneNotSupportedException e) {
-			return null;
-		}
+        Cart clone = null;
+		clone = (Cart)super.clone();
+	    clone.gameIds = new ArrayList<>(gameIds);
+	    return clone;
     }
 	
 	private String username;

@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import javax.sql.DataSource;
 
 import dao.UserDAO;
+import utility.BackendException;
 
 @WebServlet("/usernameAlreadyTakenServlet")
 public class UsernameAlreadyTakenServlet extends HttpServlet {
@@ -47,7 +48,7 @@ public class UsernameAlreadyTakenServlet extends HttpServlet {
 			try {
 				b = userDAO.usernameAlreadyExist(username);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 		}
 		//Check if on database is present a user with the same username

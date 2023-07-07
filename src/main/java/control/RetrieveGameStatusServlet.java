@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import model.Cart;
 import model.User;
-
+import utility.BackendException;
 import dao.PurchaseDAO;
 
 @WebServlet("/RetrieveGameStatusServlet")
@@ -72,7 +72,7 @@ public class RetrieveGameStatusServlet extends BaseServlet {
 			if(user != null) 
 				isBuyed = purchaseDAO.isBuyed(gameId, user.getUsername());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//Check if the game is buyed
 		

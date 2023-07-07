@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import org.json.JSONObject;
 
 import dao.UserDAO;
+import utility.BackendException;
 import utility.InvalidParameters;
 
 @WebServlet("/emailAlreadyTakenServlet")
@@ -51,7 +52,7 @@ public class EmailAlreadyTakenServlet extends BaseServlet {
 			try {
 				b = userDAO.emailAlreadyExist(email);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 		}
 		//Check if on database is present a user with the same email

@@ -28,10 +28,8 @@ public class GetCatalogGameObjects extends BaseServlet {
 		response.setContentType("application/json");
 		
 		//get the IDs of the games that have to be shown through the SearchGames servlet
-		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/SearchGames");
-			dispatcher.include(request, response);
-		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/SearchGames");
+		dispatcher.include(request, response);
 		//get the IDs of the games that have to be shown through the SearchGames servlet
 		
 		//convert game objects to json and send response

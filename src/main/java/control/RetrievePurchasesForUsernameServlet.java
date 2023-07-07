@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import dao.PurchaseDAO;
 import model.Purchase;
 import model.User;
+import utility.BackendException;
 
 @WebServlet("/user/RetrievePurchasesServlet")
 public class RetrievePurchasesForUsernameServlet extends HttpServlet {
@@ -41,7 +42,7 @@ public class RetrievePurchasesForUsernameServlet extends HttpServlet {
 		try {
 			purchases = purchaseDAO.retrievePurchaseForUsername(user.getUsername());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//Retrieve purchases from db
 		

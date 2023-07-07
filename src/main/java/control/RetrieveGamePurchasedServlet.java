@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import model.User;
+import utility.BackendException;
 import model.Game;
 import model.Purchase;
 import dao.GameDAO;
@@ -43,7 +44,7 @@ public class RetrieveGamePurchasedServlet extends HttpServlet {
 		try {
 			gamePurchased = gameDAO.retrievePurchasedGameForUsername(user.getUsername());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//Retrieve all purchased game from db
 		

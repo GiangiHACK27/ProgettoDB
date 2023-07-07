@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import dao.PurchaseDAO;
 
 import model.Purchase;
+import utility.BackendException;
 
 @WebServlet("/admin/SearchPurchasesServlet")
 public class SearchPurchasesServlet extends BaseServlet {
@@ -59,7 +60,7 @@ public class SearchPurchasesServlet extends BaseServlet {
 			purchases = purchaseDAO.retrievePurchases(username, minDate, maxDate);
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//Retrieve purchases from db
 		

@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import dao.GameDAO;
 import model.Game;
+import utility.BackendException;
 
 @WebServlet("/RetrieveGameServlet")
 public class RetrieveGameServlet extends BaseServlet {
@@ -34,7 +35,7 @@ public class RetrieveGameServlet extends BaseServlet {
 		try {
 			game = gameDAO.retrieveGame(gameId);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//Retrieve the game from database
 		

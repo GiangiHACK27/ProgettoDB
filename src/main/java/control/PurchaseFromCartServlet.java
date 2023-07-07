@@ -15,6 +15,7 @@ import dao.PurchaseDAO;
 import model.Game;
 import model.Purchase;
 import model.User;
+import utility.BackendException;
 
 @WebServlet("/user/PurchaseFromCartServlet")
 public class PurchaseFromCartServlet extends BaseServlet {
@@ -63,8 +64,7 @@ public class PurchaseFromCartServlet extends BaseServlet {
 			try {
 				purchaseDAO.insert(purchase);
 			} catch (SQLException e) {
-				e.printStackTrace();
-				return;
+				throw new BackendException();
 			}
 			//Insert purchase on database
 		}

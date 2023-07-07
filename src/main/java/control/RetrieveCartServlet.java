@@ -14,6 +14,7 @@ import dao.InterestedDAO;
 import model.Cart;
 import model.Interested;
 import model.User;
+import utility.BackendException;
 
 @WebServlet("/RetrieveCartServlet")
 public class RetrieveCartServlet extends BaseServlet {
@@ -55,7 +56,7 @@ public class RetrieveCartServlet extends BaseServlet {
 			try {
 				cart = interestedDAO.retrieveCart(user.getUsername(), category);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 			//Retrieve Cart from db
 		}
@@ -67,7 +68,11 @@ public class RetrieveCartServlet extends BaseServlet {
 			cart = (Cart)request.getSession().getAttribute(category.toString().toLowerCase());
 			
 			if(cart != null)
-				cart = cart.clone();
+				try {
+					cart = cart.clone();
+				} catch (CloneNotSupportedException e) {
+					throw new BackendException();
+				}
 			//Retrieve Cart from session
 		}
 		//In case user isn't logged

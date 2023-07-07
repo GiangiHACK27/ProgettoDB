@@ -10,7 +10,8 @@
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
 		<link rel="stylesheet" href="../CSS/PurchasesStyle.css">
 		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" 
+		integrity = "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="></script>
 		<script src=../Scripts/PurchaseListScript.js></script>
 		
 		<title>Purchase</title>

@@ -75,7 +75,6 @@ public class UpdateCredentialsServlet extends BaseServlet {
 			userDAO.updatePasswordAndEmail(hashPassword, email, user.getUsername());
 		} catch (SQLException e) {
 			response.sendError(500);
-			e.printStackTrace();
 			return;
 		}
 		//Update the credentials on db

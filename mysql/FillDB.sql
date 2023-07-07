@@ -29,7 +29,7 @@ INSERT INTO Game (price, name, description, shortDescription, state) values (30,
 
 
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Windows", 1);
-INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1);
+INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1); 
 
 INSERT INTO Belongs values ("categoria1", 1);
 INSERT INTO Belongs values ("categoria2", 1);
