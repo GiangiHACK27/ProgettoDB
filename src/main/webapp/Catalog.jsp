@@ -51,10 +51,7 @@
 			
 			String[] alreadyCheckedCategories = request.getParameterValues("categories");
 			
-			int oldPegi = 18;
-/* 			String t = request.getParameter("pegi");
-			if(t != null)
-				oldPegi = Integer.parseInt(t); */
+			int startPegi = 18;
 			%>
 			
 				<div id=categoryDiv>
@@ -94,7 +91,7 @@
 				<select name="pegi">
 					<% Pegi[] pegis = Pegi.values();  
 						for(Pegi p : pegis) { 
-							if(p.getValue() == oldPegi) {
+							if(p.getValue() == startPegi) {
 								%>
 								<option value="<%= p.getValue()%>" selected><%=p.toString().replace('_', ' ') %></option>
 							<% } else {%>

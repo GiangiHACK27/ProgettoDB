@@ -21,6 +21,7 @@ import model.Belong;
 import model.Game;
 import model.SystemRequirement;
 import model.SystemRequirement.OperatingSystem;
+import utility.BackendException;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -130,7 +131,6 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			gameDAO.updateGame(game);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			showError(request, response, "Internal error while uploading game", selfPath);
 			return;
 		}
@@ -143,7 +143,7 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			maxPrice = gameDAO.retrieveMaxPriceGame(false);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		
 		context.setAttribute("maxPrice", maxPrice);
@@ -154,7 +154,6 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			maxPriceUnlisted = gameDAO.retrieveMaxPriceGame(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		
 		context.setAttribute("maxPriceUnlisted", maxPriceUnlisted);
@@ -169,7 +168,6 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			belongDAO.deleteAllBelongs(gameId);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		//remove all previous categories from game
 		
@@ -180,7 +178,7 @@ public class UpdateGameServlet extends BaseServlet {
 			try {
 				belongDAO.insert(belong);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 		}
 		//Insert relation between categories and game to add
@@ -214,7 +212,7 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			dao.deleteRequirements(gameId);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//delete previous requirements
 		
@@ -224,7 +222,7 @@ public class UpdateGameServlet extends BaseServlet {
 			uploadRequirements(dao, gameId, "LINUX", request.getParameterValues("linux[name][]"), request.getParameterValues("linux[value][]"));
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//insert system requirements
 		

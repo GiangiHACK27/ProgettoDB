@@ -22,6 +22,7 @@ import model.Game;
 import model.Belong;
 import model.SystemRequirement;
 import model.SystemRequirement.OperatingSystem;
+import utility.BackendException;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -74,7 +75,7 @@ public class GameUploadServlet extends BaseServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveAllCategories");
 		dispatcher.include(request, response);
 		//Include Retrieve all categories Servlet
-		RequestDispatcher dispatcher2 = request.getRequestDispatcher("/admin/UploadGame.jsp");
+		RequestDispatcher dispatcher2 = request.getRequestDispatcher(SELFPATH);
 		dispatcher2.forward(request, response);
 	}
     
@@ -122,7 +123,7 @@ public class GameUploadServlet extends BaseServlet {
 		try {
 			gameId = gameDAO.insertGame(game);
 		} catch (SQLException e) {
-			showError(request, response, "Internal error while uploading game", selfPath);
+			showError(request, response, "Internal error while uploading game", SELFPATH);
 			return;
 		}
 		//insert game into database
@@ -137,7 +138,7 @@ public class GameUploadServlet extends BaseServlet {
 			try {
 				belongDAO.insert(belong);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 		}
 		//Insert relation between categories and game to add
@@ -150,7 +151,7 @@ public class GameUploadServlet extends BaseServlet {
 		try {
 			uploadImage(imageDAO, gameId, bannerImage, "BANNER");
 		} catch (SQLException | IOException e) {
-			showError(request, response, "Error uploading banner image", selfPath);
+			showError(request, response, "Error uploading banner image", SELFPATH);
 		}
 		//insert banner image
 		
@@ -159,7 +160,7 @@ public class GameUploadServlet extends BaseServlet {
 		try {
 			uploadImage(imageDAO, gameId, showcaseImage, "SHOWCASE");
 		} catch (SQLException | IOException e) {
-			showError(request, response, "Error uploading banner image", selfPath);
+			showError(request, response, "Error uploading banner image", SELFPATH);
 		}
 		//insert showcase image
 		//Insert images into database and upload "represented" table
@@ -171,8 +172,7 @@ public class GameUploadServlet extends BaseServlet {
 			uploadRequirements(dao, gameId, "MAC", request.getParameterValues("mac[name][]"), request.getParameterValues("mac[value][]"));
 			uploadRequirements(dao, gameId, "LINUX", request.getParameterValues("linux[name][]"), request.getParameterValues("linux[value][]"));
 		} catch (SQLException e) {
-			
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//insert system requirements
 		
@@ -192,5 +192,5 @@ public class GameUploadServlet extends BaseServlet {
 	}
 	
 	private static final long serialVersionUID = 1503010158356860644L;
-	private static final String selfPath = "/admin/UploadGame.jsp";
+	private static final String SELFPATH = "/admin/UploadGame.jsp";
 }

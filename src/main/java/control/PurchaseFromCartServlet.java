@@ -23,10 +23,6 @@ public class PurchaseFromCartServlet extends BaseServlet {
     public PurchaseFromCartServlet() {
         super();
     }
-
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Can't use get in this case");
-//	}
 	
 	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,8 +51,6 @@ public class PurchaseFromCartServlet extends BaseServlet {
 		PurchaseDAO purchaseDAO = new PurchaseDAO(ds);
 		
 		for (Game game : cartItems) {
-			System.out.println(game.getName());
-			
 			//Build purchase
 			Purchase purchase = new Purchase();
 			

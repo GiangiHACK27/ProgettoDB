@@ -118,7 +118,7 @@ public class GameDAO extends BaseDAO {
                             + "G.pegi <= ? AND INSTR(G.name, ?) > 0 ";
 			
 			if(unListed == false)
-				query = "SELECT DISTINCT Count(id) as count"
+				query = "SELECT Count(DISTINCT id) as count"
 	                    + " FROM Game as G, Belongs as B, Category as C "
 	                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
 	                            + categoriesToSearch

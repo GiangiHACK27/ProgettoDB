@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"
     import = "model.Cart, java.util.*, model.Game"%>
 <!DOCTYPE html>
-<html>
+<html lang = en>
 <head>
 	<meta charset="ISO-8859-1">
 	<meta name="viewport" content="initial-scale=1, width=device-width">

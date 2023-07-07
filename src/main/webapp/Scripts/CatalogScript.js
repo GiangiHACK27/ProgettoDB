@@ -50,23 +50,23 @@ function updateCatalog(page) {
 			 		"</div>");
 				
 			}
-			else{
+			else {
 				$('#gameListSection').html("");
 				giochi.games.forEach(game=>addGame(game));
 			}
 			
 			//add pagination based on number of games found
 			gameCount = responseData.gamesCount;
-			if(gameCount > 0 ){
+			if(gameCount > 0 ) {
 				$('#gameListSection').append("<div class=pageDiv>")
 				let pageSize = 10;
 				let numberOfPages= (gameCount-1) / pageSize +1;
-				for(let i = 1; i<=numberOfPages; i++){//i is going to count from 1 to the total number of pages
-					if(i == page){
+				for(let i = 1; i<=numberOfPages; i++) {//i is going to count from 1 to the total number of pages
+					if(i == page) {
 						//the button referring to the current page is non-selectable
 						$('#gameListSection').append("<button type=button class='selectedPageButton pageButton'>"+i+"</button>")
 						//the button referring to the current page is non-selectable
-					} else{
+					} else {
 						$('#gameListSection').append("<button type=button class=pageButton onclick='updateCatalog("+i+")'>"+i+"</button>")
 					}
 				}

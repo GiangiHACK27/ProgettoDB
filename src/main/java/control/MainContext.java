@@ -31,7 +31,7 @@ public class MainContext implements ServletContextListener {
 			ds = (DataSource) envCtx.lookup("jdbc/storage");
 
 		} catch (NamingException e) {
-			e.printStackTrace();
+			return;
 		}		
 		
 		context.setAttribute("DataSource", ds);
@@ -44,7 +44,7 @@ public class MainContext implements ServletContextListener {
 		try {
 			maxPrice = gameDAO.retrieveMaxPriceGame(false);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return;
 		}
 		
 		context.setAttribute("maxPrice", maxPrice);
@@ -55,7 +55,7 @@ public class MainContext implements ServletContextListener {
 		try {
 			maxPriceUnlisted = gameDAO.retrieveMaxPriceGame(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return;
 		}
 		
 		context.setAttribute("maxPriceUnlisted", maxPriceUnlisted);
@@ -67,7 +67,7 @@ public class MainContext implements ServletContextListener {
 		try {
 			categoryList = categoryDAO.retrieveAllCategories();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return;
 		}
 		context.setAttribute("categories", categoryList);
 		//retrieve all categories

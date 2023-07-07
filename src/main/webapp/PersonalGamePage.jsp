@@ -45,7 +45,7 @@
 			<%} %>
 			<div id=row-1>
 				<div id=sliderImages>
-					<img id=imageSlider src="RetrieveGameImageServlet?gameId=<%=game.getId()%>&role=SHOWCASE">
+					<img id=imageSlider alt="showcase image" src="RetrieveGameImageServlet?gameId=<%=game.getId()%>&role=SHOWCASE">
 				</div>
 		
 				<div id=shortDescription>
@@ -53,7 +53,7 @@
 						<tbody>
 							<tr>
 								<td>
-									<img id=imageBanner src="RetrieveGameImageServlet?gameId=<%=game.getId()%>&role=BANNER">
+									<img id=imageBanner alt="banner image" src="RetrieveGameImageServlet?gameId=<%=game.getId()%>&role=BANNER">
 								</td>
 							</tr>
 						
@@ -101,8 +101,7 @@
 			 						<button id="addToCartButton" onclick="addToCart(<%= game.getId() %>)" >Add to cart</button>								
 								<% } %>
 							
-<%-- 								<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
- --%>								<button onclick="location.href='user/PurchaseRedirectServlet?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice() %></span></button>
+								<button onclick="location.href='user/PurchaseRedirectServlet?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice() %></span></button>
 							<% }else{ %>
 								<button onclick="location.href='user/GameLibrary.jsp'">View in library </button>
 							<%} %>

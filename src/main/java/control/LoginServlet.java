@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import dao.InterestedDAO;
 import dao.UserDAO;
 import model.User;
+import utility.BackendException;
 import utility.Hasher;
 
 import java.security.NoSuchAlgorithmException;
@@ -28,24 +29,15 @@ public class LoginServlet extends BaseServlet {
 	public LoginServlet() {
         super();
     }
-    
-//	private void errorLogin(HttpServletRequest request, HttpServletResponse response) {
-//    	RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
-//    	try {
-//			rs.forward(request, response);
-//		} catch (ServletException | IOException e) {
-//			e.printStackTrace();
-//		} 
-//    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("user") != null) {
-			response.sendRedirect(request.getContextPath());
-		}
-		else {
-			showError(request, response, null, selfPath);
-		}
-	}
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		if(request.getSession().getAttribute("user") != null) {
+//			response.sendRedirect(request.getContextPath());
+//		}
+//		else {
+//			showError(request, response, null, selfPath);
+//		}
+//	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Check if the field are empty
@@ -75,7 +67,7 @@ public class LoginServlet extends BaseServlet {
 		try {
 			user = userDAO.getUserFromUsername(username);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		//Retrieve from the database the user from username
 		
@@ -117,7 +109,7 @@ public class LoginServlet extends BaseServlet {
 			try {
 				interestedDAO.removeCart(username, Interested.Category.CART);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 			//empty cart in database
 			
@@ -130,8 +122,7 @@ public class LoginServlet extends BaseServlet {
 				try {
 					interestedDAO.insertInterest(interested);
 				} catch (SQLException e) {
-					e.printStackTrace();				
-					break;
+					throw new BackendException();				
 				}
 			}
 		}

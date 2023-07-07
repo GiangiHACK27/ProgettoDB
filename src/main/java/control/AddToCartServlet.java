@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import model.User;
+import utility.BackendException;
 import model.Cart;
 import model.Interested;
 
@@ -60,8 +61,7 @@ public class AddToCartServlet extends BaseServlet {
 			try {
 				isBuyed = purchaseDAO.isBuyed(gameToAdd, user.getUsername());
 			} catch (SQLException e) {
-				
-				e.printStackTrace();
+				throw new BackendException();
 			}
 			
 			//In case is already buyed, exit from the servlet
@@ -88,7 +88,7 @@ public class AddToCartServlet extends BaseServlet {
 			try {
 				interestedDAO.insertInterest(interested);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 			//Add interest to the database
 		}
@@ -109,11 +109,7 @@ public class AddToCartServlet extends BaseServlet {
 			//Make new cart if there wasn't a cart present
 
 			//Add game to cart
-			try {
-				cart.addGame(gameToAdd);	
-			} catch(InvalidParameterException e) {
-				e.printStackTrace();
-			}
+			cart.addGame(gameToAdd);	
 			//Add game to cart		
 		}
 		//In case user isn't logged

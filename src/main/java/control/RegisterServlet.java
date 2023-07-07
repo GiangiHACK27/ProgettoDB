@@ -74,7 +74,6 @@ public class RegisterServlet extends BaseServlet {
 		try {
 			userDAO.insertUser(username, hashPassword, email);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			showError(request, response, "Credentials already taken", selfPath);
 
 			return;
@@ -101,8 +100,7 @@ public class RegisterServlet extends BaseServlet {
 				try {
 					interestedDAO.insertInterest(interested);
 				} catch (SQLException e) {
-					e.printStackTrace();
-					
+
 					break;
 				}
 			}

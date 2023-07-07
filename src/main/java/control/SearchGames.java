@@ -15,6 +15,8 @@ import javax.sql.DataSource;
 import dao.GameDAO;
 
 import model.User;
+import utility.BackendException;
+import utility.InvalidParameters;
 import model.Category;
 import model.Game;
 import model.Game.Pegi;
@@ -58,10 +60,7 @@ public class SearchGames extends BaseServlet {
 		String t = request.getParameter("currentMaxPrice");
 		if(t != null)
 			currentMaxPrice = Integer.parseInt(t);
-		
-		System.out.println(request.getServletContext().getAttribute("maxPrice"));
-		System.out.println(request.getServletContext().getAttribute("maxPriceUnlisted"));
-		
+				
 		int pegi = Pegi.PEGI_18.getValue();
 		t = request.getParameter("pegi");
 		if(t != null)
@@ -75,7 +74,7 @@ public class SearchGames extends BaseServlet {
 		try{
 			page = Integer.parseInt(request.getParameter("page"));
 		}catch (Exception e) {
-			e.printStackTrace();
+			throw new InvalidParameters();
 		}
 		
 		String order = request.getParameter("sort");
@@ -96,7 +95,7 @@ public class SearchGames extends BaseServlet {
 			
 			size = gameDAO.countGames(categoriesToSearch, currentMaxPrice, pegi, searchText, unListed);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}	
 		//Retrieve all Games from database
 

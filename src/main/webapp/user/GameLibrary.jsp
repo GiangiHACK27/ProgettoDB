@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"
     import ="java.util.List, model.Game, model.Purchase, java.util.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="ISO-8859-1">
 		

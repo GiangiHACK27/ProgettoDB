@@ -62,11 +62,11 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {
-		
+		//Future implementation
 	}
 	
     public void destroy() {
-
+    	//Future implementation
     }
 
 	private static final long serialVersionUID = 1L;

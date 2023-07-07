@@ -57,7 +57,7 @@ public class BaseServlet extends HttpServlet {
     	try {
 			rs.forward(request, response);
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+
 		} 
     }
 }
