@@ -7,6 +7,7 @@ public class SystemRequirement implements Serializable {
 
 	public SystemRequirement() {
 		super();
+		//The class is a been so the constructor can be an empty constructor
 	}
 	
 	public int getGameId() {

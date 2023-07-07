@@ -16,9 +16,6 @@ import javax.sql.DataSource;
 import dao.ImageDAO;
 import model.Image;
 
-/**
- * Servlet implementation class imageUploadServlet
- */
 @WebServlet("/ImageUploadServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -31,17 +28,6 @@ public class ImageUploadServlet extends BaseServlet {
     }
 
     @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		try{
-			response.getWriter().append("CANNOT USE GET");
-		}
-		catch(IOException e) {
-			
-		}
-	}
-
-    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Remember: ADD CONTROL ABOUT PARAMETERS OF REQUEST
@@ -52,7 +38,7 @@ public class ImageUploadServlet extends BaseServlet {
 			raw = request.getPart("raw");
 		}
 		catch (ServletException | IOException e) {
-			response.sendError(500, "Cannot upload image");
+			response.sendError(500, errorMessage);
 		}
 		
 		//Create the image DTO
@@ -67,10 +53,9 @@ public class ImageUploadServlet extends BaseServlet {
 			is.read(bytes);
 		}
 		catch(IOException e) {
-			response.sendError(500, "Cannot upload image");
+			response.sendError(500, errorMessage);
 		}
 		catch(NullPointerException e) {
-			e.printStackTrace();
 			return;
 		}
 		image.setBytes(bytes);
@@ -81,9 +66,10 @@ public class ImageUploadServlet extends BaseServlet {
 		try {
 			imageDAO.insertImagePezzotto(image);
 		} catch (SQLException e) {
-			response.sendError(500, "Cannot upload image");
+			response.sendError(500, errorMessage);
 		}
 		//Execute query to database to insert the image
 	}
-
+    
+    private static final String errorMessage = "Cannot upload image";
 }

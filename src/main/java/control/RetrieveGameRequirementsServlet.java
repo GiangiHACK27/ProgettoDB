@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import dao.SystemRequirementDAO;
 import model.SystemRequirement;
+import utility.BackendException;
 
 @WebServlet("/RetrieveGameRequirementsServlet")
 public class RetrieveGameRequirementsServlet extends BaseServlet {
@@ -40,11 +41,11 @@ public class RetrieveGameRequirementsServlet extends BaseServlet {
 		try {
 			requirements = srDAO.retrieveAllSystemRequirement(gameId);
 		} catch(SQLException e) {
-			e.printStackTrace();
+			throw new BackendException();
 		}
 		
 		Map<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirementsMap = 
-				requirements.stream().collect(Collectors.groupingBy((r) -> r.getOs()));
+				requirements.stream().collect(Collectors.groupingBy(r -> r.getOs()));
 		//Retrieve the system requirement from the game
 		
 		request.setAttribute("requirements", requirementsMap);

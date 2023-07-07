@@ -27,10 +27,6 @@ public class RegisterServlet extends BaseServlet {
 		super();
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError(400);
-	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    Pattern mailPattern = Pattern.compile("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", Pattern.CASE_INSENSITIVE);
 	    Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,30}$");
@@ -54,7 +50,7 @@ public class RegisterServlet extends BaseServlet {
 		
 		//Check if password and email are valid with regex
 		if(!mailPattern.matcher(email).find() || !passwordPattern.matcher(password).find() || !usernamePattern.matcher(username).find()) {
-			showError(request, response, "Invalid inputs", selfPath);
+			showError(request, response, "Invalid inputs", SELFPATH);
 			return;
 		}
 		//Check if password and email are valid with regex
@@ -64,7 +60,7 @@ public class RegisterServlet extends BaseServlet {
 		try {
 			hashPassword = Hasher.toHash(password);
 		} catch (NoSuchAlgorithmException e) {
-			showError(request, response, "Fatal error", selfPath);
+			showError(request, response, "Fatal error", SELFPATH);
 			return;
 		}
 		//Hash the password
@@ -74,7 +70,7 @@ public class RegisterServlet extends BaseServlet {
 		try {
 			userDAO.insertUser(username, hashPassword, email);
 		} catch (SQLException e) {
-			showError(request, response, "Credentials already taken", selfPath);
+			showError(request, response, "Credentials already taken", SELFPATH);
 
 			return;
 		}
@@ -113,5 +109,5 @@ public class RegisterServlet extends BaseServlet {
 		dispatcher.forward(request, response);
 		//login as new user
 	}
-	private final static String selfPath = "/Register.jsp";
+	private static final String SELFPATH = "/Register.jsp";
 }

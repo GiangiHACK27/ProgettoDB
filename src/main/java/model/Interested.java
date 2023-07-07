@@ -11,7 +11,7 @@ public class Interested implements Serializable {
 	}
 	
 	public Interested() {
-		
+		//The class is a been so the constructor can be an empty constructor
 	}
 	
 	public String getUsername() {

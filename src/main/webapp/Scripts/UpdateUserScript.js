@@ -45,7 +45,7 @@ function validateFormElem(formElem, span, errorMessage) {
 			console.log(q.result);
 			
 			//In case the username or email are already used
-			if(q.result == true) {
+			if(q.result) {
 				formElem.classList.remove("error");
 				span.style.color = "black";
 				span.innerHTML = "";
@@ -58,7 +58,7 @@ function validateFormElem(formElem, span, errorMessage) {
 			//In case the username or email are already used
 			
 			//In case the username or email are valid, clean the error
-			if(span.innerHTML = formElem.name + alreadyTaken) {
+			if(span.innerHTML == formElem.name + alreadyTaken) {
 				formElem.classList.remove("error");
 				span.style.color = "black";
 				span.innerHTML = "";
@@ -75,6 +75,7 @@ function validateFormElem(formElem, span, errorMessage) {
 	formElem.classList.add("error");
 	span.style.color = "red";
 	if (formElem.validity.valueMissing){
+		//Future implementation
 	} else {
 		span.innerHTML = errorMessage;
 	}

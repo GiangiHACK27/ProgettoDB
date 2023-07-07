@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Game implements Serializable {
 
 	public Game() {
+		//The class is a been so the constructor can be an empty constructor
 	}
 	
 	public Integer getId() {

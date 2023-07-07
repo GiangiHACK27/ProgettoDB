@@ -90,8 +90,8 @@ public class SearchGames extends BaseServlet {
 		
 		try {
 			games = gameDAO.retrieveGames(categoriesToSearch, currentMaxPrice, pegi, searchText, order, 
-					sizeOfPagination, 
-					sizeOfPagination * (page - 1), unListed);
+					SIZEOFPAGINATION, 
+					SIZEOFPAGINATION * (page - 1), unListed);
 			
 			size = gameDAO.countGames(categoriesToSearch, currentMaxPrice, pegi, searchText, unListed);
 		} catch (SQLException e) {
@@ -109,5 +109,5 @@ public class SearchGames extends BaseServlet {
 		doGet(request, response);
 	}
 	
-	private static final int sizeOfPagination = 10;
+	private static final int SIZEOFPAGINATION = 10;
 }

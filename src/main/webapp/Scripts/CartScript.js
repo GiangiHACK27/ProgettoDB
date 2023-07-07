@@ -6,8 +6,8 @@ let USDollar = new Intl.NumberFormat('en-US', {
 //when document is ready
 window.addEventListener('load', function () {
 	//format prices
-	var classes = document.getElementsByClassName("price")
-	for(var i = 0; i<classes.length; i++){
+	classes = document.getElementsByClassName("price")
+	for( i = 0; i<classes.length; i++){
 		classes[i].innerHTML = USDollar.format(classes[i].innerHTML/100);
 	}
 	//format prices
@@ -16,11 +16,7 @@ window.addEventListener('load', function () {
 })
 //when document is ready
 
-$.ajaxSetup({ type: "GET", timeout : 10000 })
-
-/*function updateCart(gameId){
-	$.get("/DeleteFromCartServlet?gameId="+gameId+"&category=cart")
-}*/
+$.ajaxSetup({ type: "GET", timeout : 10000 });
 
 $(".removeButton a").on("click", function(){
 	$.get("/GamingWorldShop/DeleteFromCartServlet?gameId="+$(this).attr("id")+"&category=cart");
@@ -52,7 +48,7 @@ function calculateTotalPrice(){
 	//total price starts at 0
 	
 	//get all price divs
-	var classes = document.getElementsByClassName("price")
+	classes = document.getElementsByClassName("price")
 	//get all price divs
 	
 	for(var i = 0; i<classes.length; i++){

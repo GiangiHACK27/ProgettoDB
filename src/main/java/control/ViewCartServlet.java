@@ -26,10 +26,8 @@ public class ViewCartServlet extends BaseServlet {
 		//Retrieve from request the category
 		
 		//get cart from servlet
-		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=" + category);
-			dispatcher.include(request, response);
-		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=" + category);
+		dispatcher.include(request, response);
 		//get cart from servlet
 
 		//Initialize cart that will be sent in response
@@ -43,7 +41,7 @@ public class ViewCartServlet extends BaseServlet {
 		//For each gameID, get all game data from RetrieveGameServlet
 		if(cart != null) {
 			for(int id : cart.getGames()) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveGameServlet?gameId="+id);
+				dispatcher = request.getRequestDispatcher("/RetrieveGameServlet?gameId="+id);
 				dispatcher.include(request, response);
 				cartItems.add((Game) request.getAttribute("game"));
 			}

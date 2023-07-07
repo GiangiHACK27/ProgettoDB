@@ -176,13 +176,11 @@ p.gamePrice{
 	#searchDiv{
 		float: none;
 		margin-top: 2px;
+		margin-bottom: 5px;
 	}
 
 	#headingDiv{
 		margin-bottom: 20px;
-	}
-	#searchDiv{
-		margin-bottom: 5px;
 	}
 
 	main {

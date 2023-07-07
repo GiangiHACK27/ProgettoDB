@@ -11,7 +11,8 @@ public class User implements Serializable {
 	}
 	
 	public User() {
-		
+		super();
+		//The class is a been so the constructor can be an empty constructor
 	}
 	
 	public String getUsername() {

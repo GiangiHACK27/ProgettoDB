@@ -14,6 +14,8 @@ import javax.sql.DataSource;
 import dao.ImageDAO;
 import dao.RepresentedDAO;
 import model.Image;
+import utility.BackendException;
+import utility.InvalidParameters;
 
 @WebServlet("/RetrieveGameImageServlet")
 public class RetrieveGameImageServlet extends BaseServlet {
@@ -35,7 +37,7 @@ public class RetrieveGameImageServlet extends BaseServlet {
 		try {
 			idImage = representedDAO.retrieveIdImage(gameId, role).toString();
 		} catch (SQLException | NullPointerException e) {
-			//e.printStackTrace();
+			throw new InvalidParameters();
 		}
 		//Retrieve id of game image from role and gameId
 		
@@ -44,8 +46,7 @@ public class RetrieveGameImageServlet extends BaseServlet {
 		try {
 			image = imageDAO.getImageFromID(idImage);
 		} catch (SQLException e) {
-			//response.sendError(404, "Image Not Found");
-			return;
+			throw new BackendException();
 		}
 		
 		response.setContentType("image/png");
@@ -53,7 +54,7 @@ public class RetrieveGameImageServlet extends BaseServlet {
 			out.write(image.getBytes());
 		}
 		catch(IOException e) {
-			//response.sendError(404, "Image Not Found");
+			return;
 		}
 	}
 

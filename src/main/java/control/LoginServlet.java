@@ -28,16 +28,7 @@ public class LoginServlet extends BaseServlet {
 
 	public LoginServlet() {
         super();
-    }
-
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		if(request.getSession().getAttribute("user") != null) {
-//			response.sendRedirect(request.getContextPath());
-//		}
-//		else {
-//			showError(request, response, null, selfPath);
-//		}
-//	}
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Check if the field are empty
@@ -57,7 +48,7 @@ public class LoginServlet extends BaseServlet {
 		try {
 			hashPassword = Hasher.toHash(password);
 		} catch (NoSuchAlgorithmException e) {
-			showError(request, response, "Fatal error", selfPath);
+			showError(request, response, "Fatal error", SELFPATH);
 			return;
 		}
 		//Hash the password
@@ -73,14 +64,14 @@ public class LoginServlet extends BaseServlet {
 		
 		//Check if found a user in database
 		if(user == null) {
-			showError(request, response, "User not found", selfPath);
+			showError(request, response, "User not found", SELFPATH);
 			return;
 		}
 		//Check if found a user in database
 		
 		//Check if password matches
 		if(! user.getPassword().equals(hashPassword)) {
-			showError(request, response, "Wrong password", selfPath);
+			showError(request, response, "Wrong password", SELFPATH);
 			return;
 		}
 		//Check if password matches
@@ -132,5 +123,5 @@ public class LoginServlet extends BaseServlet {
 		response.sendRedirect("/GamingWorldShop/user/PersonalArea.jsp");	
 		//Redirect to personal area
 	}
-	private String selfPath =  "/Login.jsp";
+	private static final String SELFPATH =  "/Login.jsp";
 }

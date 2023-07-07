@@ -7,6 +7,7 @@ public class Belong implements Serializable {
 
 	public Belong() {
 		super();
+		//The class is a been so the constructor can be an empty constructor
 	}
 	
 	public String getCategory() {

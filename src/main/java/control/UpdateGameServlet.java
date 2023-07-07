@@ -22,6 +22,7 @@ import model.Game;
 import model.SystemRequirement;
 import model.SystemRequirement.OperatingSystem;
 import utility.BackendException;
+import utility.InvalidParameters;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -91,7 +92,7 @@ public class UpdateGameServlet extends BaseServlet {
 
 		//Retrieve form inputs and check if they're valid
 		if(! validParameters(request, response)) {
-			return;
+			throw new InvalidParameters();
 		}
 		//Retrieve form inputs and check if they're valid
 		
@@ -131,7 +132,7 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			gameDAO.updateGame(game);
 		} catch (SQLException e) {
-			showError(request, response, "Internal error while uploading game", selfPath);
+			showError(request, response, "Internal error while uploading game", SELFPATH);
 			return;
 		}
 		//update game in database
@@ -154,6 +155,7 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			maxPriceUnlisted = gameDAO.retrieveMaxPriceGame(true);
 		} catch (SQLException e) {
+			throw new BackendException();
 		}
 		
 		context.setAttribute("maxPriceUnlisted", maxPriceUnlisted);
@@ -168,6 +170,7 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			belongDAO.deleteAllBelongs(gameId);
 		} catch (SQLException e) {
+			throw new BackendException();
 		}
 		//remove all previous categories from game
 		
@@ -191,7 +194,7 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			updateImage(imageDAO, gameId, bannerImage, "BANNER");
 		} catch (SQLException | IOException e) {
-			showError(request, response, "Error uploading banner image", selfPath);
+			showError(request, response, "Error uploading banner image", SELFPATH);
 		}
 		//insert banner image
 		
@@ -200,7 +203,7 @@ public class UpdateGameServlet extends BaseServlet {
 		try {
 			updateImage(imageDAO, gameId, showcaseImage, "SHOWCASE");
 		} catch (SQLException | IOException e) {
-			showError(request, response, "Error uploading banner image", selfPath);
+			showError(request, response, "Error uploading banner image", SELFPATH);
 		}
 		//insert showcase image
 		//Insert images into database and upload "represented" table
@@ -229,6 +232,6 @@ public class UpdateGameServlet extends BaseServlet {
 		response.sendRedirect(request.getContextPath() + "/PersonalGamePage.jsp?gameId=" + Integer.toString(gameId));
 	}
 	
-	private static final String selfPath = "/admin/UpdateGame.jsp";
+	private static final String SELFPATH = "/admin/UpdateGame.jsp";
 	private static final long serialVersionUID = -7220384849245062203L;
 }

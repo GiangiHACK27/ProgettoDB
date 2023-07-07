@@ -7,6 +7,7 @@ public class Image implements Serializable {
 	
 	public Image() {
 		super();
+		//The class is a been so the constructor can be an empty constructor
 	}
 	
 	public String getId() {

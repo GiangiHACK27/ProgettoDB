@@ -12,6 +12,7 @@ main {
 
 h1 {
 	text-align: center;
+	padding-bottom: 5px;
 }
 
 input {
@@ -28,10 +29,6 @@ input {
 
 label {
 	display: inline-block;
-}
-
-h1{
-	padding-bottom: 5px;
 }
 
 #filterSection {

@@ -83,17 +83,14 @@ div#description button {
 	
 	width: 100px;
 	height: 30px;
+	
+	float: right;
+	
+	margin-left: 5px;
 }
 
 div#description button:hover{
 	background-image: linear-gradient(to right top, #289628, #49a428, #65b129, #7fbe29, #9acb2b);
-}
-
-
-div#description button {
-	float: right;
-	
-	margin-left: 5px;
 }
 
 div#requirements {

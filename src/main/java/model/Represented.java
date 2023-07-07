@@ -6,7 +6,8 @@ public class Represented implements Serializable {
 	private static final long serialVersionUID = -7506959225240797102L;
 
 	public Represented() {
-		
+		super();
+		//The class is a been so the constructor can be an empty constructor
 	}
 	
 	public int getGameId() {

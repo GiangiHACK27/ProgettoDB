@@ -117,7 +117,7 @@ public class GameDAO extends BaseDAO {
                             + "AND G.price <= ? AND "
                             + "G.pegi <= ? AND INSTR(G.name, ?) > 0 ";
 			
-			if(unListed == false)
+			if(! unListed)
 				query = "SELECT Count(DISTINCT id) as count"
 	                    + " FROM Game as G, Belongs as B, Category as C "
 	                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
@@ -191,7 +191,7 @@ public class GameDAO extends BaseDAO {
                             + "ORDER BY " + order
                             + " LIMIT ? OFFSET ?";
 			
-			if(unListed == false) {
+			if(! unListed) {
 				query = "SELECT DISTINCT id, price, G.name, description, shortDescription, releaseDate, state, pegi, publisher"
 	                    + " FROM Game as G, Belongs as B, Category as C "
 	                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
@@ -304,7 +304,7 @@ public class GameDAO extends BaseDAO {
 		int maxPrice = 0;
 		
 		String query = "SELECT MAX(price) as max FROM Game WHERE state != 'unlisted'";
-		if(unListed == true)
+		if(unListed)
 			query = "SELECT MAX(price) as max FROM Game";
 		
 		//Retrieve connection and make prepared statement
