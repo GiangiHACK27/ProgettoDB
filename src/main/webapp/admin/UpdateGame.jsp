@@ -5,19 +5,23 @@
 <!DOCTYPE html>
 <html lang = en>
 	<head>
+		<meta charset="ISO-8859-1">
+		
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src="../Scripts/UpdateGameScript.js"></script>
-		<meta charset="ISO-8859-1">
-		<meta name="viewport" content="initial-scale=1, width=device-width">
-		
+			
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
-		<link rel="stylesheet" href="../CSS/UploadGameStyle.css">		
+		<link rel="stylesheet" href="../CSS/UploadGameStyle.css">
+				
 		<title>Upload game</title>
 	</head>
 	
 	<jsp:include page="/RetrieveGameCategories"></jsp:include>
 	<jsp:include page="/RetrieveGameServlet"></jsp:include>
 	<jsp:include page="/RetrieveGameRequirementsServlet"></jsp:include>
+	
 	<% Game game = (Game)request.getAttribute("game"); %>
 	<body>
 		<jsp:include page="../BasePageHeader.jsp"></jsp:include>

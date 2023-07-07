@@ -4,14 +4,9 @@ main {
 	margin-top: 10%;
 	margin-bottom: 5%;
 	overflow: hidden;
-	/* background-image: radial-gradient(circle, #172227, #1b282e, #202e36, #24353e, #293b46); */
 }
 
-h1{
-	text-align: center;
-}
-
-#successDiv{
+#successDiv {
 	width:70%;
 	margin: auto;
 	position: relative;
@@ -22,6 +17,7 @@ h1{
 	padding: 5px;
 }
 
-h1{
+h1 {
+	text-align: center;
 	margin-bottom: 50px;
 }

@@ -2,16 +2,17 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
+	<head>
+		<meta charset="ISO-8859-1">
 
-<meta name="viewport" content="initial-scale=1, width=device-width">
+		<meta name="viewport" content="initial-scale=1, width=device-width">
 
-<link rel="stylesheet" href="./../CSS/BaseStyle.css">
-<link rel="stylesheet" href="./../CSS/Purchase.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Insert title here</title>
-</head>
+		<link rel="stylesheet" href="./../CSS/BaseStyle.css">
+		<link rel="stylesheet" href="./../CSS/Purchase.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<title>Purchase page</title>
+	</head>
 
 <body>
 	<jsp:include page="../BasePageHeader.jsp"></jsp:include>
@@ -27,12 +28,6 @@
 
 	<section class=main>
 		<main>
-<%-- 			<form method="POST" action="<%=servletToCall%>">
- --%>				<!-- 					<label for = "card_number">Card number</label>
-					<input type = "text" name = "card_number" required></input>
-					<br>
-				
-					<input type = "submit" value = "buy"></input> -->
 				<div class="row">
 					<div class="col-75">
 						<div class="container">
@@ -42,7 +37,7 @@
 									<div class="col-50">
 										<h3>Billing Address</h3>
 										<label for="fname"><i class="fa fa-user"></i> Full
-											Name</label> <input type="text" pattern=^[a-zA-Z]$ required id="fname" name="firstname"
+											Name</label> <input type="text" pattern=^[a-zA-Z]+$ required id="fname" name="firstname"
 											placeholder="John M. Doe"> <label for="email"><i
 											class="fa fa-envelope"></i> Email</label> <input required type="email"
 											id="email" name="email" placeholder="john@example.com">
@@ -74,7 +69,7 @@
 												class="fa fa-cc-discover" style="color: orange;"></i>
 										</div>
 										<label for="cname">Name on Card</label> <input type="text"
-											id="cname" required name="cardname" pattern=^[a-zA-Z]$ placeholder="John More Doe">
+											id="cname" required name="cardname" pattern=^[a-zA-Z]+$ placeholder="John More Doe">
 										<label for="ccnum">Credit card number</label> <input
 											type="text" required id="ccnum" name="card_number" required
 											placeholder="1111-2222-3333-4444" pattern ="^\d{4}-\d{4}-\d{4}-\d{4}$">

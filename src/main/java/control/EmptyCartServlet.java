@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 import dao.InterestedDAO;
 import model.Interested;
 import model.User;
+import utility.InvalidParameters;
 
 @WebServlet("/EmptyCartServlet")
 public class EmptyCartServlet extends BaseServlet {
@@ -31,8 +33,8 @@ public class EmptyCartServlet extends BaseServlet {
 		//Retrieve from session the user info
 			
 		//Validate parameters
-		if(! validParameters(request, response))
-			return;
+		if(! validParameters(request, response, Arrays.asList("category")))
+			throw new InvalidParameters();
 		//Validate parameters
 		
 		//Retrieve category of cart from request

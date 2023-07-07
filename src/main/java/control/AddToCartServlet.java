@@ -35,7 +35,7 @@ public class AddToCartServlet extends BaseServlet {
 		
 		//Validate parameters
 		if(! validParameters(request, response))
-			return;
+			throw new InvalidParameterException("Some parameter are empty");
 		//Validate parameters
 		
 		//Retrieve game from request
@@ -66,7 +66,7 @@ public class AddToCartServlet extends BaseServlet {
 			
 			//In case is already buyed, exit from the servlet
 			if(isBuyed)
-				return;
+				throw new InvalidParameterException("The game is already buyed");
 			//In case is already buyed, exit from the servlet
 			
 			//Check on db if the game is already buyed

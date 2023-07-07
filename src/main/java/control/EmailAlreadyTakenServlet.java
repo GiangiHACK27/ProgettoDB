@@ -3,10 +3,10 @@ package control;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -14,9 +14,10 @@ import javax.sql.DataSource;
 import org.json.JSONObject;
 
 import dao.GameDAO;
+import utility.InvalidParameters;
 
 @WebServlet("/emailAlreadyTakenServlet")
-public class EmailAlreadyTakenServlet extends HttpServlet {
+public class EmailAlreadyTakenServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
     public EmailAlreadyTakenServlet() {
@@ -31,6 +32,10 @@ public class EmailAlreadyTakenServlet extends HttpServlet {
 		//By default return false in the response
 		Boolean b = false;
 		//By default return false in the response
+		
+		if(! validParameters(request, response, Arrays.asList("email"))) {
+			throw new InvalidParameters();
+		}
 		
 		//Retrieve from request the email
 		String email = (String)request.getParameter("email");
@@ -51,7 +56,7 @@ public class EmailAlreadyTakenServlet extends HttpServlet {
 		}
 		//Check if on database is present a user with the same email
 		
-		System.out.println(b);
+//		System.out.println(b);
 		
 		//Put in response result
 		PrintWriter out = response.getWriter();

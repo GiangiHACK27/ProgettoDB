@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -26,7 +27,7 @@ public class AddPurchaseGameServlet extends BaseServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Can't use get in this case");
+		throw new InvalidParameterException("ajajaj");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,8 +37,10 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		//Retrieve User from session
 		
 		//Check if input are valid
-		if(! super.validParameters(request, response))
-			return;
+		if(! super.validParameters(request, response)) {
+			throw new InvalidParameterException("Ajajajaj");
+			
+		}
 		//Check if input are valid
 		
 		//Retrieve parameters from request and build purchase
@@ -69,7 +72,6 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		try {
 			purchaseDAO.insert(purchase);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			return;
 		}
 		//Insert purchase on database

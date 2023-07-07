@@ -48,16 +48,13 @@
 				maxPrice = (int) application.getAttribute("maxPriceUnlisted");
 						
 			Integer currentMaxPrice = maxPrice;
-			/* String t = request.getParameter("currentMaxPrice");
-			if (t != null)
-				currentMaxPrice = Integer.parseInt(t); */
 			
 			String[] alreadyCheckedCategories = request.getParameterValues("categories");
 			
 			int oldPegi = 18;
-			String t = request.getParameter("pegi");
+/* 			String t = request.getParameter("pegi");
 			if(t != null)
-				oldPegi = Integer.parseInt(t);
+				oldPegi = Integer.parseInt(t); */
 			%>
 			
 				<div id=categoryDiv>

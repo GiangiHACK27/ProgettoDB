@@ -21,6 +21,8 @@ import model.Cart;
 import model.Interested;
 import model.User;
 
+import utility.InvalidParameters;
+
 @WebServlet("/DeleteFromCartServlet")
 public class DeleteFromCartServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,7 +42,7 @@ public class DeleteFromCartServlet extends BaseServlet {
 		List<String> parameters = new ArrayList<>(Arrays.asList("gameId", "category"));
 		
 		if(! validParameters(request, response, parameters))
-			return;
+			throw new InvalidParameters();
 		//Validate parameters
 		
 		//Retrieve game id from request
@@ -85,7 +87,7 @@ public class DeleteFromCartServlet extends BaseServlet {
 			try {
 				cart.removeGame(gameToRemove);	
 			} catch(InvalidParameterException e) {
-				e.printStackTrace();
+				throw new InvalidParameters();
 			}
 			//Retrieve Cart from session
 		}

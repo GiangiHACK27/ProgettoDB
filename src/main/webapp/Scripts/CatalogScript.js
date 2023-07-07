@@ -29,7 +29,7 @@ $(document).ready(function() {
 	//load the catalog when the document is ready 
 })
 
-	function updateCatalog(page){
+function updateCatalog(page) {
 		//convert form to array
 		var data = $('form').serializeArray(); 
 		//convert form to array
@@ -40,6 +40,7 @@ $(document).ready(function() {
 		
 		//Send GET response to servlet to retrieve games
 		var url="/GamingWorldShop/GetCatalogGameObjects"
+		
 		$.get(url, data, function(responseData){
 			let giochi = responseData;
 			if(giochi.games.length == 0) {

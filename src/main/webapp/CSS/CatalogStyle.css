@@ -79,6 +79,14 @@ div.gameDiv{
 	padding-top: 5px 10px;
 }
 
+.description {
+	height: 50px;
+
+	overflow: hidden;
+	display: block;
+	text-overflow: hidden;
+}
+
 p.gameImage{
 	float: left;
 	margin-right: 10px;
@@ -135,13 +143,13 @@ p.gamePrice{
 	text-align: center;
 }
 
-@media screen and (max-width: 920px){
-	.description{
+@media screen and (max-width: 950px) {
+	.description {
 		display:none;
 	}
 
 
-	#filterSection{
+	#filterSection {
 	float: none;
 	margin-right: 2px;
 	margin-left: 0px;
@@ -149,9 +157,9 @@ p.gamePrice{
 	border-width: 0px;
 	margin-bottom: 20px;
 	background-color: rgba(15,20,23,1)
-}
+	}
 
-	#gameListSection{
+	#gameListSection {
 	min-width: 97%;
 	max-width: 97%;
 	float: none;
@@ -184,10 +192,8 @@ p.gamePrice{
 		float:right;
 		margin-bottom: 5%;
 		margin-top: 5%;
-		overflow: hidden;
-		
+		overflow: hidden;	
 	}
-
 }
 
 @media screen and (max-width: 540px){

@@ -10,9 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utility.MethodNotSupportedException;
+
 public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = -6071900375104162065L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		throw new MethodNotSupportedException();
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		throw new MethodNotSupportedException();
+	}
+	
 	private boolean isNotValidParam(String s) {
     	return s == null || s.trim().isEmpty();
     }

@@ -12,7 +12,8 @@
 		
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
 		<link rel="stylesheet" href="../CSS/GameListStyle.css">
-		<link rel="stylesheet" href="../CSS/CartStyle.css">
+<!-- 		<link rel="stylesheet" href="../CSS/CartStyle.css"> -->
+		<link rel="stylesheet" href="../CSS/">
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src="../Scripts/WishlistScript.js" defer></script>
