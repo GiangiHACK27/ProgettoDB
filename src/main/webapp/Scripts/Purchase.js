@@ -49,6 +49,21 @@ function checkForm(e) {
 }
 //Function to check validity of the form
 
+//Function to assist on writing of card number
+var oldLength = 0;
+function assistCardNumber() {
+			
+	textContent = document.getElementById("ccnum").value;
+	
+	if(oldLength < textContent.length) {
+		if(textContent.length == 4 || textContent.length == 9 || textContent.length == 14)
+			document.getElementById("ccnum").value = document.getElementById("ccnum").value + "-";
+	}
+		
+	oldLength = textContent.length;
+}
+//Function to assist on writing of card number
+
 //On load of the page set the function to check validity
 $(document).ready(function() {
 	
@@ -62,6 +77,8 @@ $(document).ready(function() {
 		$("#" + i).on("change", function() { checkField(i); })
 	}
 	//Add to all the input of the form, a callback to on change event
+	
+	$("#ccnum").on("input", assistCardNumber);
 	
 	//Clear error box messages
 	$("#errorMessage").html("");
