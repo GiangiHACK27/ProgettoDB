@@ -5,7 +5,7 @@ $(document).ready(function() {
 	//convert price
 	
 	//This function removes the 'required' tag from checkboxes when at least one is selected, and adds it when they're all unselected
-    var requiredCheckboxes = $(':checkbox[required]');
+    var requiredCheckboxes = $(':checkbox[name="categories"]');
     requiredCheckboxes.change(function(){
         if(requiredCheckboxes.is(':checked')) {
             requiredCheckboxes.removeAttr('required');
@@ -14,8 +14,6 @@ $(document).ready(function() {
         }
     });
     //This function removes the 'required' tag from checkboxes when at least one is selected, and adds it when they're all unselected
-    
-    
 })
 
 //add a name-value couple into system requirements

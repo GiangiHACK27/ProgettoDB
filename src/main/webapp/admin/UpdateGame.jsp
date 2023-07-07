@@ -92,10 +92,10 @@
 						for (Category c : categories) {
 						%>
 							<%if(gameCategories.stream().map(category->category.getName()).anyMatch(name->name.equals(c.getName())) ){ %>
-							<input id="<%=c.getName()%>" type="checkbox" name="categories" required checked value="<%=c.getName()%>">
+							<input id="<%=c.getName()%>" type="checkbox" name="categories" checked value="<%=c.getName()%>">
 							<label for="<%=c.getName()%>" > <%=c.getName()%> </label> <br>
 							<%}else{%>
-							<input id="<%=c.getName()%>" type="checkbox" name="categories" required value="<%=c.getName()%>">
+							<input id="<%=c.getName()%>" type="checkbox" name="categories" value="<%=c.getName()%>">
 							<label for="<%=c.getName()%>" > <%=c.getName()%> </label> <br>
 							<%}%>
 						<%
