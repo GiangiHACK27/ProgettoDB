@@ -21,12 +21,11 @@
 	<jsp:include page="../BasePageHeader.jsp"></jsp:include>
 
 	<%
-	String from = request.getParameter("from");
-	String servletToCall = "PurchaseFromCartServlet?category=cart";
-	if (from != null && from.equals("personalGamePage")) {
-		String gameId = request.getParameter("gameId");
-		servletToCall = "AddPurchaseGameServlet?gameId=" + gameId;
-	}
+	String servletToCall = (String)request.getAttribute("servletToCall");
+	if(servletToCall == null)
+		servletToCall = "PurchaseFromCartServlet?category=cart";
+	
+	System.out.println(servletToCall);
 	%>
 
 	<section class=main>

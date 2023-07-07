@@ -101,7 +101,8 @@
 			 						<button id="addToCartButton" onclick="addToCart(<%= game.getId() %>)" >Add to cart</button>								
 								<% } %>
 							
-								<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
+<%-- 								<button onclick="location.href='user/Purchase.jsp?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice()%></span> </button>
+ --%>								<button onclick="location.href='user/PurchaseRedirectServlet?from=personalGamePage&gameId=<%= game.getId()%>'">Buy: <span id="buyButton"><%= game.getPrice() %></span></button>
 							<% }else{ %>
 								<button onclick="location.href='user/GameLibrary.jsp'">View in library </button>
 							<%} %>

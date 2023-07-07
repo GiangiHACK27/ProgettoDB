@@ -22,6 +22,8 @@
 				<%}else{ %>
 					A fatal error has occurred while processing your request. <a href="${pageContext.request.contextPath}">Return to home page</a>
 				<%} %>
+				
+				<%=exception.getMessage() %>
 			</main>
 		</section>
 	
