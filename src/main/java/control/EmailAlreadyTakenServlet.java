@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 import org.json.JSONObject;
 
-import dao.GameDAO;
+import dao.UserDAO;
 import utility.InvalidParameters;
 
 @WebServlet("/emailAlreadyTakenServlet")
@@ -46,17 +46,15 @@ public class EmailAlreadyTakenServlet extends BaseServlet {
 		//Retrieve from servlet context the data source
 		
 		//Check if on database is present a user with the same email
-		GameDAO gameDAO = new GameDAO(ds);
+		UserDAO userDAO = new UserDAO(ds);
 		if(email != null) {
 			try {
-				b = gameDAO.emailAlreadyExist(email);
+				b = userDAO.emailAlreadyExist(email);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		//Check if on database is present a user with the same email
-		
-//		System.out.println(b);
 		
 		//Put in response result
 		PrintWriter out = response.getWriter();

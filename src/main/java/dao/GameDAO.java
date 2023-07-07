@@ -83,9 +83,7 @@ public class GameDAO extends BaseDAO {
 			//Insert user into database
 			ps.execute();
 			//Insert user into database
-
 		}
-		
 	}
 	
 	public int countGames(List<Category> categories, int maxPrice, int pegi, String searchText, boolean unListed) throws SQLException {
@@ -324,66 +322,6 @@ public class GameDAO extends BaseDAO {
 		}
 				
 		return maxPrice;
-	}
-	
-	public boolean usernameAlreadyExist(String username) throws SQLException {		
-		PreparedStatement ps = null;
-		
-		//Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
-			
-			//Construct query
-			String query = "SELECT * FROM user WHERE username = ?";
-			
-			ps = conn.prepareStatement(query);
-			
-			ps.setString(1, username);
-			//Construct query
-			
-			ResultSet rs = ps.executeQuery();
-			
-			//If we find a user with the same username, we return true
-			if(rs != null && rs.next())
-				return true;
-			//If we find a user with the same username, we return true
-			
-		} finally {
-			if(ps != null)
-				ps.close();
-		}
-		
-		return false;
-	}
-	
-	public boolean emailAlreadyExist(String email) throws SQLException {		
-		PreparedStatement ps = null;
-		
-		//Retrieve connection
-		try (Connection conn = ds.getConnection()) {
-		//Retrieve connection
-			
-			//Construct query
-			String query = "SELECT * FROM user WHERE email = ?";
-			
-			ps = conn.prepareStatement(query);
-			
-			ps.setString(1, email);
-			//Construct query
-			
-			ResultSet rs = ps.executeQuery();
-			
-			//If we find a user with the same username, we return true
-			if(rs != null && rs.next())
-				return true;
-			//If we find a user with the same username, we return true
-			
-		} finally {
-			if(ps != null)
-				ps.close();
-		}
-		
-		return false;
 	}
 	
 	public List<AbstractMap.SimpleEntry<Game, Purchase>> retrievePurchasedGameForUsername(String username) throws SQLException {

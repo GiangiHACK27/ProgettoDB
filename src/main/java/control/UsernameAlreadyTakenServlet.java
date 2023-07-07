@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import javax.sql.DataSource;
 
-import dao.GameDAO;
+import dao.UserDAO;
 
 @WebServlet("/usernameAlreadyTakenServlet")
 public class UsernameAlreadyTakenServlet extends HttpServlet {
@@ -42,10 +42,10 @@ public class UsernameAlreadyTakenServlet extends HttpServlet {
 		//Retrieve from servlet context the data source
 		
 		//Check if on database is present a user with the same username
-		GameDAO gameDAO = new GameDAO(ds);
+		UserDAO userDAO = new UserDAO(ds);
 		if(username != null) {
 			try {
-				b = gameDAO.usernameAlreadyExist(username);
+				b = userDAO.usernameAlreadyExist(username);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
