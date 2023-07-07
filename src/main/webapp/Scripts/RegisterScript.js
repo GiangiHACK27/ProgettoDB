@@ -24,16 +24,12 @@ function validateFormElem(formElem, span, errorMessage) {
 		//In case we are checking for email o username validity, check if it is already taken
 		if(formElem.name == "email" || formElem.name == "username") {
 			$.ajaxSetup({ type: "GET", timeout : 10000 });
-			
-			console.log(formElem.value);
-			
+						
 			$.get({ url:  "/GamingWorldShop/" + formElem.name + "AlreadyTakenServlet?" + formElem.name + "=" + formElem.value, success: function(data) {
 				q = data;	
 			},
 			async: false
 			})
-			
-			console.log(q.result);
 			
 			//In case the username or email are already used
 			if(q.result == true) {

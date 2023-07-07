@@ -3,13 +3,10 @@ var errorMessages = {
 	state: "The state is a pair of char",
 	zip: "ZipCode is a number of 5 digit",
 	cname: "The name on card can contain only characters",
-	cvv: "CVV is a number of 3 digit",
-	ccnum: "Card number follow this pattern: dddd-dddd-dddd-dddd"
+	cvv: "CVV is a number of 3 digit"
 }
 
-//Function to check validity of a field
-function checkField(field) {
-	//In case the value is valid	
+function checkField(field) {	
 	if($("#" + field)[0].checkValidity()) {
 		if(errorMessages[field] == $("#errorMessage").html()) {
 			$("#errorMessage").html("");
@@ -17,37 +14,24 @@ function checkField(field) {
 		
 		return true;
 	}
-	//In case the value is valid
 	
-	//In case the value isn't valid, visualize error
 	$("#errorMessage").html(errorMessages[field]);
-	//In case the value isn't valid, visualize error
 	
 	return false;
 }
-//Function to check validity of a field
 
-//Function to check validity of the form
 function checkForm(e) {
-
-	//Check if all the values of the fields are valid	
+	
 	for(f in errorMessages) {
 		let i = f;
-		//In case the field hasn't a valid value
 		if(! checkField(i)) {
-			//Prevent submitting of the form
 			e.preventDefault();
-			//Prevent submitting of the form
-			
 			return false;
 		}
-		//In case the field hasn't a valid value
 	}
-	//Check if all the values of the fields are valid
 	
 	return true;
 }
-//Function to check validity of the form
 
 //On load of the page set the function to check validity
 $(document).ready(function() {

@@ -10,7 +10,10 @@
 		<link rel="stylesheet" href="./../CSS/BaseStyle.css">
 		<link rel="stylesheet" href="./../CSS/Purchase.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="../Scripts/Purchase.js"></script>
+		
 		<title>Purchase page</title>
 	</head>
 
@@ -87,7 +90,10 @@
 									</div>
 
 								</div>
-								</label> <input type="submit" value="Confirm" class="btn">
+								</label> 
+								
+								<p id="errorMessage"></p>
+								<input type="submit" value="Confirm" class="btn" id="submitButton">
 							</form>
 						</div>
 					</div>

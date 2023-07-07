@@ -7,6 +7,10 @@ main{
 	margin-bottom: 10%;
 }
 
+#errorMessage {
+	color: red;
+}
+
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
