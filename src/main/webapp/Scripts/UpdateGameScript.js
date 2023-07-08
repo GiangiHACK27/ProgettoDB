@@ -18,9 +18,9 @@ $(document).ready(function() {
 
 //add a name-value couple into system requirements
 function addNameValueRow(sectionId) {
-  var section = document.getElementById(sectionId);
-  var nameValueFields = section.getElementsByClassName("nameValueFields")[0];
-  var newRow = document.createElement("div");
+  let section = document.getElementById(sectionId);
+  let nameValueFields = section.getElementsByClassName("nameValueFields")[0];
+  let newRow = document.createElement("div");
   newRow.className = "nameValueRow";
   newRow.innerHTML = `
     <input type="text" required name="${sectionId}[name][]" placeholder="Hardware type" maxlength="30">
@@ -33,7 +33,7 @@ function addNameValueRow(sectionId) {
 
 //remove a name-value couple from system requirements
 function removeNameValueRow(button) {
-  var row = button.parentNode;
+  let row = button.parentNode;
   row.parentNode.removeChild(row);
 }
 //remove a name-value couple from system requirements
@@ -41,8 +41,8 @@ function removeNameValueRow(button) {
 
 //convert number input to dollars
 function convertToDecimal(input) {
-  var value = input.value;
-  var decimalValue = value; // Assuming the user enters the amount in cents
+  let value = input.value;
+  let decimalValue = value; // Assuming the user enters the amount in cents
 
   // Update the value attribute of the input element with the converted decimal value (in dollars)
   input.value = parseFloat(decimalValue).toFixed(2);
