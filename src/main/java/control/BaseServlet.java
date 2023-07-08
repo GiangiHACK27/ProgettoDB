@@ -51,13 +51,10 @@ public class BaseServlet extends HttpServlet {
 		return true;
 	}
 	
-	protected void showError(HttpServletRequest request, HttpServletResponse response, String message, String path) {
+	protected void showError(HttpServletRequest request, HttpServletResponse response, String message, String path) throws ServletException, IOException {
 		request.setAttribute("logError", message);
     	RequestDispatcher rs = request.getRequestDispatcher(path);
-    	try {
-			rs.forward(request, response);
-		} catch (ServletException | IOException e) {
-			//AAAAAAAA
-		} 
+    	
+		rs.forward(request, response);
     }
 }

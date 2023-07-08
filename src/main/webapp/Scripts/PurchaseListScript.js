@@ -20,12 +20,11 @@ $(document).ready(function() {
 //Function to update the page
 function update() {
 	//Retrieve parameter from the form
-	var data = $("form").serializeArray();
-	console.log(data);
+	let data = $("form").serializeArray();
 	//Retrieve parameter from the form
 	
 	//Retrieve purchases from the db
-	var url="/GamingWorldShop/admin/SearchPurchasesServlet";
+	let url="/GamingWorldShop/admin/SearchPurchasesServlet";
 	
 	$.get(url, data, function buildTable(responseData) {
 		$('table tbody').empty();

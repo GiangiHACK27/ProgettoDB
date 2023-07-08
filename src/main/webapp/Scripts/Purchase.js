@@ -1,10 +1,11 @@
 var errorMessages = {
-	fname: "The name can contain only characters",
+	fname: "The name can contain only characters separeted by a space",
 	state: "The state is a pair of char",
 	zip: "ZipCode is a number of 5 digit",
-	cname: "The name on card can contain only characters",
+	cname: "The name on card can contain only characters separeted by a spaces",
 	cvv: "CVV is a number of 3 digit",
-	ccnum: "Card number follow this pattern: dddd-dddd-dddd-dddd"
+	ccnum: "Card number follow this pattern: dddd-dddd-dddd-dddd",
+	email: "Email must follow this pattern: name@domain.com"
 }
 
 //Function to check validity of a field
@@ -31,7 +32,7 @@ function checkField(field) {
 function checkForm(e) {
 
 	//Check if all the values of the fields are valid	
-	for(f in errorMessages) {
+	for(let f in errorMessages) {
 		let i = f;
 		//In case the field hasn't a valid value
 		if(! checkField(i)) {
@@ -53,7 +54,7 @@ function checkForm(e) {
 var oldLength = 0;
 function assistCardNumber() {
 			
-	textContent = document.getElementById("ccnum").value;
+	let textContent = document.getElementById("ccnum").value;
 	
 	if(oldLength < textContent.length) {
 		if(textContent.length == 4 || textContent.length == 9 || textContent.length == 14)

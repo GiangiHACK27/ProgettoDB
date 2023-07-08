@@ -20,7 +20,7 @@ import dao.InterestedDAO;
 import model.Cart;
 import model.Interested;
 import model.User;
-
+import utility.BackendException;
 import utility.InvalidParameters;
 
 @WebServlet("/DeleteFromCartServlet")
@@ -70,7 +70,7 @@ public class DeleteFromCartServlet extends BaseServlet {
 			try {
 				interestedDAO.removeInterest(interested);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new BackendException();
 			}
 			//Add interest to the database
 		}

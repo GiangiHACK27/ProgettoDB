@@ -10,7 +10,7 @@ function validateFormElem(formElem, span, errorMessage) {
 	if(formElem.checkValidity()){
 		
 		//Remove error for pattern mismatching
-		var doc = new DOMParser().parseFromString(span.innerHTML, "text/html")
+		let doc = new DOMParser().parseFromString(span.innerHTML, "text/html")
 		formElem.classList.remove("error");
 		if(errorMessage != null && doc.documentElement.textContent == errorMessage) {
 			formElem.classList.remove("error");

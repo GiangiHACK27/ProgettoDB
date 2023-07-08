@@ -12,10 +12,12 @@ CREATE TABLE Game (
     description text DEFAULT(""),
     shortDescription text DEFAULT(""),
     releaseDate date DEFAULT("1999-09-09"),
-    state ENUM("Released", "Beta", "Alpha", "Coming_soon", "Unlisted") NOT NULL DEFAULT("Coming_soon"),
+    state ENUM("Released", "Beta", "Alpha", "Unlisted") NOT NULL DEFAULT("Alpha"),
     pegi int NOT NULL DEFAULT(18),
     publisher varchar(30) NOT NULL DEFAULT("Microsoft"),
-    primary key(id)
+    primary key(id),
+    constraint number_price_game
+        check(price >= 0 and price <= 1000)
 );
 
 CREATE TABLE Category (
@@ -95,7 +97,9 @@ CREATE TABLE Purchase (
 	CONSTRAINT usernameConsPurchase
 		foreign key (username) references User (username),
 	UNIQUE (gameId, username), -- TEST: IF WORK
-	primary key (id)
+	primary key (id),
+        constraint number_price_purchase
+        check(price >= 0 and price <= 1000)
 );
 
 CREATE TABLE Review (

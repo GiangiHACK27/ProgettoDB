@@ -6,7 +6,7 @@ let USDollar = new Intl.NumberFormat('en-US', {
 //when document is ready
 window.addEventListener('load', function () {
 	//format prices
-	classes = document.getElementsByClassName("price")
+	let classes = document.getElementsByClassName("price")
 	for( i = 0; i<classes.length; i++){
 		classes[i].innerHTML = USDollar.format(classes[i].innerHTML/100);
 	}
@@ -48,10 +48,10 @@ function calculateTotalPrice(){
 	//total price starts at 0
 	
 	//get all price divs
-	classes = document.getElementsByClassName("price")
+	let classes = document.getElementsByClassName("price");
 	//get all price divs
 	
-	for(var i = 0; i<classes.length; i++){
+	for(let i = 0; i<classes.length; i++){
 		//format div to only read number (and skip dollar sign)
 		let string = classes[i].innerHTML.replace(/,/g, ''); //replace thousand commas with white space otherwise they can't be parsed
 		total += parseInt(string.substring(1, string.length)*100);
@@ -60,7 +60,7 @@ function calculateTotalPrice(){
 	
 	//insert total price in DOM
 	$('#totalPrice').html("");
-	$('#totalPrice').append("Total price: "+USDollar.format(total/100));
+	$('#totalPrice').append("Total price: " + USDollar.format(total/100));
 	//insert total price in DOM
 }
 //sets total price of items in cart

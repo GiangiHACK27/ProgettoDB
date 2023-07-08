@@ -12,7 +12,8 @@
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" 
-		integrity = "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="></script>
+		integrity = "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+		crossorigin="anonymous"></script>
 		<script src="../Scripts/UploadGameScript.js"></script>
 		
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
@@ -45,18 +46,17 @@
 						Description:<br> <textarea name="description" rows=30 cols=80 required> </textarea>
 					</div> 
 					<div id=shortDescriptionDiv>
-						Short description:<br> <textarea name="shortDescription" rows=10 cols=80 required> </textarea> 
+						Short description:<br> <textarea name="shortDescription" maxlength=300 rows=10 cols=80 required> </textarea> 
 					</div>
 					<div id=priceDiv>
 						Price: &#36;
-						<input type="number" min="0" max="100000000" step="0.01" id=price name="price" required onchange="convertToDecimal(this)" />
+						<input type="number" min="0" max="1000" step="0.01" id=price name="price" required onchange="convertToDecimal(this)" />
 					</div>
 					<div id=stateDiv>
 						State: <select name="state">
 							<option value="RELEASED">Released</option>
 							<option value="BETA">Beta</option>
 							<option value="ALPHA">Alpha</option>
-							<option value="COMING_SOON">Coming soon</option>
 							<option value="UNLISTED">Unlisted</option>
 						</select> 
 					</div> 	

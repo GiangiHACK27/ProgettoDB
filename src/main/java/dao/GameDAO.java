@@ -86,6 +86,10 @@ public class GameDAO extends BaseDAO {
 		}
 	}
 	
+	private static final String COUNTGAMEQUERY = "SELECT Count(DISTINCT id) as count"
+            + " FROM Game as G, Belongs as B, Category as C "
+            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in ";
+	
 	public int countGames(List<Category> categories, int maxPrice, int pegi, String searchText, boolean unListed) throws SQLException {
 		int size = 0;
 		
@@ -110,17 +114,13 @@ public class GameDAO extends BaseDAO {
 			//Construct query string
 			
 			//Construct query
-			String query = "SELECT Count(DISTINCT id) as count"
-                    + " FROM Game as G, Belongs as B, Category as C "
-                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+			String query = COUNTGAMEQUERY
                             + categoriesToSearch
                             + "AND G.price <= ? AND "
                             + "G.pegi <= ? AND INSTR(G.name, ?) > 0 ";
 			
 			if(! unListed)
-				query = "SELECT Count(DISTINCT id) as count"
-	                    + " FROM Game as G, Belongs as B, Category as C "
-	                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+				query = COUNTGAMEQUERY
 	                            + categoriesToSearch
 	                            + "AND G.price <= ? AND "
 	                            + "G.state != 'unlisted' AND "
@@ -158,6 +158,10 @@ public class GameDAO extends BaseDAO {
 		return size;
 	}
 	
+	private static final String RETRIEVEGAMEQUERY = "SELECT DISTINCT id, price, G.name, description, shortDescription, releaseDate, state, pegi, publisher"
+            + " FROM Game as G, Belongs as B, Category as C "
+            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in ";
+	
 	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi, String searchText, String order, int limit, int offset, boolean unListed) throws SQLException {
 		List<Game> games = new ArrayList<>();
 		
@@ -182,9 +186,7 @@ public class GameDAO extends BaseDAO {
 			//Construct query string
 			
 			//Construct query
-			String query = "SELECT DISTINCT id, price, G.name, description, shortDescription, releaseDate, state, pegi, publisher"
-                    + " FROM Game as G, Belongs as B, Category as C "
-                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+			String query = RETRIEVEGAMEQUERY
                             + categoriesToSearch
                             + "AND G.price <= ? AND "
                             + "G.pegi <= ? AND INSTR(G.name, ?) > 0 "
@@ -192,9 +194,7 @@ public class GameDAO extends BaseDAO {
                             + " LIMIT ? OFFSET ?";
 			
 			if(! unListed) {
-				query = "SELECT DISTINCT id, price, G.name, description, shortDescription, releaseDate, state, pegi, publisher"
-	                    + " FROM Game as G, Belongs as B, Category as C "
-	                            + "WHERE G.id = B.gameId AND C.name = B.categoryName AND C.name in "
+				query = RETRIEVEGAMEQUERY
 	                            + categoriesToSearch
 	                            + "AND G.price <= ? AND "
 	                            + "G.pegi <= ? AND INSTR(G.name, ?) > 0 "

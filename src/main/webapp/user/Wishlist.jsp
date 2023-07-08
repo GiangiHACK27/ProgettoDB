@@ -12,10 +12,11 @@
 		
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
 		<link rel="stylesheet" href="../CSS/GameListStyle.css">
-<!-- 		<link rel="stylesheet" href="../CSS/"> -->
+		<link rel="stylesheet" href="../CSS/CartStyle.css">		
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" 
-		integrity = "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="></script>
+		integrity = "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+		crossorigin="anonymous"></script>
 		<script src="../Scripts/WishlistScript.js" defer></script>
 		
 		<title>Wishlist</title>
@@ -50,7 +51,7 @@
 			 				 <span class= removeButton><a id=<%=currentGame.getId()%>>Remove</a></span>
 			 			</p>
 			 			<p class=gameTitle>
-			 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>
+			 				<a href=../PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><%=currentGame.getName()%></a>
 			 			</p>
 	
 			 		</div>

@@ -17,7 +17,7 @@ public class ImageDAO extends BaseDAO {
 		super(ds);
 	}
 	
-	public synchronized Image getImageFromID(String Id) throws SQLException {
+	public synchronized Image getImageFromID(String id) throws SQLException {
 
 		Image image = null;
 
@@ -28,7 +28,7 @@ public class ImageDAO extends BaseDAO {
 		//Retrieve connection and make prepared statement
 			
 			//Create query
-			ps.setString(1, Id);
+			ps.setString(1, id);
 			//Create query
 			
 			//Execute query
@@ -40,7 +40,7 @@ public class ImageDAO extends BaseDAO {
 			
 			//Create the image object
 			image = new Image();
-			image.setId(Id);
+			image.setId(id);
 			image.setAltText(rs.getString("alt"));
 			byte[] bytes = rs.getBytes("raw");
 			image.setBytes(bytes);

@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 function updateCatalog(page) {
 		//convert form to array
-		var data = $('form').serializeArray(); 
+		let data = $('form').serializeArray(); 
 		//convert form to array
 		
 		//add the page value to the data to send to server
@@ -39,7 +39,7 @@ function updateCatalog(page) {
 		//add the page value to the data to send to server
 		
 		//Send GET response to servlet to retrieve games
-		var url="/GamingWorldShop/GetCatalogGameObjects"
+		let url="/GamingWorldShop/GetCatalogGameObjects"
 		
 		$.get(url, data, function(responseData){
 			let giochi = responseData;
@@ -56,7 +56,7 @@ function updateCatalog(page) {
 			}
 			
 			//add pagination based on number of games found
-			gameCount = responseData.gamesCount;
+			let gameCount = responseData.gamesCount;
 			if(gameCount > 0 ) {
 				$('#gameListSection').append("<div class=pageDiv>")
 				let pageSize = 10;
