@@ -165,6 +165,9 @@ public class GameDAO extends BaseDAO {
 	public List<Game> retrieveGames(List<Category> categories, int maxPrice, int pegi, String searchText, String order, int limit, int offset, boolean unListed) throws SQLException {
 		List<Game> games = new ArrayList<>();
 		
+		if(!validOrderValues.contains(order)) {
+			throw new SQLException();
+		}
 		PreparedStatement ps = null;
 		
 		//Retrieve connection
@@ -369,4 +372,6 @@ public class GameDAO extends BaseDAO {
 		
 		return gamePurchased;
 	}
+	
+	 private static final List<String> validOrderValues = List.of("name", "name DESC", "releaseDate", "releaseDate DESC", "price", "price DESC" );
 }
