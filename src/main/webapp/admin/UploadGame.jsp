@@ -37,10 +37,10 @@
 						<input type="file" id=showcaseImages name=showcaseImage accept="image/jpeg, image/png, image/jpg" required> 
 					</div> 
 					<div id=nameDiv>
-						Name: <input type="text" name="name" required maxlength="30"> 
+						Name: <input id="name" type="text" name="name" required maxlength="30"> 
 					</div>
 					<div id=publisherDiv>
-						Publisher: <input type="text" name="publisher" required maxlength="30"> 
+						Publisher: <input id="publisher" type="text" name="publisher" required maxlength="30"> 
 					</div>
 					<div id=descriptionDiv>
 						Description:<br> <textarea name="description" rows=30 cols=80 required> </textarea>
@@ -88,11 +88,12 @@
 						}
 						%>
 					</div>
+					
 					<div id="windows" class="section">
 					    <h3>Windows requirements</h3>
 					    <div class="nameValueFields">
 					      <div class="nameValueRow">
-					        <input type="text" required name="windows[name][]" placeholder="Hardware type" maxlength="30">
+					        <input class="windowsnameReq" type="text" required name="windows[name][]" placeholder="Hardware type" maxlength="30">
 					        <input type="text" required name="windows[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
@@ -114,13 +115,18 @@
 					    <button type="button" onclick="addNameValueRow('linux')">Add requirement</button>
 					  </div>
 					<div id=submitDiv>
-						<input type="submit" name="summitta" value=Submit>
+						<input id="submitButton" type="submit" name="summitta" value=Submit>
 					</div>
 			</form>
 			<% String logError = (String) request.getAttribute("logError");
 			if (logError != null) { %>
-			<p> Errore: <%=logError%></p>
+			
+			<div class="errorDiv">
+				<p > Error: <%=logError%></p>
+			</div>
 			<%}	%>
+			
+			<p id="errorMessage"></p>
 		</div>
 		</main>
 	</section>

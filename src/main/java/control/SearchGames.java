@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -78,8 +79,12 @@ public class SearchGames extends BaseServlet {
 		}
 		
 		String order = request.getParameter("sort");
+		
 		if(order == null) 
 			order = "releaseDate";
+		
+		if(order != null && ! ACCEPTEDSORTING.contains(order))
+			throw new InvalidParameters();
 		//Retrieve all parameters from form
 		
 		//Retrieve all Games from database
@@ -110,4 +115,6 @@ public class SearchGames extends BaseServlet {
 	}
 	
 	private static final int SIZEOFPAGINATION = 10;
+	
+	private static final List<String> ACCEPTEDSORTING = Arrays.asList("name", "name DESC", "releaseDate", "releaseDate DESC", "price", "price DESC");
 }

@@ -23,6 +23,7 @@ import model.Belong;
 import model.SystemRequirement;
 import model.SystemRequirement.OperatingSystem;
 import utility.BackendException;
+import utility.InvalidParameters;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -83,7 +84,7 @@ public class GameUploadServlet extends BaseServlet {
 
 		//Retrieve form inputs and check if they're valid
 		if(! validParameters(request, response)) {
-			return;
+			throw new InvalidParameters();
 		}
 		//Retrieve form inputs and check if they're valid
 		
@@ -123,8 +124,10 @@ public class GameUploadServlet extends BaseServlet {
 		try {
 			gameId = gameDAO.insertGame(game);
 		} catch (SQLException e) {
-			showError(request, response, "Internal error while uploading game", SELFPATH);
-			return;
+			System.out.println(price);
+			throw new BackendException();
+			//showError(request, response, "Internal error while uploading game", SELFPATH);
+			//return;
 		}
 		//insert game into database
 		
@@ -152,6 +155,7 @@ public class GameUploadServlet extends BaseServlet {
 			uploadImage(imageDAO, gameId, bannerImage, "BANNER");
 		} catch (SQLException | IOException e) {
 			showError(request, response, "Error uploading banner image", SELFPATH);
+			return;
 		}
 		//insert banner image
 		
@@ -160,7 +164,8 @@ public class GameUploadServlet extends BaseServlet {
 		try {
 			uploadImage(imageDAO, gameId, showcaseImage, "SHOWCASE");
 		} catch (SQLException | IOException e) {
-			showError(request, response, "Error uploading banner image", SELFPATH);
+			showError(request, response, "Error uploading showcase image", SELFPATH);
+			return;
 		}
 		//insert showcase image
 		//Insert images into database and upload "represented" table
@@ -172,7 +177,8 @@ public class GameUploadServlet extends BaseServlet {
 			uploadRequirements(dao, gameId, "MAC", request.getParameterValues("mac[name][]"), request.getParameterValues("mac[value][]"));
 			uploadRequirements(dao, gameId, "LINUX", request.getParameterValues("linux[name][]"), request.getParameterValues("linux[value][]"));
 		} catch (SQLException e) {
-			throw new BackendException();
+			showError(request, response, "Error uloading requirements", SELFPATH);
+			return;
 		}
 		//insert system requirements
 		

@@ -22,6 +22,11 @@ textarea{
 	resize: both;
 }
 
+#errorMessage {
+	color: red;
+	text-align: center;
+}
+
 @media screen and (max-width: 700px) {
 	#formDiv{
 		width: 80%;

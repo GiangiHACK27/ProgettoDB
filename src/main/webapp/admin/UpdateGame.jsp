@@ -42,10 +42,10 @@
 						<input type="file" id=showcaseImages name=showcaseImage accept="image/jpeg, image/png, image/jpg"> 
 					</div> 
 					<div id=nameDiv>
-						Name: <input type="text" name="name" required maxlength="30" value= <%=game.getName() %>> 
+						Name: <input id="name" type="text" name="name" required maxlength="30" value= <%=game.getName() %>> 
 					</div>
 					<div id=publisherDiv>
-						Publisher: <input type="text" name="publisher" required maxlength="30" value= <%=game.getPublisher() %>> 
+						Publisher: <input id="publisher" type="text" name="publisher" required maxlength="30" value= <%=game.getPublisher() %>> 
 					</div>
 					<div id=descriptionDiv>
 						Description:<br> <textarea name="description" rows=30 cols=80 required><%=game.getDescription() %> </textarea>
@@ -115,7 +115,7 @@
 							for(SystemRequirement req:list){
 						  %>
 					      <div class="nameValueRow">
-					        <input value=<%=req.getName() %> type="text" required name="windows[name][]" placeholder="Hardware type" maxlength="30">
+					        <input class="windowsnameReq" value=<%=req.getName() %> type="text" required name="windows[name][]" placeholder="Hardware type" maxlength="30">
 					        <input value=<%=req.getValue() %> type="text" required name="windows[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
@@ -160,13 +160,14 @@
 					    <button type="button" onclick="addNameValueRow('linux')">Add requirement</button>
 					  </div>
 					<div id=submitDiv>
-						<input type="submit" name="summitta" value=Submit>
+						<input id="submitButton" type="submit" name="summitta" value=Submit>
 					</div>
 			</form>
 			<% String logError = (String) request.getAttribute("logError");
 			if (logError != null) { %>
 			<p> Error: <%=logError%></p>
 			<%}	%>
+			<p id="errorMessage"></p>
 		</div>
 		</main>
 	</section>

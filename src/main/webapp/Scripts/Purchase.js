@@ -1,4 +1,4 @@
-var errorMessages = {
+const errorMessages = {
 	fname: "The name can contain only characters separeted by a space",
 	state: "The state is a pair of char",
 	zip: "ZipCode is a number of 5 digit",
@@ -12,6 +12,9 @@ var errorMessages = {
 function checkField(field) {
 	//In case the value is valid	
 	if($("#" + field)[0].checkValidity()) {
+		
+		$("#" + field).removeClass("error");
+		
 		if(errorMessages[field] == $("#errorMessage").html()) {
 			$("#errorMessage").html("");
 		}
@@ -22,6 +25,7 @@ function checkField(field) {
 	
 	//In case the value isn't valid, visualize error
 	$("#errorMessage").html(errorMessages[field]);
+	$("#" + field).addClass("error");
 	//In case the value isn't valid, visualize error
 	
 	return false;
@@ -73,7 +77,7 @@ $(document).ready(function() {
 	//Add to form the check form function
 	
 	//Add to all the input of the form, a callback to on change event
-	for(f in errorMessages) {
+	for(let f in errorMessages) {
 		let i = f;
 		$("#" + i).on("change", function() { checkField(i); })
 	}

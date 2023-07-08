@@ -15,9 +15,7 @@ CREATE TABLE Game (
     state ENUM("Released", "Beta", "Alpha", "Unlisted") NOT NULL DEFAULT("Alpha"),
     pegi int NOT NULL DEFAULT(18),
     publisher varchar(30) NOT NULL DEFAULT("Microsoft"),
-    primary key(id),
-    constraint number_price_game
-        check(price >= 0 and price <= 1000)
+    primary key(id)
 );
 
 CREATE TABLE Category (
@@ -97,48 +95,9 @@ CREATE TABLE Purchase (
 	CONSTRAINT usernameConsPurchase
 		foreign key (username) references User (username),
 	UNIQUE (gameId, username), -- TEST: IF WORK
-	primary key (id),
-        constraint number_price_purchase
-        check(price >= 0 and price <= 1000)
-);
-
-CREATE TABLE Review (
-	id int NOT NULL AUTO_INCREMENT,
-    gameId int NOT NULL,
-    username varchar(30) NOT NULL,
-    textField text NULL, 
-    stars int NOT NULL DEFAULT(0),
-    likes int NOT NULL DEFAULT(0),
-    CONSTRAINT gameIdConsReview 
-		foreign key (gameId) references Game (id)
-        on delete cascade,
-	CONSTRAINT usernameConsReview 
-		foreign key (username) references User (username),
 	primary key (id)
 );
 
-CREATE TABLE Likes (
-	reviewId int NOT NULL,
-    username varchar(30) NOT NULL,
-    CONSTRAINT reviewIdConsLikes
-		foreign key (reviewId) references Review (id)
-        on delete cascade,
-	CONSTRAINT usernameConsLikes
-		foreign key (username) references User (username),
-    primary key (reviewId, username)
-);
-
--- Triggers to update like counter in review
-CREATE TRIGGER increaseNumberOfLikes
-AFTER INSERT ON Likes 
-FOR EACH ROW
-UPDATE Review as R SET R.likes = R.likes + 1 WHERE NEW.reviewId = R.id;
-
-CREATE TRIGGER decreaseNumberOfLikes
-AFTER DELETE ON Likes
-FOR EACH ROW
-UPDATE Review as R SET R.likes = R.likes - 1 WHERE OLD.reviewId = R.id;
--- Triggers to update like counter in review
 
 -- Triggers to update the number of games of user's library
 CREATE TRIGGER increaseGamesOwned
@@ -162,12 +121,12 @@ end //
 DELIMITER ; 
 -- Triggers for a valid purchase
 
--- Triggers for a valid like
+-- Triggers for a valid game
 DELIMITER //
-CREATE TRIGGER likeOnDifferentUsers BEFORE INSERT ON Likes for each row 
+CREATE TRIGGER validGame BEFORE INSERT ON Game for each row 
 begin 
-IF EXISTS(SELECT * FROM Review as R WHERE R.username = NEW.username) THEN signal sqlstate '45000';
+IF NEW.price < 0 AND NEW.price > 100000 THEN signal sqlstate '45000';
 end if;
 end // 
 DELIMITER ; 
--- Triggers for a valid like
+-- Triggers for a valid game

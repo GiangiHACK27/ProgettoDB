@@ -10,8 +10,10 @@ function formatPrice(price) {
 
 //Convert price of game in dollars
 $(document).ready(function() {
-	let stringPrice = document.getElementById("buyButton").innerHTML;
-	document.getElementById("buyButton").innerHTML = formatPrice(stringPrice);
+	if(document.getElementById("buyButton") !== null) {
+		let stringPrice = document.getElementById("buyButton").innerHTML;
+		document.getElementById("buyButton").innerHTML = formatPrice(stringPrice);	
+	}
 });
 //Convert price of game in dollars
 
