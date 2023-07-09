@@ -44,7 +44,7 @@
 			 	<%for (Game currentGame:games){ %>
 			 		<div class=gameDiv>
 			 			<p class=gameImage>
-			 				<a href=PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>><img src="RetrieveGameImageServlet?gameId=<%=currentGame.getId()%>&role=BANNER" alt="game logo"> </a>	
+			 				<a href='/GamingWorldShop/PersonalGamePage.jsp?gameId=<%=currentGame.getId()%>'><img src="RetrieveGameImageServlet?gameId=<%=currentGame.getId()%>&role=BANNER" alt="game logo"> </a>	
 			 			</p>
 			 			<p class=gamePrice>
 			 				<span class= price><%=currentGame.getPrice()%></span><br>
