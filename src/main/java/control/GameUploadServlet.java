@@ -124,10 +124,7 @@ public class GameUploadServlet extends BaseServlet {
 		try {
 			gameId = gameDAO.insertGame(game);
 		} catch (SQLException e) {
-			System.out.println(price);
 			throw new BackendException();
-			//showError(request, response, "Internal error while uploading game", SELFPATH);
-			//return;
 		}
 		//insert game into database
 		

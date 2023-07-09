@@ -14,7 +14,7 @@ function validateFormElem(formElem, span, errorMessage) {
 		
 		//Remove error for pattern mismatching
 		formElem.classList.remove("error");
-		var doc = new DOMParser().parseFromString(span.innerHTML, "text/html")
+		let doc = new DOMParser().parseFromString(span.innerHTML, "text/html")
 		if(errorMessage != null && doc.documentElement.textContent == errorMessage) {
 			formElem.classList.remove("error");
 			span.style.color = "black";
@@ -22,7 +22,7 @@ function validateFormElem(formElem, span, errorMessage) {
 		}
 		//Remove error for pattern mismatching
 
-		var q;
+		let q;
 		
 		//In case we are checking for email o username validity, check if it is already taken
 		if(formElem.name == "email" || formElem.name == "username") {

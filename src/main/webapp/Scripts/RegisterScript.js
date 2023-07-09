@@ -19,7 +19,7 @@ function validateFormElem(formElem, span, errorMessage) {
 		}
 		//Remove error for pattern mismatching
 
-		var q;
+		let q;
 		
 		//In case we are checking for email o username validity, check if it is already taken
 		if(formElem.name == "email" || formElem.name == "username") {

@@ -7,8 +7,8 @@ let USDollar = new Intl.NumberFormat('en-US', {
 window.addEventListener('load', function () {
 	//format prices
 	let classes = document.getElementsByClassName("price")
-	for(let i = 0; i<classes.length; i++){
-		classes[i].innerHTML = USDollar.format(classes[i].innerHTML/100);
+	for(let value of classes){
+		value.innerHTML = USDollar.format(value.innerHTML/100);
 	}
 	//format prices
 	

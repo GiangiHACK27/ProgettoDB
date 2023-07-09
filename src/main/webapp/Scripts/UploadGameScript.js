@@ -12,7 +12,7 @@ $(document).ready(function() {
 	//set max date as current date
 	
 	//This function removes the 'required' tag from checkboxes when at least one is selected, and adds it when they're all unselected
-    var requiredCheckboxes = $(':checkbox[required]');
+    let requiredCheckboxes = $(':checkbox[required]');
     requiredCheckboxes.change(function(){
         if(requiredCheckboxes.is(':checked')) {
             requiredCheckboxes.removeAttr('required');
