@@ -102,7 +102,7 @@ public class PurchaseDAO extends BaseDAO {
 				purchase.setDatePurchased(rs.getString("datePurchased"));
 				purchase.setId(rs.getInt("id"));
 				purchase.setPrice(rs.getInt("price"));
-				purchase.setGameId(rs.getInt("id"));
+				purchase.setGameId(rs.getInt("gameId"));
 				//Build purchase
 				
 				purchases.add(purchase);

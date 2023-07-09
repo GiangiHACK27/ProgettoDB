@@ -42,7 +42,7 @@
 						<table id=purchaseListTable>
 							<thead>
 								<tr>
-									<th>User Id</th>
+									<th>Purchase id</th>
 									<th>Username</th>
 									<th>Game Id</th>
 									<th>Price</th>
