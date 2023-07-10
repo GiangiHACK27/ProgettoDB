@@ -72,6 +72,8 @@ div#description {
 
 div#description h1 {
 	height: 40px;
+
+	margin-top: 10px;
 	
 	text-align: left;
 	
@@ -79,14 +81,13 @@ div#description h1 {
 }
 
 div#description button {
-	background-image: linear-gradient(to right top, #0a720a, #30830b, #4b940c, #66a40c, #81b50d);	color: white;
+	background-image: linear-gradient(to right top, #0a720a, #30830b, #4b940c, #66a40c, #81b50d);	
+	color: white;
 	
 	width: 100px;
 	height: 30px;
 	
-	float: right;
-	
-	margin-left: 5px;
+	margin-right: 5px;
 }
 
 div#description button:hover{
@@ -183,17 +184,23 @@ span#rightText {
 	}
 	
 	div#requirements {
-		width: 95%;
+		width: 60%;
 		
+		float: left;
 		margin: auto;
-		margin-top: 50px;
+		margin-top: 10px;
 	}
+	
 	#pegi{
-		float:none;
+		width: 20%;
+		
+		float: left;
+		
+		margin-left: 15%;
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
 	main {
 		width: 98%;
 	}
@@ -203,8 +210,6 @@ span#rightText {
 		
 		min-height: auto;
 	}
-	
-
 	
 	div#row-2 {
 		width: 100%;
@@ -216,13 +221,46 @@ span#rightText {
 		width: 100%;
 	}
 	
-	div#requirements {
-		width: 95%;
+	div#description h1 {
+		display: block;
 		
-		margin: auto;
-		margin-top: 50px;
+		min-width: 100%;
+		
+		text-align: center;
 	}
-		#pegi{
-		float:none;
+	
+	div#description button {
+		float: none;
+	}
+	
+	div#requirements {
+		width: 350px;
+
+		float: none;
+		
+		margin: 0px;
+		margin: auto;
+		margin-top: 10px;
+		
+		display: inline-block;
+	}
+	
+	#pegi{
+		margin-left: 20%;
+
+		float: none;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	div#requirements {
+		width: 300px;
+	}
+
+	div#description button {
+		width: 95px;
+	
+		margin-right: 3px;
+		padding-right: 2px;
 	}
 }

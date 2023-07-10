@@ -92,7 +92,6 @@
 			
 			<div id="row-2">
 				<div id="description">
-					<h1> <%= game.getName()%> </h1>
 						<%if(!game.getState().equals(State.UNLISTED)){ %>
 							<% if(! isBuyed) { 
 								 if(! isInWishlist && user != null) { %>
@@ -108,6 +107,9 @@
 								<button onclick="location.href='user/GameLibrary.jsp'">View in library </button>
 							<%} %>
 						<%} %>
+				
+					<h1> <%= game.getName()%> </h1>
+					
 					<p> <%= game.getDescription()%> </p>
 				</div>
 				
