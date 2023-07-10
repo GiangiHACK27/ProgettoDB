@@ -5,9 +5,12 @@
 <html lang = en>
 	<head>
 		<meta charset="ISO-8859-1">
+		
 		<meta name="viewport" content="initial-scale=1, width=device-width">
+		
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
 		<link rel="stylesheet" href="../CSS/PersonalAreaStyle.css">
+		
 		<title>Personal Area</title>
 	</head>
 	<%

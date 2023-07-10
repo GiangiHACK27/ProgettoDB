@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="../CSS/BaseStyle.css">
 		<link rel="stylesheet" href="../CSS/UploadGameStyle.css">
 				
-		<title>Upload game</title>
+		<title>Edit Game</title>
 	</head>
 	
 	<jsp:include page="/RetrieveGameCategories"></jsp:include>

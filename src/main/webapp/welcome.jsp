@@ -9,9 +9,12 @@
 <html lang = en>
 	<head>
 		<meta name="viewport" content="initial-scale=1, width=device-width">
+		
+		<meta charset="ISO-8859-1">
+		
 		<link rel="stylesheet" href="./CSS/BaseStyle.css">
 		<link rel="stylesheet" href="./CSS/WelcomeStyle.css">
-		<meta charset="ISO-8859-1">
+				
 		<title>Welcome to Gaming World!</title>
 	</head>
 	<%User user = (User)session.getAttribute("user");%>

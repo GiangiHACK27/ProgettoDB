@@ -15,7 +15,7 @@
 		crossorigin="anonymous"></script>
 		<script src=../Scripts/PurchaseListScript.js></script>
 		
-		<title>Purchase</title>
+		<title>Purchase List</title>
 	</head>
 
 	<body>
