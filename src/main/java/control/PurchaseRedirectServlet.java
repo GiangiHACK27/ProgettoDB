@@ -52,7 +52,7 @@ public class PurchaseRedirectServlet extends BaseServlet {
 		
 		//Check if cart is empty in the case we came from cart, or want to buy with cart
 		if(from.equals("cart")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/GamingWorldShop/RetrieveCartServlet?category?=cart");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveCartServlet?category=cart");
 			dispatcher.include(request, response);
 			
 			Cart cart = (Cart)request.getAttribute("cartForView");

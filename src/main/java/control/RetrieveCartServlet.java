@@ -3,6 +3,8 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,12 +35,20 @@ public class RetrieveCartServlet extends BaseServlet {
     protected void validateCart(HttpServletRequest request, HttpServletResponse response, Cart cart, Interested.Category category) throws ServletException, IOException, SQLException {
 		GameDAO gameDAO = new GameDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		
+		List<Integer> idToRemove = new ArrayList<>();
+		
 		if(cart != null) {
 			for(int id : cart.getGames()) {
-					if(gameDAO.isUnlisted(id)) {
-						RequestDispatcher dispatcher = request.getRequestDispatcher("/DeleteFromCartServlet?gameId" + id + "&category=" + category.toString().toLowerCase());
-						dispatcher.include(request, response);
-					}
+				if(gameDAO.isUnlisted(id)) {
+					idToRemove.add(id);
+					
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/DeleteFromCartServlet?gameId=" + id + "&category=" + category.toString().toLowerCase());
+					dispatcher.include(request, response);
+				}
+			}
+			
+			for(int id : idToRemove) {
+				cart.removeGame(id);
 			}
 		}
     }

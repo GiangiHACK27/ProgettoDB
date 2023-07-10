@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/HeaderStyle.css">
 	
-<jsp:include page="/RetrieveCartServlet?category=cart"></jsp:include>
+<jsp:include page="RetrieveCartServlet?category=cart"></jsp:include>
 
 <script src="${pageContext.request.contextPath}/Scripts/HeaderScript.js"></script>
 

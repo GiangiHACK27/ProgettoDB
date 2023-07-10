@@ -42,10 +42,10 @@
 						<input type="file" id=showcaseImages name=showcaseImage accept="image/jpeg, image/png, image/jpg"> 
 					</div> 
 					<div id=nameDiv>
-						Name: <input id="name" type="text" name="name" required maxlength="30" value= <%=game.getName() %>> 
+						Name: <input id="name" type="text" name="name" required maxlength="30" value="<%=game.getName() %>"> 
 					</div>
 					<div id=publisherDiv>
-						Publisher: <input id="publisher" type="text" name="publisher" required maxlength="30" value= <%=game.getPublisher() %>> 
+						Publisher: <input id="publisher" type="text" name="publisher" required maxlength="30" value= "<%=game.getPublisher() %>"> 
 					</div>
 					<div id=descriptionDiv>
 						Description:<br> <textarea name="description" rows=30 cols=80 required><%=game.getDescription() %> </textarea>
@@ -69,7 +69,7 @@
 						</select>
 					</div> 	
 					<div id=releaseDateDiv>		
-						Release date: <input type="date" id=releaseDate name="releaseDate" min="1980-01-01" max="2027-01-01" required value=<%=game.getReleaseDate()%>> 	
+						Release date: <input type="date" id=releaseDate name="releaseDate" min="1980-01-01" max="2027-01-01" required value="<%=game.getReleaseDate()%>"> 	
 					</div>
 					<div id=pegiDiv>
 						Pegi:
