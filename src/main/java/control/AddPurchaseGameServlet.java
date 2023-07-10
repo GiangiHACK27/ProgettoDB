@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.sql.DataSource;
 
+import dao.GameDAO;
 import dao.PurchaseDAO;
 
 import model.Purchase;
@@ -45,10 +46,28 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		}
 		//Check if input are valid
 		
-		//Retrieve parameters from request and build purchase
-		Purchase purchase = new Purchase();
+		//Retrieve datasource from the servelt context
+		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");
+		//Retrieve datasource from the servelt context
 		
+		//Retrieve gameId and check if the game is unlisted
 		String gameId = request.getParameter("gameId");
+		
+		GameDAO gameDAO = new GameDAO(ds);
+		
+		boolean isUnlisted = false;
+		try {
+			isUnlisted = gameDAO.isUnlisted(Integer.parseInt(gameId));
+		} catch (NumberFormatException | SQLException e) {
+			throw new BackendException();
+		}
+		
+		if(isUnlisted)
+			throw new InvalidParameters();
+		//Retrieve gameId and check if the game is unlisted
+		
+		//Build purchase
+		Purchase purchase = new Purchase();
 		
 		purchase.setUsername(user.getUsername());
 		purchase.setGameId(Integer.parseInt(gameId));
@@ -58,11 +77,7 @@ public class AddPurchaseGameServlet extends BaseServlet {
 
 		Game game = (Game)request.getAttribute("game");
 		purchase.setPrice(game.getPrice());
-		//Retrieve parameters from request and build purchase
-
-		//Retrieve datasource from the servelt context
-		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");
-		//Retrieve datasource from the servelt context
+		//Build purchase
 		
 		//Delete if is present the element from the cart
 		dispatcher = request.getRequestDispatcher("../DeleteFromCartServlet?category=cart&gameId=" + gameId);

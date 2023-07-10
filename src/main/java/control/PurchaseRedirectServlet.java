@@ -15,6 +15,7 @@ import utility.BackendException;
 import utility.InvalidParameters;
 
 import dao.PurchaseDAO;
+import dao.GameDAO;
 
 import model.User;
 
@@ -57,6 +58,22 @@ public class PurchaseRedirectServlet extends BaseServlet {
 		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");
 		//Retrieve data source from the servlet context
 		
+		//Check if the game is unlisted
+		if(from.equals("personalGamePage")) {
+			GameDAO gameDAO = new GameDAO(ds);
+			
+			boolean isUnlisted = false;
+			try {
+				isUnlisted = gameDAO.isUnlisted(Integer.parseInt(gameId));
+			} catch (NumberFormatException | SQLException e) {
+				throw new BackendException();
+			}
+			
+			if(isUnlisted)
+				throw new InvalidParameters();
+		}
+		//Check if the game is unlisted
+		
 		//Check if the game is already buyed
 		if(gameId != null) {
 			PurchaseDAO purchaseDAO = new PurchaseDAO(ds);
@@ -70,7 +87,7 @@ public class PurchaseRedirectServlet extends BaseServlet {
 		
 		
 			if(isBuyed)
-				throw new BackendException();
+				throw new InvalidParameters();
 		}
 		//Check if the game is already buyed
 		
