@@ -32,7 +32,7 @@ public class PurchaseFromCartServlet extends BaseServlet {
 		//Get user from session
 		
 		//Dispatch request for view cart servlet
-		RequestDispatcher dispatcher = request.getRequestDispatcher("../ViewCartServlet");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("../ViewCartServlet?category=cart");
 		dispatcher.include(request, response);
 		
 		List<Game> cartItems = (List<Game>)request.getAttribute("cartItems");

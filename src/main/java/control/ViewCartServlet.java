@@ -37,7 +37,7 @@ public class ViewCartServlet extends BaseServlet {
 		//get cart from request taken from retrievecartservlet
 		Cart cart = (Cart) request.getAttribute(category + "ForView");
 		//get cart from request taken from retrievecartservlet
-
+		
 		//For each gameID, get all game data from RetrieveGameServlet
 		if(cart != null) {
 			for(int id : cart.getGames()) {
@@ -47,7 +47,7 @@ public class ViewCartServlet extends BaseServlet {
 			}
 		}
 		//For each gameID, get all game data from RetrieveGameServlet
-
+		
 		request.setAttribute(category + "Items", cartItems);
 	}
 	

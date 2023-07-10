@@ -2,7 +2,9 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +13,12 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import dao.InterestedDAO;
+import dao.GameDAO;
+
 import model.Cart;
 import model.Interested;
 import model.User;
+
 import utility.BackendException;
 
 @WebServlet("/RetrieveCartServlet")
@@ -33,15 +38,13 @@ public class RetrieveCartServlet extends BaseServlet {
 		//Retrieve from session the user info
 		
 		//Validate parameters
-		if(!validParameters(request, response))
+		if(!validParameters(request, response, Arrays.asList("category")))
 			return;
 		//Validate parameters
 		
 		//Retrieve category of cart from request
 		Interested.Category category = Interested.Category.valueOf(request.getParameter("category").toUpperCase());
 		//Retrieve category of cart from request
-		
-		
 		
 		Cart cart = null;
 		
@@ -76,6 +79,24 @@ public class RetrieveCartServlet extends BaseServlet {
 			//Retrieve Cart from session
 		}
 		//In case user isn't logged
+		
+		//Check if element in the cart are valid
+		GameDAO gameDAO = new GameDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		
+		if(cart != null) {
+			for(int id : cart.getGames()) {
+				try {
+					if(gameDAO.isUnlisted(id)) {
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/DeleteFromCartServlet?gameId" + id + "&category=" + category.toString().toLowerCase());
+						dispatcher.include(request, response);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+					throw new BackendException();
+				}
+			}
+		}
+		//Check if element in the cart are valid
 		
 		//Put the copy of cart in the request
 		request.setAttribute(category.toString().toLowerCase() + "ForView", cart);

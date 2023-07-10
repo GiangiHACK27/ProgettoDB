@@ -373,5 +373,27 @@ public class GameDAO extends BaseDAO {
 		return gamePurchased;
 	}
 	
+	public boolean isUnlisted(int gameId) throws SQLException {
+		
+		String query = "SELECT state FROM Game WHERE id = ?";
+		
+		//Retrieve connection
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+		//Retrieve connection
+			
+			ps.setInt(1, gameId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				Game.State state = Game.State.valueOf(rs.getString("state").toUpperCase());
+				if(state.equals(Game.State.UNLISTED))
+					return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	 private static final List<String> validOrderValues = List.of("name", "name DESC", "releaseDate", "releaseDate DESC", "price", "price DESC" );
 }
