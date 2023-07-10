@@ -116,6 +116,7 @@
 				<% Map<SystemRequirement.OperatingSystem, List<SystemRequirement>> requirementsMap = (Map)request.getAttribute("requirements"); %>
 				
 				<div id="requirements">
+					<h1 id="requirementsTitle">Requirements</h1>
 					<div id="reqBar">
 						<% 
 						String firstNotEmptyOs = "";

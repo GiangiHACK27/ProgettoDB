@@ -34,7 +34,6 @@ INSERT INTO Game (price, name, description, shortDescription) values (15, "Titol
 INSERT INTO Game (price, name, description, shortDescription) values (15, "Titolo15", "Ciao bella", "bella");
 INSERT INTO Game (price, name, description, shortDescription, state) values (30, "hey", "Ciao bella", "bella", "unlisted");
 
-
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Windows", 1);
 INSERT INTO SystemRequirement (name, os, gameId) values ("minimum-qualcosa", "Linux", 1); 
 
