@@ -43,6 +43,16 @@ public class PurchaseRedirectServlet extends BaseServlet {
 		String gameId = request.getParameter("gameId");
 		//Retrieve parameters from request
 		
+		//Check if parameter from are valid
+		if( ! (from.equals("personalGamePage") || from.equals("cart")) ) 
+			throw new InvalidParameters();
+		//Check if parameter from are valid
+		
+		//Check if game id is null in case we came from personalGamePage
+		if(from.equals("personalGamePage") && gameId == null)
+			throw new InvalidParameters();
+		//Check if game id is null in case we came from personalGamePage
+		
 		//Retrieve data source from the servlet context
 		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");
 		//Retrieve data source from the servlet context
@@ -63,11 +73,6 @@ public class PurchaseRedirectServlet extends BaseServlet {
 				throw new BackendException();
 		}
 		//Check if the game is already buyed
-		
-		//Check if parameters are valid
-		if( ! (from.equals("personalGamePage") || from.equals("cart")) ) 
-			throw new InvalidParameters();
-		//Check if parameters are valid
 		
 		//Decide on base of parameter what server you want to call
 		String servletToCall = "PurchaseFromCartServlet?category=cart";

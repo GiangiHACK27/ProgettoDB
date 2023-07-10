@@ -115,8 +115,8 @@
 							for(SystemRequirement req:list){
 						  %>
 					      <div class="nameValueRow">
-					        <input class="windowsnameReq" value=<%=req.getName() %> type="text" required name="windows[name][]" placeholder="Hardware type" maxlength="30">
-					        <input value=<%=req.getValue() %> type="text" required name="windows[value][]" placeholder="Value" maxlength="30">
+					        <input class="windowsnameReq" value="<%=req.getName() %>" type="text" required name="windows[name][]" placeholder="Hardware type" maxlength="30">
+					        <input value="<%=req.getValue() %>" type="text" required name="windows[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    <%} %>
@@ -133,8 +133,8 @@
 							for(SystemRequirement req:list){
 						  %>
 					      <div class="nameValueRow">
-					        <input value=<%=req.getName()%> type="text" required name="mac[name][]" placeholder="Hardware type" maxlength="30">
-					        <input value=<%=req.getValue()%> type="text" required name="mac[value][]" placeholder="Value" maxlength="30">
+					        <input value="<%=req.getName()%>" type="text" required name="mac[name][]" placeholder="Hardware type" maxlength="30">
+					        <input value="<%=req.getValue()%>" type="text" required name="mac[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    <%} %>
@@ -151,8 +151,8 @@
 							for(SystemRequirement req:list){
 						  %>
 					      <div class="nameValueRow">
-					        <input value=<%=req.getName()%> type="text" required name="linux[name][]" placeholder="Hardware type" maxlength="30">
-					        <input value=<%=req.getValue()%> type="text" required name="linux[value][]" placeholder="Value" maxlength="30">
+					        <input value="<%=req.getName()%>" type="text" required name="linux[name][]" placeholder="Hardware type" maxlength="30">
+					        <input value="<%=req.getValue()%>" type="text" required name="linux[value][]" placeholder="Value" maxlength="30">
 					        <button type="button" class="removeButton" onclick="removeNameValueRow(this)">Remove</button>
 					      </div>
 					    <%} %>

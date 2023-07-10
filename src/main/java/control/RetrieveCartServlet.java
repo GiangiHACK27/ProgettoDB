@@ -20,6 +20,7 @@ import model.Interested;
 import model.User;
 
 import utility.BackendException;
+import utility.InvalidParameters;
 
 @WebServlet("/RetrieveCartServlet")
 public class RetrieveCartServlet extends BaseServlet {
@@ -28,7 +29,20 @@ public class RetrieveCartServlet extends BaseServlet {
     public RetrieveCartServlet() {
         super();
     }
-
+    
+    protected void validateCart(HttpServletRequest request, HttpServletResponse response, Cart cart, Interested.Category category) throws ServletException, IOException, SQLException {
+		GameDAO gameDAO = new GameDAO((DataSource)getServletContext().getAttribute("DataSource"));
+		
+		if(cart != null) {
+			for(int id : cart.getGames()) {
+					if(gameDAO.isUnlisted(id)) {
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/DeleteFromCartServlet?gameId" + id + "&category=" + category.toString().toLowerCase());
+						dispatcher.include(request, response);
+					}
+			}
+		}
+    }
+    
     /*Puts a cart item in the request. Needs a "category" in the GET request */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -38,8 +52,8 @@ public class RetrieveCartServlet extends BaseServlet {
 		//Retrieve from session the user info
 		
 		//Validate parameters
-		if(!validParameters(request, response, Arrays.asList("category")))
-			return;
+		if(! validParameters(request, response, Arrays.asList("category")))
+			throw new InvalidParameters();
 		//Validate parameters
 		
 		//Retrieve category of cart from request
@@ -81,20 +95,10 @@ public class RetrieveCartServlet extends BaseServlet {
 		//In case user isn't logged
 		
 		//Check if element in the cart are valid
-		GameDAO gameDAO = new GameDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		
-		if(cart != null) {
-			for(int id : cart.getGames()) {
-				try {
-					if(gameDAO.isUnlisted(id)) {
-						RequestDispatcher dispatcher = request.getRequestDispatcher("/DeleteFromCartServlet?gameId" + id + "&category=" + category.toString().toLowerCase());
-						dispatcher.include(request, response);
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-					throw new BackendException();
-				}
-			}
+		try {
+			validateCart(request, response, cart, category);
+		} catch (SQLException e) {
+			throw new BackendException();
 		}
 		//Check if element in the cart are valid
 		

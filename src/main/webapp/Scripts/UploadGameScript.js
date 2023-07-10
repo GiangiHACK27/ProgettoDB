@@ -110,7 +110,11 @@ function checkForm(e) {
 			let value = o.value.trim();
 			
 			$(`.${platform}nameReq`).each(function(i2, o2) {
-				if(i != i2 && value != "" && o2.value.trim() == value.trim()) {
+				let v = o2.value.replace(/^\s+/g, '');
+				let v2 = value.replace(/^\s+/g, '');
+				v.replace(/\s+$/g, '');
+				v2.replace(/\s+$/g, ''); 
+				if(i != i2 && value != "" && v == v2) {
 					$("#errorMessage").html(requirementsError);
 					e.preventDefault();
 					return false;

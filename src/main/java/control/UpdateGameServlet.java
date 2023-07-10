@@ -223,7 +223,7 @@ public class UpdateGameServlet extends BaseServlet {
 			uploadRequirements(dao, gameId, "MAC", request.getParameterValues("mac[name][]"), request.getParameterValues("mac[value][]"));
 			uploadRequirements(dao, gameId, "LINUX", request.getParameterValues("linux[name][]"), request.getParameterValues("linux[value][]"));
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 			throw new BackendException();
 		}
 		//insert system requirements
