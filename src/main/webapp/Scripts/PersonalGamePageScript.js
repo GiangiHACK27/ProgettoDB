@@ -32,16 +32,16 @@ function changeSchedeReq(id) {
 function addToCart(id) {	
 	$.ajaxSetup({ type: "GET", timeout : 10000 })
 	
-	$.get("/GamingWorldShop/AddToCartServlet?gameId="+id+"&category=cart");
+	$.get("/GamingWorldShop/AddToCartServlet?gameId="+id+"&category=cart", function() { 
+			let str = $('#cartItemCount').html();
+		str = str.replace(/\s/g, '');
 	
-	let str = $('#cartItemCount').html();
-	str = str.replace(/\s/g, '');
-	
-	if(str == "") {
-		$('#cartItemCount').html("1");
-	} else {
-		$('#cartItemCount').html(parseInt(str) + 1);	
-	}
+		if(str == "") {
+			$('#cartItemCount').html("1");
+		} else {
+			$('#cartItemCount').html(parseInt(str) + 1);	
+		} 
+	});
 	
 	$('#addToCartButton').css("display", "none");
 }

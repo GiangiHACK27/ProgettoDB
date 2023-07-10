@@ -48,10 +48,11 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 				return;
 			}
 			//Check if the access is permitted, in other case, redirect to login page
-		
+			
 			chain.doFilter(request, response);
 		}
 	}
+	
 	
 	//Check if the user is logged(has a session)
 	private boolean checkForUserPath(String path, User user) {

@@ -24,8 +24,11 @@
 
 	<%
 	String servletToCall = (String)request.getAttribute("servletToCall");
-/* 	if(servletToCall == null)
-		servletToCall = "PurchaseFromCartServlet?category=cart"; */
+	if(servletToCall == null) {
+	%>
+		<jsp:forward page="../error.jsp"></jsp:forward>
+	<%
+	}
 	%>
 
 	<section class=main>

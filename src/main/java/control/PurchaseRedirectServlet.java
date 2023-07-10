@@ -18,6 +18,7 @@ import dao.PurchaseDAO;
 import dao.GameDAO;
 
 import model.User;
+import model.Cart;
 
 @WebServlet("/user/PurchaseRedirectServlet")
 public class PurchaseRedirectServlet extends BaseServlet {
@@ -48,6 +49,18 @@ public class PurchaseRedirectServlet extends BaseServlet {
 		if( ! (from.equals("personalGamePage") || from.equals("cart")) ) 
 			throw new InvalidParameters();
 		//Check if parameter from are valid
+		
+		//Check if cart is empty in the case we came from cart, or want to buy with cart
+		if(from.equals("cart")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/GamingWorldShop/RetrieveCartServlet?category?=cart");
+			dispatcher.include(request, response);
+			
+			Cart cart = (Cart)request.getAttribute("cartForView");
+			
+			if(cart == null || cart.getGames().isEmpty())
+				throw new InvalidParameters();
+		}
+		//Check if cart is empty in the case we came from cart, or want to buy with cart
 		
 		//Check if game id is null in case we came from personalGamePage
 		if(from.equals("personalGamePage") && gameId == null)

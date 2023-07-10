@@ -19,7 +19,6 @@ import model.Purchase;
 import model.User;
 import utility.BackendException;
 import utility.InvalidParameters;
-import utility.MethodNotSupportedException;
 import model.Game;
 
 @WebServlet("/user/AddPurchaseGameServlet")
@@ -29,10 +28,6 @@ public class AddPurchaseGameServlet extends BaseServlet {
     public AddPurchaseGameServlet() {
         super();
     }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		throw new MethodNotSupportedException();
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
