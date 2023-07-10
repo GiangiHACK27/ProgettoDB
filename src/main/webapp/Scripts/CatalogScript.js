@@ -1,3 +1,5 @@
+
+
 //function to format price
 let USDollar = new Intl.NumberFormat('en-US', {
 	    style: 'currency',

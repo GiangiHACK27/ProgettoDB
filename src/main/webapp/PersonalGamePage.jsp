@@ -79,8 +79,8 @@
 							<tr>
 								<td>
 									<span class="infoShortDescription">Categories:</span> 
-									<%for(Category c:categories){ %>
-										<%=c.getName() %>
+									<%for(int i = 0; i<categories.size(); i++){ %>
+										<%=categories.get(i).getName()%><%if(i != categories.size()-1){%>,<%}%>
 									 <%} %>
 								</td>
 							</tr>

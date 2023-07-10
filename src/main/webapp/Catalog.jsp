@@ -106,8 +106,8 @@
 					<select name = sort>
 						<option value = "name">Title(A to Z)</option>
 						<option value = "name DESC">Title(Z to A)</option>
-						<option value = "releaseDate">Release date(from newest)</option>
-						<option value = "releaseDate DESC">Release date(from oldest)</option>
+						<option value = "releaseDate DESC">Release date(from newest)</option>
+						<option value = "releaseDate">Release date(from oldest)</option>
 						<option value = "price">Price(from lowest)</option>
 						<option value = "price DESC">Price(from highest)</option>
 					</select>
