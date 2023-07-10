@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.security.InvalidParameterException;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -16,6 +15,8 @@ import dao.PurchaseDAO;
 
 import model.Purchase;
 import model.User;
+import utility.BackendException;
+import utility.InvalidParameters;
 import utility.MethodNotSupportedException;
 import model.Game;
 
@@ -39,8 +40,7 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		
 		//Check if input are valid
 		if(! super.validParameters(request, response)) {
-			throw new InvalidParameterException("Ajajajaj");
-			
+			throw new InvalidParameters();
 		}
 		//Check if input are valid
 		
@@ -73,7 +73,7 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		try {
 			purchaseDAO.insert(purchase);
 		} catch (SQLException e) {
-			return;
+			throw new BackendException();
 		}
 		//Insert purchase on database
 		

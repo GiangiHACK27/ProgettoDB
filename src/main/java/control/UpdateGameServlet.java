@@ -126,7 +126,6 @@ public class UpdateGameServlet extends BaseServlet {
 		game.setId(gameId);
 		//make game DTO
 
-
 		//update game in database
 		GameDAO gameDAO = new GameDAO(dataSource);
 		try {

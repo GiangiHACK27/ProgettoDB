@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
@@ -8,8 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
+import utility.BackendException;
 import utility.InvalidParameters;
+
+import dao.PurchaseDAO;
+
+import model.User;
 
 @WebServlet("/user/PurchaseRedirectServlet")
 public class PurchaseRedirectServlet extends BaseServlet {
@@ -27,10 +34,32 @@ public class PurchaseRedirectServlet extends BaseServlet {
 		}
 		//Check if parameters are empty
 		
+		//Retrieve user from the session
+		User user = (User)request.getSession().getAttribute("user");
+		//Retrieve user from the session
+		
 		//Retrieve parameters from request
 		String from = request.getParameter("from");
 		String gameId = request.getParameter("gameId");
 		//Retrieve parameters from request
+		
+		//Retrieve data source from the servlet context
+		DataSource ds = (DataSource)request.getServletContext().getAttribute("DataSource");
+		//Retrieve data source from the servlet context
+		
+		//Check if the game is already buyed
+		PurchaseDAO purchaseDAO = new PurchaseDAO(ds);
+		
+		boolean isBuyed = false;
+		try {
+			isBuyed = purchaseDAO.isBuyed(Integer.parseInt(gameId), user.getUsername());
+		} catch (NumberFormatException | SQLException e) {
+			throw new BackendException();
+		}
+		
+		if(isBuyed)
+			throw new BackendException();
+		//Check if the game is already buyed
 		
 		//Check if parameters are valid
 		if( ! (from.equals("personalGamePage") || from.equals("cart")) ) 

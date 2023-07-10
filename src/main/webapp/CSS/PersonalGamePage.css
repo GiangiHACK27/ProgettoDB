@@ -72,12 +72,11 @@ div#description {
 
 div#description h1 {
 	height: 40px;
+	width: 100%;
 
 	margin-top: 10px;
 	
 	text-align: left;
-	
-	display: inline-block;
 }
 
 div#description button {
@@ -223,8 +222,6 @@ span#rightText {
 	
 	div#description h1 {
 		display: block;
-		
-		min-width: 100%;
 		
 		text-align: center;
 	}

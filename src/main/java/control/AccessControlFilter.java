@@ -33,22 +33,24 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 		String path = httpServletRequest.getServletPath();
 		//Retrieve path from the request
 		
-		//Retrieve user from the session
-		User user = (User) session.getAttribute("user");
-		//Retrieve user from the session
+		synchronized (session) {
+			//Retrieve user from the session
+			User user = (User) session.getAttribute("user");
+			//Retrieve user from the session
 		
-		//Check if the access is permitted, in other case, redirect to login page or error page
-		if( checkForUserPath(path, user)) {
-			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/Login.jsp");
-			return;
-		}
-		else if(checkForAdminPath(path, user)) {
-			httpServletResponse.sendError(405);
-			return;
-		}
-		//Check if the access is permitted, in other case, redirect to login page
+			//Check if the access is permitted, in other case, redirect to login page or error page
+			if( checkForUserPath(path, user)) {
+				httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/Login.jsp");
+				return;
+			}
+			else if(checkForAdminPath(path, user)) {
+				httpServletResponse.sendError(405);
+				return;
+			}
+			//Check if the access is permitted, in other case, redirect to login page
 		
-		chain.doFilter(request, response);
+			chain.doFilter(request, response);
+		}
 	}
 	
 	//Check if the user is logged(has a session)
