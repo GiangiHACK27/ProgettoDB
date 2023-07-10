@@ -29,7 +29,7 @@ public class PurchaseRedirectServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Check if parameters are empty
-		if( ! validParameters(request, response, Arrays.asList("from", "gameId")) ) {
+		if( ! validParameters(request, response, Arrays.asList("from")) ) {
 			throw new InvalidParameters();
 		}
 		//Check if parameters are empty
@@ -48,17 +48,20 @@ public class PurchaseRedirectServlet extends BaseServlet {
 		//Retrieve data source from the servlet context
 		
 		//Check if the game is already buyed
-		PurchaseDAO purchaseDAO = new PurchaseDAO(ds);
+		if(gameId != null) {
+			PurchaseDAO purchaseDAO = new PurchaseDAO(ds);
 		
-		boolean isBuyed = false;
-		try {
-			isBuyed = purchaseDAO.isBuyed(Integer.parseInt(gameId), user.getUsername());
-		} catch (NumberFormatException | SQLException e) {
-			throw new BackendException();
+			boolean isBuyed = false;
+			try {
+				isBuyed = purchaseDAO.isBuyed(Integer.parseInt(gameId), user.getUsername());
+			} catch (NumberFormatException | SQLException e) {
+				throw new BackendException();
+			}
+		
+		
+			if(isBuyed)
+				throw new BackendException();
 		}
-		
-		if(isBuyed)
-			throw new BackendException();
 		//Check if the game is already buyed
 		
 		//Check if parameters are valid

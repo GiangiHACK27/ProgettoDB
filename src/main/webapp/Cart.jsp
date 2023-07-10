@@ -58,7 +58,7 @@
 
 		<section id=options>
 			<div id="purchaseButton">
-				<button onclick="location.href='user/PurchaseRedirectServlet?from=cart&gameId=0'">Go to checkout</button> <span id=totalPrice></span>	
+				<button onclick="location.href='user/PurchaseRedirectServlet?from=cart'">Go to checkout</button> <span id=totalPrice></span>	
 			</div> 
 			
 			<div id=emptyCartOption>

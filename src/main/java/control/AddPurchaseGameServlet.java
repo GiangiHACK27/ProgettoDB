@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,7 +40,7 @@ public class AddPurchaseGameServlet extends BaseServlet {
 		//Retrieve User from session
 		
 		//Check if input are valid
-		if(! super.validParameters(request, response)) {
+		if(! super.validParameters(request, response, Arrays.asList("gameId"))) {
 			throw new InvalidParameters();
 		}
 		//Check if input are valid
