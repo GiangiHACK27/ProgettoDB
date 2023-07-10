@@ -81,7 +81,7 @@ public class PurchaseDAO extends BaseDAO {
 			String query = "SELECT * FROM Purchase WHERE datePurchased BETWEEN ? AND ?";
 			
 			if(username != null)
-				query += " AND username = ?";
+				query += " AND INSTR(username, ?) > 0";
 			
 			PreparedStatement ps = conn.prepareStatement(query);
 			
